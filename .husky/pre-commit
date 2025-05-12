@@ -1,0 +1,7 @@
+echo "Running pre-commit hook..."
+
+# lint-staged 를 실행하여 staged 파일들에 대해 lint 와 format 을 순차적으로 수행
+if ! npx lint-staged --concurrent false; then
+  echo "The pre-commit hook encountered issues. Please check the linting errors above."
+  exit 1
+fi
