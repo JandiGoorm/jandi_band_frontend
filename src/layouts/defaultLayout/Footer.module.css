@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  min-height: 5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: var(--shadow-top-sm);
+}
+
+.content {
+  flex: 1;
+  max-width: 1200px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

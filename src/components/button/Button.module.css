@@ -1,0 +1,32 @@
+.btn {
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  border-radius: var(--radius-button-primary);
+  color: var(--color-button-primary-text);
+}
+
+/* Size variants */
+.btn_md {
+  padding: 0.3rem 1.5rem;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.btn_lg {
+  padding: 0.75rem 2rem;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Variant styles */
+.btn_primary {
+  background-color: var(--color-button-primary-bg);
+}
+
+.btn_secondary {
+  background-color: var(--color-button-secondary-bg);
+}
