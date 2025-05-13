@@ -1,0 +1,101 @@
+:root {
+  --color-white: oklch(1 0 0);
+  --color-black: oklch(0 0 0);
+  --color-whitepure: oklch(100% 0 0);
+
+  /* breakpoint  */
+  --breakpoint-sm: 390px;
+  --breakpoint-md: 720px;
+  --breakpoint-lg: 1296px;
+  --breakpoint-xl: 1440px;
+
+  /* text */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
+
+  /* font-weight */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* radius */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
+  --radius-5xl: 3.125rem;
+  --radius-full: 100%;
+
+  /* shadow */
+  --color-shadow: 0 0 0;
+  --shadow-opacity: 0.1;
+
+  /* Bottom shadows */
+  --shadow-2xs: 0 1px rgb(var(--color-shadow) / 0.05);
+  --shadow-xs: 0 1px 2px 0 rgb(var(--color-shadow) / 0.05);
+  --shadow-sm:
+    0 1px 3px 0 rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 1px 2px -1px rgb(var(--color-shadow) / var(--shadow-opacity));
+  --shadow-md:
+    0 4px 6px -1px rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 2px 4px -2px rgb(var(--color-shadow) / var(--shadow-opacity));
+  --shadow-lg:
+    0 10px 15px -3px rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 4px 6px -4px rgb(var(--color-shadow) / var(--shadow-opacity));
+  --shadow-xl:
+    0 20px 25px -5px rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 8px 10px -6px rgb(var(--color-shadow) / var(--shadow-opacity));
+  --shadow-2xl: 0 25px 50px -12px rgb(var(--color-shadow) / 0.3);
+
+  /* Top shadows (for footer) */
+  --shadow-top-2xs: 0 -1px rgb(var(--color-shadow) / 0.05);
+  --shadow-top-xs: 0 -1px 2px 0 rgb(var(--color-shadow) / 0.05);
+  --shadow-top-sm:
+    0 -1px 3px 0 rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 -1px 2px -1px rgb(var(--color-shadow) / var(--shadow-opacity));
+  --shadow-top-md:
+    0 -4px 6px -1px rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 -2px 4px -2px rgb(var(--color-shadow) / var(--shadow-opacity));
+  --shadow-top-lg:
+    0 -10px 15px -3px rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 -4px 6px -4px rgb(var(--color-shadow) / var(--shadow-opacity));
+  --shadow-top-xl:
+    0 -20px 25px -5px rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 -8px 10px -6px rgb(var(--color-shadow) / var(--shadow-opacity));
+  --shadow-top-2xl: 0 -25px 50px -12px rgb(var(--color-shadow) / 0.3);
+
+  /* common semantic tokens */
+  --color-button-primary-bg: oklch(60.11% 0.0667 194.85);
+  --color-button-secondary-bg: oklch(73.82% 0.0843 199.13);
+  --color-button-primary-text: var(--color-white);
+  --radius-button-primary: var(--radius-5xl);
+
+  --radius-button-sm: var(--radius-sm);
+  --radius-button-md: var(--radius-md);
+  --radius-button-lg: var(--radius-lg);
+  --radius-input: var(--radius-md);
+
+  --color-bg-toast-success: oklch(0.627 0.194 149.214);
+  --color-bg-toast-error: oklch(0.577 0.245 27.325);
+}
