@@ -19,7 +19,14 @@ const Vote = () => {
           부족해요 / 👊 : 하고싶진 않은데 존중해요
         </section>
 
-        <section className={styles.songs_container}></section>
+        <section className={styles.songs_container}>
+          <section className={styles.vote_grid}>
+            <div className={styles.song_card}>노래1</div>
+            <div className={styles.song_card}>노래2</div>
+            <div className={styles.song_card}>노래3</div>
+            <div className={styles.song_card}>노래</div>
+          </section>
+        </section>
       </main>
     </DefaultLayout>
   );

@@ -24,3 +24,20 @@ header h1 {
 .songs_container{
 
 }
+
+.vote_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 768px) {
+    .vote_grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+.song_card{
+    background-color: #6C6C6C;
+} 
+  
