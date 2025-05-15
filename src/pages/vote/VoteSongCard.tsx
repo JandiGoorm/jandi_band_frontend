@@ -10,7 +10,7 @@ const SongCard = () => {
         </h2>
       </header>
 
-      <figure className={styles.song_youtube}>유튜브 링크 썸네일</figure>
+      <figure className={styles.song_youtube}></figure>
 
       <section className={styles.vote_section}>
         <div className={styles.user}>
@@ -21,16 +21,16 @@ const SongCard = () => {
         <div className={styles.vote_emoji}>
           <button>🙆‍♀️</button>
           <span>10</span>
-          <button>🙆‍♀️</button>
+          <button>🙅‍♂️</button>
           <span>10</span>
-          <button>🙆‍♀️</button>
+          <button>😅</button>
           <span>10</span>
-          <button>🙆‍♀️</button>
+          <button>👊</button>
           <span>10</span>
         </div>
       </section>
 
-      <footer>
+      <footer className={styles.vote_reason}>
         <p>기타 솔로가 야무져서 해보고 싶었어요.</p>
       </footer>
     </article>
