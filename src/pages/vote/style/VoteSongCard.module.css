@@ -14,7 +14,13 @@
 }
 
 .song_youtube{
-    background-color: #929292;
+    border-radius: 20px;
+    width: 100%;
+    aspect-ratio: 465.12 / 264.43;
+    margin-bottom: 10px;
+}
+
+iframe {
     text-align: center;
     border-radius: 20px;
     width: 100%;
