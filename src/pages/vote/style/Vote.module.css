@@ -1,0 +1,17 @@
+.vote_container{
+    margin: 0 5vw
+}
+
+/* 투표방법 안내 */
+.guide{
+    background-color: #F6F6F6;
+    color: #6C6C6C;
+    font-size: 0.9rem;
+    padding: 14px 20px;
+    border-radius: 15px;
+}
+
+/* 곡 투표 공간 */
+.songs_container{
+
+}
