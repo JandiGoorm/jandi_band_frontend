@@ -1,5 +1,6 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import SongCard from "@/pages/vote/VoteSongCard";
+import Button from "@/components/button/Button";
 import styles from "./style/Vote.module.css";
 
 const Vote = () => {
@@ -9,9 +10,9 @@ const Vote = () => {
         <header className={styles.header}>
           <h1>5월 대동제 곡 투표</h1>
           <section className={styles.button_group}>
-            <button>결과보기</button>
-            <button>곡 추가</button>
-            <button>공유하기</button>
+            <Button>결과보기</Button>
+            <Button>곡 추가</Button>
+            <Button>공유하기</Button>
           </section>
         </header>
 
