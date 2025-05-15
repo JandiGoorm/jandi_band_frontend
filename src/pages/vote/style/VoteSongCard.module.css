@@ -1,3 +1,43 @@
 .song_card{
     background-color: #6C6C6C;
 }
+
+.song_title{
+    background-color: #F6F6F6;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.song_youtube{
+    background-color: #56a278;
+    border-radius: 20px;
+    width: 100%;
+    aspect-ratio: 465.12 / 264.43;
+    margin-bottom: 6px;
+}
+
+@media (max-width: 765px) {
+    .song_card{
+        margin: 0 4vw;
+    }    
+}
+
+.vote_section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+}
+
+.user img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+  
