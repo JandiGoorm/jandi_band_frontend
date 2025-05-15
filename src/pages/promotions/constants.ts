@@ -6,6 +6,13 @@ export interface Promotion {
   destination: string;
 }
 
+export interface Comment {
+  id: number;
+  name: string;
+  time: string;
+  content: string;
+}
+
 export const promotionItems: Promotion[] = [
   {
     id: 1,
@@ -48,5 +55,26 @@ export const promotionItems: Promotion[] = [
     title: "동아리 정기공연6",
     time: "2025.03.17 PM 6:00",
     destination: "서울, 뫄뫄 공연장",
+  },
+];
+
+export const commentItems: Comment[] = [
+  {
+    id: 1,
+    name: "강세진",
+    content: "기대가 됩니다~ 응원해요",
+    time: "2025-03-08 18:34",
+  },
+  {
+    id: 2,
+    name: "강세진",
+    content: "기대가 됩니다~",
+    time: "2025-03-08 18:34",
+  },
+  {
+    id: 3,
+    name: "강세진",
+    content: "응원해요",
+    time: "2025-03-08 18:34",
   },
 ];
