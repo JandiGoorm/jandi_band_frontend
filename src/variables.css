@@ -86,7 +86,9 @@
   --shadow-top-2xl: 0 -25px 50px -12px rgb(var(--color-shadow) / 0.3);
 
   /* common semantic tokens */
-  --color-button-primary-bg: oklch(60.11% 0.0667 194.85);
+  --color-primary-text: oklch(0 0 0);
+  --color-sub-text: oklch(0.6 0.05 220);
+  --color-button-primary-bg: oklch(63% 0.0667 194.85);
   --color-button-secondary-bg: oklch(73.82% 0.0843 199.13);
   --color-button-primary-text: var(--color-white);
   --radius-button-primary: var(--radius-5xl);
