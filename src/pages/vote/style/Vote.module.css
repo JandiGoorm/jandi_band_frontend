@@ -1,5 +1,14 @@
 .vote_container{
-    margin: 0 5vw
+    margin: 3vh 5vw
+}
+
+header {
+    display: flex;
+}
+header h1 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 /* 투표방법 안내 */
