@@ -53,9 +53,5 @@
     .vote_grid {
       grid-template-columns: 1fr;
     }
-  }
-
-.song_card{
-    background-color: #6C6C6C;
-} 
+}
   
