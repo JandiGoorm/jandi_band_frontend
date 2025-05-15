@@ -15,7 +15,7 @@ const SongCard = () => {
       <section className={styles.vote_section}>
         <div className={styles.user}>
           <img src={profile} />
-          <span>강세진</span>
+          <span>강세진진자라</span>
         </div>
 
         <div className={styles.vote_emoji}>

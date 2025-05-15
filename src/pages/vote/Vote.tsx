@@ -1,6 +1,7 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import SongCard from "@/pages/vote/VoteSongCard";
 import Button from "@/components/button/Button";
+import kakao from "@/pages/vote/style/kakao.svg";
 import styles from "./style/Vote.module.css";
 
 const Vote = () => {
@@ -12,7 +13,10 @@ const Vote = () => {
           <section className={styles.button_group}>
             <Button>결과보기</Button>
             <Button>곡 추가</Button>
-            <Button>공유하기</Button>
+            <Button className={styles.share}>
+              <img src={kakao} />
+              공유하기
+            </Button>
           </section>
         </header>
 
