@@ -10,6 +10,12 @@
 }
 
 /* Size variants */
+.btn_sm {
+  padding: 0.3rem 0.5rem;
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+}
+
 .btn_md {
   padding: 0.3rem 1.5rem;
   font-size: var(--text-lg);
@@ -29,4 +35,14 @@
 
 .btn_secondary {
   background-color: var(--color-button-secondary-bg);
+}
+
+.btn_transparent {
+  color: var(  --color-button-transparent-text);
+  background-color: transparent;
+  border: 1px solid var(--color-button-transparent-border);
+}
+
+.btn_none {
+  color: var(--color-text-main);
 }
