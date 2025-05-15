@@ -9,6 +9,10 @@
     text-align: center;
 }
 
+.song_title span{
+    font-weight: bold;
+}
+
 .song_youtube{
     background-color: #929292;
     text-align: center;
