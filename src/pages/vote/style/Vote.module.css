@@ -2,13 +2,23 @@
     margin: 3vh 5vw
 }
 
-header {
+/* 투표 제목 및 버튼 */
+.header {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-header h1 {
+.header h1 {
     margin-bottom: 10px;
     font-size: 1.2rem;
     font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .header {
+        text-align: center;
+        flex-direction: column;
+    }
 }
 
 /* 투표방법 안내 */
@@ -22,10 +32,6 @@ header h1 {
 }
 
 /* 곡 투표 공간 */
-.songs_container{
-
-}
-
 .vote_grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
