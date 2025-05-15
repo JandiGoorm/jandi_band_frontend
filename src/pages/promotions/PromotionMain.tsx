@@ -6,6 +6,7 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
+import Input from "@/components/input/input";
 
 const PromotionMain = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const PromotionMain = () => {
           <Button variant="transparent"> 지도보기 </Button>
           <Button variant="transparent"> 지역별 </Button>
           <Button variant="transparent"> 날짜선택 </Button>
-          <input className={styles.input}></input>
+          <Input inputSize="md" style={{ width: "20%" }} />
           <Button variant="transparent"> + </Button>
         </nav>
         <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
