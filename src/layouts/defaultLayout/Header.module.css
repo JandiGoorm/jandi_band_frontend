@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: 5rem;
+  min-height: 5rem;
 
   display: flex;
   justify-content: center;
@@ -21,4 +21,10 @@
 .logo {
   width: 12rem;
   object-fit: contain;
+}
+
+@media screen and (max-width: 1216px) {
+  .content {
+    padding: 0 1rem;
+  }
 }
