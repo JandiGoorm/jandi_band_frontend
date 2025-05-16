@@ -5,7 +5,7 @@ const SignUp = () => {
   return (
     <main className={styles.container}>
       <section className={styles.content}>
-        <img src="/logo.png" alt="logo" className={styles.logo} />
+        <img src="/logo_anti.png" alt="logo" className={styles.logo} />
 
         <div className={styles.form_wrapper}>
           <header className={styles.form_header}>

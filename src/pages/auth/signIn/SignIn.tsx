@@ -15,7 +15,7 @@ const SignIn = () => {
   return (
     <main className={styles.container}>
       <section className={styles.content}>
-        <img src="/logo.png" alt="logo" className={styles.logo} />
+        <img src="/logo_anti.png" alt="logo" className={styles.logo} />
 
         <div className={styles.text_container}>
           <div className={styles.title}>
