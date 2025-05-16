@@ -16,7 +16,9 @@ const SongCard = () => {
       </header>
 
       <figure className={styles.song_youtube}>
-        <iframe width="100%" height="100%" src={embedUrl} allowFullScreen />
+        {embedUrl && (
+          <iframe width="100%" height="100%" src={embedUrl} allowFullScreen />
+        )}
       </figure>
 
       <section className={styles.vote_section}>
