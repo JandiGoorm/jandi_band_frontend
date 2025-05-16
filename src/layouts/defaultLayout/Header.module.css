@@ -1,12 +1,16 @@
 .container {
+  position: fixed;
+  top: 0;
   width: 100%;
-  min-height: 5rem;
+  height: 4rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   box-shadow: var(--shadow-sm);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
 }
 
 .content {
@@ -19,12 +23,12 @@
 }
 
 .logo {
-  width: 12rem;
+  width: 10rem;
   object-fit: contain;
 }
 
-@media screen and (max-width: 1216px) {
+@media screen and (max-width: 1264px) {
   .content {
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
 }
