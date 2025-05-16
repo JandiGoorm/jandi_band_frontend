@@ -1,0 +1,36 @@
+.vote_result_container{
+    margin: 3vh 5vw
+}
+
+/* 투표 제목 및 필터링 */
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.header h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.header section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.header img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .header {
+        text-align: center;
+        flex-direction: column;
+    }
+    .vote_title{
+        margin-bottom: 18px;
+    }
+}
