@@ -1,6 +1,17 @@
+import { useCallback } from "react";
 import styles from "./SignIn.module.css";
 
 const SignIn = () => {
+  const handleKakaoLogin = useCallback(() => {
+    const clientId = import.meta.env.VITE_KAKAO_CLIENT_ID;
+    const redirectUri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+    const url = new URL("https://kauth.kakao.com/oauth/authorize");
+    url.searchParams.set("client_id", clientId);
+    url.searchParams.set("redirect_uri", redirectUri);
+    url.searchParams.set("response_type", "code");
+    window.location.href = url.toString();
+  }, []);
+
   return (
     <main className={styles.container}>
       <section className={styles.content}>
@@ -17,7 +28,7 @@ const SignIn = () => {
           </p>
         </div>
 
-        <button className={styles.kakao_button}>
+        <button className={styles.kakao_button} onClick={handleKakaoLogin}>
           <img
             src="/kakao_icon.png"
             alt="kakao_icon"
