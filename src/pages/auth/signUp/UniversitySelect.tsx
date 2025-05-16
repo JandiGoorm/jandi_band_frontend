@@ -1,7 +1,9 @@
-import { useState } from "react";
+import styles from "./UniversitySelect.module.css";
+import { useState, useCallback, useEffect } from "react";
 import * as Select from "@radix-ui/react-select";
 import { FiChevronDown, FiChevronUp, FiCheck } from "react-icons/fi";
-import styles from "./UniversitySelect.module.css";
+import { debounce } from "lodash-es";
+import clsx from "clsx";
 
 interface UniversitySelectProps {
   onValueChange?: (value: string) => void;
@@ -35,16 +37,42 @@ export const UniversitySelect = ({
   placeholder = "소속 대학교 선택",
 }: UniversitySelectProps) => {
   const [value, setValue] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [inputValue, setInputValue] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
-
-  const filteredUniversities = searchTerm
-    ? universities.filter((uni) => uni.includes(searchTerm))
-    : universities;
 
   const handleValueChange = (newValue: string) => {
     setValue(newValue);
+    setInputValue("");
     setSearchTerm("");
+  };
+
+  // 디바운스 함수를 컴포넌트 렌더링과 독립적으로 한 번만 생성
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedSetFilteredTerm = useCallback(
+    debounce((term: string) => {
+      setSearchTerm(term);
+    }, 500),
+    []
+  );
+
+  // 컴포넌트 언마운트 시 디바운스 함수 취소
+  useEffect(() => {
+    return () => {
+      debouncedSetFilteredTerm.cancel();
+    };
+  }, [debouncedSetFilteredTerm]);
+
+  // 입력값 변경 시 실시간으로 입력값은 보여주고, 필터링은 디바운스 처리
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    debouncedSetFilteredTerm(newValue);
+  };
+
+  const isHidden = (university: string) => {
+    if (!searchTerm || searchTerm === "") return false;
+    return !university.includes(searchTerm);
   };
 
   return (
@@ -71,12 +99,8 @@ export const UniversitySelect = ({
           <div className={styles.search_container}>
             <input
               type="text"
-              value={searchTerm}
-              onChange={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setSearchTerm(e.target.value);
-              }}
+              value={inputValue}
+              onChange={handleInputChange}
               placeholder="대학교 검색..."
               className={styles.search_input}
             />
@@ -87,12 +111,15 @@ export const UniversitySelect = ({
           </Select.ScrollUpButton>
 
           <Select.Viewport className={styles.viewport}>
-            {filteredUniversities.length > 0 ? (
-              filteredUniversities.map((university) => (
+            {universities.length > 0 ? (
+              universities.map((university) => (
                 <Select.Item
                   key={university}
                   value={university}
-                  className={styles.item}
+                  className={clsx(
+                    styles.item,
+                    isHidden(university) && styles.item_hidden
+                  )}
                 >
                   <Select.ItemText>{university}</Select.ItemText>
                   <Select.ItemIndicator className={styles.item_indicator}>

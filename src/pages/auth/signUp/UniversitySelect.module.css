@@ -78,6 +78,10 @@
   cursor: pointer;
 }
 
+.item_hidden {
+  display: none;
+}
+
 .item[data-highlighted] {
   background-color: #eff6ff;
   outline: none;
