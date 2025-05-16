@@ -2,6 +2,18 @@ import styles from "./style/VoteSongCard.module.css";
 import profile from "./style/profile.svg";
 
 const SongCard = () => {
+  // 유튜브 임베드 링크로 바꾸는 함수. youtu.be/뒤가 영상 아이디라고 하네요
+  // url 객체를 사용했습니다.
+  const changeToEmbed = (url: string): string => {
+    const parsedUrl = new URL(url);
+    const videoId = parsedUrl.pathname.slice(1); // /sgIwf
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
+
+  // 사용자가 입력한 url
+  const url = "https://youtu.be/sgIWiMtuw4c?si=6Jjx1TunrgzPqmJn";
+  const embedUrl = changeToEmbed(url);
+
   return (
     <article className={styles.song_card}>
       <header className={styles.song_title}>
@@ -11,12 +23,7 @@ const SongCard = () => {
       </header>
 
       <figure className={styles.song_youtube}>
-        <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/sgIWiMtuw4c"
-          allowFullScreen
-        />
+        <iframe width="100%" height="100%" src={embedUrl} allowFullScreen />
       </figure>
 
       <section className={styles.vote_section}>
