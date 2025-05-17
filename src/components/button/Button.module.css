@@ -46,3 +46,9 @@
 .btn_none {
   color: var(--color-text-main);
 }
+
+/* IsClicked styles */
+.btn_transparent_clicked{
+  background-color: var(--color-button-secondary-bg);
+  color: var(--color-button-primary-text);
+}
