@@ -6,7 +6,7 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
-import Input from "@/components/input/input";
+import Input from "@/components/input/Input";
 
 const PromotionMain = () => {
   const navigate = useNavigate();
