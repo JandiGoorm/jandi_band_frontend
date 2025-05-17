@@ -105,6 +105,9 @@
     font-weight: var(--font-weight-bold);
     font-size: var(--text-xl);
 }
+.comment_input{
+    display: flex;
+}
 
 .input{
     border: 1px solid var(--color-button-transparent-border);

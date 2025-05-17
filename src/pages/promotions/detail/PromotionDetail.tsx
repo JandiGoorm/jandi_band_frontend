@@ -68,11 +68,8 @@ const PromotionDetail = () => {
         </section>
         <section className={styles.comment_container}>
           <header className={styles.comment_header}>댓글 xx개</header>
-          <section>
-            <Input
-              inputSize="md"
-              style={{ width: "80%", marginRight: "1rem" }}
-            />
+          <section className={styles.comment_input}>
+            <Input inputSize="md" style={{ flex: "1", marginRight: "1rem" }} />
             <Button size="md">댓글달기</Button>
           </section>
           <section className={styles.comment_container}>
