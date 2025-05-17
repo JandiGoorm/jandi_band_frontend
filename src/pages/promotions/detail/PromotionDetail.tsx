@@ -2,7 +2,7 @@ import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "./PromotionDetail.module.css";
 import Button from "@/components/button/Button";
 import { commentItems } from "../constants";
-import Input from "@/components/input/input";
+import Input from "@/components/input/Input";
 import { FaRegHeart } from "react-icons/fa";
 
 const PromotionDetail = () => {
