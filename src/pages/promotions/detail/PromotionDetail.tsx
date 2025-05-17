@@ -34,36 +34,35 @@ const PromotionDetail = () => {
                 </Button>
               </section>
               <section className={styles.info_box}>
-                <section className={styles.info}>
+                <div className={styles.info}>
                   <p className={styles.info_title}>공연팀</p>
                   <p>아이유팀</p>
-                </section>
-                <section className={styles.info}>
+                </div>
+                <div className={styles.info}>
                   <p className={styles.info_title}>관람료</p>
                   <p>5000원</p>
-                </section>
-                <section className={styles.info}>
+                </div>
+                <div className={styles.info}>
                   <p className={styles.info_title}>날짜</p>
                   <p>2025년 3월 17일 월요일</p>
-                </section>
-                <section className={styles.info}>
+                </div>
+                <div className={styles.info}>
                   <p className={styles.info_title}>시간</p>
                   <p>PM 6:00</p>
-                </section>
-                <section className={styles.info}>
+                </div>
+                <div className={styles.info}>
                   <p className={styles.info_title}>장소</p>
                   <p>뫄뫄 공연장</p>
                   <Button size="sm" variant="transparent">
                     지도보기
                   </Button>
-                </section>
+                </div>
               </section>
             </section>
           </section>
           <article className={styles.promo_content}>
             안녕하세요 00대학교 동아리 아이유팀에서 70번째 정기 공연을 하게
-            되었습니다. 부원들이 열심히 준비한 무대이니 많은 관심
-            부탁드립니다.{" "}
+            되었습니다. 부원들이 열심히 준비한 무대이니 많은 관심 부탁드립니다.
           </article>
         </section>
         <section className={styles.comment_container}>
@@ -79,9 +78,9 @@ const PromotionDetail = () => {
                   <p className={styles.comment_name}>{item.name}</p>
                   <p className={styles.comment_time}>{item.time}</p>
                 </header>
-                <section>
+                <div>
                   <p>{item.content}</p>
-                </section>
+                </div>
               </article>
             ))}
           </section>
