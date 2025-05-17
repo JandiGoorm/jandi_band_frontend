@@ -7,19 +7,49 @@ import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
 import Input from "@/components/input/Input";
+import { useState } from "react";
+
+const regions = [
+  "서울",
+  "부산",
+  "대구",
+  "인천",
+  "광주",
+  "울산",
+  "경기",
+  "강원",
+];
 
 const PromotionMain = () => {
   const navigate = useNavigate();
+  const [showRegions, setShowRegions] = useState(false);
+
+  const toggleRegions = () => {
+    setShowRegions((prev) => !prev);
+  };
+
   return (
     <DefaultLayout>
       <main className={styles.container}>
         <nav className={styles.header_nav}>
           <Button variant="transparent"> 지도보기 </Button>
-          <Button variant="transparent"> 지역별 </Button>
+          <Button variant="transparent" onClick={toggleRegions}>
+            {" "}
+            지역별{" "}
+          </Button>
           <Button variant="transparent"> 날짜선택 </Button>
-          <Input inputSize="md" style={{ width: "20%" }} />
+          <Input inputSize="md" style={{ width: "30%" }} />
           <Button variant="transparent"> + </Button>
         </nav>
+        {showRegions && (
+          <nav className={styles.region_buttons}>
+            {regions.map((region) => (
+              <Button key={region} variant="transparent">
+                {region}
+              </Button>
+            ))}
+          </nav>
+        )}
         <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
         <section className={styles.promotion_container}>
           {promotionItems.map((item) => (
