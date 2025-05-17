@@ -16,7 +16,6 @@ const Button = ({
   variant = "primary",
   children,
   className,
-  onClick,
   isClicked = false,
   ...props
 }: ButtonProps) => {
@@ -37,7 +36,6 @@ const Button = ({
         styles.btn
       )}
       {...props}
-      onClick={onClick}
     >
       {children}
     </button>
