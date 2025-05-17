@@ -56,6 +56,8 @@
 .promotion_like_box{
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 1rem;
     background-color: var(--color-comment-bg);
     padding: 0.5rem 1rem;
     border-radius: var(--radius-input);
