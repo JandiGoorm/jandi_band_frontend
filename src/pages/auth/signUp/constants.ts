@@ -38,10 +38,10 @@ type Position = {
 };
 
 export const positions: Position[] = [
-  { value: "vocalist", label: "보컬" },
-  { value: "guitarist", label: "기타" },
-  { value: "bassist", label: "베이스" },
-  { value: "drummer", label: "드럼" },
-  { value: "keyboardist", label: "키보드" },
-  { value: "etc", label: "그 외" },
+  { value: "VOCAL", label: "보컬" },
+  { value: "GUITAR", label: "기타" },
+  { value: "BASS", label: "베이스" },
+  { value: "DRUM", label: "드럼" },
+  { value: "KEYBOARD", label: "키보드" },
+  { value: "OTHER", label: "그 외" },
 ];
