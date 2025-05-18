@@ -1,9 +1,13 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
+import styles from "./Club.module.css";
+import ClubInfo from "./ClubInfo";
 
 const Club = () => {
   return (
     <DefaultLayout>
-      <p>test</p>
+      <main className={styles.container}>
+        <ClubInfo />
+      </main>
     </DefaultLayout>
   );
 };
