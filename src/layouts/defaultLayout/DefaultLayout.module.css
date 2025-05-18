@@ -13,6 +13,9 @@
   width: 100%;
   max-width: 1200px;
   padding: 2rem 0;
+
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1264px) {

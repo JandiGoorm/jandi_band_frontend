@@ -5,4 +5,5 @@ export enum PageEndpoints {
   PROMOTION = "/promotion",
   PROMOTION_DETAIL = "/promotion/:id",
   VOTE = "/vote",
+  TEAM = "/team",
 }
