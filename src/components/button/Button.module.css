@@ -38,7 +38,7 @@
 }
 
 .btn_transparent {
-  color: var(  --color-button-transparent-text);
+  color: var(--color-button-transparent-text);
   background-color: transparent;
   border: 1px solid var(--color-button-transparent-border);
 }
@@ -48,7 +48,7 @@
 }
 
 /* IsClicked styles */
-.btn_transparent_clicked{
+.btn_transparent_clicked {
   background-color: var(--color-button-secondary-bg);
   color: var(--color-button-primary-text);
 }

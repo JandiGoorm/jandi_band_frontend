@@ -1,34 +1,32 @@
 .input {
-    width: 100%;
-    border: 1px solid   var(--color-input);
-    outline: none;
-    /* box-sizing: border-box; */
-    padding: 0.5rem;
-    border-radius: var(--radius-input);
-    color: var(--color-text-sub);
-  }
+  width: 100%;
+  border: 1px solid var(--color-input);
+  outline: none;
+  /* box-sizing: border-box; */
+  padding: 0.5rem;
+  border-radius: var(--radius-input);
+  color: var(--color-text-sub);
+}
 
+.input::placeholder {
+  color: var(--color-text-sub);
+}
 
-  .input::placeholder {
-    color: var(--color-text-sub);
+.input_sm {
+  font-size: var(--text-base);
+  padding: 0.3rem 1rem;
+}
+.input_md {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-lg);
+}
 
-  }
+.input_lg {
+  padding: 0.75rem 1rem;
+  font-size: var(--text-xl);
+}
 
-  .input_sm {
-    font-size: var(--text-base); 
-    padding: 0.3rem 1rem;
-  }
-  .input_md {
-    padding: 0.5rem 1rem;
-    font-size: var(--text-lg);
-  }
-  
-  .input_lg {
-    padding: 0.75rem 1rem;
-    font-size: var(--text-xl);
-  }
-
-  input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
