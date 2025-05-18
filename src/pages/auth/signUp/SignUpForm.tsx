@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { signUpFormSchema } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import Field from "@/components/field/Field";
 
 const SignUpForm = () => {
   const formController = useForm({
@@ -25,25 +26,13 @@ const SignUpForm = () => {
       className={styles.form_container}
       onSubmit={formController.handleSubmit(onSubmit)}
     >
-      <div className={styles.form_group}>
-        <label htmlFor="position" className={styles.label}>
-          포지션
-        </label>
+      <Field label="포지션" error={errors.position}>
         <PositionSelect formController={formController} />
-        {errors.position && (
-          <p className={styles.error}>{errors.position.message}</p>
-        )}
-      </div>
+      </Field>
 
-      <div className={styles.form_group}>
-        <label htmlFor="university" className={styles.label}>
-          소속대학
-        </label>
+      <Field label="소속대학" error={errors.university}>
         <UniversitySelect formController={formController} />
-        {errors.university && (
-          <p className={styles.error}>{errors.university.message}</p>
-        )}
-      </div>
+      </Field>
 
       <button type="submit" className={styles.button}>
         시작하기
