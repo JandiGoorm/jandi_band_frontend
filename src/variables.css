@@ -108,4 +108,9 @@
 
   --color-bg-toast-success: oklch(0.627 0.194 149.214);
   --color-bg-toast-error: oklch(0.577 0.245 27.325);
+
+
+  --color-input-header-background: 
+radial-gradient(84.11% 295.71% at 9.04% 81.2%, rgba(167, 255, 152, 0.4) 13.46%, rgba(144, 158, 189, 0.4) 100%), 
+radial-gradient(84.08% 84.08% at 84.87% 6.93%, #FFE5B2 0%, #58A7FF 100%)
 }
