@@ -31,9 +31,9 @@
   border-top-right-radius: var(--radius-2xl);
   padding: 1rem;
   color: var(--color-white);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
   background: var(--color-input-header-background);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
