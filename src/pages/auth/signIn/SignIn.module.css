@@ -47,7 +47,7 @@
 
 .sub_title {
   font-size: var(--text-sm);
-  color: var(--color-sub-text);
+  color: var(--color-text-sub);
 }
 
 .kakao_button {
