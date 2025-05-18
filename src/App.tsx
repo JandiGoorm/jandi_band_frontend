@@ -6,6 +6,7 @@ import Home from "@/pages/home/Home";
 import Vote from "@/pages/vote/Vote";
 import SignIn from "@/pages/auth/signIn/SignIn";
 import SignUp from "@/pages/auth/signUp/SignUp";
+import Club from "./pages/club/Club";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path={PageEndpoints.SIGN_IN} element={<SignIn />} />
         <Route path={PageEndpoints.SIGN_UP} element={<SignUp />} />
         <Route path={PageEndpoints.VOTE} element={<Vote />} />
+        <Route path={PageEndpoints.CLUB} element={<Club />} />
       </Routes>
     </BrowserRouter>
   );
