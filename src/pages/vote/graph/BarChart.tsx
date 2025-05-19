@@ -48,6 +48,20 @@ const BarChart = ({ data }: BarChartProps) => {
           },
         ]}
         layout="vertical"
+        colors={({ id }) => {
+          switch (id) {
+            case "좋아요":
+              return "#FF9EAA";
+            case "별로예요":
+              return "#a4c7dd";
+            case "실력부족":
+              return "#97E3D5";
+            case "하않존중":
+              return "#60CDBA";
+            default:
+              return "#ccc";
+          }
+        }}
       />
     </div>
   );
