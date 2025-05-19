@@ -1,17 +1,19 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
+import BarChart from "../graph/BarChart";
+import voteData from "@/pages/vote/graph/voteData";
+import { useNavigate } from "react-router-dom";
 import ArrowBack from "@/pages/vote/style/arrowback.svg";
 import styles from "@/pages/vote/result/VoteResult.module.css";
 
-import BarChart from "../graph/BarChart";
-import voteData from "@/pages/vote/graph/voteData";
-
 const VoteResult = () => {
+  const navigate = useNavigate();
+
   return (
     <DefaultLayout>
       <main className={styles.vote_result_container}>
         <header className={styles.header}>
           <section className={styles.vote_title}>
-            <img src={ArrowBack} alt="뒤로가기" />
+            <img src={ArrowBack} alt="뒤로가기" onClick={() => navigate(-1)} />
             <h1>5월 대동제 곡 투표 결과</h1>
           </section>
           <section>
