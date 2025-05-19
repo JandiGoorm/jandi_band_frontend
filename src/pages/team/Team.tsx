@@ -4,9 +4,9 @@ import { dummyTeam } from "./constants";
 import Button from "@/components/button/Button";
 import { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
-import TimeTable from "./TimeTable";
-import ScheduleBoard from "./ScheduleBoard";
-import QuickFilter from "./QuickFilter";
+import ScheduleBoard from "./scheduleBoard/ScheduleBoard";
+import QuickFilter from "./quickFilter/QuickFilter";
+import TimeScheduler from "./timeScheduler/TimeScheduler";
 
 const Team = () => {
   const [activeMember, setActiveMember] = useState<number[]>([]);
@@ -63,7 +63,7 @@ const Team = () => {
         </section>
 
         <section className={styles.content_container}>
-          <TimeTable />
+          <TimeScheduler />
           <div className={styles.content_side_container}>
             <QuickFilter />
             <ScheduleBoard />
