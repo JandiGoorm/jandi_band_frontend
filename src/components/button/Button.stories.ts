@@ -8,12 +8,12 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     size: {
       control: "select",
-      options: ["md", "lg"],
+      options: ["sm", "md", "lg"],
       description: "버튼 크기",
     },
     variant: {
       control: "select",
-      options: ["primary", "secondary"],
+      options: ["primary", "secondary", "transparent", "none"],
       description: "버튼 스타일 변형",
     },
     children: {
@@ -50,5 +50,21 @@ export const Secondary: Story = {
   args: {
     variant: "secondary",
     children: "Secondary 버튼",
+  },
+};
+
+//transparent 버튼
+export const Transparent: Story = {
+  args: {
+    variant: "transparent",
+    children: "Transparent 버튼",
+  },
+};
+
+//none 버튼
+export const None: Story = {
+  args: {
+    variant: "none",
+    children: "None 버튼",
   },
 };

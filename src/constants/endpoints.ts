@@ -1,6 +1,9 @@
 export enum PageEndpoints {
   HOME = "/",
-  TEST = "/test",
+  SIGN_IN = "/sign-in",
+  SIGN_UP = "/sign-up",
+  PROMOTION = "/promotion",
+  PROMOTION_DETAIL = "/promotion/:id",
   VOTE = "/vote",
   VOTE_RESULT = "/vote/result",
 }
