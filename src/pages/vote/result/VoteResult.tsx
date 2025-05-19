@@ -2,6 +2,9 @@ import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import ArrowBack from "@/pages/vote/style/arrowback.svg";
 import styles from "@/pages/vote/result/VoteResult.module.css";
 
+import BarChart from "../graph/BarChart";
+import voteData from "@/pages/vote/graph/voteData";
+
 const VoteResult = () => {
   return (
     <DefaultLayout>
@@ -21,7 +24,9 @@ const VoteResult = () => {
           </section>
         </header>
 
-        <section>그래프</section>
+        <section>
+          <BarChart data={voteData} />
+        </section>
       </main>
     </DefaultLayout>
   );
