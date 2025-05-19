@@ -6,12 +6,6 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   margin-bottom: 1rem;
-}
-
-.title {
-  font-size: var(--text-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-main);
 }
