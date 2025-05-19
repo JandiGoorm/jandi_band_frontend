@@ -38,6 +38,11 @@
 }
 
 @media (max-width: 768px) {
+  .header_nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
   .promotion_container {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
