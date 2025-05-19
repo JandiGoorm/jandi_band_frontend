@@ -26,9 +26,7 @@ const VoteResult = () => {
           </section>
         </header>
 
-        <section>
-          <BarChart data={voteData} />
-        </section>
+        <BarChart data={voteData} />
       </main>
     </DefaultLayout>
   );

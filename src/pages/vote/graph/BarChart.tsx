@@ -17,7 +17,7 @@ interface BarChartProps {
 const BarChart = ({ data }: BarChartProps) => {
   return (
     // div안에 스타일 지정해놓아야 출력됨.
-    <div style={{ height: 550 }}>
+    <section style={{ height: 550 }}>
       <ResponsiveBar<VoteResultType>
         data={data}
         keys={["좋아요", "별로예요", "실력부족", "하않존중"]}
@@ -66,7 +66,7 @@ const BarChart = ({ data }: BarChartProps) => {
           }
         }}
       />
-    </div>
+    </section>
   );
 };
 
