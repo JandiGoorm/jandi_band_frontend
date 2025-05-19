@@ -47,6 +47,7 @@ const BarChart = ({ data }: BarChartProps) => {
             itemHeight: 16,
           },
         ]}
+        layout="vertical"
       />
     </div>
   );
