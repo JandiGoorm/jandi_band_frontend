@@ -1,5 +1,6 @@
 // 바 형식 import
 import { ResponsiveBar } from "@nivo/bar";
+import styles from "@/pages/vote/graph/BarChart.module.css";
 
 export interface VoteResultType {
   song: string;
@@ -17,7 +18,7 @@ interface BarChartProps {
 const BarChart = ({ data }: BarChartProps) => {
   return (
     // div안에 스타일 지정해놓아야 출력됨.
-    <section style={{ height: 550 }}>
+    <section className={styles.chart}>
       <ResponsiveBar<VoteResultType>
         data={data}
         keys={["좋아요", "별로예요", "실력부족", "하않존중"]}
