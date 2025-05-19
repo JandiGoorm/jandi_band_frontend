@@ -1,6 +1,6 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import ArrowBack from "@/pages/vote/style/arrowback.svg";
-import styles from "@/pages/vote/style/VoteResult.module.css";
+import styles from "@/pages/vote/result/VoteResult.module.css";
 
 const VoteResult = () => {
   return (

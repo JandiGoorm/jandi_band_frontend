@@ -1,8 +1,8 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import SongCard from "@/pages/vote/VoteSongCard";
+import SongCard from "@/pages/vote/select/VoteSongCard";
 import Button from "@/components/button/Button";
 import kakao from "@/pages/vote/style/kakao.svg";
-import styles from "./style/Vote.module.css";
+import styles from "@/pages/vote/select/Vote.module.css";
 
 const Vote = () => {
   return (
