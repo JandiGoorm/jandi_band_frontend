@@ -6,7 +6,7 @@ import Home from "@/pages/home/Home";
 import Vote from "@/pages/vote/Vote";
 import SignIn from "@/pages/auth/signIn/SignIn";
 import SignUp from "@/pages/auth/signUp/SignUp";
-import Club from "./pages/club/Club";
+import Club from "./pages/club/main/Club";
 
 function App() {
   return (

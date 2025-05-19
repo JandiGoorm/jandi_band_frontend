@@ -1,8 +1,8 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "./Club.module.css";
-import ClubInfo from "./ClubInfo";
-import ClubSlide from "./ClubSlide";
-import ClubCalendar from "./ClubCalendar";
+import ClubInfo from "./clubInfo/ClubInfo";
+import ClubSlide from "./clubSlide/ClubSlide";
+import ClubCalendar from "./clubCalendar/ClubCalendar";
 
 const Club = () => {
   return (
