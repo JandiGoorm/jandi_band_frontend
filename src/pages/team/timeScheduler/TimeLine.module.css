@@ -1,0 +1,11 @@
+.container {
+  width: 3rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.time_line_item {
+  text-align: right;
+  padding-right: 1rem;
+  height: 6rem;
+  color: var(--board-text-color);
+}
