@@ -22,6 +22,13 @@ const voteData: VoteResultType[] = [
     실력부족: 4,
     하않존중: 3,
   },
+  {
+    song: "매미는 비가 와도 운다",
+    좋아요: 10,
+    별로예요: 1,
+    실력부족: 2,
+    하않존중: 0,
+  },
 ];
 
 export default voteData;
