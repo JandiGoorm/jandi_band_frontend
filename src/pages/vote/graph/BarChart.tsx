@@ -22,13 +22,13 @@ const BarChart = ({ data }: BarChartProps) => {
         data={data}
         keys={["좋아요", "별로예요", "실력부족", "하않존중"]}
         indexBy="song"
-        margin={{ top: 50, right: 50, bottom: 50, left: 60 }}
+        margin={{ top: 50, right: 10, bottom: 50, left: 40 }}
         groupMode="grouped"
         axisBottom={{
           legendOffset: 32,
         }}
         axisLeft={{
-          legend: "투표 수",
+          //   legend: "투표 수",
           legendOffset: -40,
         }}
         totalsOffset={9}
