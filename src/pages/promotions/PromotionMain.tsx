@@ -32,17 +32,21 @@ const PromotionMain = () => {
     <DefaultLayout>
       <main className={styles.container}>
         <nav className={styles.header_nav}>
-          <Button variant="transparent"> 지도보기 </Button>
-          <Button
-            variant="transparent"
-            onClick={toggleRegions}
-            isClicked={showRegions}
-          >
-            지역별
-          </Button>
-          <Button variant="transparent"> 날짜선택 </Button>
-          <Input inputSize="md" style={{ width: "30%" }} />
-          <Button variant="transparent"> + </Button>
+          <div>
+            <Button variant="transparent"> 지도보기 </Button>
+            <Button
+              variant="transparent"
+              onClick={toggleRegions}
+              isClicked={showRegions}
+            >
+              지역별
+            </Button>
+            <Button variant="transparent"> 날짜선택 </Button>
+          </div>
+          <div>
+            <Input inputSize="md" style={{ width: "100%" }} />
+            <Button variant="transparent"> + </Button>
+          </div>
         </nav>
         {showRegions && (
           <nav className={styles.region_buttons}>
