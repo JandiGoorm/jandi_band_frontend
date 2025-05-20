@@ -15,7 +15,7 @@ const ClubInfo = () => {
           <p className={styles.title}>유다빈 밴드</p>
           <p className={styles.school}> 00대학교</p>
         </div>
-        <FaInstagram size={36} className={styles.instagramIcon} />
+        <FaInstagram size={36} className={styles.instagram_icon} />
       </section>
       <section className={styles.member_box}>
         <div className={styles.member}>

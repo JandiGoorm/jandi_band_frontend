@@ -52,19 +52,15 @@ const Header = ({ currentMonth, goToday, onChangeDate }: Props) => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.dateText}>
+      <div className={styles.date_text}>
         {selectedYear} {selectedMonth}
       </div>
-      <div className={styles.navBox}>
-        <button className={styles.arrowButton} onClick={handlePrev}>
-          {"<"}
-        </button>
-        <button className={styles.todayButton} onClick={handleToday}>
+      <div className={styles.nav_box}>
+        <button onClick={handlePrev}>{"<"}</button>
+        <button className={styles.today_button} onClick={handleToday}>
           오늘
         </button>
-        <button className={styles.arrowButton} onClick={handleNext}>
-          {">"}
-        </button>
+        <button onClick={handleNext}>{">"}</button>
       </div>
     </div>
   );

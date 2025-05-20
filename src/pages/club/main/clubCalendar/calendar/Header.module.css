@@ -13,27 +13,14 @@
   border-bottom: 1px solid var(--color-text-primary);
 }
 
-.dateBox {
-  display: flex;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-}
-
-.year {
-  margin-right: 0.75rem;
-}
-
-/* .month {
-  } */
-
-.navBox {
+.nav_box {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
 }
 
-.todayButton {
+.today_button {
   font-size: var(--text-lg); /* text-lg */
   background: none;
   border: none;

@@ -1,4 +1,4 @@
-.daysWrapper {
+.days_wrapper {
   display: flex;
   align-items: center;
   width: 100%;
@@ -9,12 +9,12 @@
   color: var(--color-text-main);
 }
 
-.dayItem {
+.day_item {
   box-sizing: border-box;
   width: 100%;
 }
 
-.dayText {
+.day_text {
   width: 100%;
   text-align: center;
   box-sizing: border-box;

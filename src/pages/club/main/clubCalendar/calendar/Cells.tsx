@@ -36,10 +36,10 @@ const Cells = ({ currentMonth }: Props) => {
       days.push(
         <div
           key={num}
-          className={`${styles.dayCell} ${!isCurrentMonth ? styles.notCurrentMonth : styles.currentMonth} ${isToday ? styles.today_cell : ""}`}
+          className={`${styles.day_cell} ${!isCurrentMonth ? styles.not_current_month : styles.current_month} ${isToday ? styles.today_cell : ""}`}
         >
           <span
-            className={`${styles.dayNumber} ${isToday ? styles.today : ""}`}
+            className={`${styles.day_number} ${isToday ? styles.today : ""}`}
           >
             {isCurrentMonth ? format(day, "d") : ""}
           </span>
@@ -50,14 +50,14 @@ const Cells = ({ currentMonth }: Props) => {
     }
 
     rows.push(
-      <div className={styles.weekRow} key={num}>
+      <div className={styles.week_row} key={num}>
         {days}
       </div>
     );
     days = [];
   }
 
-  return <div className={styles.calendarWrapper}>{rows}</div>;
+  return <div className={styles.calendar_wrapper}>{rows}</div>;
 };
 
 export default Cells;
