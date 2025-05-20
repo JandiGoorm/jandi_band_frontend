@@ -1,13 +1,31 @@
 import { z } from "zod";
 
 export const teamCreateFormSchema = z.object({
-  title: z.string({ required_error: "팀 이름을 입력하세요." }),
+  title: z
+    .string()
+    .nonempty({ message: "팀 이름을 입력하세요." })
+    .max(20, { message: "이름은 20자 이내로 입력해주세요." }),
   university: z
     .string({ required_error: "대학을 선택하세요." })
     .min(1, { message: "대학을 선택하세요." }),
   member: z
     .string({ required_error: "멤버를 선택하세요." })
     .min(1, { message: "멤버를 선택하세요." }),
+});
+
+export const voteCreateFormSchema = z.object({
+  title: z
+    .string()
+    .nonempty({ message: "투표 제목을 입력하세요." })
+    .max(20, { message: "제목은 20자 이내로 입력해주세요." }),
+  endtime: z.coerce
+    .date({
+      required_error: "투표 마감시간을 선택하세요.",
+      invalid_type_error: "올바른 날짜와 시간을 선택하세요.",
+    })
+    .refine((date) => date > new Date(), {
+      message: "마감시간은 현재 시각 이후여야 합니다.",
+    }),
 });
 
 export const universities = [
