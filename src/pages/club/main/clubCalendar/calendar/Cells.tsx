@@ -7,6 +7,7 @@ import {
   startOfWeek,
 } from "date-fns";
 import styles from "./Cells.module.css";
+import clsx from "clsx";
 
 interface Props {
   currentMonth: Date;
@@ -36,7 +37,11 @@ const Cells = ({ currentMonth }: Props) => {
       days.push(
         <div
           key={num}
-          className={`${styles.day_cell} ${!isCurrentMonth ? styles.not_current_month : styles.current_month} ${isToday ? styles.today_cell : ""}`}
+          className={clsx(styles.day_cell, {
+            [styles.not_current_month]: !isCurrentMonth,
+            [styles.current_month]: isCurrentMonth,
+            [styles.today_cell]: isToday,
+          })}
         >
           <span
             className={`${styles.day_number} ${isToday ? styles.today : ""}`}
