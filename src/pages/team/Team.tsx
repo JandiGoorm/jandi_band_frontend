@@ -8,6 +8,7 @@ import QuickFilter from "./quickFilter/QuickFilter";
 import TimeScheduler from "./timeScheduler/TimeScheduler";
 import { useTeamStore } from "./teamStore";
 import useTeamController from "./useTeamController";
+import KakaoShare from "./modals/KakaoShare";
 
 const Team = () => {
   const { activeIds } = useTeamStore();
@@ -20,8 +21,8 @@ const Team = () => {
           <h1>뫄뫄 밴드부 A팀</h1>
 
           <div className={styles.header_button_container}>
-            <Button className={styles.header_button}>곡 투표 생성</Button>
-            <Button className={styles.header_button}>공유하기</Button>
+            <Button>곡 투표 생성</Button>
+            <KakaoShare />
           </div>
         </header>
 

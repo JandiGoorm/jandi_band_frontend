@@ -3,6 +3,7 @@ import { range, timeRange, availableTimeSlots } from "../constants";
 import TimeLine from "./TimeLine";
 import TimeBoard from "./TimeBoard";
 import clsx from "clsx";
+import LoadSchedules from "../modals/LoadSchedules";
 
 const TimeScheduler = () => {
   const { startTime, endTime } = timeRange;
@@ -36,6 +37,8 @@ const TimeScheduler = () => {
           availableTimeSlots={availableTimeSlots}
         />
       </div>
+
+      <LoadSchedules />
     </section>
   );
 };

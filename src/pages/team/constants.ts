@@ -2,6 +2,7 @@ export interface Team {
   name: string;
   members: Member[];
   practiceTime: PracticeTime[];
+  link: string;
 }
 
 export type Position = "Guitar" | "Keyboard" | "Vocal" | "Drum" | "Bass";
@@ -20,6 +21,7 @@ export interface PracticeTime {
 
 export const dummyTeam: Team = {
   name: "뫄뫄 밴드부 A팀",
+  link: "https://discord.gg/9mYEsR8D",
   members: [
     {
       id: 1,
