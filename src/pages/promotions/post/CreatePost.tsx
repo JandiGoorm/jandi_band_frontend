@@ -1,16 +1,32 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "@/pages/promotions/post/CreatePost.module.css";
 import Button from "@/components/button/Button";
 // import Input from '@/components/input/Input';
 
 const CreatePost = () => {
-  const imageInputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
+  const [imageURL, setimageURL] = useState<string | null>(null);
+  const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
   const handleClickSection = () => {
     imageInputRef.current?.click();
+  };
+
+  const imageUpload = () => {
+    const file = imageInputRef.current?.files?.item(0);
+
+    if (!file) return;
+
+    if (file.size > MAX_IMAGE_SIZE_BYTES) {
+      alert("10MB 이하의 이미지만 업로드할 수 있습니다.");
+      return;
+    }
+
+    const imageUrl = URL.createObjectURL(file);
+    setimageURL(imageUrl);
   };
 
   return (
@@ -28,17 +44,23 @@ const CreatePost = () => {
           <section className={styles.centerbox}>
             <aside className={styles.image_inputbox}>
               <div className={styles.image_input} onClick={handleClickSection}>
-                <p className={styles.placeholder}>
-                  이미지를
-                  <br />
-                  추가해주세요
-                </p>
+                {imageURL ? (
+                  <img src={imageURL} alt="선택된 이미지" />
+                ) : (
+                  <p className={styles.placeholder}>
+                    이미지를
+                    <br />
+                    추가해주세요
+                  </p>
+                )}
+
                 <input
                   type="file"
                   id="image"
                   name="image"
                   accept="image/*"
                   ref={imageInputRef}
+                  onChange={imageUpload}
                 />
               </div>
             </aside>
