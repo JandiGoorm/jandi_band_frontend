@@ -117,6 +117,10 @@ input {
   gap: 1rem;
 }
 
+.locationbox textarea {
+  height: 80px;
+}
+
 textarea {
   resize: none;
   width: 100%;

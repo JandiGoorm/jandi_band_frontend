@@ -73,7 +73,13 @@ const CreatePost = () => {
 
               <div className={styles.price_div}>
                 <label htmlFor="price">관람료</label>
-                <input type="text" id="price" name="price" required />
+                <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  placeholder="숫자만 입력 가능합니다. 무료일 경우 0"
+                  required
+                />
                 <p>원</p>
               </div>
 
@@ -87,9 +93,9 @@ const CreatePost = () => {
                 <input type="time" id="time" name="time" required />
               </div>
 
-              <div>
+              <div className={styles.locationbox}>
                 <label htmlFor="location">장소</label>
-                <input type="text" id="location" name="location" required />
+                <textarea id="location" name="location" required />
               </div>
             </aside>
           </section>
