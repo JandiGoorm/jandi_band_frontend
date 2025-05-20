@@ -2,7 +2,7 @@ import clsx from "clsx";
 import styles from "./Button.module.css";
 
 type ButtonSize = "sm" | "md" | "lg";
-type ButtonVariant = "primary" | "secondary" | "transparent" | "none";
+type ButtonVariant = "primary" | "secondary" | "transparent" | "none" | "kakao";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;

@@ -47,6 +47,11 @@
   color: var(--color-text-main);
 }
 
+.btn_kakao {
+  background-color: var(--color-kakao);
+  color: var(--color-black);
+}
+
 /* IsClicked styles */
 .btn_transparent_clicked {
   background-color: var(--color-button-secondary-bg);
