@@ -1,5 +1,5 @@
-import { useState } from "react";
 import styles from "./Header.module.css";
+import { useCalendarNavigation } from "@/hooks/uesCalendarNavigation";
 
 type Props = {
   currentMonth: Date;
@@ -8,47 +8,8 @@ type Props = {
 };
 
 const Header = ({ currentMonth, goToday, onChangeDate }: Props) => {
-  const currentYear = currentMonth.getFullYear();
-  const currentMonthIndex = currentMonth.getMonth() + 1;
-
-  const [selectedYear, setSelectedYear] = useState(`${currentYear}년`);
-  const [selectedMonth, setSelectedMonth] = useState(`${currentMonthIndex}월`);
-
-  const handleToday = () => {
-    const today = new Date();
-    const todayYear = `${today.getFullYear()}년`;
-    const todayMonth = `${today.getMonth() + 1}월`;
-
-    setSelectedYear(todayYear);
-    setSelectedMonth(todayMonth);
-    goToday();
-  };
-
-  const handlePrev = () => {
-    let newYear = currentYear;
-    let newMonth = currentMonthIndex - 1;
-
-    if (newMonth <= 0) {
-      newMonth = 12;
-      newYear -= 1;
-    }
-
-    setSelectedYear(`${newYear}년`);
-    setSelectedMonth(`${newMonth}월`);
-    onChangeDate(newYear, newMonth);
-  };
-
-  const handleNext = () => {
-    let newYear = currentYear;
-    let newMonth = currentMonthIndex + 1;
-    if (newMonth > 12) {
-      newMonth = 1;
-      newYear += 1;
-    }
-    setSelectedYear(`${newYear}년`);
-    setSelectedMonth(`${newMonth}월`);
-    onChangeDate(newYear, newMonth);
-  };
+  const { selectedYear, selectedMonth, handleToday, handlePrev, handleNext } =
+    useCalendarNavigation(currentMonth, goToday, onChangeDate);
 
   return (
     <div className={styles.header}>
