@@ -1,0 +1,15 @@
+.load_schedules_button {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--radius-full);
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+
+  box-shadow: var(--shadow-md);
+}

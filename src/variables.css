@@ -55,7 +55,7 @@
   --shadow-2xs: 0 1px rgb(var(--color-shadow) / 0.05);
   --shadow-xs: 0 1px 2px 0 rgb(var(--color-shadow) / 0.05);
   --shadow-sm:
-    0 1px 3px 0 rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 1px 4px 0 rgb(var(--color-shadow) / var(--shadow-opacity)),
     0 1px 2px -1px rgb(var(--color-shadow) / var(--shadow-opacity));
   --shadow-md:
     0 4px 6px -1px rgb(var(--color-shadow) / var(--shadow-opacity)),
@@ -88,6 +88,7 @@
   /* common semantic tokens */
   --color-text-main: var(--color-black);
   --color-text-sub: oklch(0.55 0 0);
+  --color-kakao: oklch(0.8746 0.203 101.27);
   --color-text-sub-trans: oklch(0.88 0 0);
 
   --color-comment-bg: oklch(0.97 0 0);
@@ -111,8 +112,11 @@
   --color-bg-toast-success: oklch(0.627 0.194 149.214);
   --color-bg-toast-error: oklch(0.577 0.245 27.325);
 
-
-  --color-input-header-background: 
-radial-gradient(84.11% 295.71% at 9.04% 81.2%, rgba(167, 255, 152, 0.4) 13.46%, rgba(144, 158, 189, 0.4) 100%), 
-radial-gradient(84.08% 84.08% at 84.87% 6.93%, #FFE5B2 0%, #58A7FF 100%)
+  --color-input-header-background:
+    radial-gradient(
+      84.11% 295.71% at 9.04% 81.2%,
+      rgba(167, 255, 152, 0.4) 13.46%,
+      rgba(144, 158, 189, 0.4) 100%
+    ),
+    radial-gradient(84.08% 84.08% at 84.87% 6.93%, #ffe5b2 0%, #58a7ff 100%);
 }
