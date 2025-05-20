@@ -2,7 +2,7 @@ import Button from "@/components/button/Button";
 import styles from "./TeamSlide.module.css";
 import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
-import TeamModal from "./modalContent/teamModal";
+import TeamModal from "./modalContent/TeamModal";
 
 const dummyData = [
   { id: 1, name: "Slide 1" },
