@@ -10,10 +10,13 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ trigger, title, children }) => {
   return (
     <Dialog.Root>
-      <Dialog.Trigger>{trigger}</Dialog.Trigger>
+      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.dialog_overlay} />
-        <Dialog.Content className={styles.dialog_content}>
+        <Dialog.Content
+          className={styles.dialog_content}
+          aria-describedby={undefined}
+        >
           <Dialog.Title className={styles.dialog_title}>
             {title}
             <Dialog.Close className={styles.dialog_close}>X</Dialog.Close>
