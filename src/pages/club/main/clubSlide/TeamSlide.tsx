@@ -1,6 +1,8 @@
 import Button from "@/components/button/Button";
 import styles from "./TeamSlide.module.css";
 import Slide from "@/components/slide/Slide";
+import Modal from "@/components/modal/Modal";
+import TeamModal from "./modalContent/teamModal";
 
 const dummyData = [
   { id: 1, name: "Slide 1" },
@@ -13,9 +15,16 @@ const TeamSlide = () => {
     <main className={styles.container}>
       <header className={styles.header}>
         <div className={styles.title}>팀 목록</div>
-        <Button variant="primary" size="md">
-          팀 생성
-        </Button>
+        <Modal
+          title="팀 생성하기"
+          trigger={
+            <Button variant="primary" size="md">
+              팀 생성
+            </Button>
+          }
+        >
+          <TeamModal />
+        </Modal>
       </header>
       <section className={styles.slider_box}>
         <Slide items={dummyData}>
