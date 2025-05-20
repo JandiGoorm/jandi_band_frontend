@@ -76,3 +76,21 @@ input {
   align-items: center;
   gap: 1rem;
 }
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 7rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  border: 1px solid #b1b1b1;
+  border-radius: 7px;
+  color: #707070;
+
+  margin-top: 0.5rem;
+}
+
+.descriptionbox label {
+  font-weight: bold;
+}

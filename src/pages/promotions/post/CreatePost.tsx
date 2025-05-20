@@ -43,12 +43,15 @@ const CreatePost = () => {
 
               <div>
                 <label htmlFor="location">장소</label>
-                <div>
-                  <button>주소찾기</button>
-                  <input type="text" id="location" name="location" />
-                </div>
+                <input type="text" id="location" name="location" />
               </div>
             </aside>
+          </section>
+
+          {/* 소개글 */}
+          <section className={styles.descriptionbox}>
+            <label htmlFor="description">소개글</label>
+            <textarea id="description" name="description" required />
           </section>
         </form>
       </main>
