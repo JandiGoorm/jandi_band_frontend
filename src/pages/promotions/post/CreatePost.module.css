@@ -45,7 +45,8 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -94,7 +95,7 @@ input {
   width: 80%;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 2rem;
 }
 
 .infomation_container div {
