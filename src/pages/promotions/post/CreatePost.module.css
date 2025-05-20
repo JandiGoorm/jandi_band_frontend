@@ -60,6 +60,7 @@ input {
   font-weight: bold;
 }
 
+/* 이미지 인풋 */
 .image_input {
   display: flex;
   align-items: center;
@@ -68,6 +69,10 @@ input {
   background-color: #e5e5e5;
   border-radius: 7px;
   width: 60%;
+}
+
+.image_input input {
+  display: none;
 }
 
 .infomation_container {

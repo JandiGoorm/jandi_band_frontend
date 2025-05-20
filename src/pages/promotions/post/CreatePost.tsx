@@ -1,11 +1,17 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "@/pages/promotions/post/CreatePost.module.css";
 import Button from "@/components/button/Button";
 // import Input from '@/components/input/Input';
 
 const CreatePost = () => {
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
+
+  const handleClickSection = () => {
+    imageInputRef.current?.click();
+  };
 
   return (
     <DefaultLayout>
@@ -20,8 +26,19 @@ const CreatePost = () => {
 
           {/* 이미지와 정보 */}
           <section className={styles.centerbox}>
-            <aside className={styles.image_input}>
-              <input type="file" id="image" name="image" accept="image/*" />
+            <aside className={styles.image_input} onClick={handleClickSection}>
+              <p className={styles.placeholder}>
+                이미지를
+                <br />
+                추가해주세요
+              </p>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                ref={imageInputRef}
+              />
             </aside>
 
             <aside className={styles.infomation_container}>
@@ -32,23 +49,23 @@ const CreatePost = () => {
 
               <div className={styles.price_div}>
                 <label htmlFor="price">관람료</label>
-                <input type="text" id="price" name="price" />
+                <input type="text" id="price" name="price" required />
                 <p>원</p>
               </div>
 
               <div>
                 <label htmlFor="date">날짜</label>
-                <input type="date" id="date" name="date" />
+                <input type="date" id="date" name="date" required />
               </div>
 
               <div>
                 <label htmlFor="time">시간</label>
-                <input type="time" id="time" name="time" />
+                <input type="time" id="time" name="time" required />
               </div>
 
               <div>
                 <label htmlFor="location">장소</label>
-                <input type="text" id="location" name="location" />
+                <input type="text" id="location" name="location" required />
               </div>
             </aside>
           </section>
@@ -56,7 +73,7 @@ const CreatePost = () => {
           {/* 소개글 */}
           <section className={styles.descriptionbox}>
             <label htmlFor="description">소개글</label>
-            <textarea id="description" name="description" required />
+            <textarea id="description" name="description" />
           </section>
 
           <footer className={styles.button_group}>
