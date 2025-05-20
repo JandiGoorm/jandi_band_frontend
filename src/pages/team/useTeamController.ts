@@ -3,15 +3,8 @@ import { useTeamStore } from "./teamStore";
 import { type Position } from "./constants";
 
 const useTeamController = () => {
-  const {
-    team,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setTeam, // api연결 후 사용 예정.
-    activeIds,
-    setActiveIds,
-    filteredTypes,
-    setFilteredTypes,
-  } = useTeamStore();
+  const { team, activeIds, setActiveIds, filteredTypes, setFilteredTypes } =
+    useTeamStore();
 
   const members = team.members;
   const membersIds = members.map((v) => v.id);
