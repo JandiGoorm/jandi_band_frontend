@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+.slider_box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.slider_back {
+  position: absolute;
+  width: 90%;
+  height: 2rem;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-black);
+  opacity: 0.5;
+}
+.slider {
+  width: 90%;
+}
+.slide_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+  background-color: gray;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
