@@ -41,6 +41,13 @@ input {
   gap: 2rem;
 }
 
+@media (max-width: 768px) {
+  .centerbox {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .centerbox label {
   width: 70px;
   font-weight: bold;
