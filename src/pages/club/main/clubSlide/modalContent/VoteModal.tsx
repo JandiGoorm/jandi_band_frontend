@@ -20,32 +20,30 @@ const VoteModal = () => {
   } = formController;
 
   return (
-    <div>
-      <form
-        className={styles.container}
-        onSubmit={formController.handleSubmit(onSubmit)}
-      >
-        <Field label="투표 이름" error={errors.title}>
-          <Input inputSize="sm" {...formController.register("title")} />
-        </Field>
-        <Field label="투표 마감시간" error={errors.endtime}>
-          <Input
-            inputSize="sm"
-            type="datetime-local"
-            {...formController.register("endtime")}
-          />
-        </Field>
+    <form
+      className={styles.container}
+      onSubmit={formController.handleSubmit(onSubmit)}
+    >
+      <Field label="투표 이름" error={errors.title}>
+        <Input inputSize="sm" {...formController.register("title")} />
+      </Field>
+      <Field label="투표 마감시간" error={errors.endtime}>
+        <Input
+          inputSize="sm"
+          type="datetime-local"
+          {...formController.register("endtime")}
+        />
+      </Field>
 
-        <Button
-          type="submit"
-          size="md"
-          variant="secondary"
-          className={styles.submit_button}
-        >
-          투표 생성
-        </Button>
-      </form>
-    </div>
+      <Button
+        type="submit"
+        size="md"
+        variant="secondary"
+        className={styles.submit_button}
+      >
+        투표 생성
+      </Button>
+    </form>
   );
 };
 

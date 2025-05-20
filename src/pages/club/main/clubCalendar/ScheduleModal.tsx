@@ -43,42 +43,40 @@ const ScheduleModal = () => {
   } = formController;
 
   return (
-    <div>
-      <form
-        className={styles.container}
-        onSubmit={formController.handleSubmit(onSubmit)}
-      >
-        <Field label="스케줄 제목" error={errors.title}>
-          <Input inputSize="sm" {...formController.register("title")} />
-        </Field>
-        <Field label="시작시간" error={errors.starttime}>
-          <Input
-            inputSize="sm"
-            type="datetime-local"
-            {...formController.register("starttime")}
-          />
-        </Field>
-        <Field label="마감시간" error={errors.endtime}>
-          <Input
-            inputSize="sm"
-            type="datetime-local"
-            {...formController.register("endtime")}
-          />
-        </Field>
-        <Field label="추가내용(필x)" error={errors.description}>
-          <Input inputSize="sm" {...formController.register("description")} />
-        </Field>
+    <form
+      className={styles.container}
+      onSubmit={formController.handleSubmit(onSubmit)}
+    >
+      <Field label="스케줄 제목" error={errors.title}>
+        <Input inputSize="sm" {...formController.register("title")} />
+      </Field>
+      <Field label="시작시간" error={errors.starttime}>
+        <Input
+          inputSize="sm"
+          type="datetime-local"
+          {...formController.register("starttime")}
+        />
+      </Field>
+      <Field label="마감시간" error={errors.endtime}>
+        <Input
+          inputSize="sm"
+          type="datetime-local"
+          {...formController.register("endtime")}
+        />
+      </Field>
+      <Field label="추가내용(필x)" error={errors.description}>
+        <Input inputSize="sm" {...formController.register("description")} />
+      </Field>
 
-        <Button
-          type="submit"
-          size="md"
-          variant="secondary"
-          className={styles.submit_button}
-        >
-          팀 생성
-        </Button>
-      </form>
-    </div>
+      <Button
+        type="submit"
+        size="md"
+        variant="secondary"
+        className={styles.submit_button}
+      >
+        팀 생성
+      </Button>
+    </form>
   );
 };
 

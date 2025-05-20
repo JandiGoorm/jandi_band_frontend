@@ -20,31 +20,29 @@ const PhotoModal = () => {
   } = formController;
 
   return (
-    <div>
-      <form
-        className={styles.container}
-        onSubmit={formController.handleSubmit(onSubmit)}
-      >
-        <Field label="사진 선택" error={errors.photo}>
-          <Input
-            type="file"
-            accept="image/*"
-            multiple
-            inputSize="sm"
-            {...formController.register("photo")}
-          />
-        </Field>
+    <form
+      className={styles.container}
+      onSubmit={formController.handleSubmit(onSubmit)}
+    >
+      <Field label="사진 선택" error={errors.photo}>
+        <Input
+          type="file"
+          accept="image/*"
+          multiple
+          inputSize="sm"
+          {...formController.register("photo")}
+        />
+      </Field>
 
-        <Button
-          type="submit"
-          size="md"
-          variant="secondary"
-          className={styles.submit_button}
-        >
-          사진 등록
-        </Button>
-      </form>
-    </div>
+      <Button
+        type="submit"
+        size="md"
+        variant="secondary"
+        className={styles.submit_button}
+      >
+        사진 등록
+      </Button>
+    </form>
   );
 };
 

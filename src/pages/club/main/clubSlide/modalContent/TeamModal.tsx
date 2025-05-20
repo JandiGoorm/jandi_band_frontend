@@ -22,31 +22,29 @@ const TeamModal = () => {
   } = formController;
 
   return (
-    <div>
-      <form
-        className={styles.container}
-        onSubmit={formController.handleSubmit(onSubmit)}
-      >
-        <Field label="팀 이름" error={errors.title}>
-          <Input inputSize="sm" {...formController.register("title")} />
-        </Field>
-        <Field label="소속대학" error={errors.university}>
-          <UniversitySelect formController={formController} />
-        </Field>
-        <Field label="팀 멤버" error={errors.member}>
-          <MemberSelect formController={formController} />
-        </Field>
+    <form
+      className={styles.container}
+      onSubmit={formController.handleSubmit(onSubmit)}
+    >
+      <Field label="팀 이름" error={errors.title}>
+        <Input inputSize="sm" {...formController.register("title")} />
+      </Field>
+      <Field label="소속대학" error={errors.university}>
+        <UniversitySelect formController={formController} />
+      </Field>
+      <Field label="팀 멤버" error={errors.member}>
+        <MemberSelect formController={formController} />
+      </Field>
 
-        <Button
-          type="submit"
-          size="md"
-          variant="secondary"
-          className={styles.submit_button}
-        >
-          팀 생성
-        </Button>
-      </form>
-    </div>
+      <Button
+        type="submit"
+        size="md"
+        variant="secondary"
+        className={styles.submit_button}
+      >
+        팀 생성
+      </Button>
+    </form>
   );
 };
 
