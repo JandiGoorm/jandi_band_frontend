@@ -1,0 +1,155 @@
+.post_container {
+  margin: 0 auto;
+  text-align: center;
+  color: #707070;
+  width: 80%;
+}
+
+.post_header {
+  margin-bottom: 1.5rem;
+}
+.post_header h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+}
+.post_header p {
+  font-size: 0.8rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: start;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  border: 1px solid #b1b1b1;
+  border-radius: 7px;
+  color: #707070;
+}
+
+.price_div input {
+  width: 93%;
+}
+.price_div p {
+  margin-left: -10px;
+}
+
+.centerbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .centerbox {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.centerbox label {
+  width: 77px;
+  font-weight: bold;
+}
+
+/* 이미지 인풋 */
+.image_inputbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #e5e5e5;
+  border-radius: 7px;
+  width: 60%;
+  position: relative;
+}
+
+.image_input {
+  display: flex;
+  width: 100%;
+  max-width: 376px;
+  aspect-ratio: 376 / 504;
+  justify-content: center;
+  align-items: center;
+}
+
+.image_input input {
+  display: none;
+}
+
+.image_input img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid #e5e5e5;
+}
+
+.placeholder {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #848484;
+}
+
+.infomation_container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infomation_container div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.locationbox textarea {
+  height: 80px;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 7rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  border: 1px solid #b1b1b1;
+  border-radius: 7px;
+  color: #707070;
+  margin-top: 0.5rem;
+}
+
+.descriptionbox label {
+  font-weight: bold;
+}
+
+.button_group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.button_group button {
+  width: 85px;
+  height: 40px;
+  font-size: 0.9rem;
+}
+
+.cancle {
+  background-color: #bababa;
+}

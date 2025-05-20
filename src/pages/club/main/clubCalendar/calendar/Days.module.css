@@ -1,0 +1,23 @@
+.days_wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem 0;
+  box-sizing: border-box;
+  text-align: end;
+  border-bottom: 1px solid var(--color-text-main);
+  color: var(--color-text-main);
+}
+
+.day_item {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.day_text {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding-right: 0.5rem;
+  /* margin-right: 1rem; */
+}

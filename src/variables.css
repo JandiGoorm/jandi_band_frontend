@@ -86,9 +86,10 @@
   --shadow-top-2xl: 0 -25px 50px -12px rgb(var(--color-shadow) / 0.3);
 
   /* common semantic tokens */
-  --color-text-main: var(var(--color-black));
+  --color-text-main: var(--color-black);
   --color-text-sub: oklch(0.55 0 0);
   --color-kakao: oklch(0.8746 0.203 101.27);
+  --color-text-sub-trans: oklch(0.88 0 0);
 
   --color-comment-bg: oklch(0.97 0 0);
   --color-button-primary-bg: oklch(60.11% 0.0667 194.85);
