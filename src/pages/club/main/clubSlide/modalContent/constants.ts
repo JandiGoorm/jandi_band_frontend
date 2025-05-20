@@ -28,6 +28,17 @@ export const voteCreateFormSchema = z.object({
     }),
 });
 
+export const photoCreateFormSchema = z.object({
+  photo: z.custom<FileList>(
+    (files) => {
+      return files instanceof FileList && files.length > 0;
+    },
+    {
+      message: "사진을 하나 이상 선택해주세요.",
+    }
+  ),
+});
+
 export const universities = [
   "서울대학교",
   "연세대학교",
