@@ -26,19 +26,21 @@ const CreatePost = () => {
 
           {/* 이미지와 정보 */}
           <section className={styles.centerbox}>
-            <aside className={styles.image_input} onClick={handleClickSection}>
-              <p className={styles.placeholder}>
-                이미지를
-                <br />
-                추가해주세요
-              </p>
-              <input
-                type="file"
-                id="image"
-                name="image"
-                accept="image/*"
-                ref={imageInputRef}
-              />
+            <aside className={styles.image_inputbox}>
+              <div className={styles.image_input} onClick={handleClickSection}>
+                <p className={styles.placeholder}>
+                  이미지를
+                  <br />
+                  추가해주세요
+                </p>
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                  ref={imageInputRef}
+                />
+              </div>
             </aside>
 
             <aside className={styles.infomation_container}>

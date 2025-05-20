@@ -61,7 +61,7 @@ input {
 }
 
 /* 이미지 인풋 */
-.image_input {
+.image_inputbox {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,8 +71,23 @@ input {
   width: 60%;
 }
 
+.image_input {
+  display: flex;
+  width: 100%;
+  max-width: 376px;
+  aspect-ratio: 376 / 504;
+  justify-content: center;
+  align-items: center;
+}
+
 .image_input input {
   display: none;
+}
+
+.placeholder {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #848484;
 }
 
 .infomation_container {
