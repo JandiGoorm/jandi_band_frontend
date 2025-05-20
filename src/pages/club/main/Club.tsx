@@ -1,8 +1,10 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "./Club.module.css";
 import ClubInfo from "./clubInfo/ClubInfo";
-import ClubSlide from "./clubSlide/ClubSlide";
 import ClubCalendar from "./clubCalendar/ClubCalendar";
+import TeamSlide from "./clubSlide/TeamSlide";
+import VoteSlide from "./clubSlide/VoteSlide";
+import PhotoSlide from "./clubSlide/PhotoSlide";
 
 const Club = () => {
   return (
@@ -10,9 +12,9 @@ const Club = () => {
       <main className={styles.container}>
         <ClubInfo />
         <ClubCalendar />
-        <ClubSlide title="팀 목록" buttonName="팀 생성" />
-        <ClubSlide title="곡 투표 목록" buttonName="투표 생성" />
-        <ClubSlide title="동아리 사진들" buttonName="사진 등록" />
+        <TeamSlide />
+        <VoteSlide />
+        <PhotoSlide />
       </main>
     </DefaultLayout>
   );
