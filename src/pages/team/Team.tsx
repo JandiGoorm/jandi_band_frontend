@@ -2,37 +2,16 @@ import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "./Team.module.css";
 import { dummyTeam } from "./constants";
 import Button from "@/components/button/Button";
-import { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
 import ScheduleBoard from "./scheduleBoard/ScheduleBoard";
 import QuickFilter from "./quickFilter/QuickFilter";
 import TimeScheduler from "./timeScheduler/TimeScheduler";
+import { useTeamStore } from "./teamStore";
+import useTeamController from "./useTeamController";
 
 const Team = () => {
-  const [activeMember, setActiveMember] = useState<number[]>([]);
-
-  const isActiveMember = useCallback(
-    (id: number) => {
-      return activeMember.includes(id);
-    },
-    [activeMember]
-  );
-
-  const handleActiveMember = useCallback(
-    (id: number) => {
-      if (isActiveMember(id)) {
-        setActiveMember(activeMember.filter((member) => member !== id));
-      } else {
-        setActiveMember([...activeMember, id]);
-      }
-    },
-    [isActiveMember, activeMember]
-  );
-
-  useEffect(() => {
-    const membersIds = dummyTeam.members.map((member) => member.id);
-    setActiveMember(membersIds);
-  }, []);
+  const { activeIds } = useTeamStore();
+  const { handleActiveMember } = useTeamController();
 
   return (
     <DefaultLayout>
@@ -51,7 +30,7 @@ const Team = () => {
             <button
               className={clsx(
                 styles.team_member,
-                isActiveMember(member.id) && styles.active
+                activeIds.includes(member.id) && styles.active
               )}
               key={`member_${member.id}`}
               onClick={() => handleActiveMember(member.id)}

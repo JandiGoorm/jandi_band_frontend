@@ -1,4 +1,24 @@
-export const dummyTeam = {
+export interface Team {
+  name: string;
+  members: Member[];
+  practiceTime: PracticeTime[];
+}
+
+export type Position = "Guitar" | "Keyboard" | "Vocal" | "Drum" | "Bass";
+
+export interface Member {
+  id: number;
+  name: string;
+  position: Position;
+}
+
+export interface PracticeTime {
+  id: number;
+  type: string;
+  time: string;
+}
+
+export const dummyTeam: Team = {
   name: "뫄뫄 밴드부 A팀",
   members: [
     {
@@ -171,5 +191,6 @@ export const availableTimeSlots: Record<Range, string[]> = {
     "17:00",
     "19:00",
     "19:30",
+    "23:30",
   ],
 };
