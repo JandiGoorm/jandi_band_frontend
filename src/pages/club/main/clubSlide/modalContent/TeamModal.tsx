@@ -1,5 +1,5 @@
 import Field from "@/components/field/Field";
-import styles from "./teamModal.module.css";
+import styles from "./TeamModal.module.css";
 import Input from "@/components/input/Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
