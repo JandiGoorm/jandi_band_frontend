@@ -1,6 +1,6 @@
 import { changeToEmbed } from "@/pages/vote/embed";
-import styles from "./style/VoteSongCard.module.css";
-import profile from "./style/profile.svg";
+import styles from "@/pages/vote/select/VoteSongCard.module.css";
+import profile from "../style/profile.svg";
 
 const SongCard = () => {
   // 사용자가 입력한 url (공유하기로 입력했을 경우)
