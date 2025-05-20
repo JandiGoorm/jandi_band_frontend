@@ -1,9 +1,12 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
+import { useNavigate } from "react-router-dom";
 import styles from "@/pages/promotions/post/CreatePost.module.css";
 import Button from "@/components/button/Button";
 // import Input from '@/components/input/Input';
 
 const CreatePost = () => {
+  const navigate = useNavigate();
+
   return (
     <DefaultLayout>
       <main className={styles.post_container}>
@@ -58,7 +61,13 @@ const CreatePost = () => {
 
           <footer className={styles.button_group}>
             <Button>등록</Button>
-            <Button className={styles.cancle}>취소</Button>
+            <Button
+              type="button"
+              className={styles.cancle}
+              onClick={() => navigate(-1)}
+            >
+              취소
+            </Button>
           </footer>
         </form>
       </main>

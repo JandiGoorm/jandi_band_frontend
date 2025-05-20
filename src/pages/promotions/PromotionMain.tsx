@@ -45,7 +45,13 @@ const PromotionMain = () => {
           </div>
           <div>
             <Input inputSize="md" style={{ width: "100%" }} />
-            <Button variant="transparent"> + </Button>
+            <Button
+              variant="transparent"
+              onClick={() => navigate("/promotion/post")}
+            >
+              {" "}
+              +{" "}
+            </Button>
           </div>
         </nav>
         {showRegions && (
