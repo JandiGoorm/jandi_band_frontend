@@ -34,6 +34,13 @@ input {
   color: #707070;
 }
 
+.price_div input {
+  width: 93%;
+}
+.price_div p {
+  margin-left: -10px;
+}
+
 .centerbox {
   display: flex;
   justify-content: center;
@@ -49,7 +56,7 @@ input {
 }
 
 .centerbox label {
-  width: 70px;
+  width: 77px;
   font-weight: bold;
 }
 
@@ -87,10 +94,25 @@ textarea {
   border: 1px solid #b1b1b1;
   border-radius: 7px;
   color: #707070;
-
   margin-top: 0.5rem;
 }
 
 .descriptionbox label {
   font-weight: bold;
+}
+
+.button_group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.button_group button {
+  width: 85px;
+  height: 40px;
+  font-size: 0.9rem;
+}
+
+.cancle {
+  background-color: #bababa;
 }

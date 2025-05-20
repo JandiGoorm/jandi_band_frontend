@@ -1,5 +1,6 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "@/pages/promotions/post/CreatePost.module.css";
+import Button from "@/components/button/Button";
 // import Input from '@/components/input/Input';
 
 const CreatePost = () => {
@@ -23,12 +24,13 @@ const CreatePost = () => {
             <aside className={styles.infomation_container}>
               <div>
                 <label htmlFor="team">공연팀명</label>
-                <input type="text" id="team" name="team" />
+                <input type="text" id="team" name="team" required />
               </div>
 
-              <div>
+              <div className={styles.price_div}>
                 <label htmlFor="price">관람료</label>
                 <input type="text" id="price" name="price" />
+                <p>원</p>
               </div>
 
               <div>
@@ -53,6 +55,11 @@ const CreatePost = () => {
             <label htmlFor="description">소개글</label>
             <textarea id="description" name="description" required />
           </section>
+
+          <footer className={styles.button_group}>
+            <Button>등록</Button>
+            <Button className={styles.cancle}>취소</Button>
+          </footer>
         </form>
       </main>
     </DefaultLayout>
