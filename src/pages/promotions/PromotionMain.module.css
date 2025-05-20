@@ -1,8 +1,14 @@
 .header_nav {
   display: flex;
+  justify-content: space-between;
   gap: 1rem;
   margin: 1rem 0;
   flex-wrap: wrap;
+}
+.header_nav div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .region_buttons {
   display: flex;
@@ -32,6 +38,11 @@
 }
 
 @media (max-width: 768px) {
+  .header_nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
   .promotion_container {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }

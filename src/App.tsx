@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import PromotionMain from "@/pages/promotions/PromotionMain";
 import PromotionDetail from "@/pages/promotions/detail/PromotionDetail";
+import PromotionPost from "@/pages/promotions/post/CreatePost";
 import Home from "@/pages/home/Home";
 import Vote from "@/pages/vote/select/Vote";
 import VoteResult from "@/pages/vote/result/VoteResult";
@@ -18,6 +19,10 @@ function App() {
         <Route
           path={PageEndpoints.PROMOTION_DETAIL}
           element={<PromotionDetail />}
+        />
+        <Route
+          path={PageEndpoints.PROMOTION_POST}
+          element={<PromotionPost />}
         />
         <Route path={PageEndpoints.SIGN_IN} element={<SignIn />} />
         <Route path={PageEndpoints.SIGN_UP} element={<SignUp />} />
