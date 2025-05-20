@@ -4,7 +4,8 @@ import PromotionMain from "@/pages/promotions/PromotionMain";
 import PromotionDetail from "@/pages/promotions/detail/PromotionDetail";
 import PromotionPost from "@/pages/promotions/post/CreatePost";
 import Home from "@/pages/home/Home";
-import Vote from "@/pages/vote/Vote";
+import Vote from "@/pages/vote/select/Vote";
+import VoteResult from "@/pages/vote/result/VoteResult";
 import SignIn from "@/pages/auth/signIn/SignIn";
 import SignUp from "@/pages/auth/signUp/SignUp";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path={PageEndpoints.SIGN_IN} element={<SignIn />} />
         <Route path={PageEndpoints.SIGN_UP} element={<SignUp />} />
         <Route path={PageEndpoints.VOTE} element={<Vote />} />
+        <Route path={PageEndpoints.VOTE_RESULT} element={<VoteResult />} />
       </Routes>
     </BrowserRouter>
   );
