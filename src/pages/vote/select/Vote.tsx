@@ -1,17 +1,20 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import SongCard from "@/pages/vote/VoteSongCard";
+import SongCard from "@/pages/vote/select/VoteSongCard";
+import { useNavigate } from "react-router-dom";
 import Button from "@/components/button/Button";
 import kakao from "@/pages/vote/style/kakao.svg";
-import styles from "./style/Vote.module.css";
+import styles from "@/pages/vote/select/Vote.module.css";
 
 const Vote = () => {
+  const navigate = useNavigate();
+
   return (
     <DefaultLayout>
       <main className={styles.vote_container}>
         <header className={styles.header}>
           <h1>5월 대동제 곡 투표</h1>
           <section className={styles.button_group}>
-            <Button>결과보기</Button>
+            <Button onClick={() => navigate("/vote/result")}>결과보기</Button>
             <Button>곡 추가</Button>
             <Button className={styles.share}>
               <img src={kakao} />

@@ -1,0 +1,51 @@
+.vote_result_container {
+  /* margin: 3vh 5vw; */
+  margin-top: 3vh;
+}
+
+/* 투표 제목 및 필터링 */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h1 {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.header section {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.header img {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    text-align: center;
+    flex-direction: column;
+  }
+  .vote_title {
+    margin-bottom: 18px;
+  }
+}
+
+/* 결과 필터링 드롭다운 */
+.result_filter {
+  padding: 5px 12px;
+  width: 280px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid #b1b1b1;
+  font-size: 1rem;
+}
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(90, 90, 90, 0.5);
+}
