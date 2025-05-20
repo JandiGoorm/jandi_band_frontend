@@ -4,16 +4,10 @@ import styles from "./Header.module.css";
 type Props = {
   currentMonth: Date;
   goToday: () => void;
-  onChangeYear: (year: number) => void;
-  onChangeMonth: (month: number) => void;
+  onChangeDate: (year: number, month: number) => void;
 };
 
-const Header = ({
-  currentMonth,
-  goToday,
-  onChangeYear,
-  onChangeMonth,
-}: Props) => {
+const Header = ({ currentMonth, goToday, onChangeDate }: Props) => {
   const currentYear = currentMonth.getFullYear();
   const currentMonthIndex = currentMonth.getMonth() + 1;
 
@@ -41,8 +35,7 @@ const Header = ({
 
     setSelectedYear(`${newYear}년`);
     setSelectedMonth(`${newMonth}월`);
-    onChangeYear(newYear);
-    onChangeMonth(newMonth);
+    onChangeDate(newYear, newMonth);
   };
 
   const handleNext = () => {
@@ -54,8 +47,7 @@ const Header = ({
     }
     setSelectedYear(`${newYear}년`);
     setSelectedMonth(`${newMonth}월`);
-    onChangeYear(newYear);
-    onChangeMonth(newMonth);
+    onChangeDate(newYear, newMonth);
   };
 
   return (

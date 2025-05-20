@@ -8,24 +8,19 @@ const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const goToday = () => setCurrentMonth(new Date());
 
-  const onChangeYear = (year: number) => {
+  const onChangeDate = (year: number, month: number) => {
     const newDate = new Date(currentMonth);
     newDate.setFullYear(year);
-    setCurrentMonth(newDate);
-  };
-
-  const onChangeMonth = (month: number) => {
-    const newDate = new Date(currentMonth);
     newDate.setMonth(month - 1);
     setCurrentMonth(newDate);
   };
+
   return (
     <div className={styles.container}>
       <Header
         currentMonth={currentMonth}
         goToday={goToday}
-        onChangeYear={onChangeYear}
-        onChangeMonth={onChangeMonth}
+        onChangeDate={onChangeDate}
       />
       <Days />
       <Cells currentMonth={currentMonth} />
