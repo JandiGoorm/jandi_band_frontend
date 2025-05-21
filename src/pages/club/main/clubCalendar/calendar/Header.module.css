@@ -6,7 +6,7 @@
   width: 100%;
   gap: 1rem;
   padding: 1.25rem;
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   padding: 0 0.5rem;
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
