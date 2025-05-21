@@ -9,4 +9,5 @@ export enum PageEndpoints {
   TEAM = "/team",
   CLUB = "/club/:id",
   VOTE_RESULT = "/vote/result",
+  MYPAGE = "/mypage",
 }

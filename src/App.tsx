@@ -10,6 +10,7 @@ import SignIn from "@/pages/auth/signIn/SignIn";
 import SignUp from "@/pages/auth/signUp/SignUp";
 import Team from "@/pages/team/Team";
 import Club from "./pages/club/main/Club";
+import MyPage from "@/pages/mypage/MyPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path={PageEndpoints.TEAM} element={<Team />} />
         <Route path={PageEndpoints.CLUB} element={<Club />} />
         <Route path={PageEndpoints.VOTE_RESULT} element={<VoteResult />} />
+        <Route path={PageEndpoints.MYPAGE} element={<MyPage />} />
       </Routes>
     </BrowserRouter>
   );
