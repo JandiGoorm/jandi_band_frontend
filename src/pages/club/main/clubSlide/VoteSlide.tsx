@@ -3,6 +3,7 @@ import styles from "./VoteSlide.module.css";
 import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import VoteModal from "./modalContent/VoteModal";
+import VoteCards from "@/components/cards/VoteCards";
 
 const dummyData = [
   { id: 1, name: "Slide 1" },
@@ -28,9 +29,7 @@ const VoteSlide = () => {
       </header>
       <section className={styles.slider_box}>
         <Slide items={dummyData}>
-          {(item) => {
-            return <div>{item.name}</div>;
-          }}
+          {(item) => <VoteCards title={item.name} />}
         </Slide>
       </section>
     </main>

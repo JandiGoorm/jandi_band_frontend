@@ -2,6 +2,7 @@
   --color-white: oklch(1 0 0);
   --color-black: oklch(0 0 0);
   --color-whitepure: oklch(100% 0 0);
+  --color-white-transparent: oklch(100% 0 0 / 0.4);
 
   /* breakpoint  */
   --breakpoint-sm: 390px;
