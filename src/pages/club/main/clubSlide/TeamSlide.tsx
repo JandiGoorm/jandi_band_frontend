@@ -3,6 +3,7 @@ import styles from "./TeamSlide.module.css";
 import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import TeamModal from "./modalContent/TeamModal";
+import TeamCards from "@/components/cards/TeamCards";
 
 const dummyData = [
   { id: 1, name: "Slide 1" },
@@ -28,9 +29,7 @@ const TeamSlide = () => {
       </header>
       <section className={styles.slider_box}>
         <Slide items={dummyData}>
-          {(item) => {
-            return <div>{item.name}</div>;
-          }}
+          {(item) => <TeamCards title={item.name} />}
         </Slide>
       </section>
     </main>
