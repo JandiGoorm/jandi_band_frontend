@@ -27,19 +27,19 @@ const Slide = ({ items, children, size = "sm" }: SlideProps) => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: 1110,
         settings: {
           slidesToShow: size === "sm" ? 3 : 2,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 850,
         settings: {
           slidesToShow: size === "sm" ? 2 : 1,
         },
       },
       {
-        breakpoint: 350,
+        breakpoint: 400,
         settings: {
           slidesToShow: 1,
         },

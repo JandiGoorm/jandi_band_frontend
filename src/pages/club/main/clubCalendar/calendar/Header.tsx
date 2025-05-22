@@ -1,5 +1,7 @@
+import Button from "@/components/button/Button";
 import styles from "./Header.module.css";
 import { useCalendarNavigation } from "@/hooks/uesCalendarNavigation";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 type Props = {
   currentMonth: Date;
@@ -17,11 +19,20 @@ const Header = ({ currentMonth, goToday, onChangeDate }: Props) => {
         {selectedYear} {selectedMonth}
       </div>
       <div className={styles.nav_box}>
-        <button onClick={handlePrev}>{"<"}</button>
-        <button className={styles.today_button} onClick={handleToday}>
+        <Button size="sm" variant="none" onClick={handlePrev}>
+          <MdNavigateBefore size={14} />
+        </Button>
+        <Button
+          size="sm"
+          variant="none"
+          className={styles.today_button}
+          onClick={handleToday}
+        >
           오늘
-        </button>
-        <button onClick={handleNext}>{">"}</button>
+        </Button>
+        <Button size="sm" variant="none" onClick={handleNext}>
+          <MdNavigateNext size={14} />
+        </Button>
       </div>
     </div>
   );
