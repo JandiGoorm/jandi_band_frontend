@@ -21,6 +21,16 @@
   align-items: center;
 }
 
+.profile_title div {
+  display: flex;
+  align-items: center;
+}
+
+.profile_title img {
+  width: 25px;
+  height: 23px;
+}
+
 .profile_title button {
   border: 1px solid #afafaf;
   background-color: #ffffff;
@@ -67,6 +77,16 @@
   margin-bottom: 2rem;
 }
 
+.timetable_title div {
+  display: flex;
+  align-items: center;
+}
+
+.timetable_title img {
+  width: 25px;
+  height: 23px;
+}
+
 .timetable_button {
   padding: 0.35rem 1rem;
   border-radius: 50px;
@@ -77,7 +97,13 @@
   margin-top: 2rem;
 }
 
-.team_box h2 {
-  text-align: start;
-  margin-bottom: 2rem;
+.team_box div {
+  display: flex;
+  text-align: center;
+}
+
+.team_box div img {
+  width: 25px;
+  height: 23px;
+  margin-right: 0.3rem;
 }
