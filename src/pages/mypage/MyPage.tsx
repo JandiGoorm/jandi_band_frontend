@@ -5,6 +5,7 @@ import Slide from "@/components/slide/Slide";
 import Button from "@/components/button/Button";
 import MusicNote1 from "/public/musical_note1.svg";
 import MusicNote2 from "/public/musical_notes2.svg";
+import TeamCards from "@/components/cards/TeamCards";
 
 const MyPage = () => {
   const sampleItems = [
@@ -57,12 +58,7 @@ const MyPage = () => {
             <h2>참여 팀 목록</h2>
           </div>
           <Slide items={sampleItems} size="sm">
-            {(item) => (
-              <div className={styles.itemCard}>
-                <h3>{item.name}</h3>
-                <p>ID: {item.id}</p>
-              </div>
-            )}
+            {(item) => <TeamCards title={item.name} />}
           </Slide>
         </section>
 
