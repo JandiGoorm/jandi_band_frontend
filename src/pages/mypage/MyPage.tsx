@@ -6,6 +6,7 @@ import Button from "@/components/button/Button";
 import MusicNote1 from "/public/musical_note1.svg";
 import MusicNote2 from "/public/musical_notes2.svg";
 import TeamCards from "@/components/cards/TeamCards";
+import Modal from "@/components/modal/Modal";
 
 const MyPage = () => {
   const sampleItems = [
@@ -26,7 +27,13 @@ const MyPage = () => {
               <img src={MusicNote1} alt="음표" />
               <h2>마이 프로필</h2>
             </div>
-            <button>수정하기</button>
+
+            <Modal
+              title="마이프로필 수정하기"
+              trigger={<button>수정하기</button>}
+            >
+              <p>머시꺵</p>
+            </Modal>
           </header>
           <div className={styles.profile_content}>
             <img src={Profile} alt="프로필 사진" />
