@@ -6,7 +6,7 @@ const GlobalToast = () => {
   const { open, status, message, hideToast } = useToastStore();
 
   return (
-    <Toast.Provider swipeDirection="right">
+    <Toast.Provider swipeDirection="right" duration={3000}>
       <Toast.Root
         open={open}
         onOpenChange={hideToast}
@@ -16,7 +16,7 @@ const GlobalToast = () => {
         <Toast.Description>{message}</Toast.Description>
       </Toast.Root>
 
-      <Toast.Viewport />
+      <Toast.Viewport className={styles.viewport} />
     </Toast.Provider>
   );
 };
