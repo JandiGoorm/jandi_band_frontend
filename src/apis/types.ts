@@ -1,6 +1,5 @@
 import type { QueryKey, UseQueryOptions } from "@tanstack/react-query";
-
-export type Nullable<T> = T | null;
+import type { Nullable } from "@/types/common";
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -9,20 +8,13 @@ export interface ApiResponse<T> {
   errorCode: Nullable<string>;
 }
 
-export class ApiError extends Error {
-  private _status: number;
-
-  constructor(status: number, message: string) {
-    super(message);
-    this._status = status;
-  }
-
-  get status() {
-    return this._status;
-  }
-}
-
 export type QueryOptions<T> = Omit<
-  UseQueryOptions<T, ApiError, T, QueryKey>,
+  UseQueryOptions<T, Error, T, QueryKey>,
   "queryKey"
 >;
+
+export enum ApiStatus {
+  PENDING = "pending",
+  SUCCESS = "success",
+  ERROR = "error",
+}
