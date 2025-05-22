@@ -10,7 +10,7 @@
 
 .myprofile_box {
   width: 100%;
-  background-color: #f6f6f6;
+  background-color: var(--color-comment-bg);
   border-radius: 15px;
   padding: 1.2rem 1.2rem 0.6rem 1.2rem;
 }
@@ -45,7 +45,7 @@
   gap: 1.1rem;
   /* margin-top: 1rem; */
   align-items: center;
-  font-size: 1rem;
+  font-size: var(--text-base);
 }
 
 .profile_content img {
