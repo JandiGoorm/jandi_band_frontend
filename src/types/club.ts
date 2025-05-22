@@ -1,8 +1,8 @@
 export interface ClubListResponse {
   id: number;
   name: string;
-  universityName: string;
+  universityName: string | null;
   isUnionClub: boolean;
-  photoUrl: string;
+  photoUrl: string | null;
   memberCount: number;
 }
