@@ -55,3 +55,29 @@
 .profile_info div dt {
   font-weight: bold;
 }
+
+.timetable_box {
+  margin-top: 5rem;
+}
+
+.timetable_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.timetable_button {
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+}
+
+.team_box {
+  margin-top: 2rem;
+}
+
+.team_box h2 {
+  text-align: start;
+  margin-bottom: 2rem;
+}

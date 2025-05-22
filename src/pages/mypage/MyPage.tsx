@@ -1,8 +1,19 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "@/pages/mypage/MyPage.module.css";
 import Profile from "@/pages/vote/style/profile.svg";
+import Slide from "@/components/slide/Slide";
+import Button from "@/components/button/Button";
 
 const MyPage = () => {
+  const sampleItems = [
+    { id: 1, name: "아이템 1" },
+    { id: 2, name: "아이템 2" },
+    { id: 3, name: "아이템 3" },
+    { id: 4, name: "아이템 4" },
+    { id: 5, name: "아이템 5" },
+    { id: 6, name: "아이템 6" },
+  ];
+
   return (
     <DefaultLayout>
       <main className={styles.mypage_container}>
@@ -35,12 +46,33 @@ const MyPage = () => {
           </div>
         </section>
 
-        <section>
+        <section className={styles.team_box}>
           <h2>참여 팀 목록</h2>
+          <Slide items={sampleItems} size="sm">
+            {(item) => (
+              <div className={styles.itemCard}>
+                <h3>{item.name}</h3>
+                <p>ID: {item.id}</p>
+              </div>
+            )}
+          </Slide>
         </section>
 
-        <section>
-          <h2>내 시간표 관리</h2>
+        <section className={styles.timetable_box}>
+          <header className={styles.timetable_title}>
+            <h2>내 시간표 관리</h2>
+            <Button variant="primary" className={styles.timetable_button}>
+              시간표 추가
+            </Button>
+          </header>
+          <Slide items={sampleItems} size="sm">
+            {(item) => (
+              <div className={styles.itemCard}>
+                <h3>{item.name}</h3>
+                <p>ID: {item.id}</p>
+              </div>
+            )}
+          </Slide>
         </section>
       </main>
     </DefaultLayout>
