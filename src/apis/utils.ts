@@ -1,4 +1,5 @@
 import axios from "axios";
+import { secureRoutes } from "./secureRoutes";
 
 const domain = import.meta.env.VITE_API_DOMAIN;
 
@@ -18,8 +19,21 @@ const axiosInstance = axios.create({
   baseURL: domain,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
   },
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const url = new URL(config.url as string);
+  console.log(url.pathname);
+  const pathname = url.pathname.replace("/api", "");
+  const isProtected = secureRoutes.some(
+    (endpoint) => endpoint.method === config.method && endpoint.url === pathname
+  );
+
+  if (isProtected) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem("accessToken") || ""}`;
+  }
+  return config;
 });
 
 export const api: Api = {
@@ -31,7 +45,7 @@ export const api: Api = {
       else queryString.append(key, value);
     });
 
-    return axios.get(getDomain(url), {
+    return axiosInstance.get(getDomain(url), {
       params: Object.fromEntries(queryString),
     });
   },

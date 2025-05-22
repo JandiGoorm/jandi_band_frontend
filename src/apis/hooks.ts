@@ -6,7 +6,7 @@ import {
   type MutationOptions,
 } from "@tanstack/react-query";
 import { api } from "./utils";
-import type { ApiError, ApiResponse, QueryOptions } from "./types";
+import type { ApiResponse, QueryOptions } from "./types";
 import { buildPath } from "@/utils/buildPath";
 
 const fetcher = async <T>(context: QueryFunctionContext<QueryKey>) => {
@@ -27,7 +27,7 @@ export const useFetch = <T>(
   params?: object,
   options?: QueryOptions<T>
 ) => {
-  return useQuery<T, ApiError, T, QueryKey>({
+  return useQuery<T, Error, T, QueryKey>({
     queryKey: [url, params],
     queryFn: fetcher,
     ...options,
