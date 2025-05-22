@@ -1,0 +1,44 @@
+.embla {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.embla_viewport {
+  overflow: hidden;
+}
+
+.embla_container {
+  display: flex;
+}
+
+.embla_slide {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+  will-change: transform, opacity;
+}
+
+.embla_slide_img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* 애니메이션 클래스 */
+.animate {
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+  will-change: transform, opacity;
+  opacity: 1;
+}
