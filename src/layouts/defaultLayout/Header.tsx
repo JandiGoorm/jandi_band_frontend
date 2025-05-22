@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import Button from "@/components/button/Button";
 import { PageEndpoints } from "@/constants/endpoints";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { user, logout } = useAuthStore();
@@ -11,7 +12,10 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <img src="/logo_anti.png" alt="logo" className={styles.logo} />
+        <Link to={PageEndpoints.HOME}>
+          <img src="/logo_anti.png" alt="logo" className={styles.logo} />
+        </Link>
+
         {user ? (
           <Button onClick={logout} variant="secondary">
             로그아웃
