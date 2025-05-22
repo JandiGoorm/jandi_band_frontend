@@ -3,6 +3,11 @@
   text-align: center;
 }
 
+.mypage_container h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
 .myprofile_box {
   width: 100%;
   background-color: #f6f6f6;
@@ -22,11 +27,6 @@
   padding: 0.3rem 0.7rem;
   border-radius: 50px;
   color: #777777;
-}
-
-.profile_title h2 {
-  font-size: 1.3rem;
-  font-weight: bold;
 }
 
 .profile_content {

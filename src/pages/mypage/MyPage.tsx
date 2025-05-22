@@ -35,9 +35,13 @@ const MyPage = () => {
           </div>
         </section>
 
-        <section>참여 팀 목록</section>
+        <section>
+          <h2>참여 팀 목록</h2>
+        </section>
 
-        <section>내 시간표 관리</section>
+        <section>
+          <h2>내 시간표 관리</h2>
+        </section>
       </main>
     </DefaultLayout>
   );
