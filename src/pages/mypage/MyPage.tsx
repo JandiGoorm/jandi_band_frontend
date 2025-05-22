@@ -1,12 +1,14 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "@/pages/mypage/MyPage.module.css";
-import Profile from "@/pages/vote/style/profile.svg";
 import Slide from "@/components/slide/Slide";
 import Button from "@/components/button/Button";
 import MusicNote1 from "/public/musical_note1.svg";
 import MusicNote2 from "/public/musical_notes2.svg";
 import TeamCards from "@/components/cards/TeamCards";
 import Modal from "@/components/modal/Modal";
+import ProfilEdit from "@/pages/mypage/ProfilEdit";
+// 임시 프로필사진
+import Profile from "@/pages/vote/style/profile.svg";
 
 const MyPage = () => {
   const sampleItems = [
@@ -32,7 +34,7 @@ const MyPage = () => {
               title="마이프로필 수정하기"
               trigger={<button>수정하기</button>}
             >
-              <p>머시꺵</p>
+              <ProfilEdit />
             </Modal>
           </header>
           <div className={styles.profile_content}>
