@@ -18,4 +18,6 @@ export enum ApiEndpotins {
   ME = "/users/me/info",
 
   CLUB = "/clubs",
+
+  PROMOTION = "/promos",
 }
