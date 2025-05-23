@@ -11,7 +11,7 @@ const Callback = () => {
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get("code");
 
-  const { refetch: signIn, data } = useSignIn(code ?? "");
+  const { data } = useSignIn(code ?? "");
   const { refetch: getMe, data: profile } = useGetMe();
   const { setUser } = useAuthStore();
 
@@ -38,11 +38,6 @@ const Callback = () => {
     setUser(profile.data);
     navigate(PageEndpoints.HOME);
   }, [profile, navigate, setUser]);
-
-  // Callback 페이지 로드 시 로그인 진행.
-  useEffect(() => {
-    signIn();
-  }, [signIn]);
 
   return <Loading />;
 };
