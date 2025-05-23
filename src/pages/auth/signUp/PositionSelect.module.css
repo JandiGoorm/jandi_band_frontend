@@ -19,8 +19,11 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   z-index: 10;
-  width: var(--radix-select-trigger-width);
   max-height: var(--radix-select-content-available-height);
+  width: calc(var(--radix-select-trigger-width) - 1rem);
+  position: absolute;
+  left: 0.5rem;
+  z-index: 10;
 }
 
 .scroll_button {
