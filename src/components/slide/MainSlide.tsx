@@ -27,18 +27,16 @@ const MainSlide = ({ items, children }: SlideProps) => {
     centerMode: true,
     centerPadding: "0px",
     swipeToSlide: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
     beforeChange: (_: number, next: number) => setCurrent(next),
     responsive: [
       {
-        breakpoint: 1100,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 650,
+        breakpoint: 550,
         settings: {
           slidesToShow: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
         },
       },
     ],
