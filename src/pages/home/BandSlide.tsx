@@ -16,13 +16,7 @@ const BandSlide = () => {
       <section className={styles.main_container}>
         <p className={styles.title}>당신의 귀를 사로잡을 밴드들이 여기에!</p>
         <MainSlide items={posterItems}>
-          {(item) => (
-            <img
-              src={item.image}
-              alt="promotion"
-              style={{ width: "100%", borderRadius: "12px" }}
-            />
-          )}
+          {(item) => <img src={item.image} style={{ margin: "0 auto" }} />}
         </MainSlide>
       </section>
       <section className={styles.centered}>

@@ -18,11 +18,7 @@ const PromotionSlide = () => {
         </p>
         <MainSlide items={posterItems}>
           {(item) => (
-            <img
-              src={item.image}
-              alt="promotion"
-              style={{ width: "100%", borderRadius: "12px" }}
-            />
+            <img src={item.image} style={{ width: "100%", margin: "0 auto" }} />
           )}
         </MainSlide>
       </section>
