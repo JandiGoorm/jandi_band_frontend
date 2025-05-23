@@ -1,6 +1,7 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import SongCard from "@/pages/vote/select/VoteSongCard";
 import { useNavigate } from "react-router-dom";
+import Modal from "@/components/modal/Modal";
 import Button from "@/components/button/Button";
 import kakao from "@/pages/vote/style/kakao.svg";
 import styles from "@/pages/vote/select/Vote.module.css";
@@ -15,7 +16,9 @@ const Vote = () => {
           <h1>5월 대동제 곡 투표</h1>
           <section className={styles.button_group}>
             <Button onClick={() => navigate("/vote/result")}>결과보기</Button>
-            <Button>곡 추가</Button>
+            <Modal title="곡 추천하기" trigger={<Button>곡 추가</Button>}>
+              <p>이리</p>
+            </Modal>
             <Button className={styles.share}>
               <img src={kakao} />
               공유하기
