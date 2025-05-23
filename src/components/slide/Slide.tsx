@@ -27,19 +27,19 @@ const Slide = ({ items, children, size = "sm" }: SlideProps) => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: 1110,
         settings: {
           slidesToShow: size === "sm" ? 3 : 2,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 850,
         settings: {
           slidesToShow: size === "sm" ? 2 : 1,
         },
       },
       {
-        breakpoint: 350,
+        breakpoint: 400,
         settings: {
           slidesToShow: 1,
         },
@@ -56,7 +56,7 @@ const Slide = ({ items, children, size = "sm" }: SlideProps) => {
           onClick={() => sliderRef.current?.slickPrev()}
         >
           <FaCaretLeft
-            size={32}
+            size={40}
             style={{ color: "var(--color-button-primary-bg)" }}
           />
         </Button>
@@ -83,7 +83,7 @@ const Slide = ({ items, children, size = "sm" }: SlideProps) => {
           onClick={() => sliderRef.current?.slickNext()}
         >
           <FaCaretRight
-            size={32}
+            size={40}
             style={{ color: "var(--color-button-primary-bg)" }}
           />
         </Button>

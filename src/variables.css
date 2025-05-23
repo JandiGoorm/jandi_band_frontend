@@ -2,6 +2,7 @@
   --color-white: oklch(1 0 0);
   --color-black: oklch(0 0 0);
   --color-whitepure: oklch(100% 0 0);
+  --color-white-transparent: oklch(100% 0 0 / 0.4);
 
   /* breakpoint  */
   --breakpoint-sm: 390px;
@@ -86,6 +87,7 @@
   --shadow-top-2xl: 0 -25px 50px -12px rgb(var(--color-shadow) / 0.3);
 
   /* common semantic tokens */
+  --color-primary: oklch(63% 0.0667 194.85);
   --color-text-main: var(--color-black);
   --color-text-sub: oklch(0.55 0 0);
   --color-kakao: oklch(0.8746 0.203 101.27);
@@ -95,7 +97,7 @@
   --color-button-primary-bg: oklch(60.11% 0.0667 194.85);
   --color-border: oklch(0.6 0.05 220);
 
-  --color-button-primary-bg: oklch(63% 0.0667 194.85);
+  --color-button-primary-bg: var(--color-primary);
   --color-button-secondary-bg: oklch(73.82% 0.0843 199.13);
   --color-button-transparent-border: oklch(0.85 0 0);
   --color-button-primary-text: var(--color-white);
