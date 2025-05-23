@@ -15,7 +15,7 @@ const Recommend = () => {
         <Input inputSize="sm" />
 
         <Button type="submit" size="md" variant="secondary">
-          팀 생성
+          곡 추가하기
         </Button>
       </form>
     </main>
