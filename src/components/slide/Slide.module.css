@@ -39,6 +39,11 @@
   position: relative;
   box-sizing: border-box;
 }
+.slide_item:focus,
+.slide_item:active {
+  outline: none;
+  border: none;
+}
 
 .sm_slide_item {
   width: 12rem;
