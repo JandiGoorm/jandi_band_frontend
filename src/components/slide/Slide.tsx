@@ -56,7 +56,7 @@ const Slide = ({ items, children, size = "sm" }: SlideProps) => {
           onClick={() => sliderRef.current?.slickPrev()}
         >
           <FaCaretLeft
-            size={32}
+            size={40}
             style={{ color: "var(--color-button-primary-bg)" }}
           />
         </Button>
@@ -83,7 +83,7 @@ const Slide = ({ items, children, size = "sm" }: SlideProps) => {
           onClick={() => sliderRef.current?.slickNext()}
         >
           <FaCaretRight
-            size={32}
+            size={40}
             style={{ color: "var(--color-button-primary-bg)" }}
           />
         </Button>
