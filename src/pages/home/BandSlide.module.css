@@ -36,7 +36,19 @@
   gap: 1rem;
 }
 
+@media (max-width: 768px) {
+  .line_box {
+    flex-direction: column;
+  }
+}
+
 .line_title {
   font-size: var(--text-xl);
   font-weight: var(--font-weight-semibold);
+}
+
+@media (max-width: 768px) {
+  .line_title {
+    font-size: var(--text-md);
+  }
 }
