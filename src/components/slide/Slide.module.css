@@ -22,9 +22,9 @@
   pointer-events: none;
 }
 .line {
-  height: 1px;
+  height: 2px;
   width: 100%;
-  background-color: var(--color-black);
+  background-color: #c0c0c0;
   opacity: 0.5;
 }
 .slider {

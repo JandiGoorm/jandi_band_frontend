@@ -12,7 +12,7 @@
 
 .dialog_content {
   background-color: var(--color-white);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-3xl);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -27,9 +27,9 @@
 }
 
 .dialog_title {
-  border-top-left-radius: var(--radius-2xl);
-  border-top-right-radius: var(--radius-2xl);
-  padding: 1rem;
+  border-top-left-radius: var(--radius-3xl);
+  border-top-right-radius: var(--radius-3xl);
+  padding: 1rem 1.2rem 1rem 1.3rem;
   color: var(--color-white);
   font-weight: var(--font-weight-medium);
   background: var(--color-input-header-background);
@@ -43,10 +43,14 @@
   color: var(--color-white);
   font-size: var(--text-xl);
   display: flex;
-  font-weight: var(--font-weight-semibold);
+  width: var(--font-weight-semibold);
   align-items: center;
 }
 
+.dialog_close img {
+  width: 1rem;
+  height: 1rem;
+}
 .content_body {
-  padding: 1rem;
+  padding: 1rem 1.2rem 1rem 1.3rem;
 }
