@@ -95,7 +95,9 @@ const ProfilEdit = () => {
           <UniversitySelect formController={formController} />
         </Field>
 
-        <Button type="submit">수정 완료</Button>
+        <Button type="submit" variant="secondary">
+          수정 완료
+        </Button>
       </form>
     </main>
   );

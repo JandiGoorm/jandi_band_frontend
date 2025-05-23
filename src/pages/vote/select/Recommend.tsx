@@ -1,4 +1,6 @@
 import styles from "@/pages/vote/select/Recommend.module.css";
+import Input from "@/components/input/Input";
+import Button from "@/components/button/Button";
 
 const Recommend = () => {
   return (
@@ -6,7 +8,16 @@ const Recommend = () => {
       <p>
         <span>*</span> 는 필수 입력 항목입니다.
       </p>
-      <form></form>
+      <form className={styles.form_container}>
+        <Input inputSize="sm" />
+        <Input inputSize="sm" />
+        <Input inputSize="sm" />
+        <Input inputSize="sm" />
+
+        <Button type="submit" size="md" variant="secondary">
+          팀 생성
+        </Button>
+      </form>
     </main>
   );
 };

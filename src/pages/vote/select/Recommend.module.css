@@ -14,3 +14,7 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
 }
+
+.form_container {
+  width: 100%;
+}
