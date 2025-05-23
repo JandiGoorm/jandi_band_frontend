@@ -10,6 +10,7 @@ import SignIn from "@/pages/auth/signIn/SignIn";
 import SignUp from "@/pages/auth/signUp/SignUp";
 import Team from "@/pages/team/Team";
 import Club from "./pages/club/main/Club";
+import MyPage from "@/pages/mypage/MyPage";
 import Callback from "@/pages/auth/signIn/Callback";
 import { QueryClientProvider } from "@tanstack/react-query";
 import GlobalToast from "./components/toast/GlobalToast";
@@ -38,6 +39,7 @@ function App() {
           <Route path={PageEndpoints.TEAM} element={<Team />} />
           <Route path={PageEndpoints.CLUB} element={<Club />} />
           <Route path={PageEndpoints.VOTE_RESULT} element={<VoteResult />} />
+          <Route path={PageEndpoints.MYPAGE} element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

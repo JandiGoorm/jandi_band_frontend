@@ -1,5 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import styles from "./Modal.module.css";
+import close from "/public/modal_cancle.svg";
 
 interface ModalProps {
   trigger: React.ReactNode;
@@ -19,7 +20,9 @@ const Modal: React.FC<ModalProps> = ({ trigger, title, children }) => {
         >
           <Dialog.Title className={styles.dialog_title}>
             {title}
-            <Dialog.Close className={styles.dialog_close}>X</Dialog.Close>
+            <Dialog.Close className={styles.dialog_close}>
+              <img src={close} alt="닫기" />
+            </Dialog.Close>
           </Dialog.Title>
           <div className={styles.content_body}>{children}</div>
         </Dialog.Content>
