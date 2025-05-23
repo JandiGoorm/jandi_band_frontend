@@ -6,7 +6,7 @@
   gap: 1rem;
 }
 
-.recommend_container p {
+.guide {
   font-size: var(--text-xs);
   color: #414141;
 }

@@ -26,7 +26,7 @@ const Recommend = () => {
 
   return (
     <main className={styles.recommend_container}>
-      <p>
+      <p className={styles.guide}>
         <span className={styles.dot}>*</span> 는 필수 입력 항목입니다.
       </p>
 
