@@ -1,44 +1,47 @@
-.embla {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 2rem 0;
-}
-
-.embla_viewport {
-  overflow: hidden;
-}
-
-.embla_container {
+.container {
   display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
 }
-
-.embla_slide {
-  flex: 0 0 20%;
+.slider_box {
+  position: relative;
   display: flex;
   justify-content: center;
+}
+.slider {
+  width: 90%;
+  min-width: 600px;
+  max-width: 1200px;
+}
+.slide_item {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+  position: relative;
+  box-sizing: border-box;
   transition:
-    transform 0.6s ease,
-    opacity 0.6s ease;
-  will-change: transform, opacity;
+    transform 0.4s ease,
+    opacity 0.4s ease;
+  transform: scale(0.5);
+  opacity: 0.3;
 }
-
-.embla_slide_img {
-  width: 100%;
-  height: auto;
-  border-radius: 1rem;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0;
-  transform: scale(0.8);
+.slide_item:focus,
+.slide_item:active {
+  outline: none;
+  border: none;
 }
-
-/* 애니메이션 클래스 */
-.animate {
-  transition:
-    transform 0.6s ease,
-    opacity 0.6s ease;
-  will-change: transform, opacity;
+.center {
+  transform: scale(1);
   opacity: 1;
+}
+
+.side1 {
+  transform: scale(0.8);
+  opacity: 0.6;
+}
+
+.side2 {
+  transform: scale(0.5);
+  opacity: 0.3;
 }

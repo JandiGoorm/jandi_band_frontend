@@ -1,93 +1,75 @@
 import styles from "./MainSlide.module.css";
-import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useRef, useState } from "react";
 
 interface SlideItem {
   id: number;
   image: string;
 }
 
-interface MainSlideProps {
+interface SlideProps {
   items: SlideItem[];
   children: (item: SlideItem) => React.ReactNode;
-  loop?: boolean;
 }
 
-const MainSlide = ({ items, children, loop = true }: MainSlideProps) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop,
-    align: "center",
-    containScroll: "trimSnaps",
-  });
+const MainSlide = ({ items, children }: SlideProps) => {
+  const sliderRef = useRef<Slider | null>(null);
+  const [current, setCurrent] = useState(0);
 
-  const [slideOffsets, setSlideOffsets] = useState<number[]>([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setMounted(true), 50);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const updateSlideOffsets = useCallback(() => {
-    if (!emblaApi) return;
-
-    const selectedSnap = emblaApi.selectedScrollSnap();
-    const totalSlides = items.length;
-
-    const offsets = items.map((_, index) => {
-      let offset = index - selectedSnap;
-
-      if (loop) {
-        const half = totalSlides / 2;
-        if (offset > half) offset -= totalSlides;
-        if (offset < -half) offset += totalSlides;
-      }
-
-      return offset;
-    });
-
-    setSlideOffsets(offsets);
-  }, [emblaApi, items, loop]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    updateSlideOffsets();
-    emblaApi.on("select", updateSlideOffsets);
-    emblaApi.on("reInit", updateSlideOffsets);
-  }, [emblaApi, updateSlideOffsets]);
+  const settings = {
+    dots: false,
+    infinite: true,
+    arrows: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "0px",
+    swipeToSlide: true,
+    beforeChange: (_: number, next: number) => setCurrent(next),
+    responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
 
   return (
-    <div className={styles.embla}>
-      <div className={styles.embla_viewport} ref={emblaRef}>
-        <div className={styles.embla_container}>
+    <div className={styles.container}>
+      <section className={styles.slider_box}>
+        <Slider ref={sliderRef} {...settings} className={styles.slider}>
           {items.map((item, index) => {
-            const offset = Math.abs(
-              slideOffsets[index % slideOffsets.length] ?? 999
-            );
-            const scale = 1 - offset * 0.1;
-            const opacity = 1 - offset * 0.3;
-            const zIndex = 10 - offset;
+            let className = styles.slide_item;
+            const len = items.length;
+
+            const diff = (index - current + len) % len;
+
+            if (index === current) {
+              className += ` ${styles.center}`;
+            } else if (diff === 1 || diff === len - 1) {
+              className += ` ${styles.side1}`;
+            } else if (diff === 2 || diff === len - 2) {
+              className += ` ${styles.side2}`;
+            }
 
             return (
-              <div
-                key={item.id}
-                className={styles.embla_slide}
-                style={{ zIndex }}
-              >
-                <div
-                  className={`${styles.embla_slide_img} ${mounted ? styles.animate : ""}`}
-                  style={{
-                    transform: `scale(${scale})`,
-                    opacity,
-                  }}
-                >
-                  {children(item)}
-                </div>
+              <div key={item.id} className={className}>
+                {children(item)}
               </div>
             );
           })}
-        </div>
-      </div>
+        </Slider>
+      </section>
     </div>
   );
 };
