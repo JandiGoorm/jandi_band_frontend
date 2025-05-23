@@ -17,9 +17,7 @@ const PromotionSlide = () => {
           현장을 달굴 밴드들의 무대, 지금 바로 확인!
         </p>
         <MainSlide items={posterItems}>
-          {(item) => (
-            <img src={item.image} style={{ width: "100%", margin: "0 auto" }} />
-          )}
+          {(item) => <img src={item.image} style={{ margin: "0 auto" }} />}
         </MainSlide>
       </section>
     </main>
