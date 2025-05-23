@@ -11,10 +11,11 @@ import PositionSelect from "@/pages/auth/signUp/PositionSelect";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpFormSchema } from "@/pages/auth/signUp/constants";
 
+const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
+
 const ProfilEdit = () => {
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const [imageURL, setimageURL] = useState<string | null>(null);
-  const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
   const handleClickSection = () => {
     imageInputRef.current?.click();
