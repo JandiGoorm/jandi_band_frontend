@@ -16,4 +16,5 @@ export enum ApiEndpotins {
   SIGN_IN = "/auth/login",
   SIGN_UP = "/auth/signup",
   ME = "/users/me/info",
+  CLUB = "/clubs",
 }
