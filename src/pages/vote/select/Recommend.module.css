@@ -1,0 +1,16 @@
+.recommend_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recommend_container p {
+  font-size: var(--text-sm);
+  color: #414141;
+}
+
+.recommend_container span {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
