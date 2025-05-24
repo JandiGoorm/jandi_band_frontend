@@ -8,6 +8,7 @@ import {
 import { api } from "./utils";
 import type { ApiResponse, QueryOptions } from "./types";
 import { buildPath } from "@/utils/buildPath";
+import type { AxiosResponse } from "axios";
 
 const fetcher = async <T>(context: QueryFunctionContext<QueryKey>) => {
   const { queryKey } = context;
@@ -25,9 +26,9 @@ const fetcher = async <T>(context: QueryFunctionContext<QueryKey>) => {
 export const useFetch = <T>(
   url: string,
   params?: object,
-  options?: QueryOptions<T>
+  options?: QueryOptions<ApiResponse<T>>
 ) => {
-  return useQuery<T, Error, T, QueryKey>({
+  return useQuery<ApiResponse<T>, Error, ApiResponse<T>, QueryKey>({
     queryKey: [url, params],
     queryFn: fetcher,
     ...options,
@@ -42,10 +43,11 @@ export const useFetch = <T>(
  */
 export const usePost = <T = object, S = unknown>(
   url: string,
-  options?: MutationOptions<ApiResponse<S>, unknown, T>
+  options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T>
 ) => {
-  return useMutation<ApiResponse<S>, unknown, T>({
-    mutationFn: (data) => api.post<ApiResponse<S>>(url, data ?? {}),
+  return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T>({
+    mutationFn: (data) =>
+      api.post<AxiosResponse<ApiResponse<S>>>(url, data ?? {}),
     ...options,
   });
 };
@@ -58,10 +60,11 @@ export const usePost = <T = object, S = unknown>(
  */
 export const useUpdate = <T = object, S = unknown>(
   url: string,
-  options?: MutationOptions<ApiResponse<S>, unknown, T>
+  options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T>
 ) => {
-  return useMutation<ApiResponse<S>, unknown, T>({
-    mutationFn: (data) => api.put<ApiResponse<S>>(url, data ?? {}),
+  return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T>({
+    mutationFn: (data) =>
+      api.put<AxiosResponse<ApiResponse<S>>>(url, data ?? {}),
     ...options,
   });
 };
@@ -74,10 +77,11 @@ export const useUpdate = <T = object, S = unknown>(
  */
 export const usePatch = <T = object, S = unknown>(
   url: string,
-  options?: MutationOptions<ApiResponse<S>, unknown, T>
+  options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T>
 ) => {
-  return useMutation<ApiResponse<S>, unknown, T>({
-    mutationFn: (data) => api.patch<ApiResponse<S>>(url, data ?? {}),
+  return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T>({
+    mutationFn: (data) =>
+      api.patch<AxiosResponse<ApiResponse<S>>>(url, data ?? {}),
     ...options,
   });
 };
@@ -90,11 +94,11 @@ export const usePatch = <T = object, S = unknown>(
  */
 export const useDelete = <T extends string | number = number, S = unknown>(
   url: string,
-  options?: MutationOptions<ApiResponse<S>, unknown, T>
+  options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T>
 ) => {
-  return useMutation<ApiResponse<S>, unknown, T>({
+  return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T>({
     mutationFn: (data) =>
-      api.delete<ApiResponse<S>>(buildPath(url, { id: data })),
+      api.delete<AxiosResponse<ApiResponse<S>>>(buildPath(url, { id: data })),
     ...options,
   });
 };
