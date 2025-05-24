@@ -1,25 +1,20 @@
-import styles from "./TimeScheduler.module.css";
-import { timeRange, range } from "./constants";
-import { type Range } from "@/types/timeTable";
-import TimeLine from "./TimeLine";
-import TimeBoard from "./TimeBoard";
 import clsx from "clsx";
 import LoadSchedules from "../../pages/team/modals/LoadSchedules";
-import { type SetState } from "@/types/common";
+import { range, timeRange } from "./constants";
+import { SelectableArea, SelectableAreaController } from "./SelectableArea";
 import SubController from "./SubController";
+import TimeBoard from "./TimeBoard";
+import TimeLine from "./TimeLine";
+import styles from "./TimeScheduler.module.css";
 
 interface TimeSchedulerProps {
   isEditable?: boolean;
-  availableTimeSlots: Record<Range, string[]>;
-  setAvailableTimeSlots?: SetState<Record<Range, string[]>>;
-  onTimeSlotChange?: (range: Range, time: string) => void;
+  onTimeScheduleChange?: (timeSchedule: Map<string, boolean>) => void;
 }
 
 const TimeScheduler = ({
   isEditable = false,
-  availableTimeSlots,
-  setAvailableTimeSlots,
-  onTimeSlotChange,
+  onTimeScheduleChange,
 }: TimeSchedulerProps) => {
   const { startTime, endTime } = timeRange;
 
@@ -29,36 +24,35 @@ const TimeScheduler = ({
   );
 
   return (
-    <section className={styles.container}>
-      <SubController setAvailableTimeSlots={setAvailableTimeSlots} />
+    <SelectableArea onChange={onTimeScheduleChange} disabled={!isEditable}>
+      <section className={styles.container}>
+        <SelectableAreaController>
+          {({ toggle }) => <SubController onChange={toggle} />}
+        </SelectableAreaController>
 
-      <div className={styles.table_header}>
-        {range.map((item) => (
-          <span
-            key={item}
-            className={clsx(
-              styles.range_item,
-              item === "Sat" && styles.saturday,
-              item === "Sun" && styles.sunday
-            )}
-          >
-            {item}
-          </span>
-        ))}
-      </div>
+        <div className={styles.table_header}>
+          {range.map((item) => (
+            <span
+              key={item}
+              className={clsx(
+                styles.range_item,
+                item === "Sat" && styles.saturday,
+                item === "Sun" && styles.sunday
+              )}
+            >
+              {item}
+            </span>
+          ))}
+        </div>
 
-      <div className={styles.content_container}>
-        <TimeLine timeLineItems={timeLineItems} />
-        <TimeBoard
-          timeLineItems={timeLineItems}
-          availableTimeSlots={availableTimeSlots}
-          isEditable={isEditable}
-          onTimeSlotChange={onTimeSlotChange}
-        />
-      </div>
+        <div className={styles.content_container}>
+          <TimeLine timeLineItems={timeLineItems} />
+          <TimeBoard timeLineItems={timeLineItems} isEditable={isEditable} />
+        </div>
 
-      {!isEditable && <LoadSchedules />}
-    </section>
+        {!isEditable && <LoadSchedules />}
+      </section>
+    </SelectableArea>
   );
 };
 

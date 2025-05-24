@@ -1,28 +1,32 @@
-import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import TimeScheduler from "@/components/scheduler/TimeScheduler";
-import { useState } from "react";
-import styles from "./TimeSchedule.module.css";
+import { usePostTimeTable } from "@/apis/timetable";
 import Button from "@/components/button/Button";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import Field from "@/components/field/Field";
 import Input from "@/components/input/Input";
-import { timeTableSchema } from "./constants";
-import clsx from "clsx";
+import TimeScheduler from "@/components/scheduler/TimeScheduler";
+import { range } from "@/components/scheduler/constants";
+import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import { type Range } from "@/types/timeTable";
-import { usePostTimeTable } from "@/apis/timetable";
+import { zodResolver } from "@hookform/resolvers/zod";
+import clsx from "clsx";
+import { cloneDeep } from "lodash-es";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import z from "zod";
+import styles from "./TimeSchedule.module.css";
+import { timeTableSchema } from "./constants";
+
+const initialTimeTableData: Record<Range, string[]> = Object.freeze(
+  range.reduce(
+    (acc, day) => {
+      acc[day] = [];
+      return acc;
+    },
+    {} as Record<Range, string[]>
+  )
+);
 
 const TimeSchedule = () => {
-  const [mySchedule, setMySchedule] = useState<Record<Range, string[]>>({
-    Mon: [],
-    Tue: [],
-    Wed: [],
-    Thu: [],
-    Fri: [],
-    Sat: [],
-    Sun: [],
-  });
+  const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
 
   const { mutate: postTimeTable } = usePostTimeTable();
 
@@ -37,29 +41,21 @@ const TimeSchedule = () => {
     formState: { errors },
   } = formController;
 
-  const handleTimeSlotChange = (range: Range, time: string) => {
-    const isSelected = mySchedule[range].includes(time);
-
-    if (isSelected) {
-      setMySchedule((prev) => ({
-        ...prev,
-        [range]: prev[range].filter((t) => t !== time),
-      }));
-    } else {
-      setMySchedule((prev) => ({
-        ...prev,
-        [range]: [...prev[range], time],
-      }));
-    }
-  };
-
   const onSubmit = (data: z.infer<typeof timeTableSchema>) => {
     postTimeTable(data);
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setValue("timetableData", mySchedule);
+    const timetableData: Record<Range, string[]> =
+      cloneDeep(initialTimeTableData);
+    mySchedule.forEach((isSelected, id) => {
+      const [day, time] = id.split("-");
+      if (isSelected) {
+        timetableData[day as Range].push(time);
+      }
+    });
+    setValue("timetableData", timetableData);
     handleSubmit(onSubmit)();
   };
 
@@ -74,12 +70,7 @@ const TimeSchedule = () => {
             </p>
           </header>
 
-          <TimeScheduler
-            isEditable
-            availableTimeSlots={mySchedule}
-            setAvailableTimeSlots={setMySchedule}
-            onTimeSlotChange={handleTimeSlotChange}
-          />
+          <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
 
           <div className={styles.footer}>
             <Field
