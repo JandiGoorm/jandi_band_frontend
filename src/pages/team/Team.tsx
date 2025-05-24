@@ -5,10 +5,11 @@ import Button from "@/components/button/Button";
 import clsx from "clsx";
 import ScheduleBoard from "./scheduleBoard/ScheduleBoard";
 import QuickFilter from "./quickFilter/QuickFilter";
-import TimeScheduler from "./timeScheduler/TimeScheduler";
+import TimeScheduler from "../../components/scheduler/TimeScheduler";
 import { useTeamStore } from "./teamStore";
 import useTeamController from "./useTeamController";
 import KakaoShare from "./modals/KakaoShare";
+import { dummyAvailableTimeSlots } from "../../components/scheduler/constants";
 
 const Team = () => {
   const { activeIds } = useTeamStore();
@@ -43,7 +44,7 @@ const Team = () => {
         </section>
 
         <section className={styles.content_container}>
-          <TimeScheduler />
+          <TimeScheduler availableTimeSlots={dummyAvailableTimeSlots} />
           <div className={styles.content_side_container}>
             <QuickFilter />
             <ScheduleBoard />

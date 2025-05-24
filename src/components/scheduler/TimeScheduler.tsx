@@ -1,11 +1,26 @@
 import styles from "./TimeScheduler.module.css";
-import { range, timeRange, availableTimeSlots } from "../constants";
+import { timeRange, range } from "./constants";
+import { type Range } from "@/types/timeTable";
 import TimeLine from "./TimeLine";
 import TimeBoard from "./TimeBoard";
 import clsx from "clsx";
-import LoadSchedules from "../modals/LoadSchedules";
+import LoadSchedules from "../../pages/team/modals/LoadSchedules";
+import { type SetState } from "@/types/common";
+import SubController from "./SubController";
 
-const TimeScheduler = () => {
+interface TimeSchedulerProps {
+  isEditable?: boolean;
+  availableTimeSlots: Record<Range, string[]>;
+  setAvailableTimeSlots?: SetState<Record<Range, string[]>>;
+  onTimeSlotChange?: (range: Range, time: string) => void;
+}
+
+const TimeScheduler = ({
+  isEditable = false,
+  availableTimeSlots,
+  setAvailableTimeSlots,
+  onTimeSlotChange,
+}: TimeSchedulerProps) => {
   const { startTime, endTime } = timeRange;
 
   const timeLineItems = Array.from(
@@ -15,6 +30,8 @@ const TimeScheduler = () => {
 
   return (
     <section className={styles.container}>
+      <SubController setAvailableTimeSlots={setAvailableTimeSlots} />
+
       <div className={styles.table_header}>
         {range.map((item) => (
           <span
@@ -35,10 +52,12 @@ const TimeScheduler = () => {
         <TimeBoard
           timeLineItems={timeLineItems}
           availableTimeSlots={availableTimeSlots}
+          isEditable={isEditable}
+          onTimeSlotChange={onTimeSlotChange}
         />
       </div>
 
-      <LoadSchedules />
+      {!isEditable && <LoadSchedules />}
     </section>
   );
 };

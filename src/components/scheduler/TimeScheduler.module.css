@@ -5,6 +5,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 
   box-shadow: var(--shadow-sm);
   border-radius: var(--radius-md);
@@ -42,4 +43,11 @@
 
 .content_container {
   display: flex;
+}
+
+@media screen and (max-width: 968px) {
+  .container {
+    width: 100%;
+    padding: 1rem;
+  }
 }

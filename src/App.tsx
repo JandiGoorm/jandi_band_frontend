@@ -15,6 +15,7 @@ import Callback from "@/pages/auth/signIn/Callback";
 import { QueryClientProvider } from "@tanstack/react-query";
 import GlobalToast from "./components/toast/GlobalToast";
 import { queryClient } from "./config/queryClient";
+import TimeSchedule from "@/pages/mypage/timeSchedule/TimeSchedule";
 
 function App() {
   return (
@@ -40,6 +41,10 @@ function App() {
           <Route path={PageEndpoints.CLUB} element={<Club />} />
           <Route path={PageEndpoints.VOTE_RESULT} element={<VoteResult />} />
           <Route path={PageEndpoints.MYPAGE} element={<MyPage />} />
+          <Route
+            path={PageEndpoints.MYPAGE_TIME_SCHEDULE}
+            element={<TimeSchedule />}
+          />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

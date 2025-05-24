@@ -11,6 +11,7 @@ export enum PageEndpoints {
   CLUB = "/club/:id",
   VOTE_RESULT = "/vote/result",
   MYPAGE = "/mypage",
+  MYPAGE_TIME_SCHEDULE = "/mypage/time-schedule",
 }
 
 export enum ApiEndpotins {
@@ -21,4 +22,5 @@ export enum ApiEndpotins {
   CLUB_DETAIL = "/clubs/:id",
   UNIVERSITIES = "/univ/all",
   CLUB_POLL = "/polls/clubs/:id",
+  MY_TIMETABLE = "/users/me/timetables",
 }
