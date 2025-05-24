@@ -1,14 +1,11 @@
-import { useAuthStore } from "@/stores/authStore";
-import styles from "./Header.module.css";
 import Button from "@/components/button/Button";
 import { PageEndpoints } from "@/constants/endpoints";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { usePostClub } from "@/apis/club";
-import { queryClient } from "@/config/queryClient";
+import { useAuthStore } from "@/stores/authStore";
+import { Link, useNavigate } from "react-router-dom";
+import CreateClubModal from "./CreateClubModal";
+import styles from "./Header.module.css";
 
 const Header = () => {
-  const { mutate: postClub } = usePostClub();
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
 
@@ -20,20 +17,7 @@ const Header = () => {
         </Link>
 
         <div className={styles.right}>
-          <button
-            onClick={() => {
-              postClub(
-                { name: "test", universityId: "1" },
-                {
-                  onSuccess: () => {
-                    queryClient.invalidateQueries({ queryKey: ["clubs"] });
-                  },
-                }
-              );
-            }}
-          >
-            동아리 만들기
-          </button>
+          <CreateClubModal />
 
           {user ? (
             <Button onClick={logout} variant="secondary">

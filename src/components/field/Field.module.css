@@ -39,3 +39,8 @@
 
   color: var(--color-error);
 }
+
+.option {
+  font-size: var(--text-xs);
+  color: #6b6b6b;
+}

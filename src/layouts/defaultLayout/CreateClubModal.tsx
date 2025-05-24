@@ -5,7 +5,7 @@ import Input from "@/components/input/Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import UniversitySelect from "@/pages/auth/signUp/UniversitySelect";
+import UniversitySelect from "@/components/select/UniversitySelect";
 import Button from "@/components/button/Button";
 import { usePostClub } from "@/apis/club";
 import { useEffect } from "react";

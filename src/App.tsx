@@ -9,7 +9,7 @@ import VoteResult from "@/pages/vote/result/VoteResult";
 import SignIn from "@/pages/auth/signIn/SignIn";
 import SignUp from "@/pages/auth/signUp/SignUp";
 import Team from "@/pages/team/Team";
-import Club from "./pages/club/main/Club";
+import Club from "@/pages/club/detail/ClubDetail";
 import MyPage from "@/pages/mypage/MyPage";
 import Callback from "@/pages/auth/signIn/Callback";
 import { QueryClientProvider } from "@tanstack/react-query";

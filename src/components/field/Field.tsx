@@ -24,8 +24,12 @@ const Field = ({
     <div className={clsx(styles.container, className)} {...props}>
       <div className={styles.label_container}>
         <label className={styles.label}>
-          {isRequired && <span className={styles.required}>*</span>}
           {label}
+          {isRequired ? (
+            <span className={styles.required}>*</span>
+          ) : (
+            <span className={styles.option}>(선택)</span>
+          )}
         </label>
         {helperText && <p className={styles.helper_text}>{helperText}</p>}
       </div>
