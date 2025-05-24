@@ -52,52 +52,24 @@ const ScheduleModal = () => {
         className={styles.container}
         onSubmit={formController.handleSubmit(onSubmit)}
       >
-        <Field
-          label={
-            <>
-              스케줄 제목 <span className={styles.dot}>*</span>
-            </>
-          }
-          error={errors.title}
-        >
+        <Field label="스케줄 제목" error={errors.title} isRequired>
           <Input inputSize="sm" {...formController.register("title")} />
         </Field>
-        <Field
-          label={
-            <>
-              시작시간 <span className={styles.dot}>*</span>
-            </>
-          }
-          error={errors.starttime}
-        >
+        <Field label="시작시간" error={errors.starttime} isRequired>
           <Input
             inputSize="sm"
             type="datetime-local"
             {...formController.register("starttime")}
           />
         </Field>
-        <Field
-          label={
-            <>
-              마감시간 <span className={styles.dot}>*</span>
-            </>
-          }
-          error={errors.endtime}
-        >
+        <Field label="마감시간" error={errors.endtime} isRequired>
           <Input
             inputSize="sm"
             type="datetime-local"
             {...formController.register("endtime")}
           />
         </Field>
-        <Field
-          label={
-            <>
-              추가 내용 <span className={styles.option}>(선택)</span>
-            </>
-          }
-          error={errors.description}
-        >
+        <Field label="추가 내용" error={errors.description}>
           <Input inputSize="sm" {...formController.register("description")} />
         </Field>
 

@@ -44,11 +44,11 @@ const SignUpForm = () => {
       className={styles.form_container}
       onSubmit={formController.handleSubmit(onSubmit)}
     >
-      <Field label="포지션" error={errors.position}>
+      <Field label="포지션" error={errors.position} isRequired>
         <PositionSelect formController={formController} />
       </Field>
 
-      <Field label="소속대학" error={errors.university}>
+      <Field label="소속대학" error={errors.university} isRequired>
         <UniversitySelect
           onValueChange={(university) => {
             formController.setValue("university", university.name);
