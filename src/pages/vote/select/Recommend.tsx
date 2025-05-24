@@ -34,47 +34,19 @@ const Recommend = () => {
         className={styles.form_container}
         onSubmit={form.handleSubmit((data) => console.log(data))}
       >
-        <Field
-          label={
-            <>
-              곡 제목 <span className={styles.dot}>*</span>
-            </>
-          }
-          error={errors.title}
-        >
+        <Field label="곡 제목" error={errors.title} isRequired>
           <Input inputSize="sm" {...form.register("title")} />
         </Field>
 
-        <Field
-          label={
-            <>
-              가수/밴드명 <span className={styles.dot}>*</span>
-            </>
-          }
-          error={errors.singer}
-        >
+        <Field label="가수/밴드명" error={errors.singer} isRequired>
           <Input inputSize="sm" {...form.register("singer")} />
         </Field>
 
-        <Field
-          label={
-            <>
-              선택 이유 한마디 <span className={styles.option}>(선택)</span>
-            </>
-          }
-          error={errors.reason}
-        >
+        <Field label="선택 이유 한마디" error={errors.reason}>
           <Input inputSize="sm" {...form.register("reason")} />
         </Field>
 
-        <Field
-          label={
-            <>
-              유튜브 링크 <span className={styles.dot}>*</span>
-            </>
-          }
-          error={errors.youtube}
-        >
+        <Field label="유튜브 링크" error={errors.youtube} isRequired>
           <Input inputSize="sm" {...form.register("youtube")} />
         </Field>
 

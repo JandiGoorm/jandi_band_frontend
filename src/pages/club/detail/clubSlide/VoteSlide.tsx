@@ -4,6 +4,7 @@ import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import VoteModal from "./modalContent/VoteModal";
 import VoteCards from "@/components/cards/VoteCards";
+import type { Poll } from "@/types/poll";
 
 const dummyData = [
   { id: 1, name: "Slide 1" },
@@ -11,7 +12,10 @@ const dummyData = [
   { id: 3, name: "Slide 3" },
   { id: 4, name: "Slide 4" },
 ];
-const VoteSlide = () => {
+
+const VoteSlide = ({ polls }: { polls: Poll[] }) => {
+  console.log("등록된 곡투표 데이터:", polls);
+
   return (
     <main className={styles.container}>
       <header className={styles.header}>
