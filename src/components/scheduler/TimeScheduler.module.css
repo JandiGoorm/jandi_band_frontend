@@ -17,8 +17,9 @@
 }
 
 .table_header {
+  margin-top: 1rem;
   padding-left: 3rem;
-  height: 3rem;
+  height: 1.5rem;
 
   display: grid;
   grid-template-columns: repeat(7, 1fr);

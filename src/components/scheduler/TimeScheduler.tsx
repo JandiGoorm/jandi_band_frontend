@@ -6,15 +6,18 @@ import SubController from "./SubController";
 import TimeBoard from "./TimeBoard";
 import TimeLine from "./TimeLine";
 import styles from "./TimeScheduler.module.css";
+import type { Range } from "@/types/timeTable";
 
 interface TimeSchedulerProps {
   isEditable?: boolean;
   onTimeScheduleChange?: (timeSchedule: Map<string, boolean>) => void;
+  initialTimeSchedule?: Record<Range, string[]>;
 }
 
 const TimeScheduler = ({
   isEditable = false,
   onTimeScheduleChange,
+  initialTimeSchedule,
 }: TimeSchedulerProps) => {
   const { startTime, endTime } = timeRange;
 
@@ -27,7 +30,9 @@ const TimeScheduler = ({
     <SelectableArea onChange={onTimeScheduleChange} disabled={!isEditable}>
       <section className={styles.container}>
         <SelectableAreaController>
-          {({ toggle }) => <SubController onChange={toggle} />}
+          {({ toggle, disabled }) => (
+            <SubController onChange={toggle} disabled={disabled} />
+          )}
         </SelectableAreaController>
 
         <div className={styles.table_header}>
@@ -47,7 +52,11 @@ const TimeScheduler = ({
 
         <div className={styles.content_container}>
           <TimeLine timeLineItems={timeLineItems} />
-          <TimeBoard timeLineItems={timeLineItems} isEditable={isEditable} />
+          <TimeBoard
+            timeLineItems={timeLineItems}
+            isEditable={isEditable}
+            initialTimeSchedule={initialTimeSchedule}
+          />
         </div>
 
         {!isEditable && <LoadSchedules />}

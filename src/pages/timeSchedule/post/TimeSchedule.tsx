@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import styles from "./TimeSchedule.module.css";
-import { timeTableSchema } from "./constants";
+import { timeTableSchema } from "../constants";
 
 const initialTimeTableData: Record<Range, string[]> = Object.freeze(
   range.reduce(

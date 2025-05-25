@@ -3,22 +3,23 @@ import styles from "./SubController.module.css";
 
 interface SubControllerProps {
   onChange?: (checked: boolean) => void;
+  disabled?: boolean;
 }
 
-const SubController = ({ onChange }: SubControllerProps) => {
+const SubController = ({ onChange, disabled = true }: SubControllerProps) => {
   return (
     <section className={styles.container}>
-      <div className={styles.switch_container}>
-        {onChange && (
+      {!disabled && onChange && (
+        <div className={styles.switch_container}>
           <Switch.Root
             className={styles.switch_root}
             onCheckedChange={onChange}
           >
             <Switch.Thumb className={styles.switch_thumb} />
           </Switch.Root>
-        )}
-        <span>전체 선택</span>
-      </div>
+          <span>전체 선택</span>
+        </div>
+      )}
 
       <div className={styles.sub_container}>
         <div className={styles.sub_item}>

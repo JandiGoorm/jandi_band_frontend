@@ -1,4 +1,6 @@
+import { range } from "@/components/scheduler/constants";
 import z from "zod";
+import type { Range } from "@/types/timeTable";
 
 export const timeTableSchema = z.object({
   name: z
@@ -16,3 +18,13 @@ export const timeTableSchema = z.object({
     Sun: z.array(z.string()),
   }),
 });
+
+export const initialTimeTableData: Record<Range, string[]> = Object.freeze(
+  range.reduce(
+    (acc, day) => {
+      acc[day] = [];
+      return acc;
+    },
+    {} as Record<Range, string[]>
+  )
+);

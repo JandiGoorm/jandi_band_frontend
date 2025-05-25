@@ -17,6 +17,7 @@ const SelectableAreaContext = createContext<{
   addItem: (id: string, isSelected: boolean) => void;
   toggle: (isSelecting: boolean) => void;
   selectedItems: Map<string, boolean>;
+  disabled?: boolean;
 }>({
   isDragging: false,
   isSelecting: false,
@@ -26,6 +27,7 @@ const SelectableAreaContext = createContext<{
   addItem: () => {},
   toggle: () => {},
   selectedItems: new Map(),
+  disabled: false,
 });
 
 const useSelectableAreaContext = () => {
@@ -110,6 +112,7 @@ const SelectableArea = ({
       addItem,
       toggle,
       selectedItems,
+      disabled,
     }),
     [
       isDragging,
@@ -120,6 +123,7 @@ const SelectableArea = ({
       addItem,
       toggle,
       selectedItems,
+      disabled,
     ]
   );
 
@@ -196,18 +200,23 @@ interface SelectableAreaControllerProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
   children:
     | React.ReactNode
-    | ((props: { toggle: (isSelecting: boolean) => void }) => React.ReactNode);
+    | ((props: {
+        toggle: (isSelecting: boolean) => void;
+        disabled?: boolean;
+      }) => React.ReactNode);
 }
 
 const SelectableAreaController = ({
   children,
   ...props
 }: SelectableAreaControllerProps) => {
-  const { toggle } = useSelectableAreaContext();
+  const { toggle, disabled } = useSelectableAreaContext();
 
   return (
     <Slot {...props}>
-      {typeof children === "function" ? children({ toggle }) : children}
+      {typeof children === "function"
+        ? children({ toggle, disabled })
+        : children}
     </Slot>
   );
 };
