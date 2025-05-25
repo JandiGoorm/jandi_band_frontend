@@ -1,6 +1,6 @@
 import type { ApiResponse } from "@/apis/types";
 import type { ClubListResponse } from "@/types/club";
-import type { PageNationResponse } from "@/types/common";
+import type { PageableResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useDelete, useFetch, usePatch, usePost } from "./hooks";
 import type { ClubFormData } from "@/layouts/defaultLayout/CreateClubModal";
@@ -32,7 +32,7 @@ export const useGetClubs = () => {
 };
 
 export const useGetClubList = () => {
-  return useFetch<ApiResponse<PageNationResponse<ClubListResponse>>>(
+  return useFetch<ApiResponse<PageableResponse<ClubListResponse>>>(
     ApiEndpotins.CLUB
   );
 };
