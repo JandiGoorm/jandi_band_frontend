@@ -5,12 +5,12 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm);
-  gap: 0.2rem;
+  border: 1px solid var(--color-input);
   background-color: var(--color-white);
-  box-shadow: var(--shadow-sm);
+  outline: none;
+  font-size: var(--text-base);
+  border-radius: var(--radius-input);
+  padding: 0.5rem 1rem;
 }
 
 .content {
@@ -19,8 +19,11 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   z-index: 10;
-  width: var(--radix-select-trigger-width);
   max-height: var(--radix-select-content-available-height);
+  width: calc(var(--radix-select-trigger-width) - 1rem);
+  position: absolute;
+  left: 0.5rem;
+  z-index: 10;
 }
 
 .scroll_button {

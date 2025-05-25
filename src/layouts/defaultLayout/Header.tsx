@@ -1,9 +1,9 @@
-import { useAuthStore } from "@/stores/authStore";
-import styles from "./Header.module.css";
 import Button from "@/components/button/Button";
 import { PageEndpoints } from "@/constants/endpoints";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useAuthStore } from "@/stores/authStore";
+import { Link, useNavigate } from "react-router-dom";
+import CreateClubModal from "./CreateClubModal";
+import styles from "./Header.module.css";
 
 const Header = () => {
   const { user, logout } = useAuthStore();
@@ -16,18 +16,22 @@ const Header = () => {
           <img src="/logo_anti.png" alt="logo" className={styles.logo} />
         </Link>
 
-        {user ? (
-          <Button onClick={logout} variant="secondary">
-            로그아웃
-          </Button>
-        ) : (
-          <Button
-            onClick={() => navigate(PageEndpoints.SIGN_IN)}
-            variant="secondary"
-          >
-            로그인
-          </Button>
-        )}
+        <div className={styles.right}>
+          <CreateClubModal />
+
+          {user ? (
+            <Button onClick={logout} variant="secondary">
+              로그아웃
+            </Button>
+          ) : (
+            <Button
+              onClick={() => navigate(PageEndpoints.SIGN_IN)}
+              variant="secondary"
+            >
+              로그인
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

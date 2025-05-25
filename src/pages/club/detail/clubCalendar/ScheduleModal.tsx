@@ -43,40 +43,46 @@ const ScheduleModal = () => {
   } = formController;
 
   return (
-    <form
-      className={styles.container}
-      onSubmit={formController.handleSubmit(onSubmit)}
-    >
-      <Field label="스케줄 제목" error={errors.title}>
-        <Input inputSize="sm" {...formController.register("title")} />
-      </Field>
-      <Field label="시작시간" error={errors.starttime}>
-        <Input
-          inputSize="sm"
-          type="datetime-local"
-          {...formController.register("starttime")}
-        />
-      </Field>
-      <Field label="마감시간" error={errors.endtime}>
-        <Input
-          inputSize="sm"
-          type="datetime-local"
-          {...formController.register("endtime")}
-        />
-      </Field>
-      <Field label="추가내용(필x)" error={errors.description}>
-        <Input inputSize="sm" {...formController.register("description")} />
-      </Field>
+    <main className={styles.scedule_container}>
+      <p className={styles.guide}>
+        <span className={styles.dot}>*</span> 는 필수 입력 항목입니다.
+      </p>
 
-      <Button
-        type="submit"
-        size="md"
-        variant="secondary"
-        className={styles.submit_button}
+      <form
+        className={styles.container}
+        onSubmit={formController.handleSubmit(onSubmit)}
       >
-        팀 생성
-      </Button>
-    </form>
+        <Field label="스케줄 제목" error={errors.title} isRequired>
+          <Input inputSize="sm" {...formController.register("title")} />
+        </Field>
+        <Field label="시작시간" error={errors.starttime} isRequired>
+          <Input
+            inputSize="sm"
+            type="datetime-local"
+            {...formController.register("starttime")}
+          />
+        </Field>
+        <Field label="마감시간" error={errors.endtime} isRequired>
+          <Input
+            inputSize="sm"
+            type="datetime-local"
+            {...formController.register("endtime")}
+          />
+        </Field>
+        <Field label="추가 내용" error={errors.description}>
+          <Input inputSize="sm" {...formController.register("description")} />
+        </Field>
+
+        <Button
+          type="submit"
+          size="md"
+          variant="secondary"
+          className={styles.submit_button}
+        >
+          팀 생성
+        </Button>
+      </form>
+    </main>
   );
 };
 

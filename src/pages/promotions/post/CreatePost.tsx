@@ -5,11 +5,12 @@ import styles from "@/pages/promotions/post/CreatePost.module.css";
 import Button from "@/components/button/Button";
 // import Input from '@/components/input/Input';
 
+const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
+
 const CreatePost = () => {
   const navigate = useNavigate();
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const [imageURL, setimageURL] = useState<string | null>(null);
-  const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
   const handleClickSection = () => {
     imageInputRef.current?.click();

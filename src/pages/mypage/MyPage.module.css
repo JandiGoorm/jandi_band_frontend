@@ -1,0 +1,112 @@
+.mypage_container {
+  /* margin: 0 auto; */
+  text-align: center;
+}
+
+.mypage_container h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.myprofile_box {
+  width: 100%;
+  background-color: var(--color-comment-bg);
+  border-radius: 15px;
+  padding: 1.2rem 1.2rem 0.6rem 1.2rem;
+}
+
+.profile_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile_title div {
+  display: flex;
+  align-items: center;
+}
+
+.profile_title img {
+  width: 27px;
+  height: 25px;
+}
+
+.profile_title button {
+  border: 1px solid #afafaf;
+  background-color: #ffffff;
+  padding: 0.3rem 0.7rem;
+  border-radius: 50px;
+  color: #777777;
+}
+
+.profile_content {
+  display: flex;
+  flex-direction: row;
+  gap: 1.1rem;
+  /* margin-top: 1rem; */
+  align-items: center;
+  font-size: var(--text-base);
+}
+
+.profile_content img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile_info {
+  font-size: 1.15rem;
+}
+.profile_info div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 1.3rem;
+}
+
+.profile_info div dt {
+  font-weight: bold;
+}
+
+.timetable_box {
+  margin-top: 5rem;
+}
+
+.timetable_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.timetable_title div {
+  display: flex;
+  align-items: center;
+}
+
+.timetable_title img {
+  width: 25px;
+  height: 23px;
+}
+
+.timetable_button {
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+}
+
+.team_box {
+  margin-top: 2rem;
+}
+
+.team_box div {
+  display: flex;
+  text-align: center;
+}
+
+.team_box div img {
+  width: 25px;
+  height: 23px;
+  margin-right: 0.3rem;
+}

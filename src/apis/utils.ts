@@ -24,11 +24,18 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
   const url = new URL(config.url as string);
-  console.log(url.pathname);
   const pathname = url.pathname.replace("/api", "");
-  const isProtected = secureRoutes.some(
-    (endpoint) => endpoint.method === config.method && endpoint.url === pathname
-  );
+
+  // 동적 경로 파라미터를 포함한 URL 패턴 매칭
+  const isProtected = secureRoutes.some((endpoint) => {
+    if (endpoint.method !== config.method) return false;
+
+    // :param 형태의 동적 파라미터를 정규식으로 변환
+    const pattern = endpoint.url.replace(/:[^/]+/g, "[^/]+");
+    const regex = new RegExp(`^${pattern}$`);
+
+    return regex.test(pathname);
+  });
 
   if (isProtected) {
     config.headers.Authorization = `Bearer ${localStorage.getItem("accessToken") || ""}`;
