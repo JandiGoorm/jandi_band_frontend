@@ -1,22 +1,23 @@
 import Button from "@/components/button/Button";
 import styles from "./BandSlide.module.css";
 import MainSlide from "@/components/slide/MainSlide";
+import { useGetClubList } from "@/apis/club";
 
-const posterItems = [
-  { id: 1, image: "promotion1.png" },
-  { id: 2, image: "promotion2.png" },
-  { id: 3, image: "promotion3.png" },
-  { id: 4, image: "promotion1.png" },
-  { id: 5, image: "promotion2.png" },
-  { id: 6, image: "promotion2.png" },
-];
 const BandSlide = () => {
+  const { data: clubListData } = useGetClubList();
+  const items = clubListData?.data.content;
+  if (!items) return;
   return (
     <main className={styles.container}>
       <section className={styles.main_container}>
         <p className={styles.title}>당신의 귀를 사로잡을 밴드들이 여기에!</p>
-        <MainSlide items={posterItems}>
-          {(item) => <img src={item.image} style={{ margin: "0 auto" }} />}
+        <MainSlide items={items}>
+          {(item) => (
+            <img
+              src={item.photoUrl || "promotion3.png"}
+              style={{ margin: "0 auto" }}
+            />
+          )}
         </MainSlide>
       </section>
       <section className={styles.centered}>

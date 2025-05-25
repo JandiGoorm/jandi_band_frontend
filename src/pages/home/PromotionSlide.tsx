@@ -1,3 +1,4 @@
+import { useGetPromoList } from "@/apis/promotion";
 import styles from "./PromotionSlide.module.css";
 import MainSlide from "@/components/slide/MainSlide";
 
@@ -10,6 +11,9 @@ const posterItems = [
   { id: 6, image: "promotion2.png" },
 ];
 const PromotionSlide = () => {
+  const { data: promoListData } = useGetPromoList();
+  const items = promoListData?.data.content;
+  console.log(items);
   return (
     <main className={styles.container}>
       <section className={styles.main_container}>
