@@ -16,6 +16,7 @@ export enum PageEndpoints {
 export enum ApiEndpotins {
   SIGN_IN = "/auth/login",
   SIGN_UP = "/auth/signup",
+  REFRESH_TOKEN = "/auth/refresh",
   ME = "/users/me/info",
   CLUB = "/clubs",
   CLUB_DETAIL = "/clubs/:id",
