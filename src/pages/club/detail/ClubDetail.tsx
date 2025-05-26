@@ -37,10 +37,16 @@ const Club = () => {
     myLoading ||
     memberLoading ||
     !memberData ||
-    !teamData ||
     teamLoading
   )
     return <Loading />;
+
+  console.log(memberData.data);
+
+  const isMember = memberData.data.members.some(
+    (member: { userId: number }) => member.userId === myData.data.id
+  );
+
   return (
     <DefaultLayout>
       <main className={styles.container}>
@@ -50,7 +56,7 @@ const Club = () => {
           memberData={memberData.data}
         />
         <ClubCalendar />
-        <TeamSlide teams={teamData.data.content} />
+        {isMember ? <TeamSlide teams={teamData?.data.content} /> : null}
         <VoteSlide polls={pollData.data.content} />
         <PhotoSlide />
       </main>

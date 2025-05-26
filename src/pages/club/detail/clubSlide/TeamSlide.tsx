@@ -6,7 +6,9 @@ import TeamModal from "./modalContent/TeamModal";
 import TeamCards from "@/components/cards/TeamCards";
 import type { TeamBasicResponse } from "@/types/team";
 
-const TeamSlide = ({ teams }: { teams: TeamBasicResponse[] }) => {
+const TeamSlide = ({ teams }: { teams: TeamBasicResponse[] | undefined }) => {
+  if (teams === undefined) return;
+
   return (
     <main className={styles.container}>
       <header className={styles.header}>
