@@ -1,5 +1,5 @@
 export interface TeamResponse {
-  id: string;
+  id: number;
   name: string;
   club: TeamClubInfo;
   creator: CreatorInfo;
@@ -7,6 +7,14 @@ export interface TeamResponse {
   memberCount: number;
   createdAt: string; // or `Date` if you parse it
   updatedAt: string;
+}
+export interface TeamBasicResponse {
+  id: number;
+  name: string;
+  creatorId: number;
+  creatorName: string;
+  memberCount: number;
+  createdAt: string;
 }
 export interface TeamMember {
   userId: number;

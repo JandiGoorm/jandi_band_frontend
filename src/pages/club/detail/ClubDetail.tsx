@@ -10,6 +10,7 @@ import { useGetClubDetail, useGetClubMembers } from "@/apis/club";
 import Loading from "@/components/loading/Loading";
 import { useGetClubPoll } from "@/apis/poll";
 import { useGetMe } from "@/apis/auth";
+import { useGetTeamList } from "@/apis/team";
 const Club = () => {
   const { id } = useParams();
   const { data: myData, isLoading: myLoading } = useGetMe();
@@ -17,6 +18,9 @@ const Club = () => {
     id as string
   );
   const { data: memberData, isLoading: memberLoading } = useGetClubMembers(
+    id as string
+  );
+  const { data: teamData, isLoading: teamLoading } = useGetTeamList(
     id as string
   );
 
@@ -32,7 +36,9 @@ const Club = () => {
     !myData ||
     myLoading ||
     memberLoading ||
-    !memberData
+    !memberData ||
+    !teamData ||
+    teamLoading
   )
     return <Loading />;
   return (
@@ -44,7 +50,7 @@ const Club = () => {
           memberData={memberData.data}
         />
         <ClubCalendar />
-        <TeamSlide />
+        <TeamSlide teams={teamData.data.content} />
         <VoteSlide polls={pollData.data} />
         <PhotoSlide />
       </main>

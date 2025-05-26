@@ -4,14 +4,9 @@ import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import TeamModal from "./modalContent/TeamModal";
 import TeamCards from "@/components/cards/TeamCards";
+import type { TeamBasicResponse } from "@/types/team";
 
-const dummyData = [
-  { id: 1, name: "Slide 1" },
-  { id: 2, name: "Slide 2" },
-  { id: 3, name: "Slide 3" },
-  { id: 4, name: "Slide 4" },
-];
-const TeamSlide = () => {
+const TeamSlide = ({ teams }: { teams: TeamBasicResponse[] }) => {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
@@ -28,9 +23,7 @@ const TeamSlide = () => {
         </Modal>
       </header>
       <section className={styles.slider_box}>
-        <Slide items={dummyData}>
-          {(item) => <TeamCards title={item.name} />}
-        </Slide>
+        <Slide items={teams}>{(item) => <TeamCards title={item.name} />}</Slide>
       </section>
     </main>
   );
