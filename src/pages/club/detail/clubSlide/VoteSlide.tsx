@@ -24,7 +24,7 @@ const VoteSlide = ({ polls }: { polls: Poll[] }) => {
       </header>
       <section className={styles.slider_box}>
         <Slide items={polls}>
-          {(item) => <VoteCards title={item.title} />}
+          {(item) => <VoteCards title={item.title} id={item.id} />}
         </Slide>
       </section>
     </main>

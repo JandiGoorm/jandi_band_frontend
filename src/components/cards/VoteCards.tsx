@@ -1,15 +1,25 @@
 import { useMemo } from "react";
 import styles from "./VoteCards.module.css";
 import { randomBars } from "@/utils/randomBars";
+import { useNavigate } from "react-router-dom";
+import { PageEndpoints } from "@/constants/endpoints";
 
 interface VoteCardsProps {
   title?: string;
+  id?: number;
 }
-const VoteCards = ({ title }: VoteCardsProps) => {
+const VoteCards = ({ title, id }: VoteCardsProps) => {
+  const navigate = useNavigate();
   const bars = useMemo(() => randomBars(4), []);
 
   return (
-    <main className={styles.card}>
+    <main
+      className={styles.card}
+      onClick={() => {
+        if (id === undefined) return;
+        navigate(PageEndpoints.VOTE);
+      }}
+    >
       <div className={styles.bars}>
         {bars.map((bar, idx) => (
           <div
