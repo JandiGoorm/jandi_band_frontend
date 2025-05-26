@@ -7,7 +7,7 @@ import {
 } from "react-icons/io5";
 
 interface TeamCardsProps {
-  title: string;
+  title?: string;
 }
 
 const getRandomTranslateY = () => {
