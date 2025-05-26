@@ -6,10 +6,10 @@ export enum PageEndpoints {
   PROMOTION = "/promotion",
   PROMOTION_DETAIL = "/promotion/:id",
   PROMOTION_POST = "/promotion/post",
-  VOTE = "/vote",
+  VOTE = "/vote/:id",
   TEAM = "/team",
   CLUB = "/club/:id",
-  VOTE_RESULT = "/vote/result",
+  VOTE_RESULT = "/vote/:id/result",
   MYPAGE = "/mypage",
 }
 
