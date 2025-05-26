@@ -51,7 +51,7 @@ const Club = () => {
         />
         <ClubCalendar />
         <TeamSlide teams={teamData.data.content} />
-        <VoteSlide polls={pollData.data} />
+        <VoteSlide polls={pollData.data.content} />
         <PhotoSlide />
       </main>
     </DefaultLayout>

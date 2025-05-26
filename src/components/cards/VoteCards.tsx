@@ -3,7 +3,7 @@ import styles from "./VoteCards.module.css";
 import { randomBars } from "@/utils/randomBars";
 
 interface VoteCardsProps {
-  title: string;
+  title?: string;
 }
 const VoteCards = ({ title }: VoteCardsProps) => {
   const bars = useMemo(() => randomBars(4), []);

@@ -6,16 +6,7 @@ import VoteModal from "./modalContent/VoteModal";
 import VoteCards from "@/components/cards/VoteCards";
 import type { Poll } from "@/types/poll";
 
-const dummyData = [
-  { id: 1, name: "Slide 1" },
-  { id: 2, name: "Slide 2" },
-  { id: 3, name: "Slide 3" },
-  { id: 4, name: "Slide 4" },
-];
-
 const VoteSlide = ({ polls }: { polls: Poll[] }) => {
-  console.log("등록된 곡투표 데이터:", polls);
-
   return (
     <main className={styles.container}>
       <header className={styles.header}>
@@ -32,8 +23,8 @@ const VoteSlide = ({ polls }: { polls: Poll[] }) => {
         </Modal>
       </header>
       <section className={styles.slider_box}>
-        <Slide items={dummyData}>
-          {(item) => <VoteCards title={item.name} />}
+        <Slide items={polls}>
+          {(item) => <VoteCards title={item.title} />}
         </Slide>
       </section>
     </main>

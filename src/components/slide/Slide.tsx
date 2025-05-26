@@ -8,7 +8,8 @@ import { useRef } from "react";
 
 interface SlideItem {
   id: number;
-  name: string;
+  name?: string;
+  title?: string;
 }
 interface SlideProps {
   items: SlideItem[];
