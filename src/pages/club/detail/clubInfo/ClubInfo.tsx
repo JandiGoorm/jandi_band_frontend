@@ -35,7 +35,7 @@ const ClubInfo = ({
             {club.university?.name ?? "연합 동아리"}
           </p>
         </div>
-        <div>
+        <div className={styles.left_title}>
           {mine ? (
             <Modal trigger={<Button>수정하기</Button>} title="동아리 수정하기">
               <ModifyClubModal club={club} />
@@ -43,7 +43,7 @@ const ClubInfo = ({
           ) : null}
           {club.instagramId ? (
             <FaInstagram
-              size={36}
+              size={40}
               className={styles.instagram_icon}
               onClick={() =>
                 window.open(
