@@ -25,7 +25,9 @@ const TeamSlide = ({ teams }: { teams: TeamBasicResponse[] | undefined }) => {
         </Modal>
       </header>
       <section className={styles.slider_box}>
-        <Slide items={teams}>{(item) => <TeamCards title={item.name} />}</Slide>
+        <Slide items={teams}>
+          {(item) => <TeamCards title={item.name} id={item.id} />}
+        </Slide>
       </section>
     </main>
   );

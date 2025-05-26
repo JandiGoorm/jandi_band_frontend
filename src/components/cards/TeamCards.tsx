@@ -5,9 +5,13 @@ import {
   IoMusicalNotes,
   IoMusicalNoteOutline,
 } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import { PageEndpoints } from "@/constants/endpoints";
+import { buildPath } from "@/utils/buildPath";
 
 interface TeamCardsProps {
   title?: string;
+  id?: number;
 }
 
 const getRandomTranslateY = () => {
@@ -17,14 +21,20 @@ const getRandomTranslateY = () => {
   return `${value}rem`;
 };
 
-const TeamCards = ({ title }: TeamCardsProps) => {
+const TeamCards = ({ title, id }: TeamCardsProps) => {
+  const navigate = useNavigate();
   const transforms = useMemo(
     () => Array.from({ length: 3 }, getRandomTranslateY),
     []
   );
-
   return (
-    <main className={styles.card}>
+    <main
+      className={styles.card}
+      onClick={() => {
+        if (id === undefined) return;
+        navigate(buildPath(PageEndpoints.TEAM, { id }));
+      }}
+    >
       <div className={styles.notes}>
         <div
           className={styles.note}
