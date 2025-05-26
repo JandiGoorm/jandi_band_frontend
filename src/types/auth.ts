@@ -16,3 +16,8 @@ export interface SignUpData {
   position: string;
   university: string;
 }
+
+export interface RefreshTokenResponse {
+  accessToken: string;
+  refreshToken: string;
+}
