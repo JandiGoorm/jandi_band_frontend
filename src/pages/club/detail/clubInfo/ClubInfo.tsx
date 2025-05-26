@@ -45,7 +45,12 @@ const ClubInfo = ({
             <FaInstagram
               size={36}
               className={styles.instagram_icon}
-              onClick={() => window.open(club.instagramId, "_blank")}
+              onClick={() =>
+                window.open(
+                  `https://www.instagram.com/${club.instagramId}/`,
+                  "_blank"
+                )
+              }
             />
           ) : null}
         </div>
