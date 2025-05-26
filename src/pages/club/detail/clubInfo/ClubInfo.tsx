@@ -5,6 +5,7 @@ import { GiGuitar, GiPianoKeys, GiDrumKit } from "react-icons/gi";
 import { PiMicrophoneStage } from "react-icons/pi";
 import type { ClubDetailResponse, ClubMemberResponse } from "@/types/club";
 import type { UserInfo } from "@/types/auth";
+import Button from "@/components/button/Button";
 
 const ClubInfo = ({
   club,
@@ -15,13 +16,15 @@ const ClubInfo = ({
   mydata: UserInfo;
   memberData: ClubMemberResponse;
 }) => {
-  console.log(club);
-  console.log(mydata);
+  const mine = mydata.id === club.representativeId;
+
   return (
     <main className={styles.container}>
-      <header className={styles.banner}>
-        <img src={club.photoUrl} className={styles.banner} />
-      </header>
+      {club.photoUrl ? (
+        <header className={styles.banner}>
+          <img src={club.photoUrl} className={styles.banner} />
+        </header>
+      ) : null}
 
       <section className={styles.title_box}>
         <div className={styles.info_title}>
@@ -30,13 +33,16 @@ const ClubInfo = ({
             {club.university?.name ?? "연합 동아리"}
           </p>
         </div>
-        {club.instagramId ? (
-          <FaInstagram
-            size={36}
-            className={styles.instagram_icon}
-            onClick={() => window.open(club.instagramId, "_blank")}
-          />
-        ) : null}
+        <div>
+          {mine ? <Button>수정하기</Button> : null}
+          {club.instagramId ? (
+            <FaInstagram
+              size={36}
+              className={styles.instagram_icon}
+              onClick={() => window.open(club.instagramId, "_blank")}
+            />
+          ) : null}
+        </div>
       </section>
 
       <section className={styles.member_box}>

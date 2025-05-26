@@ -11,6 +11,7 @@ export interface ClubDetailResponse {
   name: string;
   photoUrl: Nullable<string>;
   university: University;
+  representativeId: number;
   createdAt: string;
   updatedAt: string;
 }
