@@ -6,6 +6,8 @@ import { PiMicrophoneStage } from "react-icons/pi";
 import type { ClubDetailResponse, ClubMemberResponse } from "@/types/club";
 import type { UserInfo } from "@/types/auth";
 import Button from "@/components/button/Button";
+import Modal from "@/components/modal/Modal";
+import ModifyClubModal from "./ModifyClubModal";
 
 const ClubInfo = ({
   club,
@@ -34,7 +36,11 @@ const ClubInfo = ({
           </p>
         </div>
         <div>
-          {mine ? <Button>수정하기</Button> : null}
+          {mine ? (
+            <Modal trigger={<Button>수정하기</Button>} title="동아리 수정하기">
+              <ModifyClubModal club={club} />
+            </Modal>
+          ) : null}
           {club.instagramId ? (
             <FaInstagram
               size={36}

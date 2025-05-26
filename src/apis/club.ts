@@ -10,7 +10,7 @@ export const usePostClub = () => {
 
 export const useUpdateClub = (id: string) => {
   return usePatch<ClubFormData, ClubDetailResponse>(
-    buildPath(ApiEndpotins.CLUB, { id })
+    buildPath(ApiEndpotins.CLUB_DETAIL, { id })
   );
 };
 
