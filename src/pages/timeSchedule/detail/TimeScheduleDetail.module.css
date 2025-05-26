@@ -1,0 +1,51 @@
+.wrapper_container {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.delete_button {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.description {
+  color: var(--color-text-sub);
+  font-size: var(--text-base);
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.save_button {
+  height: 3rem;
+  position: relative;
+  top: 1.4rem;
+}

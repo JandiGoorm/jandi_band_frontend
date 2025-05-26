@@ -9,8 +9,12 @@ import Modal from "@/components/modal/Modal";
 import ProfilEdit from "@/pages/mypage/ProfilEdit";
 // 임시 프로필사진
 import Profile from "@/pages/vote/style/profile.svg";
+import { useGetMyTimeTables } from "@/apis/timetable";
+import Loading from "@/components/loading/Loading";
 
 const MyPage = () => {
+  const { data: myTimeTables, isLoading } = useGetMyTimeTables();
+
   const sampleItems = [
     { id: 1, name: "아이템 1" },
     { id: 2, name: "아이템 2" },
@@ -19,6 +23,8 @@ const MyPage = () => {
     { id: 5, name: "아이템 5" },
     { id: 6, name: "아이템 6" },
   ];
+
+  if (isLoading || !myTimeTables) return <Loading />;
 
   return (
     <DefaultLayout>
@@ -81,7 +87,7 @@ const MyPage = () => {
               시간표 추가
             </Button>
           </header>
-          <Slide items={sampleItems} size="sm">
+          <Slide items={myTimeTables.data} size="sm">
             {(item) => (
               <div className={styles.itemCard}>
                 <h3>{item.name}</h3>
