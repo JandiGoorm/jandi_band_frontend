@@ -19,12 +19,13 @@ const Slide = ({ items, children, size = "sm" }: SlideProps) => {
   const sliderRef = useRef<Slider | null>(null);
 
   const baseSlidesToShow = size === "sm" ? 4 : 3;
-  const settings = {
+
+  const commonSettings = {
     dots: false,
-    infinite: true,
     arrows: false,
     slidesToShow: baseSlidesToShow,
     slidesToScroll: 1,
+    infinite: false,
     responsive: [
       {
         breakpoint: 1110,
@@ -47,46 +48,64 @@ const Slide = ({ items, children, size = "sm" }: SlideProps) => {
     ],
   };
 
+  const isFullSlide = items.length > baseSlidesToShow;
+
   return (
     <main className={styles.container}>
       <section className={styles.slider_box}>
-        <Button
-          variant="none"
-          size="sm"
-          onClick={() => sliderRef.current?.slickPrev()}
-        >
-          <FaCaretLeft
-            size={40}
-            style={{ color: "var(--color-button-primary-bg)" }}
-          />
-        </Button>
+        {isFullSlide && (
+          <Button
+            variant="none"
+            size="sm"
+            onClick={() => sliderRef.current?.slickPrev()}
+          >
+            <FaCaretLeft
+              size={40}
+              style={{ color: "var(--color-button-primary-bg)" }}
+            />
+          </Button>
+        )}
+
         <div className={styles.slider_back}>
           {[...Array(5)].map((_, i) => (
             <div key={i} className={styles.line}></div>
           ))}
         </div>
-        <Slider ref={sliderRef} {...settings} className={styles.slider}>
-          {items.map((item, index) => (
+        {items.length > 0 ? (
+          <Slider ref={sliderRef} {...commonSettings} className={styles.slider}>
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className={`${styles.slide_item} ${
+                  size === "sm" ? styles.sm_slide_item : styles.md_slide_item
+                }`}
+              >
+                {item.id < 0 ? null : children(item)}
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <Slider ref={sliderRef} {...commonSettings} className={styles.slider}>
             <div
-              key={index}
               className={`${styles.slide_item} ${
                 size === "sm" ? styles.sm_slide_item : styles.md_slide_item
               }`}
-            >
-              {children(item)}
-            </div>
-          ))}
-        </Slider>
-        <Button
-          variant="none"
-          size="sm"
-          onClick={() => sliderRef.current?.slickNext()}
-        >
-          <FaCaretRight
-            size={40}
-            style={{ color: "var(--color-button-primary-bg)" }}
-          />
-        </Button>
+            ></div>
+          </Slider>
+        )}
+
+        {isFullSlide && (
+          <Button
+            variant="none"
+            size="sm"
+            onClick={() => sliderRef.current?.slickNext()}
+          >
+            <FaCaretRight
+              size={40}
+              style={{ color: "var(--color-button-primary-bg)" }}
+            />
+          </Button>
+        )}
       </section>
     </main>
   );
