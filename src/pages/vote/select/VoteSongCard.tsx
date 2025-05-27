@@ -35,7 +35,7 @@ const SongCard = ({ song }: SongCardProps) => {
           likeCount={song.likeCount}
           dislikeCount={song.dislikeCount}
           cantCount={song.cantCount}
-          hajiCount={song.hajiCount}
+          hajjCount={song.hajjCount}
         />
       </section>
 
