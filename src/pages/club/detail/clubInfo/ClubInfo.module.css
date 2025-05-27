@@ -16,6 +16,7 @@
 .title_box {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
@@ -37,6 +38,10 @@
   color: var(--color-text-sub);
 }
 
+.left_title {
+  display: flex;
+  gap: 1rem;
+}
 .instagram_icon {
   color: var(--color-button-primary-bg);
   cursor: pointer;
