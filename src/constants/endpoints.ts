@@ -8,6 +8,7 @@ export enum PageEndpoints {
   PROMOTION_POST = "/promotion/post",
   VOTE = "/vote",
   TEAM = "/team",
+  TEAM_DETAIL = "/team/:id",
   CLUB = "/club/:id",
   VOTE_RESULT = "/vote/result",
   MYPAGE = "/mypage",
@@ -26,4 +27,5 @@ export enum ApiEndpotins {
   CLUB_POLL = "/polls/clubs/:id",
   MY_TIMETABLE = "/users/me/timetables",
   MY_TIMETABLE_DETAIL = "/users/me/timetables/:id",
+  TEAM_DETAIL = "/teams/:id",
 }

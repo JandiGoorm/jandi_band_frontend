@@ -8,7 +8,7 @@ import Vote from "@/pages/vote/select/Vote";
 import VoteResult from "@/pages/vote/result/VoteResult";
 import SignIn from "@/pages/auth/signIn/SignIn";
 import SignUp from "@/pages/auth/signUp/SignUp";
-import Team from "@/pages/team/Team";
+import TeamDetail from "@/pages/team/detail/TeamDetail";
 import Club from "@/pages/club/detail/ClubDetail";
 import MyPage from "@/pages/mypage/MyPage";
 import Callback from "@/pages/auth/signIn/Callback";
@@ -38,7 +38,7 @@ function App() {
           <Route path={PageEndpoints.SIGN_IN} element={<SignIn />} />
           <Route path={PageEndpoints.SIGN_UP} element={<SignUp />} />
           <Route path={PageEndpoints.VOTE} element={<Vote />} />
-          <Route path={PageEndpoints.TEAM} element={<Team />} />
+          <Route path={PageEndpoints.TEAM_DETAIL} element={<TeamDetail />} />
           <Route path={PageEndpoints.CLUB} element={<Club />} />
           <Route path={PageEndpoints.VOTE_RESULT} element={<VoteResult />} />
           <Route path={PageEndpoints.MYPAGE} element={<MyPage />} />
