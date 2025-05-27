@@ -30,7 +30,11 @@ const VoteModal = () => {
         onSubmit={formController.handleSubmit(onSubmit)}
       >
         <Field label="투표 이름" error={errors.title} isRequired>
-          <Input inputSize="sm" {...formController.register("title")} />
+          <Input
+            inputSize="sm"
+            {...formController.register("title")}
+            placeholder="예시 : 대동제 곡 선정 투표"
+          />
         </Field>
         <Field label="투표 마감시간" error={errors.endtime} isRequired>
           <Input
