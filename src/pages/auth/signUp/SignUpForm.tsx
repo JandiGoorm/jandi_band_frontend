@@ -27,7 +27,7 @@ const SignUpForm = () => {
 
   const onSubmit = useCallback(
     (data: z.infer<typeof signUpFormSchema>) => {
-      signUp({ ...data, university: "와플대학교" });
+      signUp(data);
     },
     [signUp]
   );
