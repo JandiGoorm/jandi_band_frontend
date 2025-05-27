@@ -8,7 +8,7 @@ const ClubCalendar = ({ isMember }: { isMember: boolean }) => {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
-        {isMember ? (
+        {isMember && (
           <Modal
             title="일정 추가하기"
             trigger={
@@ -19,7 +19,7 @@ const ClubCalendar = ({ isMember }: { isMember: boolean }) => {
           >
             <ScheduleModal />
           </Modal>
-        ) : null}
+        )}
       </header>
       <Calendar />
     </main>

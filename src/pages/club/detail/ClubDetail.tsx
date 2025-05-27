@@ -48,7 +48,7 @@ const Club = () => {
       <main className={styles.container}>
         <ClubInfo club={clubData.data} memberData={memberData.data} />
         <ClubCalendar isMember={isMember} />
-        {isMember ? <TeamSlide teams={teamData?.data.content} /> : null}
+        {isMember && <TeamSlide teams={teamData?.data.content} />}
         <VoteSlide polls={pollData.data.content} isMember={isMember} />
         {/* <PhotoSlide isMember={isMember} /> */}
       </main>
