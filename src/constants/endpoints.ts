@@ -24,8 +24,12 @@ export enum ApiEndpotins {
   ME = "/users/me/info",
   CLUB = "/clubs",
   CLUB_DETAIL = "/clubs/:id",
+  CLUB_MEMBERS = "/clubs/:id/members",
   UNIVERSITIES = "/univ/all",
   CLUB_POLL = "/polls/clubs/:id",
+
+  CLUB_TEAM = "/clubs/:id/teams",
+
   MY_TIMETABLE = "/users/me/timetables",
   MY_TIMETABLE_DETAIL = "/users/me/timetables/:id",
   TEAM_DETAIL = "/teams/:id",
