@@ -22,3 +22,15 @@ export interface ClubDetailResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface MyClubListResponse {
+  id: number;
+  name: string;
+  description: string;
+  photoUrl: string;
+  universityName: string;
+  myRole: string;
+  joinedAt: string;
+  memberCount: number;
+  unionClub: boolean;
+}
