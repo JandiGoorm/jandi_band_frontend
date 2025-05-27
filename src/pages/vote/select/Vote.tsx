@@ -11,6 +11,7 @@ import Button from "@/components/button/Button";
 import Recommend from "@/pages/vote/select/Recommend";
 import kakao from "@/pages/vote/style/kakao.svg";
 import styles from "@/pages/vote/select/Vote.module.css";
+import Loading from "@/components/loading/Loading";
 
 const Vote = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const Vote = () => {
     }
   }, [data, setPoll]);
 
-  if (isLoading || !poll) return <div>데이터가 존재하지 않음</div>;
+  if (isLoading || !poll) return <Loading />;
 
   return (
     <DefaultLayout>
