@@ -5,21 +5,24 @@ import {
   useEffect,
   useState,
   useCallback,
+  useMemo,
 } from "react";
 import { type TeamDetailResponse } from "@/types/team";
-import { useGetTeamDetail } from "@/apis/team";
-import { useParams } from "react-router-dom";
+// import { useGetTeamDetail } from "@/apis/team";
+// import { useParams } from "react-router-dom";
 import type { Nullable } from "@/types/common";
 import { type Position } from "@/types/team";
+import { type Range } from "@/types/timeTable";
 import { dummyTeam } from "./constants";
+import { initialTimeSchedule } from "@/components/scheduler/constants";
 
-interface TeamContextValue {
+interface TeamDetailContextValue {
   // API 데이터
   team: Nullable<TeamDetailResponse>;
-  isLoading: boolean;
 
   activeIds: number[];
   filteredTypes: string[];
+  teamTimeAvailableSchedule: Record<Range, string[]>;
 
   // 컨트롤러 함수들
   handleActiveMember: (id: number) => void;
@@ -27,22 +30,56 @@ interface TeamContextValue {
   handleFilterdTypeReset: () => void;
 }
 
-const TeamContext = createContext<Nullable<TeamContextValue>>(null);
+const TeamContext = createContext<Nullable<TeamDetailContextValue>>(null);
 
-interface TeamProviderProps {
+interface TeamDetailProviderProps {
   children: React.ReactNode;
 }
 
-export const TeamProvider = ({ children }: TeamProviderProps) => {
+export const TeamDetailProvider = ({ children }: TeamDetailProviderProps) => {
   const [team, setTeam] = useState<Nullable<TeamDetailResponse>>(null);
   const [activeIds, setActiveIds] = useState<number[]>([]);
   const [filteredTypes, setFilteredTypes] = useState<string[]>([]);
 
-  const { id } = useParams();
-  const { data, isLoading } = useGetTeamDetail(id ?? "");
+  // const { id } = useParams();
+  // const { data, isLoading } = useGetTeamDetail(id ?? "");
 
   const members = team?.members;
-  const membersIds = members?.map((v) => v.userId);
+  const membersIds = members?.filter((v) => v.isSubmitted).map((v) => v.userId);
+
+  const teamTimeAvailableSchedule = useMemo(() => {
+    if (!members) return initialTimeSchedule;
+
+    const membersSchedules = members
+      .filter(
+        (v) => activeIds.includes(v.userId) && v.isSubmitted && v.timetableData
+      )
+      .map((v) => v.timetableData!)
+      .filter(
+        (schedule): schedule is NonNullable<typeof schedule> =>
+          schedule !== null
+      );
+
+    if (membersSchedules.length === 0) return initialTimeSchedule;
+
+    const [firstSchedule, ...restSchedules] = membersSchedules;
+    const commonSchedule = { ...firstSchedule };
+
+    Object.keys(commonSchedule).forEach((day) => {
+      const dayKey = day as Range;
+      let commonTimes = [...commonSchedule[dayKey]];
+
+      restSchedules.forEach((schedule) => {
+        commonTimes = commonTimes.filter((time) =>
+          schedule[dayKey].includes(time)
+        );
+      });
+
+      commonSchedule[dayKey] = commonTimes;
+    });
+
+    return commonSchedule;
+  }, [members, activeIds]);
 
   // 멤버 active 상태 확인 함수
   const isActiveMember = useCallback(
@@ -58,10 +95,14 @@ export const TeamProvider = ({ children }: TeamProviderProps) => {
       if (isActiveMember(id)) {
         setActiveIds(activeIds.filter((member) => member !== id));
       } else {
+        if (!members || !members.find((v) => v.userId === id)?.isSubmitted) {
+          return;
+        }
+
         setActiveIds([...activeIds, id]);
       }
     },
-    [isActiveMember, activeIds]
+    [isActiveMember, activeIds, members]
   );
 
   const handleFilteredType = useCallback(
@@ -69,7 +110,12 @@ export const TeamProvider = ({ children }: TeamProviderProps) => {
       if (filteredTypes.includes(type)) {
         // 필터링 타입을 제외시키면 해당 멤버들을 다시 active하게 만들어줍니다.
         const newActiveIds = members
-          ?.filter((v) => v.position === type && !activeIds.includes(v.userId))
+          ?.filter(
+            (v) =>
+              v.position === type &&
+              v.isSubmitted &&
+              !activeIds.includes(v.userId)
+          )
           .map((v) => v.userId);
 
         if (newActiveIds && newActiveIds.length > 0) {
@@ -106,7 +152,8 @@ export const TeamProvider = ({ children }: TeamProviderProps) => {
 
   // 초기에는 전체 멤버 active
   useEffect(() => {
-    const ids = members?.map((v) => v.userId);
+    if (!members) return;
+    const ids = members.filter((v) => v.isSubmitted).map((v) => v.userId);
     setActiveIds(ids ?? []);
   }, [members]);
 
@@ -114,13 +161,14 @@ export const TeamProvider = ({ children }: TeamProviderProps) => {
     // if (!data) return;
     // setTeam(data.data);
     setTeam(dummyTeam);
-  }, [data]);
+  }, []);
 
-  const value: TeamContextValue = {
+  const value: TeamDetailContextValue = {
     team,
-    isLoading,
+    // isLoading,
     activeIds,
     filteredTypes,
+    teamTimeAvailableSchedule,
     handleActiveMember,
     handleFilteredType,
     handleFilterdTypeReset,
