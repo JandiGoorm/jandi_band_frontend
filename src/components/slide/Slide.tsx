@@ -6,17 +6,16 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { useRef } from "react";
 
-interface SlideItem {
-  id: number;
-  name?: string;
-  title?: string;
-}
-interface SlideProps {
-  items: SlideItem[];
-  children: (item: SlideItem) => React.ReactNode;
+interface SlideProps<T> {
+  items: T[];
+  children: (item: T) => React.ReactNode;
   size?: "sm" | "md";
 }
-const Slide = ({ items, children, size = "sm" }: SlideProps) => {
+const Slide = <T extends { id: number }>({
+  items,
+  children,
+  size = "sm",
+}: SlideProps<T>) => {
   const sliderRef = useRef<Slider | null>(null);
 
   const baseSlidesToShow = size === "sm" ? 4 : 3;

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import styles from "./TeamCards.module.css";
+import styles from "./TeamCard.module.css";
 import {
   IoMusicalNote,
   IoMusicalNotes,
@@ -8,11 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
-
-interface TeamCardsProps {
-  title?: string;
-  id?: number;
-}
+import type { TeamBasicResponse } from "@/types/team";
 
 const getRandomTranslateY = () => {
   const min = -1; // rem
@@ -21,7 +17,7 @@ const getRandomTranslateY = () => {
   return `${value}rem`;
 };
 
-const TeamCards = ({ title, id }: TeamCardsProps) => {
+const TeamCards = ({ item }: { item: TeamBasicResponse }) => {
   const navigate = useNavigate();
   const transforms = useMemo(
     () => Array.from({ length: 3 }, getRandomTranslateY),
@@ -31,8 +27,8 @@ const TeamCards = ({ title, id }: TeamCardsProps) => {
     <main
       className={styles.card}
       onClick={() => {
-        if (id === undefined) return;
-        navigate(buildPath(PageEndpoints.TEAM, { id }));
+        if (item.id === undefined) return;
+        navigate(buildPath(PageEndpoints.TEAM, { id: item.id }));
       }}
     >
       <div className={styles.notes}>
@@ -55,7 +51,7 @@ const TeamCards = ({ title, id }: TeamCardsProps) => {
           <IoMusicalNoteOutline size={48} />
         </div>
       </div>
-      <p className={styles.text}>{title}</p>
+      <p className={styles.text}>{item.name}</p>
     </main>
   );
 };

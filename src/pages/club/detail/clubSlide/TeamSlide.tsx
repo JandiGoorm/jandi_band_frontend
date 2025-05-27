@@ -3,7 +3,7 @@ import styles from "./TeamSlide.module.css";
 import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import TeamModal from "./modalContent/TeamModal";
-import TeamCards from "@/components/cards/TeamCards";
+import TeamCard from "@/components/cards/TeamCard";
 import type { TeamBasicResponse } from "@/types/team";
 
 const TeamSlide = ({ teams }: { teams: TeamBasicResponse[] | undefined }) => {
@@ -25,8 +25,8 @@ const TeamSlide = ({ teams }: { teams: TeamBasicResponse[] | undefined }) => {
         </Modal>
       </header>
       <section className={styles.slider_box}>
-        <Slide items={teams}>
-          {(item) => <TeamCards title={item.name} id={item.id} />}
+        <Slide<TeamBasicResponse> items={teams}>
+          {(item) => <TeamCard item={item} />}
         </Slide>
       </section>
     </main>

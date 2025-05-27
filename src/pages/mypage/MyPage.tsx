@@ -4,7 +4,7 @@ import Slide from "@/components/slide/Slide";
 import Button from "@/components/button/Button";
 import MusicNote1 from "/public/musical_note1.svg";
 import MusicNote2 from "/public/musical_notes2.svg";
-import TeamCards from "@/components/cards/TeamCards";
+import TeamCards from "@/components/cards/TeamCard";
 import Modal from "@/components/modal/Modal";
 import ProfilEdit from "@/pages/mypage/ProfilEdit";
 // 임시 프로필사진

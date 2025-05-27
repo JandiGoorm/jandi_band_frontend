@@ -3,7 +3,7 @@ import styles from "./VoteSlide.module.css";
 import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import VoteModal from "./modalContent/VoteModal";
-import VoteCards from "@/components/cards/VoteCards";
+import VoteCard from "@/components/cards/VoteCard";
 import type { Poll } from "@/types/poll";
 
 const VoteSlide = ({
@@ -31,9 +31,7 @@ const VoteSlide = ({
         ) : null}
       </header>
       <section className={styles.slider_box}>
-        <Slide items={polls}>
-          {(item) => <VoteCards title={item.title} id={item.id} />}
-        </Slide>
+        <Slide<Poll> items={polls}>{(item) => <VoteCard item={item} />}</Slide>
       </section>
     </main>
   );
