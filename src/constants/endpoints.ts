@@ -35,7 +35,7 @@ export enum ApiEndpotins {
   TEAM_DETAIL = "/teams/:id",
   MY_TIMETABLE_BY_TEAM = "/teams/:id/members/me/timetable",
 
-  MAKE_POLL = "/polls",
+  MAKE_POLL = "/polls", //투표 생성
   POLL = "/polls/:pollId", // 투표 상세 조회
   POLL_ADD_RECOMMEND = "/polls/:pollId/songs",
   POLL_VOTE = "/polls/:pollId/songs/:songId/votes/:emoji",
