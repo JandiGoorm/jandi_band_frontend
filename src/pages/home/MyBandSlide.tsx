@@ -8,21 +8,19 @@ import { PageEndpoints } from "@/constants/endpoints";
 const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
   const navigate = useNavigate();
   return (
-    <main className={styles.container}>
-      <section className={styles.main_container}>
-        <p className={styles.title}>내가 함께하는 밴드</p>
-        <MainSlide<MyClubListResponse> items={club}>
-          {(item) => (
-            <img
-              src={item.photoUrl}
-              style={{ margin: "0 auto" }}
-              onClick={() =>
-                navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
-              }
-            />
-          )}
-        </MainSlide>
-      </section>
+    <main className={styles.main_container}>
+      <p className={styles.title}>내가 함께하는 밴드</p>
+      <MainSlide<MyClubListResponse> items={club}>
+        {(item) => (
+          <img
+            src={item.photoUrl}
+            style={{ margin: "0 auto" }}
+            onClick={() =>
+              navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+            }
+          />
+        )}
+      </MainSlide>
     </main>
   );
 };

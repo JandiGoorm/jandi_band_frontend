@@ -15,15 +15,11 @@ const PromotionSlide = () => {
   const items = promoListData?.data.content;
   console.log(items);
   return (
-    <main className={styles.container}>
-      <section className={styles.main_container}>
-        <p className={styles.title}>
-          현장을 달굴 밴드들의 무대, 지금 바로 확인!
-        </p>
-        <MainSlide items={posterItems}>
-          {(item) => <img src={item.image} style={{ margin: "0 auto" }} />}
-        </MainSlide>
-      </section>
+    <main className={styles.main_container}>
+      <p className={styles.title}>현장을 달굴 밴드들의 무대, 지금 바로 확인!</p>
+      <MainSlide items={posterItems}>
+        {(item) => <img src={item.image} style={{ margin: "0 auto" }} />}
+      </MainSlide>
     </main>
   );
 };
