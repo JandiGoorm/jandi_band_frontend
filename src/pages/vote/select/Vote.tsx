@@ -1,24 +1,34 @@
+import { useEffect } from "react";
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import SongCard from "@/pages/vote/select/VoteSongCard";
 import { useParams, useNavigate } from "react-router-dom";
+import { useGetPoll } from "@/apis/vote";
+import { usePollStore } from "@/stores/voteStore";
 import Modal from "@/components/modal/Modal";
 import Button from "@/components/button/Button";
 import Recommend from "@/pages/vote/select/Recommend";
 import kakao from "@/pages/vote/style/kakao.svg";
 import styles from "@/pages/vote/select/Vote.module.css";
 
-// 더미데이터 로딩
-import { dummySong } from "@/pages/vote/data/dummySong";
-
 const Vote = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { data, isLoading } = useGetPoll(id!);
+  const { poll, setPoll } = usePollStore();
+
+  useEffect(() => {
+    if (data?.data) {
+      setPoll(data.data);
+    }
+  }, [data, setPoll]);
+
+  if (isLoading || !poll) return <div>데이터가 존재하지 않음</div>;
 
   return (
     <DefaultLayout>
       <main className={styles.vote_container}>
         <header className={styles.header}>
-          <h1>5월 대동제 곡 투표</h1>
+          <h1>{poll.title}</h1>
           <section className={styles.button_group}>
             <Button onClick={() => navigate(`/vote/${id}/result`)}>
               결과보기
@@ -39,7 +49,7 @@ const Vote = () => {
         </section>
 
         <section className={styles.vote_grid}>
-          {dummySong.map((song) => (
+          {poll.songs.map((song) => (
             <SongCard key={song.id} song={song} />
           ))}
         </section>
