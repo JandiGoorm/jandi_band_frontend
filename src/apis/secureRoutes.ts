@@ -25,4 +25,10 @@ export const secureRoutes = [
   { method: Method.DELETE, url: ApiEndpotins.MY_TIMETABLE_DETAIL },
   { method: Method.GET, url: ApiEndpotins.TEAM_DETAIL },
   { method: Method.POST, url: ApiEndpotins.MY_TIMETABLE_BY_TEAM },
+  { method: Method.POST, url: ApiEndpotins.MAKE_POLL },
+  { method: Method.GET, url: ApiEndpotins.POLL },
+  { method: Method.POST, url: ApiEndpotins.POLL_ADD_RECOMMEND },
+  { method: Method.PUT, url: ApiEndpotins.POLL_VOTE },
+  { method: Method.DELETE, url: ApiEndpotins.POLL_VOTE },
+  { method: Method.GET, url: ApiEndpotins.POLL_LIST },
 ];
