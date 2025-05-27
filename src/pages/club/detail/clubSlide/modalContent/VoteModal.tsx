@@ -9,7 +9,12 @@ import { z } from "zod";
 import Button from "@/components/button/Button";
 import { useCreatePoll } from "@/apis/poll";
 
-const VoteModal = () => {
+interface Props {
+  setOpen: (open: boolean) => void;
+  refetch: () => void;
+}
+
+const VoteModal = ({ setOpen, refetch }: Props) => {
   const { id } = useParams();
   const { mutate: createPoll } = useCreatePoll();
 
@@ -27,8 +32,9 @@ const VoteModal = () => {
         endDatetime: new Date(data.endtime).toISOString(),
       },
       {
-        onSuccess: (res) => {
-          console.log("투표 생성 성공!", res.data);
+        onSuccess: () => {
+          refetch();
+          setOpen(false);
         },
         onError: (err) => {
           console.error("실패", err);

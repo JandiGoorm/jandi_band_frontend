@@ -9,9 +9,11 @@ import type { Poll } from "@/types/poll";
 const VoteSlide = ({
   polls,
   isMember,
+  refetch,
 }: {
   polls: Poll[];
   isMember: boolean;
+  refetch: () => void;
 }) => {
   return (
     <main className={styles.container}>
@@ -26,7 +28,7 @@ const VoteSlide = ({
               </Button>
             }
           >
-            <VoteModal />
+            {(setOpen) => <VoteModal setOpen={setOpen} refetch={refetch} />}
           </Modal>
         ) : null}
       </header>
