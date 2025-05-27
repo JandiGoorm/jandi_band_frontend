@@ -4,6 +4,8 @@ import SongCard from "@/pages/vote/select/VoteSongCard";
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetPoll } from "@/apis/vote";
 import { usePollStore } from "@/stores/voteStore";
+import { PageEndpoints } from "@/constants/endpoints";
+import { buildPath } from "@/utils/buildPath";
 import Modal from "@/components/modal/Modal";
 import Button from "@/components/button/Button";
 import Recommend from "@/pages/vote/select/Recommend";
@@ -30,7 +32,11 @@ const Vote = () => {
         <header className={styles.header}>
           <h1>{poll.title}</h1>
           <section className={styles.button_group}>
-            <Button onClick={() => navigate(`/vote/${id}/result`)}>
+            <Button
+              onClick={() =>
+                navigate(buildPath(PageEndpoints.VOTE_RESULT, { id: id! }))
+              }
+            >
               결과보기
             </Button>
             <Modal title="곡 추천하기" trigger={<Button>곡 추가</Button>}>
