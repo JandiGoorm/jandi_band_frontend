@@ -34,7 +34,7 @@ const Vote = () => {
               결과보기
             </Button>
             <Modal title="곡 추천하기" trigger={<Button>곡 추가</Button>}>
-              <Recommend />
+              {(setOpen) => <Recommend setOpen={setOpen} />}
             </Modal>
             <Button className={styles.share}>
               <img src={kakao} />

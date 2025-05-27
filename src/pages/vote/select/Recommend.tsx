@@ -25,7 +25,11 @@ const voteFormSchema = z.object({
 // 폼 타입 추출
 export type VoteFormData = z.infer<typeof voteFormSchema>;
 
-const Recommend = () => {
+interface RecommendProps {
+  setOpen: (open: boolean) => void;
+}
+
+const Recommend = ({ setOpen }: RecommendProps) => {
   const { id: pollId } = useParams();
   // 스키마랑 연결
   const form = useForm<VoteFormData>({
@@ -42,7 +46,7 @@ const Recommend = () => {
   const onSubmit = (data: VoteFormData) => {
     postSong(data, {
       onSuccess: () => {
-        console.log("성공");
+        setOpen(false);
       },
       onError: (err) => {
         console.error("실패", err);
