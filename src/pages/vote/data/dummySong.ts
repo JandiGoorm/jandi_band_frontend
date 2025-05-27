@@ -54,7 +54,7 @@ export const dummySong = [
     pollId: 1,
     songName: "은하",
     artistName: "쏜애플",
-    youtubeUrl: "https://youtu.be/kcngAYJXMY8?si=Q_9mpVrqhGGzb_QX",
+    youtubeUrl: "https://www.youtube.com/watch?v=kcngAYJXMY8",
     description: null,
     suggesterId: 1,
     suggesterName: "노래좋음",
