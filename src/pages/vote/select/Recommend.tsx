@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useParams } from "react-router-dom";
+import { usePostPoll } from "@/apis/vote";
 import styles from "@/pages/vote/select/Recommend.module.css";
 import Field from "@/components/field/Field";
 import Input from "@/components/input/Input";
@@ -24,14 +26,29 @@ const voteFormSchema = z.object({
 export type VoteFormData = z.infer<typeof voteFormSchema>;
 
 const Recommend = () => {
+  const { id: pollId } = useParams();
   // 스키마랑 연결
-  const form = useForm({
+  const form = useForm<VoteFormData>({
     resolver: zodResolver(voteFormSchema),
   });
 
   const {
     formState: { errors },
+    handleSubmit,
   } = form;
+
+  const { mutate: postSong } = usePostPoll(pollId!);
+
+  const onSubmit = (data: VoteFormData) => {
+    postSong(data, {
+      onSuccess: () => {
+        console.log("성공");
+      },
+      onError: (err) => {
+        console.error("실패", err);
+      },
+    });
+  };
 
   return (
     <main className={styles.recommend_container}>
@@ -39,10 +56,7 @@ const Recommend = () => {
         <span className={styles.dot}>*</span> 는 필수 입력 항목입니다.
       </p>
 
-      <form
-        className={styles.form_container}
-        onSubmit={form.handleSubmit((data) => console.log(data))}
-      >
+      <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
         <Field label="곡 제목" error={errors.songName} isRequired>
           <Input inputSize="sm" {...form.register("songName")} />
         </Field>
