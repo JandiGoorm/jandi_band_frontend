@@ -7,7 +7,7 @@ import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
 
 // 유효성 검사 스키마 직성
-const voteFromSchema = z.object({
+const voteFormSchema = z.object({
   songName: z.string().nonempty("곡 제목을 입력해주세요."),
   artistName: z.string().nonempty("가수 또는 밴드 이름을 입력해주세요."),
   youtubeUrl: z
@@ -20,10 +20,13 @@ const voteFromSchema = z.object({
   description: z.string().optional(),
 });
 
+// 폼 타입 추출
+export type VoteFormData = z.infer<typeof voteFormSchema>;
+
 const Recommend = () => {
   // 스키마랑 연결
   const form = useForm({
-    resolver: zodResolver(voteFromSchema),
+    resolver: zodResolver(voteFormSchema),
   });
 
   const {

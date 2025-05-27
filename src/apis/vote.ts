@@ -3,6 +3,7 @@ import { ApiEndpotins } from "@/constants/endpoints";
 import { useDelete, useFetch, useUpdate, usePost } from "./hooks";
 import { buildPath } from "@/utils/buildPath";
 import type { PollDetailType, SongType } from "@/types/vote";
+import type { VoteFormData } from "@/pages/vote/select/Recommend";
 
 // 투표 상세 조회 GET - 응답형식 PollDetailType
 export const useGetPoll = (pollId: string) => {
@@ -10,9 +11,8 @@ export const useGetPoll = (pollId: string) => {
 };
 
 // 투표에 곡 추가 POST
-// 곡 추가 타입 any에 적어야함. (임시방편으로 해놨음.)
 export const usePostPoll = (pollId: string) => {
-  return usePost<undefined, SongType>(
+  return usePost<VoteFormData, SongType>(
     buildPath(ApiEndpotins.POLL_ADD_RECOMMEND, { pollId })
   );
 };
