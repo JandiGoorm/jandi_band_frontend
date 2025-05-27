@@ -1,3 +1,40 @@
+import type { Nullable } from "./common";
+import { type Range } from "./timeTable";
+
+export type Position =
+  | "VOCAL"
+  | "GUITAR"
+  | "BASS"
+  | "DRUM"
+  | "KEYBOARD"
+  | "OTHER";
+
+export interface TeamMember {
+  userId: number;
+  name: string;
+  position: Position;
+  timetableUpdatedAt: string;
+  isSubmitted: boolean;
+  timetableData: Nullable<Record<Range, string[]>>;
+}
+
+export interface TeamDetailResponse {
+  id: number;
+  name: string;
+  clubId: number;
+  clubName: string;
+  creatorId: number;
+  creatorName: string;
+  members: TeamMember[];
+  suggestedScheduleAt: string;
+  submissionProgress: {
+    submittedMember: number;
+    totalMember: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface TeamResponse {
   id: number;
   name: string;
@@ -8,6 +45,7 @@ export interface TeamResponse {
   createdAt: string; // or `Date` if you parse it
   updatedAt: string;
 }
+
 export interface TeamBasicResponse {
   id: number;
   name: string;
@@ -15,11 +53,6 @@ export interface TeamBasicResponse {
   creatorName: string;
   memberCount: number;
   createdAt: string;
-}
-export interface TeamMember {
-  userId: number;
-  name: string;
-  position: string;
 }
 
 export interface TeamClubInfo {

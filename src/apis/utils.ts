@@ -83,27 +83,24 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    const errorMessage = error.response.data.message;
     if (
-      (error.response.status === 403 || error.response.status === 401) &&
+      errorMessage === "유효하지 않은 토큰입니다." &&
       error.config.url !== ApiEndpotins.REFRESH_TOKEN
     ) {
       const refreshToken = localStorage.getItem("refreshToken");
       if (!refreshToken) return Promise.reject(error);
-
       try {
         const response = await api.post<
           AxiosResponse<ApiResponse<RefreshTokenResponse>>
         >(ApiEndpotins.REFRESH_TOKEN, {
           refreshToken,
         });
-
         const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
           response.data.data;
-
         localStorage.setItem("accessToken", newAccessToken);
         localStorage.setItem("refreshToken", newRefreshToken);
         error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
-
         return axiosInstance.request(error.config);
       } catch (err) {
         console.log("err", err);

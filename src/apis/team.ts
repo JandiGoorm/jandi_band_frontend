@@ -1,10 +1,16 @@
+import { type TeamDetailResponse } from "@/types/team";
+import { useFetch, usePost } from "@/apis/hooks";
 import { ApiEndpotins } from "@/constants/endpoints";
-import { useFetch, usePost } from "./hooks";
-// import { buildPath } from "@/utils/buildPath";
 import type { TeamFormData } from "@/pages/club/detail/clubSlide/modalContent/TeamModal";
 import type { TeamBasicResponse, TeamResponse } from "@/types/team";
 import { buildPath } from "@/utils/buildPath";
 import type { PageableResponse } from "@/types/common";
+
+export const useGetTeamDetail = (id: string) => {
+  return useFetch<TeamDetailResponse>(
+    buildPath(ApiEndpotins.TEAM_DETAIL, { id })
+  );
+};
 
 export const usePostTeam = (id: string) => {
   return usePost<TeamFormData, TeamResponse>(

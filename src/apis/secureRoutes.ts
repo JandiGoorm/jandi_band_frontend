@@ -23,4 +23,6 @@ export const secureRoutes = [
   { method: Method.GET, url: ApiEndpotins.MY_TIMETABLE_DETAIL },
   { method: Method.PATCH, url: ApiEndpotins.MY_TIMETABLE_DETAIL },
   { method: Method.DELETE, url: ApiEndpotins.MY_TIMETABLE_DETAIL },
+  { method: Method.GET, url: ApiEndpotins.TEAM_DETAIL },
+  { method: Method.POST, url: ApiEndpotins.MY_TIMETABLE_BY_TEAM },
 ];
