@@ -9,11 +9,11 @@ import { useParams } from "react-router-dom";
 import { useGetClubDetail, useGetClubMembers } from "@/apis/club";
 import Loading from "@/components/loading/Loading";
 import { useGetClubPoll } from "@/apis/poll";
-import { useGetMe } from "@/apis/auth";
 import { useGetTeamList } from "@/apis/team";
+import { useAuthStore } from "@/stores/authStore";
 const Club = () => {
   const { id } = useParams();
-  const { data: myData, isLoading: myLoading } = useGetMe();
+  const { user } = useAuthStore();
   const { data: clubData, isLoading: clubLoading } = useGetClubDetail(
     id as string
   );
@@ -33,8 +33,6 @@ const Club = () => {
     clubLoading ||
     !pollData ||
     pollLoading ||
-    !myData ||
-    myLoading ||
     memberLoading ||
     !memberData ||
     teamLoading
@@ -42,17 +40,13 @@ const Club = () => {
     return <Loading />;
 
   const isMember = memberData.data.members.some(
-    (member: { userId: number }) => member.userId === myData.data.id
+    (member: { userId: number }) => member.userId === user?.id
   );
 
   return (
     <DefaultLayout>
       <main className={styles.container}>
-        <ClubInfo
-          club={clubData.data}
-          mydata={myData.data}
-          memberData={memberData.data}
-        />
+        <ClubInfo club={clubData.data} memberData={memberData.data} />
         <ClubCalendar isMember={isMember} />
         {isMember ? <TeamSlide teams={teamData?.data.content} /> : null}
         <VoteSlide polls={pollData.data.content} isMember={isMember} />

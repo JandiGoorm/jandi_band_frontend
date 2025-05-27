@@ -4,21 +4,20 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { GiGuitar, GiPianoKeys, GiDrumKit } from "react-icons/gi";
 import { PiMicrophoneStage } from "react-icons/pi";
 import type { ClubDetailResponse, ClubMemberResponse } from "@/types/club";
-import type { UserInfo } from "@/types/auth";
 import Button from "@/components/button/Button";
 import Modal from "@/components/modal/Modal";
 import ModifyClubModal from "./ModifyClubModal";
+import { useAuthStore } from "@/stores/authStore";
 
 const ClubInfo = ({
   club,
-  mydata,
   memberData,
 }: {
   club: ClubDetailResponse;
-  mydata: UserInfo;
   memberData: ClubMemberResponse;
 }) => {
-  const mine = mydata.id === club.representativeId;
+  const { user } = useAuthStore();
+  const mine = user?.id === club.representativeId;
 
   return (
     <main className={styles.container}>
