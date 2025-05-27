@@ -10,7 +10,7 @@ const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
   return (
     <main className={styles.container}>
       <section className={styles.main_container}>
-        <p className={styles.title}>당신의 귀를 사로잡을 밴드들이 여기에!</p>
+        <p className={styles.title}>내가 함께하는 밴드</p>
         <MainSlide<MyClubListResponse> items={club}>
           {(item) => (
             <img
