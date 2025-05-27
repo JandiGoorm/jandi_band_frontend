@@ -27,9 +27,10 @@ export type VoteFormData = z.infer<typeof voteFormSchema>;
 
 interface RecommendProps {
   setOpen: (open: boolean) => void;
+  refetch: () => void;
 }
 
-const Recommend = ({ setOpen }: RecommendProps) => {
+const Recommend = ({ setOpen, refetch }: RecommendProps) => {
   const { id: pollId } = useParams();
   // 스키마랑 연결
   const form = useForm<VoteFormData>({
@@ -46,6 +47,7 @@ const Recommend = ({ setOpen }: RecommendProps) => {
   const onSubmit = (data: VoteFormData) => {
     postSong(data, {
       onSuccess: () => {
+        refetch();
         setOpen(false);
       },
       onError: (err) => {

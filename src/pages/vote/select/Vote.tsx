@@ -13,7 +13,7 @@ import styles from "@/pages/vote/select/Vote.module.css";
 const Vote = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data, isLoading } = useGetPoll(id!);
+  const { data, isLoading, refetch } = useGetPoll(id!);
   const { poll, setPoll } = usePollStore();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Vote = () => {
               결과보기
             </Button>
             <Modal title="곡 추천하기" trigger={<Button>곡 추가</Button>}>
-              {(setOpen) => <Recommend setOpen={setOpen} />}
+              {(setOpen) => <Recommend setOpen={setOpen} refetch={refetch} />}
             </Modal>
             <Button className={styles.share}>
               <img src={kakao} />
