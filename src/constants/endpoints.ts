@@ -11,11 +11,14 @@ export enum PageEndpoints {
   CLUB = "/club/:id",
   VOTE_RESULT = "/vote/result",
   MYPAGE = "/mypage",
+  POST_TIME_SCHEDULE = "/post/time-schedule",
+  MY_TIMETABLE_DETAIL = "/time-schedule/:id",
 }
 
 export enum ApiEndpotins {
   SIGN_IN = "/auth/login",
   SIGN_UP = "/auth/signup",
+  REFRESH_TOKEN = "/auth/refresh",
   ME = "/users/me/info",
 
   PROMOTION = "/promos",
@@ -23,4 +26,6 @@ export enum ApiEndpotins {
   CLUB_DETAIL = "/clubs/:id",
   UNIVERSITIES = "/univ/all",
   CLUB_POLL = "/polls/clubs/:id",
+  MY_TIMETABLE = "/users/me/timetables",
+  MY_TIMETABLE_DETAIL = "/users/me/timetables/:id",
 }

@@ -36,3 +36,5 @@ export interface PageableResponse<T> {
   numberOfElements: number;
   empty: boolean;
 }
+
+export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
