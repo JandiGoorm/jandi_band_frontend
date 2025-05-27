@@ -23,12 +23,13 @@ const TeamCards = ({ item }: { item: TeamBasicResponse }) => {
     () => Array.from({ length: 3 }, getRandomTranslateY),
     []
   );
+
   return (
     <main
       className={styles.card}
       onClick={() => {
         if (item.id === undefined) return;
-        navigate(buildPath(PageEndpoints.TEAM, { id: item.id }));
+        navigate(buildPath(PageEndpoints.TEAM_DETAIL, { id: item.id }));
       }}
     >
       <div className={styles.notes}>

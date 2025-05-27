@@ -4,14 +4,14 @@ import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import { TeamDetailProvider } from "./detail/TeamDetailProvider";
 import { AnimatePresence } from "framer-motion";
 import { Routes } from "react-router-dom";
-import { PageEndpoints } from "@/constants/endpoints";
 import TeamDetail from "./detail/TeamDetail";
 import CreateTimeTable from "./detail/CreateTimeTable";
 
 const TeamLayout = () => {
   const location = useLocation();
-  const exitTransitionX =
-    location.pathname === PageEndpoints.TEAM_DETAIL ? 70 : -70;
+  const exitTransitionX = location.pathname.includes("/post/timetables")
+    ? 70
+    : -70;
 
   return (
     <DefaultLayout>
@@ -25,8 +25,8 @@ const TeamLayout = () => {
             transition={{ duration: 0.5 }}
           >
             <Routes location={location}>
-              <Route path=":id" element={<TeamDetail />} />
               <Route path=":id/post/timetables" element={<CreateTimeTable />} />
+              <Route path=":id" element={<TeamDetail />} />
             </Routes>
           </motion.div>
         </AnimatePresence>
