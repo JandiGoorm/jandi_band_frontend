@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.switch_container {
+  display: flex;
+  align-items: center;
+  font-size: var(--text-sm);
+  gap: 1rem;
+}
+
+.sub_container {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  font-size: var(--text-sm);
+}
+
+.sub_item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.available_box {
+  width: 2rem;
+  height: 1rem;
+  background-color: var(--board-active-bg-color);
+}
+
+.unavailable_box {
+  width: 2rem;
+  height: 1rem;
+  background-color: var(--board-bg-color);
+}
+
+.switch_root {
+  all: unset;
+  width: 42px;
+  height: 25px;
+  background-color: var(--board-bg-color);
+  border-radius: 9999px;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: background-color 200ms ease;
+  &[data-state="checked"] {
+    background-color: var(--board-active-bg-color);
+  }
+  cursor: pointer;
+}
+
+.switch_thumb {
+  display: block;
+  width: 21px;
+  height: 21px;
+  background-color: white;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 200ms ease;
+  transform: translateX(2px);
+  will-change: transform;
+  &[data-state="checked"] {
+    transform: translateX(19px);
+  }
+}

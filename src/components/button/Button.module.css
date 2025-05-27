@@ -4,6 +4,7 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s;
+  white-space: nowrap;
 
   border-radius: var(--radius-button-primary);
   color: var(--color-button-primary-text);

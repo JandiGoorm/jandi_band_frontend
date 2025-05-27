@@ -18,4 +18,9 @@ export const secureRoutes = [
   { method: Method.GET, url: ApiEndpotins.CLUB_POLL },
   { method: Method.GET, url: ApiEndpotins.CLUB_TEAM },
   { method: Method.POST, url: ApiEndpotins.CLUB_TEAM },
+  { method: Method.POST, url: ApiEndpotins.MY_TIMETABLE },
+  { method: Method.GET, url: ApiEndpotins.MY_TIMETABLE },
+  { method: Method.GET, url: ApiEndpotins.MY_TIMETABLE_DETAIL },
+  { method: Method.PATCH, url: ApiEndpotins.MY_TIMETABLE_DETAIL },
+  { method: Method.DELETE, url: ApiEndpotins.MY_TIMETABLE_DETAIL },
 ];

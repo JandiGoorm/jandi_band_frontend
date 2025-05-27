@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   column-gap: 0.5rem;
+  user-select: none;
 }
 
 .time_board_item {
@@ -44,4 +45,18 @@
 
 .time_board_item_range_second_half {
   flex: 1;
+}
+
+.isEditableCell {
+  cursor: pointer;
+}
+
+.isEditableCell:hover {
+  background-color: var(--board-active-bg-color);
+  opacity: 0.3;
+}
+
+.isEditableCell.active:hover {
+  background-color: var(--board-active-bg-color);
+  opacity: 0.5;
 }
