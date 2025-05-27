@@ -14,7 +14,7 @@ export const dummySong = [
     likeCount: 10,
     dislikeCount: 10,
     cantCount: 10,
-    hajjCount: 10,
+    hajiCount: 10,
     userVoteType: null,
   },
   {
@@ -30,7 +30,7 @@ export const dummySong = [
     likeCount: 15,
     dislikeCount: 3,
     cantCount: 0,
-    hajjCount: 2,
+    hajiCount: 2,
     userVoteType: null,
   },
   {
@@ -46,7 +46,7 @@ export const dummySong = [
     likeCount: 16,
     dislikeCount: 3,
     cantCount: 0,
-    hajjCount: 0,
+    hajiCount: 0,
     userVoteType: null,
   },
   {
@@ -62,7 +62,7 @@ export const dummySong = [
     likeCount: 16,
     dislikeCount: 3,
     cantCount: 0,
-    hajjCount: 0,
+    hajiCount: 0,
     userVoteType: null,
   },
 ];

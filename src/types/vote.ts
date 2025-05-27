@@ -14,6 +14,6 @@ export interface SongType {
   likeCount: number;
   dislikeCount: number;
   cantCount: number;
-  hajjCount: number;
+  hajiCount: number;
   userVoteType: "LIKE" | "DISLIKE" | "CANT" | "HAJJ" | null;
 }
