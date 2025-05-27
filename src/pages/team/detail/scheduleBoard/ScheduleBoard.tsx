@@ -1,6 +1,5 @@
 import styles from "./ScheduleBoard.module.css";
 import { FiPlus } from "react-icons/fi";
-import { dummyTeam } from "../constants";
 
 const ScheduleBoard = () => {
   return (
@@ -12,14 +11,14 @@ const ScheduleBoard = () => {
         </button>
       </header>
 
-      <div className={styles.content_container}>
+      {/* <div className={styles.content_container}>
         {dummyTeam.practiceTime.map((time) => (
           <div className={styles.content_item} key={time.id}>
             <span className={styles.content_type}>{time.type}</span>
             <span>{time.time}</span>
           </div>
         ))}
-      </div>
+      </div> */}
     </section>
   );
 };

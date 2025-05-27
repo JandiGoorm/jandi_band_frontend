@@ -1,11 +1,8 @@
 import Button from "@/components/button/Button";
 import Modal from "@/components/modal/Modal";
-import { useTeamStore } from "../teamStore";
 import styles from "./KakaoShare.module.css";
 
 const KakaoShare = () => {
-  const { team } = useTeamStore();
-
   return (
     <Modal
       trigger={
@@ -17,7 +14,7 @@ const KakaoShare = () => {
       title="카카오톡 공유하기"
     >
       <section className={styles.kakao_share_link}>
-        <span className={styles.kakao_share_link_text}>{team.link}</span>
+        {/* <span className={styles.kakao_share_link_text}>{team?.link}</span> */}
         <Button variant="secondary" className={styles.kakao_share_link_button}>
           복사하기
         </Button>

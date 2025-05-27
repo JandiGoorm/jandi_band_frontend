@@ -1,8 +1,7 @@
 import styles from "./QuickFilter.module.css";
 import clsx from "clsx";
-import { useTeamStore } from "../teamStore";
-import useTeamController from "../useTeamController";
-import type { Position } from "../constants";
+import { useTeamController, useTeam } from "../TeamDetailProvider";
+import { type Position } from "@/types/team";
 
 const filterButtons: { label: string; type: Position | null }[] = [
   {
@@ -11,29 +10,29 @@ const filterButtons: { label: string; type: Position | null }[] = [
   },
   {
     label: "기타 제외",
-    type: "Guitar",
+    type: "GUITAR",
   },
   {
     label: "드럼 제외",
-    type: "Drum",
+    type: "DRUM",
   },
   {
     label: "보컬 제외",
-    type: "Vocal",
+    type: "VOCAL",
   },
   {
     label: "키보드 제외",
-    type: "Keyboard",
+    type: "KEYBOARD",
   },
   {
     label: "베이스 제외",
-    type: "Bass",
+    type: "BASS",
   },
 ];
 
 const QuickFilter = () => {
-  const { filteredTypes, team, activeIds } = useTeamStore();
   const { handleFilteredType, handleFilterdTypeReset } = useTeamController();
+  const { filteredTypes, activeIds, team } = useTeam();
 
   return (
     <section className={styles.container}>
@@ -47,7 +46,7 @@ const QuickFilter = () => {
               button.type
                 ? filteredTypes.includes(button.type) && styles.active
                 : !filteredTypes.length &&
-                    team.members.length === activeIds.length &&
+                    team?.members.length === activeIds.length &&
                     styles.active
             )}
             onClick={() =>

@@ -1,5 +1,5 @@
 export interface Poll {
-  id: string;
+  id: number;
   title: string;
   clubId: number;
   clubName: string;

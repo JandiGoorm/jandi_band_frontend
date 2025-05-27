@@ -15,3 +15,14 @@ export interface TimeTableRequest {
   name: string;
   timetableData: Record<Range, string[]>;
 }
+
+export interface TeamTimeTableRequest {
+  userTimetableId: number;
+}
+
+export interface TeamTimeTableResponse {
+  userId: number;
+  teamId: number;
+  timetableData: Record<Range, string[]>;
+  updatedTimetableAt: string;
+}

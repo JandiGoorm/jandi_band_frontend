@@ -4,6 +4,8 @@ import type {
   TimeTableDetailResponse,
   TimeTableRequest,
   TimeTableResponse,
+  TeamTimeTableRequest,
+  TeamTimeTableResponse,
 } from "@/types/timeTable";
 import { buildPath } from "@/utils/buildPath";
 
@@ -31,4 +33,10 @@ export const useUpdateTimeSchedule = (id: string) => {
 
 export const useDeleteTimeSchedule = () => {
   return useDelete(ApiEndpotins.MY_TIMETABLE_DETAIL);
+};
+
+export const usePostTeamTimeTable = (id: string) => {
+  return usePost<TeamTimeTableRequest, TeamTimeTableResponse>(
+    buildPath(ApiEndpotins.MY_TIMETABLE_BY_TEAM, { id })
+  );
 };

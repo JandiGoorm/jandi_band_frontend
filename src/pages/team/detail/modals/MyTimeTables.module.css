@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.list_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.button_container {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  flex: 1;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.selected {
+  border: 2px solid var(--color-primary);
+}
