@@ -4,7 +4,7 @@ import ClubInfo from "./clubInfo/ClubInfo";
 import ClubCalendar from "./clubCalendar/ClubCalendar";
 import TeamSlide from "./clubSlide/TeamSlide";
 import VoteSlide from "./clubSlide/VoteSlide";
-import PhotoSlide from "./clubSlide/PhotoSlide";
+// import PhotoSlide from "./clubSlide/PhotoSlide";
 import { useParams } from "react-router-dom";
 import { useGetClubDetail, useGetClubMembers } from "@/apis/club";
 import Loading from "@/components/loading/Loading";
@@ -58,7 +58,7 @@ const Club = () => {
         <ClubCalendar isMember={isMember} />
         {isMember ? <TeamSlide teams={teamData?.data.content} /> : null}
         <VoteSlide polls={pollData.data.content} isMember={isMember} />
-        <PhotoSlide isMember={isMember} />
+        {/* <PhotoSlide isMember={isMember} /> */}
       </main>
     </DefaultLayout>
   );
