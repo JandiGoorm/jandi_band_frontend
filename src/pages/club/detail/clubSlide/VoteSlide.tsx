@@ -6,21 +6,29 @@ import VoteModal from "./modalContent/VoteModal";
 import VoteCards from "@/components/cards/VoteCards";
 import type { Poll } from "@/types/poll";
 
-const VoteSlide = ({ polls }: { polls: Poll[] }) => {
+const VoteSlide = ({
+  polls,
+  isMember,
+}: {
+  polls: Poll[];
+  isMember: boolean;
+}) => {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
         <div className={styles.title}>곡 투표 목록</div>
-        <Modal
-          title="곡 투표 생성하기"
-          trigger={
-            <Button variant="primary" size="md">
-              투표 생성
-            </Button>
-          }
-        >
-          <VoteModal />
-        </Modal>
+        {isMember ? (
+          <Modal
+            title="곡 투표 생성하기"
+            trigger={
+              <Button variant="primary" size="md">
+                투표 생성
+              </Button>
+            }
+          >
+            <VoteModal />
+          </Modal>
+        ) : null}
       </header>
       <section className={styles.slider_box}>
         <Slide items={polls}>

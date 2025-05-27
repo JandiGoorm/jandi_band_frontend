@@ -10,21 +10,23 @@ const dummyData = [
   { id: 3, name: "Slide 3" },
   { id: 4, name: "Slide 4" },
 ];
-const PhotoSlide = () => {
+const PhotoSlide = ({ isMember }: { isMember: boolean }) => {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
         <div className={styles.title}>동아리 사진들</div>
-        <Modal
-          title="사진 등록하기"
-          trigger={
-            <Button variant="primary" size="md">
-              사진 등록
-            </Button>
-          }
-        >
-          <PhotoModal />
-        </Modal>
+        {isMember ? (
+          <Modal
+            title="사진 등록하기"
+            trigger={
+              <Button variant="primary" size="md">
+                사진 등록
+              </Button>
+            }
+          >
+            <PhotoModal />
+          </Modal>
+        ) : null}
       </header>
       <section className={styles.slider_box}>
         <Slide items={dummyData} size="md">

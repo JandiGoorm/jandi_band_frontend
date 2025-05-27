@@ -55,10 +55,10 @@ const Club = () => {
           mydata={myData.data}
           memberData={memberData.data}
         />
-        <ClubCalendar />
+        <ClubCalendar isMember={isMember} />
         {isMember ? <TeamSlide teams={teamData?.data.content} /> : null}
-        <VoteSlide polls={pollData.data.content} />
-        <PhotoSlide />
+        <VoteSlide polls={pollData.data.content} isMember={isMember} />
+        <PhotoSlide isMember={isMember} />
       </main>
     </DefaultLayout>
   );
