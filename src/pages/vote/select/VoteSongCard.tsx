@@ -1,7 +1,6 @@
 import { changeToEmbed } from "@/pages/vote/embed";
 import VoteButton from "@/pages/vote/select/VoteButton";
 import styles from "@/pages/vote/select/VoteSongCard.module.css";
-import profile from "../style/profile.svg";
 import type { SongType } from "@/types/vote.ts";
 
 interface SongCardProps {
@@ -28,7 +27,7 @@ const SongCard = ({ song }: SongCardProps) => {
 
       <section className={styles.vote_section}>
         <div className={styles.user}>
-          <img src={profile} />
+          <img src={song.suggesterProfilePhoto} />
           <span>{song.suggesterName}</span>
         </div>
 

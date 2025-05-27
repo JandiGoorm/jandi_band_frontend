@@ -26,4 +26,6 @@ export enum ApiEndpotins {
   CLUB_POLL = "/polls/clubs/:id",
   MY_TIMETABLE = "/users/me/timetables",
   MY_TIMETABLE_DETAIL = "/users/me/timetables/:id",
+  POLL = "/polls/:id",
+  POLL_RECOMMEND = "/polls/:id/songs",
 }

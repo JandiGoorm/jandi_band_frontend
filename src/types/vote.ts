@@ -10,6 +10,7 @@ export interface SongType {
   description: string | null;
   suggesterId: number;
   suggesterName: string;
+  suggesterProfilePhoto: string;
   createdAt: string;
   likeCount: number;
   dislikeCount: number;
