@@ -6,24 +6,31 @@ import BandSlide from "./BandSlide";
 import MyBandSlide from "./MyBandSlide";
 import PromotionSlide from "./PromotionSlide";
 import { useGetMyClubList } from "@/apis/club";
+import Loading from "@/components/loading/Loading";
 
 const Home = () => {
-  const { data: promoListData, isSuccess: isPromoListSuccess } =
+  const { data: promoListData, isLoading: isPromoListLoading } =
     useGetPromoList();
-  const { data: myClubListData, isSuccess: isMyClubListSuccess } =
+  const { data: myClubListData, isLoading: isMyClubListLoading } =
     useGetMyClubList();
 
   console.log(promoListData?.data.content);
-  console.log(isPromoListSuccess);
   console.log(myClubListData?.data);
-  console.log(isMyClubListSuccess);
+
+  if (
+    !myClubListData ||
+    isMyClubListLoading ||
+    !promoListData ||
+    isPromoListLoading
+  )
+    return <Loading />;
 
   return (
     <div className={styles.fullBackground}>
       <DefaultLayout>
         <main className={styles.container}>
           <Banner />
-          <MyBandSlide />
+          <MyBandSlide club={myClubListData.data} />
           <BandSlide />
           <PromotionSlide />
         </main>

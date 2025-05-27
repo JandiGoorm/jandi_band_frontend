@@ -35,7 +35,7 @@ export const useGetClubList = () => {
 };
 
 export const useGetMyClubList = () => {
-  return useFetch<MyClubListResponse>(ApiEndpotins.MY_CLUB);
+  return useFetch<MyClubListResponse[]>(ApiEndpotins.MY_CLUB);
 };
 export const useGetClubMembers = (id: string) => {
   return useFetch<ClubMemberResponse>(

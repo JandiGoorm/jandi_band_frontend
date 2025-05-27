@@ -4,17 +4,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRef, useState } from "react";
 
-interface SlideItem {
-  id: number;
-  image: string;
+interface SlideProps<T> {
+  items: T[];
+  children: (item: T) => React.ReactNode;
 }
 
-interface SlideProps {
-  items: SlideItem[];
-  children: (item: SlideItem) => React.ReactNode;
-}
-
-const MainSlide = ({ items, children }: SlideProps) => {
+const MainSlide = <T extends { id: number }>({
+  items,
+  children,
+}: SlideProps<T>) => {
   const sliderRef = useRef<Slider | null>(null);
   const [current, setCurrent] = useState(0);
 
