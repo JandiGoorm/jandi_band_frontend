@@ -11,6 +11,7 @@ import Loading from "@/components/loading/Loading";
 import { useGetClubPoll } from "@/apis/poll";
 import { useGetTeamList } from "@/apis/team";
 import { useAuthStore } from "@/stores/authStore";
+
 const Club = () => {
   const { id } = useParams();
   const { user } = useAuthStore();
