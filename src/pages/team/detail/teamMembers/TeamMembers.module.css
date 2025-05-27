@@ -1,0 +1,29 @@
+.team_members_container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+}
+
+.team_member {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-sub);
+  padding: 0.5rem 1rem;
+  text-wrap: nowrap;
+}
+
+.team_member_info {
+  font-size: var(--text-sm);
+  color: var(--color-tag-color);
+}
+
+.active {
+  background: var(--color-tag-active-bg);
+  color: var(--color-black);
+}

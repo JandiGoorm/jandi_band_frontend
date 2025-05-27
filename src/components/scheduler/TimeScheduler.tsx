@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import LoadSchedules from "../../pages/team/modals/LoadSchedules";
+import LoadSchedules from "../../pages/team/detail/modals/LoadSchedules";
 import { range, timeRange } from "./constants";
 import { SelectableArea, SelectableAreaController } from "./SelectableArea";
 import SubController from "./SubController";

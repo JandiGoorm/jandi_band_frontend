@@ -1,16 +1,13 @@
 import { z } from "zod";
 
 export const teamCreateFormSchema = z.object({
-  title: z
+  name: z
     .string()
     .nonempty({ message: "팀 이름을 입력하세요." })
     .max(20, { message: "이름은 20자 이내로 입력해주세요." }),
-  university: z
-    .string({ required_error: "대학을 선택하세요." })
-    .min(1, { message: "대학을 선택하세요." }),
-  member: z
-    .string({ required_error: "멤버를 선택하세요." })
-    .min(1, { message: "멤버를 선택하세요." }),
+  // member: z
+  //   .string({ required_error: "멤버를 선택하세요." })
+  //   .min(1, { message: "멤버를 선택하세요." }),
 });
 
 export const voteCreateFormSchema = z.object({

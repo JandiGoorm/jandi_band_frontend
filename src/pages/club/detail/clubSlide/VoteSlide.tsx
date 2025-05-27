@@ -3,38 +3,35 @@ import styles from "./VoteSlide.module.css";
 import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import VoteModal from "./modalContent/VoteModal";
-import VoteCards from "@/components/cards/VoteCards";
+import VoteCard from "@/components/cards/VoteCard";
 import type { Poll } from "@/types/poll";
 
-const dummyData = [
-  { id: 1, name: "Slide 1" },
-  { id: 2, name: "Slide 2" },
-  { id: 3, name: "Slide 3" },
-  { id: 4, name: "Slide 4" },
-];
-
-const VoteSlide = ({ polls }: { polls: Poll[] }) => {
-  console.log("등록된 곡투표 데이터:", polls);
-
+const VoteSlide = ({
+  polls,
+  isMember,
+}: {
+  polls: Poll[];
+  isMember: boolean;
+}) => {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
         <div className={styles.title}>곡 투표 목록</div>
-        <Modal
-          title="곡 투표 생성하기"
-          trigger={
-            <Button variant="primary" size="md">
-              투표 생성
-            </Button>
-          }
-        >
-          <VoteModal />
-        </Modal>
+        {isMember ? (
+          <Modal
+            title="곡 투표 생성하기"
+            trigger={
+              <Button variant="primary" size="md">
+                투표 생성
+              </Button>
+            }
+          >
+            <VoteModal />
+          </Modal>
+        ) : null}
       </header>
       <section className={styles.slider_box}>
-        <Slide items={dummyData}>
-          {(item) => <VoteCards title={item.name} />}
-        </Slide>
+        <Slide<Poll> items={polls}>{(item) => <VoteCard item={item} />}</Slide>
       </section>
     </main>
   );
