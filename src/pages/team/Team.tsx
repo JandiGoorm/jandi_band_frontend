@@ -1,14 +1,14 @@
+import Button from "@/components/button/Button";
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
+import clsx from "clsx";
+import TimeScheduler from "../../components/scheduler/TimeScheduler";
 import styles from "./Team.module.css";
 import { dummyTeam } from "./constants";
-import Button from "@/components/button/Button";
-import clsx from "clsx";
-import ScheduleBoard from "./scheduleBoard/ScheduleBoard";
+import KakaoShare from "./modals/KakaoShare";
 import QuickFilter from "./quickFilter/QuickFilter";
-import TimeScheduler from "./timeScheduler/TimeScheduler";
+import ScheduleBoard from "./scheduleBoard/ScheduleBoard";
 import { useTeamStore } from "./teamStore";
 import useTeamController from "./useTeamController";
-import KakaoShare from "./modals/KakaoShare";
 
 const Team = () => {
   const { activeIds } = useTeamStore();

@@ -3,20 +3,25 @@ import { FaInstagram } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { GiGuitar, GiPianoKeys, GiDrumKit } from "react-icons/gi";
 import { PiMicrophoneStage } from "react-icons/pi";
+import type { ClubDetailResponse } from "@/types/club";
 
-const ClubInfo = () => {
+const ClubInfo = ({ club }: { club: ClubDetailResponse }) => {
   return (
     <main className={styles.container}>
       <header className={styles.banner}>
         <img src="/banner.png" className={styles.banner} />
       </header>
+
       <section className={styles.title_box}>
         <div className={styles.info_title}>
-          <p className={styles.title}>유다빈 밴드</p>
-          <p className={styles.school}> 00대학교</p>
+          <p className={styles.title}>{club.name}</p>
+          <p className={styles.school}>
+            {club.university?.name ?? "연합 동아리"}
+          </p>
         </div>
         <FaInstagram size={36} className={styles.instagram_icon} />
       </section>
+
       <section className={styles.member_box}>
         <div className={styles.member}>
           <FaPeopleGroup />

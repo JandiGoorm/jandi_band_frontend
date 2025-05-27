@@ -4,30 +4,39 @@ import * as Select from "@radix-ui/react-select";
 import { FiChevronDown, FiChevronUp, FiCheck } from "react-icons/fi";
 import { debounce } from "lodash-es";
 import clsx from "clsx";
-import type { UseFormReturn } from "react-hook-form";
-import type { z } from "zod";
-import { universities, type signUpFormSchema } from "./constants";
+import { useGetUniversities } from "@/apis/univ";
+import Loading from "@/components/loading/Loading";
+import type { University } from "@/types/univ";
 
 interface UniversitySelectProps {
-  formController: UseFormReturn<z.infer<typeof signUpFormSchema>>;
+  onValueChange: (university: University) => void;
   placeholder?: string;
 }
 
 export const UniversitySelect = ({
   placeholder = "소속 대학교 선택",
-  formController,
+  onValueChange,
 }: UniversitySelectProps) => {
+  const [selectedUniversity, setSelectedUniversity] =
+    useState<University | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const { setValue, getValues } = formController;
+  const { data: universities, isLoading } = useGetUniversities();
 
   const handleValueChange = useCallback(
     (newValue: string) => {
       setSearchTerm("");
-      setValue("university", newValue);
+      const selectedUniversity = universities?.data.find(
+        (university) => university.name === newValue
+      );
+
+      if (selectedUniversity) {
+        setSelectedUniversity(selectedUniversity);
+        onValueChange(selectedUniversity);
+      }
     },
-    [setValue]
+    [onValueChange, universities?.data]
   );
 
   // 디바운스 함수를 컴포넌트 렌더링과 독립적으로 한 번만 생성
@@ -56,9 +65,12 @@ export const UniversitySelect = ({
     };
   }, [debouncedSetFilteredTerm]);
 
+  if (isLoading || !universities || !universities.data.length)
+    return <Loading />;
+
   return (
     <Select.Root
-      value={getValues("university")}
+      value={selectedUniversity?.name || ""}
       onValueChange={handleValueChange}
       open={isOpen}
       onOpenChange={setIsOpen}
@@ -91,17 +103,17 @@ export const UniversitySelect = ({
           </Select.ScrollUpButton>
 
           <Select.Viewport className={styles.viewport}>
-            {universities.length > 0 ? (
-              universities.map((university) => (
+            {universities.data.length > 0 ? (
+              universities.data.map((university) => (
                 <Select.Item
-                  key={university}
-                  value={university}
+                  key={university.id}
+                  value={university.name}
                   className={clsx(
                     styles.item,
-                    isHidden(university) && styles.item_hidden
+                    isHidden(university.name) && styles.item_hidden
                   )}
                 >
-                  <Select.ItemText>{university}</Select.ItemText>
+                  <Select.ItemText>{university.name}</Select.ItemText>
                   <Select.ItemIndicator className={styles.item_indicator}>
                     <FiCheck className={styles.icon} />
                   </Select.ItemIndicator>

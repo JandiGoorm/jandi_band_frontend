@@ -5,3 +5,20 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.container {
+  z-index: 9999;
+
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+
+  background-color: var(--color-white);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  gap: 1rem;
+}
