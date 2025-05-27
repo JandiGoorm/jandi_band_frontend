@@ -1,21 +1,26 @@
 import Button from "@/components/button/Button";
 import styles from "./BandSlide.module.css";
 import MainSlide from "@/components/slide/MainSlide";
-import { useGetClubList } from "@/apis/club";
+import type { ClubListResponse } from "@/types/club";
+import { useNavigate } from "react-router-dom";
+import { buildPath } from "@/utils/buildPath";
+import { PageEndpoints } from "@/constants/endpoints";
 
-const BandSlide = () => {
-  const { data: clubListData } = useGetClubList();
-  const items = clubListData?.data.content;
-  if (!items) return;
+const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
+  const navigate = useNavigate();
+
   return (
     <main className={styles.container}>
       <section className={styles.main_container}>
         <p className={styles.title}>당신의 귀를 사로잡을 밴드들이 여기에!</p>
-        <MainSlide items={items}>
+        <MainSlide<ClubListResponse> items={club}>
           {(item) => (
             <img
               src={item.photoUrl || "promotion3.png"}
               style={{ margin: "0 auto" }}
+              onClick={() =>
+                navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+              }
             />
           )}
         </MainSlide>

@@ -5,7 +5,7 @@ import Banner from "./Banner";
 import BandSlide from "./BandSlide";
 import MyBandSlide from "./MyBandSlide";
 import PromotionSlide from "./PromotionSlide";
-import { useGetMyClubList } from "@/apis/club";
+import { useGetClubList, useGetMyClubList } from "@/apis/club";
 import Loading from "@/components/loading/Loading";
 import { motion } from "framer-motion";
 
@@ -19,15 +19,18 @@ const Home = () => {
     useGetPromoList();
   const { data: myClubListData, isLoading: isMyClubListLoading } =
     useGetMyClubList();
+  const { data: clubListData, isLoading: isClubListLoading } = useGetClubList();
 
   console.log(promoListData?.data.content);
-  console.log(myClubListData?.data);
+  console.log(clubListData?.data.content);
 
   if (
     !myClubListData ||
     isMyClubListLoading ||
     !promoListData ||
-    isPromoListLoading
+    isPromoListLoading ||
+    !clubListData ||
+    isClubListLoading
   )
     return <Loading />;
 
@@ -62,7 +65,7 @@ const Home = () => {
             transition={{ duration: 0.6, delay: 1.2 }}
             viewport={{ once: true, amount: 0.2 }}
           >
-            <BandSlide />
+            <BandSlide club={clubListData.data.content} />
           </motion.div>
 
           <motion.div
