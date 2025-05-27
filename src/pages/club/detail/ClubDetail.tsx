@@ -41,8 +41,6 @@ const Club = () => {
   )
     return <Loading />;
 
-  console.log(memberData.data);
-
   const isMember = memberData.data.members.some(
     (member: { userId: number }) => member.userId === myData.data.id
   );
