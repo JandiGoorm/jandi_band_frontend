@@ -17,7 +17,7 @@ const MainSlide = <T extends { id: number }>({
   const [current, setCurrent] = useState(0);
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     arrows: false,
     slidesToShow: 5,
@@ -40,16 +40,16 @@ const MainSlide = <T extends { id: number }>({
     ],
   };
   const minSettings = {
-    dots: false,
+    dots: true,
     infinite: true,
-    arrows: false,
+    arrows: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0px",
     swipeToSlide: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
     beforeChange: (_: number, next: number) => setCurrent(next),
   };
 
