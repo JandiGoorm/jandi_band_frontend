@@ -15,13 +15,26 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
         <p className={styles.title}>당신의 귀를 사로잡을 밴드들이 여기에!</p>
         <MainSlide<ClubListResponse> items={club}>
           {(item) => (
-            <img
-              src={item.photoUrl || "promotion3.png"}
-              style={{ margin: "0 auto" }}
-              onClick={() =>
-                navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
-              }
-            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <img
+                src={item.photoUrl || "promotion3.png"}
+                style={{
+                  maxWidth: "200px",
+                  height: "auto",
+                  maxHeight: "20rem",
+                }}
+                onClick={() =>
+                  navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+                }
+              />
+            </div>
           )}
         </MainSlide>
       </section>

@@ -12,13 +12,22 @@ const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
       <p className={styles.title}>내가 함께하는 밴드</p>
       <MainSlide<MyClubListResponse> items={club}>
         {(item) => (
-          <img
-            src={item.photoUrl}
-            style={{ margin: "0 auto" }}
-            onClick={() =>
-              navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
-            }
-          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
+            <img
+              src={item.photoUrl}
+              style={{ maxWidth: "200px", height: "auto", maxHeight: "20rem" }}
+              onClick={() =>
+                navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+              }
+            />
+          </div>
         )}
       </MainSlide>
     </main>
