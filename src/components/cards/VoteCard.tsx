@@ -4,11 +4,12 @@ import { randomBars } from "@/utils/randomBars";
 import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import type { Poll } from "@/types/poll";
+import { getVoteStatus } from "@/utils/dateStatus";
 
 const VoteCard = ({ item }: { item: Poll }) => {
   const navigate = useNavigate();
   const bars = useMemo(() => randomBars(4), []);
-
+  const { text, backgroundColor } = getVoteStatus(item.endDatetime);
   return (
     <main
       className={styles.card}
@@ -27,6 +28,9 @@ const VoteCard = ({ item }: { item: Poll }) => {
         ))}
       </div>
       <p className={styles.text}>{item.title}</p>
+      <div className={styles.end} style={{ backgroundColor }}>
+        {text}
+      </div>
     </main>
   );
 };

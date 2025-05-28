@@ -16,7 +16,7 @@ const getRandomColor = (): string =>
 
 export const randomBars = (count: number = 4) => {
   return Array.from({ length: count }).map(() => ({
-    height: getRandomHeight(20, 100),
+    height: getRandomHeight(40, 90),
     color: getRandomColor(),
   }));
 };
