@@ -10,6 +10,7 @@ export enum PageEndpoints {
   TEAM = "/team/*",
   TEAM_DETAIL = "/team/:id",
   CLUB = "/club/:id",
+  CLUB_VOTE_LIST = "/club/:id/vote",
   VOTE_RESULT = "/vote/result",
   MYPAGE = "/mypage",
   POST_TIME_SCHEDULE = "/post/time-schedule",
