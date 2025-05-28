@@ -61,7 +61,7 @@ const Home = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            transition={{ duration: 0.6, delay: 1.2 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
             viewport={{ once: true, amount: 0.2 }}
           >
             <BandSlide club={clubListData.data.content} />
