@@ -17,7 +17,7 @@ const VoteSlide = ({
     <main className={styles.container}>
       <header className={styles.header}>
         <div className={styles.title}>곡 투표 목록</div>
-        {isMember ? (
+        {isMember && (
           <Modal
             title="곡 투표 생성하기"
             trigger={
@@ -28,7 +28,7 @@ const VoteSlide = ({
           >
             <VoteModal />
           </Modal>
-        ) : null}
+        )}
       </header>
       <section className={styles.slider_box}>
         <Slide<Poll> items={polls}>{(item) => <VoteCard item={item} />}</Slide>
