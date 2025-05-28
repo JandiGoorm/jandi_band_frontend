@@ -22,7 +22,6 @@ const Home = () => {
   const { data: clubListData, isLoading: isClubListLoading } = useGetClubList();
 
   console.log(promoListData?.data.content);
-  console.log(clubListData?.data.content);
 
   if (
     !myClubListData ||
@@ -75,7 +74,7 @@ const Home = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true, amount: 0.2 }}
           >
-            <PromotionSlide />
+            <PromotionSlide promo={promoListData.data.content} />
           </motion.div>
         </main>
       </DefaultLayout>
