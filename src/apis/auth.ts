@@ -1,7 +1,6 @@
 import { ApiEndpotins } from "@/constants/endpoints";
-import { useFetch, usePost } from "./hooks";
 import type { LoginResponse, SignUpData, UserInfo } from "@/types/auth";
-import type { ApiResponse } from "./types";
+import { useFetch, usePost } from "./hooks";
 
 /**
  * 카카오 로그인으로 발급받은 코드를 통해 로그인
@@ -9,7 +8,7 @@ import type { ApiResponse } from "./types";
  * @returns
  */
 export const useSignIn = (code: string) => {
-  return useFetch<ApiResponse<LoginResponse>>(
+  return useFetch<LoginResponse>(
     ApiEndpotins.SIGN_IN,
     {
       code,
@@ -27,5 +26,5 @@ export const useSignUp = () => {
 
 // 내 프로필 조회
 export const useGetMe = () => {
-  return useFetch<ApiResponse<UserInfo>>(ApiEndpotins.ME);
+  return useFetch<UserInfo>(ApiEndpotins.ME);
 };

@@ -1,0 +1,60 @@
+.container {
+  position: relative;
+  padding-top: 18rem;
+}
+.banner {
+  width: 100vw;
+  position: absolute;
+  left: 50%;
+  top: -4rem;
+  transform: translateX(-50%);
+  object-fit: cover;
+  height: 20rem;
+  z-index: -9999;
+}
+
+.title_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.info_title {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+}
+
+.school {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-sub);
+}
+
+.left_title {
+  display: flex;
+  gap: 1rem;
+}
+.instagram_icon {
+  color: var(--color-button-primary-bg);
+  cursor: pointer;
+}
+
+.member_box {
+  display: flex;
+  gap: 1.5rem;
+  font-size: var(--text-xl);
+  flex-wrap: wrap;
+}
+
+.member {
+  display: flex;
+  gap: 0.5rem;
+}

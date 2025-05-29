@@ -1,5 +1,9 @@
 import axios from "axios";
 import { secureRoutes } from "./secureRoutes";
+import { ApiEndpotins } from "@/constants/endpoints";
+import type { RefreshTokenResponse } from "@/types/auth";
+import type { ApiResponse } from "./types";
+import type { AxiosResponse } from "axios";
 
 const domain = import.meta.env.VITE_API_DOMAIN;
 
@@ -20,20 +24,6 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-});
-
-axiosInstance.interceptors.request.use((config) => {
-  const url = new URL(config.url as string);
-  console.log(url.pathname);
-  const pathname = url.pathname.replace("/api", "");
-  const isProtected = secureRoutes.some(
-    (endpoint) => endpoint.method === config.method && endpoint.url === pathname
-  );
-
-  if (isProtected) {
-    config.headers.Authorization = `Bearer ${localStorage.getItem("accessToken") || ""}`;
-  }
-  return config;
 });
 
 export const api: Api = {
@@ -66,3 +56,58 @@ export const api: Api = {
     return axiosInstance.delete(getDomain(url));
   },
 };
+
+axiosInstance.interceptors.request.use((config) => {
+  const url = new URL(config.url as string);
+  const pathname = url.pathname.replace("/api", "");
+
+  // 동적 경로 파라미터를 포함한 URL 패턴 매칭
+  const isProtected = secureRoutes.some((endpoint) => {
+    if (endpoint.method !== config.method) return false;
+
+    // :param 형태의 동적 파라미터를 정규식으로 변환
+    const pattern = endpoint.url.replace(/:[^/]+/g, "[^/]+");
+    const regex = new RegExp(`^${pattern}$`);
+
+    return regex.test(pathname);
+  });
+
+  if (isProtected) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem("accessToken") || ""}`;
+  }
+  return config;
+});
+
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const errorMessage = error.response.data.message;
+    if (
+      errorMessage === "유효하지 않은 토큰입니다." &&
+      error.config.url !== ApiEndpotins.REFRESH_TOKEN
+    ) {
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (!refreshToken) return Promise.reject(error);
+      try {
+        const response = await api.post<
+          AxiosResponse<ApiResponse<RefreshTokenResponse>>
+        >(ApiEndpotins.REFRESH_TOKEN, {
+          refreshToken,
+        });
+        const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+          response.data.data;
+        localStorage.setItem("accessToken", newAccessToken);
+        localStorage.setItem("refreshToken", newRefreshToken);
+        error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
+        return axiosInstance.request(error.config);
+      } catch (err) {
+        console.log("err", err);
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        return Promise.reject(error);
+      }
+    }
+  }
+);

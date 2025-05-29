@@ -1,24 +1,30 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "@/pages/mypage/MyPage.module.css";
-import Slide from "@/components/slide/Slide";
+// import Slide from "@/components/slide/Slide";
 import Button from "@/components/button/Button";
 import MusicNote1 from "/public/musical_note1.svg";
 import MusicNote2 from "/public/musical_notes2.svg";
-import TeamCards from "@/components/cards/TeamCards";
+// import TeamCards from "@/components/cards/TeamCard";
 import Modal from "@/components/modal/Modal";
 import ProfilEdit from "@/pages/mypage/ProfilEdit";
 // 임시 프로필사진
 import Profile from "@/pages/vote/style/profile.svg";
+import { useGetMyTimeTables } from "@/apis/timetable";
+import Loading from "@/components/loading/Loading";
 
 const MyPage = () => {
-  const sampleItems = [
-    { id: 1, name: "아이템 1" },
-    { id: 2, name: "아이템 2" },
-    { id: 3, name: "아이템 3" },
-    { id: 4, name: "아이템 4" },
-    { id: 5, name: "아이템 5" },
-    { id: 6, name: "아이템 6" },
-  ];
+  const { data: myTimeTables, isLoading } = useGetMyTimeTables();
+
+  // const sampleItems = [
+  //   { id: 1, name: "아이템 1" },
+  //   { id: 2, name: "아이템 2" },
+  //   { id: 3, name: "아이템 3" },
+  //   { id: 4, name: "아이템 4" },
+  //   { id: 5, name: "아이템 5" },
+  //   { id: 6, name: "아이템 6" },
+  // ];
+
+  if (isLoading || !myTimeTables) return <Loading />;
 
   return (
     <DefaultLayout>
@@ -66,9 +72,9 @@ const MyPage = () => {
             <img src={MusicNote2} alt="음표" />
             <h2>참여 팀 목록</h2>
           </div>
-          <Slide items={sampleItems} size="sm">
+          {/* <Slide items={sampleItems} size="sm">
             {(item) => <TeamCards title={item.name} />}
-          </Slide>
+          </Slide> */}
         </section>
 
         <section className={styles.timetable_box}>
@@ -81,14 +87,14 @@ const MyPage = () => {
               시간표 추가
             </Button>
           </header>
-          <Slide items={sampleItems} size="sm">
+          {/* <Slide items={myTimeTables.data} size="sm">
             {(item) => (
               <div className={styles.itemCard}>
                 <h3>{item.name}</h3>
                 <p>ID: {item.id}</p>
               </div>
             )}
-          </Slide>
+          </Slide> */}
         </section>
       </main>
     </DefaultLayout>

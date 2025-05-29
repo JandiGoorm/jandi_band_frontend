@@ -1,0 +1,17 @@
+.fullBackground {
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    #e1f3ff,
+    white 30%,
+    white 70%,
+    #e1f3ff
+  );
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  overflow: hidden;
+}
