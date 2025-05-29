@@ -5,17 +5,37 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "@/components/button/Button";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { postTeamTimeTable } from "./constants";
+import { z } from "zod";
+import { convertTimeTable } from "@/utils/convertTimeTable";
 
 const CreateTimeTable = () => {
   const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
   const { id } = useParams();
   const navigate = useNavigate();
 
-  console.log(mySchedule);
+  const { handleSubmit, setValue } = useForm<z.infer<typeof postTeamTimeTable>>(
+    {
+      resolver: zodResolver(postTeamTimeTable),
+    }
+  );
+
+  const onSubmit = (data: z.infer<typeof postTeamTimeTable>) => {
+    console.log(data);
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const timetableData = convertTimeTable(mySchedule);
+    setValue("timetableData", timetableData);
+    handleSubmit(onSubmit)();
+  };
 
   return (
     <div className={styles.wrapper_container}>
-      <main className={styles.container}>
+      <form className={styles.container} onSubmit={handleFormSubmit}>
         <header className={styles.header}>
           <Button
             className={styles.back_button}
@@ -33,10 +53,14 @@ const CreateTimeTable = () => {
         </header>
 
         <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
-        <Button variant="secondary" className={styles.save_button}>
+        <Button
+          variant="secondary"
+          className={styles.save_button}
+          type="submit"
+        >
           저장하기
         </Button>
-      </main>
+      </form>
     </div>
   );
 };

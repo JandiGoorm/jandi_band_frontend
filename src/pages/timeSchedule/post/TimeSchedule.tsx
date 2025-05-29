@@ -3,31 +3,22 @@ import Button from "@/components/button/Button";
 import Field from "@/components/field/Field";
 import Input from "@/components/input/Input";
 import TimeScheduler from "@/components/scheduler/TimeScheduler";
-import { range } from "@/components/scheduler/constants";
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import { type Range } from "@/types/timeTable";
+import { convertTimeTable } from "@/utils/convertTimeTable";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { cloneDeep } from "lodash-es";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import styles from "./TimeSchedule.module.css";
 import { timeTableSchema } from "../constants";
-
-const initialTimeTableData: Record<Range, string[]> = Object.freeze(
-  range.reduce(
-    (acc, day) => {
-      acc[day] = [];
-      return acc;
-    },
-    {} as Record<Range, string[]>
-  )
-);
+import styles from "./TimeSchedule.module.css";
+import { useNavigate } from "react-router-dom";
+import { buildPath } from "@/utils/buildPath";
+import { PageEndpoints } from "@/constants/endpoints";
 
 const TimeSchedule = () => {
   const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
-
+  const navigate = useNavigate();
   const { mutate: postTimeTable } = usePostTimeTable();
 
   const formController = useForm<z.infer<typeof timeTableSchema>>({
@@ -42,19 +33,21 @@ const TimeSchedule = () => {
   } = formController;
 
   const onSubmit = (data: z.infer<typeof timeTableSchema>) => {
-    postTimeTable(data);
+    postTimeTable(data, {
+      onSuccess: (response) => {
+        console.log(response.data);
+        navigate(
+          buildPath(PageEndpoints.MY_TIMETABLE_DETAIL, {
+            id: response.data.data.id,
+          })
+        );
+      },
+    });
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const timetableData: Record<Range, string[]> =
-      cloneDeep(initialTimeTableData);
-    mySchedule.forEach((isSelected, id) => {
-      const [day, time] = id.split("-");
-      if (isSelected) {
-        timetableData[day as Range].push(time);
-      }
-    });
+    const timetableData = convertTimeTable(mySchedule);
     setValue("timetableData", timetableData);
     handleSubmit(onSubmit)();
   };

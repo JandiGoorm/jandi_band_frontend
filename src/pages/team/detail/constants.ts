@@ -1,10 +1,23 @@
 import type { TeamDetailResponse } from "@/types/team";
+import z from "zod";
 
 export interface PracticeTime {
   id: number;
   type: string;
   time: string;
 }
+
+export const postTeamTimeTable = z.object({
+  timetableData: z.object({
+    Mon: z.array(z.string()),
+    Tue: z.array(z.string()),
+    Wed: z.array(z.string()),
+    Thu: z.array(z.string()),
+    Fri: z.array(z.string()),
+    Sat: z.array(z.string()),
+    Sun: z.array(z.string()),
+  }),
+});
 
 export const dummyTeam: TeamDetailResponse = {
   id: 1,
