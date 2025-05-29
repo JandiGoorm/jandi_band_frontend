@@ -5,9 +5,11 @@ import type { SongType } from "@/types/vote.ts";
 
 interface SongCardProps {
   song: SongType;
+  pollId: number;
+  refetch: () => void;
 }
 
-const SongCard = ({ song }: SongCardProps) => {
+const SongCard = ({ song, pollId, refetch }: SongCardProps) => {
   // 사용자가 입력한 url
   const embedUrl = changeToEmbed(song.youtubeUrl);
 
@@ -36,6 +38,10 @@ const SongCard = ({ song }: SongCardProps) => {
           dislikeCount={song.dislikeCount}
           cantCount={song.cantCount}
           hajjCount={song.hajjCount}
+          pollId={pollId}
+          songId={song.id}
+          refetch={refetch}
+          userVoteType={song.userVoteType}
         />
       </section>
 

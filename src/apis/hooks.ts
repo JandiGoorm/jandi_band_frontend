@@ -7,7 +7,6 @@ import {
 } from "@tanstack/react-query";
 import { api } from "./utils";
 import type { ApiResponse, QueryOptions } from "./types";
-import { buildPath } from "@/utils/buildPath";
 import type { AxiosResponse } from "axios";
 
 const fetcher = async <T>(context: QueryFunctionContext<QueryKey>) => {
@@ -92,13 +91,25 @@ export const usePatch = <T = object, S = unknown>(
  * @param url 요청할 url
  * @param options  mutation options (ex. onSuccess, onError, onSettled 등)
  */
-export const useDelete = <T extends string | number = number, S = unknown>(
+export const useDelete = <S = unknown>(
   url: string,
-  options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T>
+  options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, void>
 ) => {
-  return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T>({
-    mutationFn: (data) =>
-      api.delete<AxiosResponse<ApiResponse<S>>>(buildPath(url, { id: data })),
+  return useMutation<AxiosResponse<ApiResponse<S>>, unknown, void>({
+    mutationFn: () => api.delete<AxiosResponse<ApiResponse<S>>>(url),
     ...options,
   });
 };
+
+// export const useDelete = <T extends string | number = number, S = unknown>(
+//   url: string,
+//   options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T>
+// ) => {
+//   return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T>({
+//     mutationFn: (data) =>
+
+//       // 여기를 고쳐야할듯
+//       api.delete<AxiosResponse<ApiResponse<S>>>(buildPath(url, { id: data })),
+//     ...options,
+//   });
+// };

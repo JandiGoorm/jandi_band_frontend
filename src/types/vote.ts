@@ -36,3 +36,16 @@ export interface SongType {
   hajjCount: number;
   userVoteType: "LIKE" | "DISLIKE" | "CANT" | "HAJJ" | null;
 }
+
+// VoteButton 타입들
+export interface VoteCountType {
+  likeCount: number;
+  dislikeCount: number;
+  cantCount: number;
+  hajjCount: number;
+}
+
+export interface VoteProps {
+  pollId: number;
+  songId: number;
+}

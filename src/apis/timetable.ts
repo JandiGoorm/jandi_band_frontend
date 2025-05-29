@@ -31,8 +31,8 @@ export const useUpdateTimeSchedule = (id: string) => {
   );
 };
 
-export const useDeleteTimeSchedule = () => {
-  return useDelete(ApiEndpotins.MY_TIMETABLE_DETAIL);
+export const useDeleteTimeSchedule = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.MY_TIMETABLE_DETAIL, { id }));
 };
 
 export const usePostTeamTimeTable = (id: string) => {
