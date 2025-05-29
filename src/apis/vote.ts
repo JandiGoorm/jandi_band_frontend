@@ -26,8 +26,8 @@ export const usePutPoll = (pollId: number, songId: number, emoji: string) => {
 
 // 곡 투표 취소 DELETE
 export const useDeletePoll = (
-  pollId: string,
-  songId: string,
+  pollId: number,
+  songId: number,
   emoji: string
 ) => {
   return useDelete<SongType>(
