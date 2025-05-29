@@ -10,6 +10,7 @@ import usePagination from "@/hooks/usePagination";
 import { useGetPromoList } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
+import { formatPromotionDate } from "@/utils/dateStatus";
 
 const regions = [
   "서울",
@@ -95,7 +96,9 @@ const PromotionMain = () => {
                 <img className={styles.promotion_img} src={item.photoUrls[0]} />
               </div>
               <p className={styles.promotion_title}>{item.title}</p>
-              <p className={styles.promotion_sub}>{item.eventDatetime}</p>
+              <p className={styles.promotion_sub}>
+                {formatPromotionDate(item.eventDatetime)}
+              </p>
               <p className={styles.promotion_sub}>{item.location}</p>
             </article>
           ))}
