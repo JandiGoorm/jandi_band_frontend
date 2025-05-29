@@ -11,7 +11,13 @@ const voteFromSchema = z.object({
   title: z.string().nonempty("곡 제목을 입력해주세요."),
   singer: z.string().nonempty("가수 또는 밴드 이름을 입력해주세요."),
   reason: z.string().optional(),
-  youtube: z.string().nonempty("유튜브 링크를 입력해주세요."),
+  youtube: z
+    .string()
+    .nonempty("유튜브 링크를 입력해주세요.")
+    .regex(
+      /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]{11}/,
+      "유튜브 링크 형식이 유효하지 않습니다."
+    ),
 });
 
 const Recommend = () => {
@@ -49,7 +55,10 @@ const Recommend = () => {
         <Field label="유튜브 링크" error={errors.youtube} isRequired>
           <Input inputSize="sm" {...form.register("youtube")} />
         </Field>
-
+        <p className={styles.guide}>
+          단일 영상 링크만 입력해주세요. <br />
+          재생목록(playlist) 또는 Shorts 링크는 지원되지 않습니다.
+        </p>
         <Button type="submit" size="md" variant="secondary">
           곡 추가하기
         </Button>

@@ -1,17 +1,22 @@
 import { changeToEmbed } from "@/pages/vote/embed";
+import VoteButton from "@/pages/vote/select/VoteButton";
 import styles from "@/pages/vote/select/VoteSongCard.module.css";
 import profile from "../style/profile.svg";
+import type { SongType } from "@/types/vote.ts";
 
-const SongCard = () => {
-  // 사용자가 입력한 url (공유하기로 입력했을 경우)
-  const url = "https://youtu.be/sgIWiMtuw4c?si=6Jjx1TunrgzPqmJn";
-  const embedUrl = changeToEmbed(url);
+interface SongCardProps {
+  song: SongType;
+}
+
+const SongCard = ({ song }: SongCardProps) => {
+  // 사용자가 입력한 url
+  const embedUrl = changeToEmbed(song.youtubeUrl);
 
   return (
     <article className={styles.song_card}>
       <header className={styles.song_title}>
         <h2>
-          터치드 - <span>Hi Bully</span>
+          {song.artistName} - <span>{song.songName}</span>
         </h2>
       </header>
 
@@ -24,24 +29,22 @@ const SongCard = () => {
       <section className={styles.vote_section}>
         <div className={styles.user}>
           <img src={profile} />
-          <span>강세진진자라</span>
+          <span>{song.suggesterName}</span>
         </div>
 
-        <div className={styles.vote_emoji}>
-          <button>🙆‍♀️</button>
-          <span>10</span>
-          <button>🙅‍♂️</button>
-          <span>10</span>
-          <button>😅</button>
-          <span>10</span>
-          <button>👊</button>
-          <span>10</span>
-        </div>
+        <VoteButton
+          likeCount={song.likeCount}
+          dislikeCount={song.dislikeCount}
+          cantCount={song.cantCount}
+          hajiCount={song.hajiCount}
+        />
       </section>
 
-      <footer className={styles.vote_reason}>
-        <p>기타 솔로가 야무져서 해보고 싶었어요.</p>
-      </footer>
+      {song.description && (
+        <footer className={styles.vote_reason}>
+          <p>{song.description}</p>
+        </footer>
+      )}
     </article>
   );
 };

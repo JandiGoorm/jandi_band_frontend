@@ -76,16 +76,6 @@ const ProfilEdit = () => {
           <label>닉네임</label>
           <Input inputSize="sm" />
         </div>
-        {/* 
-        <div>
-          <label>포지션</label>
-          <Input inputSize="sm" />
-        </div>
-
-        <div>
-          <label>소속대학</label>
-          <Input inputSize="sm" />
-        </div> */}
 
         <Field label="포지션" error={errors.position}>
           <PositionSelect formController={formController} />
