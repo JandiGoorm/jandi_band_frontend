@@ -4,7 +4,7 @@ import { ApiEndpotins } from "@/constants/endpoints";
 import type { TeamFormData } from "@/pages/club/detail/clubSlide/modalContent/TeamModal";
 import type { TeamBasicResponse, TeamResponse } from "@/types/team";
 import { buildPath } from "@/utils/buildPath";
-import type { PageableResponse } from "@/types/common";
+import type { PagiNationResponse } from "@/types/common";
 
 export const useGetTeamDetail = (id: string) => {
   return useFetch<TeamDetailResponse>(
@@ -19,7 +19,7 @@ export const usePostTeam = (id: string) => {
 };
 
 export const useGetTeamList = (id: string) => {
-  return useFetch<PageableResponse<TeamBasicResponse>>(
+  return useFetch<PagiNationResponse<TeamBasicResponse>>(
     buildPath(ApiEndpotins.CLUB_TEAM, { id })
   );
 };
