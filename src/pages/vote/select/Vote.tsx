@@ -57,7 +57,12 @@ const Vote = () => {
 
         <section className={styles.vote_grid}>
           {poll.songs.map((song) => (
-            <SongCard key={song.id} song={song} pollId={poll.id} />
+            <SongCard
+              key={song.id}
+              song={song}
+              pollId={poll.id}
+              refetch={refetch}
+            />
           ))}
         </section>
       </main>

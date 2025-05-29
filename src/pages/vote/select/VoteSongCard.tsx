@@ -3,7 +3,13 @@ import VoteButton from "@/pages/vote/select/VoteButton";
 import styles from "@/pages/vote/select/VoteSongCard.module.css";
 import type { SongType } from "@/types/vote.ts";
 
-const SongCard = ({ song, pollId }: { song: SongType; pollId: number }) => {
+interface SongCardProps {
+  song: SongType;
+  pollId: number;
+  refetch: () => void;
+}
+
+const SongCard = ({ song, pollId, refetch }: SongCardProps) => {
   // 사용자가 입력한 url
   const embedUrl = changeToEmbed(song.youtubeUrl);
 
@@ -34,6 +40,7 @@ const SongCard = ({ song, pollId }: { song: SongType; pollId: number }) => {
           hajjCount={song.hajjCount}
           pollId={pollId}
           songId={song.id}
+          refetch={refetch}
         />
       </section>
 

@@ -3,7 +3,9 @@ import { usePutPoll } from "@/apis/vote";
 import type { VoteCountType, VoteProps } from "@/types/vote";
 import styles from "@/pages/vote/select/VoteSongCard.module.css";
 
-interface VoteButtonProps extends VoteCountType, VoteProps {}
+interface VoteButtonProps extends VoteCountType, VoteProps {
+  refetch: () => void;
+}
 
 export default function VoteButton({
   likeCount,
@@ -12,6 +14,7 @@ export default function VoteButton({
   hajjCount,
   pollId,
   songId,
+  refetch,
 }: VoteButtonProps) {
   const [selectedEmoji, setSelectedEmoji] = useState<string | null>(null);
   const { mutate } = usePutPoll(pollId, songId, selectedEmoji ?? "");
@@ -19,8 +22,12 @@ export default function VoteButton({
   // 투표 버튼 이모지에 따라 요청 보내기
   const handleVote = (emoji: string) => {
     setSelectedEmoji(emoji);
+
     mutate(undefined, {
-      onSuccess: () => console.log("성공"),
+      onSuccess: () => {
+        console.log("성공");
+        refetch();
+      },
       onError: () => console.error("실패"),
     });
   };
