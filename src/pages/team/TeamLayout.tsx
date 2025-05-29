@@ -1,4 +1,4 @@
-import { Route, useLocation } from "react-router-dom";
+import { Route, useLocation, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import { TeamDetailProvider } from "./detail/TeamDetailProvider";
@@ -8,14 +8,16 @@ import TeamDetail from "./detail/TeamDetail";
 import CreateTimeTable from "./detail/CreateTimeTable";
 
 const TeamLayout = () => {
+  const { id } = useParams();
   const location = useLocation();
   const exitTransitionX = location.pathname.includes("/post/timetables")
     ? 70
     : -70;
 
+  if (!id) return <div>존재 하지 않는 팀</div>;
   return (
     <DefaultLayout>
-      <TeamDetailProvider>
+      <TeamDetailProvider teamId={id}>
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
@@ -25,8 +27,8 @@ const TeamLayout = () => {
             transition={{ duration: 0.5 }}
           >
             <Routes location={location}>
-              <Route path=":id/post/timetables" element={<CreateTimeTable />} />
-              <Route path=":id" element={<TeamDetail />} />
+              <Route path="post/timetables" element={<CreateTimeTable />} />
+              <Route path="" element={<TeamDetail />} />
             </Routes>
           </motion.div>
         </AnimatePresence>
