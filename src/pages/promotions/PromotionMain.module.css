@@ -59,6 +59,7 @@
 
 .promotion_img {
   width: 100%;
+  aspect-ratio: 3/4;
 }
 .promotion_title {
   font-weight: var(--font-weight-bold);
