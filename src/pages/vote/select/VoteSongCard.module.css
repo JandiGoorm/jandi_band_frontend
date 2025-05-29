@@ -56,11 +56,15 @@ iframe {
   font-size: 1.2rem;
 }
 
-.vote_emoji button {
-  background-color: #e4e4e4;
+.vote_button {
   padding: 3px 5px;
   border-radius: 50%;
   border: 0.5px solid #c6c6c6;
+}
+
+.vote_button.selected {
+  background-color: var(--color-primary);
+  color: white;
 }
 
 .vote_reason {

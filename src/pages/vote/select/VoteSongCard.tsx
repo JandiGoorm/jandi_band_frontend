@@ -41,6 +41,7 @@ const SongCard = ({ song, pollId, refetch }: SongCardProps) => {
           pollId={pollId}
           songId={song.id}
           refetch={refetch}
+          userVoteType={song.userVoteType}
         />
       </section>
 
