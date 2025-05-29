@@ -29,7 +29,9 @@ const Club = () => {
     data: pollData,
     isLoading: pollLoading,
     refetch,
-  } = useGetClubPoll(id as string);
+  } = useGetClubPoll({
+    id: id as string,
+  });
 
   if (
     !clubData ||
