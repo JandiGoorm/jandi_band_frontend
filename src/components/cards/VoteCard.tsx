@@ -4,6 +4,7 @@ import { randomBars } from "@/utils/randomBars";
 import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import type { Poll } from "@/types/poll";
+import { buildPath } from "@/utils/buildPath";
 
 const VoteCard = ({ item }: { item: Poll }) => {
   const navigate = useNavigate();
@@ -14,7 +15,9 @@ const VoteCard = ({ item }: { item: Poll }) => {
       className={styles.card}
       onClick={() => {
         if (item.id === undefined) return;
-        navigate(PageEndpoints.VOTE);
+
+        const path = buildPath(PageEndpoints.VOTE, { id: item.id });
+        navigate(path);
       }}
     >
       <div className={styles.bars}>

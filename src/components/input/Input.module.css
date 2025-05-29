@@ -5,11 +5,13 @@
   box-sizing: border-box;
   padding: 0.5rem;
   border-radius: var(--radius-input);
-  color: var(--color-text-sub);
+  color: #414141;
+  /* color: var(--color-text-sub); */
 }
 
 .input::placeholder {
   color: var(--color-text-sub);
+  font-size: var(--text-sm);
 }
 
 .input_sm {

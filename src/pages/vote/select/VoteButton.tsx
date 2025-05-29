@@ -4,14 +4,14 @@ interface VoteCountType {
   likeCount: number;
   dislikeCount: number;
   cantCount: number;
-  hajiCount: number;
+  hajjCount: number;
 }
 
 export default function VoteButton({
   likeCount,
   dislikeCount,
   cantCount,
-  hajiCount,
+  hajjCount,
 }: VoteCountType) {
   return (
     <div className={styles.vote_emoji}>
@@ -22,7 +22,7 @@ export default function VoteButton({
       <button>😅</button>
       <span>{cantCount}</span>
       <button>👊</button>
-      <span>{hajiCount}</span>
+      <span>{hajjCount}</span>
     </div>
   );
 }

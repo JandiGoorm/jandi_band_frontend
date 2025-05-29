@@ -39,26 +39,40 @@ const TeamModal = () => {
   }, [data, navigate]);
 
   return (
-    <form
-      className={styles.container}
-      onSubmit={formController.handleSubmit(onSubmit)}
-    >
-      <Field label="팀 이름" error={errors.name} isRequired>
-        <Input inputSize="sm" {...formController.register("name")} />
-      </Field>
-      {/* <Field label="팀 멤버" error={errors.member}>
-        <MemberSelect formController={formController} />
-      </Field> */}
+    <main className={styles.make_team_container}>
+      <p className={styles.guide}>
+        <span className={styles.dot}>*</span> 는 필수 입력 항목입니다.
+      </p>
 
-      <Button
-        type="submit"
-        size="md"
-        variant="secondary"
-        className={styles.submit_button}
+      <form
+        className={styles.container}
+        onSubmit={formController.handleSubmit(onSubmit)}
       >
-        팀 생성
-      </Button>
-    </form>
+        <Field label="팀 이름" error={errors.name} isRequired>
+          <Input
+            inputSize="sm"
+            {...formController.register("name")}
+            placeholder="예시: Alive 공연 팀"
+          />
+        </Field>
+        {/* <Field label="팀 멤버" error={errors.member}>
+          <MemberSelect formController={formController} />
+        </Field> */}
+
+        <p className={styles.guide}>
+          ※ 팀을 생성할 경우 공통 시간표를 만들 수 있습니다.
+        </p>
+
+        <Button
+          type="submit"
+          size="md"
+          variant="secondary"
+          className={styles.submit_button}
+        >
+          팀 생성
+        </Button>
+      </form>
+    </main>
   );
 };
 
