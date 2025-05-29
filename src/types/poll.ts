@@ -9,3 +9,9 @@ export interface Poll {
   creatorName: string;
   createdAt: Date;
 }
+
+export interface CreatePollRequest {
+  title: string;
+  clubId: number;
+  endDatetime: string;
+}

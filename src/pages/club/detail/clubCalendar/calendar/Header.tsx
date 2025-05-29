@@ -1,6 +1,6 @@
 import Button from "@/components/button/Button";
 import styles from "./Header.module.css";
-import { useCalendarNavigation } from "@/hooks/uesCalendarNavigation";
+import { useCalendarNavigation } from "@/hooks/useCalendarNavigation";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 type Props = {

@@ -1,5 +1,13 @@
 import type { Nullable } from "./common";
 import type { University } from "./univ";
+export interface ClubListResponse {
+  id: number;
+  name: string;
+  universityName: string | null;
+  isUnionClub: boolean;
+  photoUrl: string | null;
+  memberCount: number;
+}
 
 export interface ClubDetailResponse {
   chatroomUrl: string;
@@ -16,6 +24,17 @@ export interface ClubDetailResponse {
   updatedAt: string;
 }
 
+export interface MyClubListResponse {
+  id: number;
+  name: string;
+  description: string;
+  photoUrl: string;
+  universityName: string;
+  myRole: string;
+  joinedAt: string;
+  memberCount: number;
+  unionClub: boolean;
+}
 export interface ClubMemberResponse {
   id: number;
   members: Member[];

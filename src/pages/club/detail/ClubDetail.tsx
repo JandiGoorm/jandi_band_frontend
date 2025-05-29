@@ -11,6 +11,7 @@ import Loading from "@/components/loading/Loading";
 import { useGetClubPoll } from "@/apis/poll";
 import { useGetTeamList } from "@/apis/team";
 import { useAuthStore } from "@/stores/authStore";
+
 const Club = () => {
   const { id } = useParams();
   const { user } = useAuthStore();
@@ -24,9 +25,13 @@ const Club = () => {
     id as string
   );
 
-  const { data: pollData, isLoading: pollLoading } = useGetClubPoll(
-    id as string
-  );
+  const {
+    data: pollData,
+    isLoading: pollLoading,
+    refetch,
+  } = useGetClubPoll({
+    id: id as string,
+  });
 
   if (
     !clubData ||
@@ -49,7 +54,11 @@ const Club = () => {
         <ClubInfo club={clubData.data} memberData={memberData.data} />
         <ClubCalendar isMember={isMember} />
         {isMember && <TeamSlide teams={teamData?.data.content} />}
-        <VoteSlide polls={pollData.data.content} isMember={isMember} />
+        <VoteSlide
+          polls={pollData.data.content}
+          isMember={isMember}
+          refetch={refetch}
+        />
         {/* <PhotoSlide isMember={isMember} /> */}
       </main>
     </DefaultLayout>

@@ -10,8 +10,20 @@
   margin-bottom: 1rem;
 }
 
+.title_box {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+}
 .title {
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-main);
+  cursor: pointer;
+}
+
+.more {
+  font-size: var(--text-md);
+  color: var(--color-text-sub);
+  cursor: pointer;
 }

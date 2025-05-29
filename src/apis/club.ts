@@ -1,3 +1,5 @@
+import type { ClubListResponse, MyClubListResponse } from "@/types/club";
+import type { PagiNationResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useDelete, useFetch, usePatch, usePost } from "./hooks";
 import type { ClubFormData } from "@/layouts/defaultLayout/CreateClubModal";
@@ -28,6 +30,13 @@ export const useGetClubs = () => {
   return useFetch(ApiEndpotins.CLUB);
 };
 
+export const useGetClubList = () => {
+  return useFetch<PagiNationResponse<ClubListResponse>>(ApiEndpotins.CLUB);
+};
+
+export const useGetMyClubList = () => {
+  return useFetch<MyClubListResponse[]>(ApiEndpotins.MY_CLUB);
+};
 export const useGetClubMembers = (id: string) => {
   return useFetch<ClubMemberResponse>(
     buildPath(ApiEndpotins.CLUB_MEMBERS, { id })
