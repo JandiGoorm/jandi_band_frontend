@@ -1,9 +1,9 @@
 import clsx from "clsx";
-import { useTeam, useTeamController } from "../TeamDetailProvider";
+import { useTeamDetail, useTeamController } from "../TeamDetailProvider";
 import styles from "./TeamMembers.module.css";
 
 const TeamMembers = () => {
-  const { activeIds, team } = useTeam();
+  const { activeIds, team } = useTeamDetail();
   const { handleActiveMember } = useTeamController();
 
   return (

@@ -1,24 +1,23 @@
 /* eslint-disable react-refresh/only-export-components */
+import { type TeamDetailResponse } from "@/types/team";
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
-  useState,
-  useCallback,
   useMemo,
+  useState,
 } from "react";
-import { type TeamDetailResponse } from "@/types/team";
-// import { useGetTeamDetail } from "@/apis/team";
-// import { useParams } from "react-router-dom";
+import { useGetTeamDetail } from "@/apis/team";
+import { initialTimeSchedule } from "@/components/scheduler/constants";
 import type { Nullable } from "@/types/common";
 import { type Position } from "@/types/team";
 import { type Range } from "@/types/timeTable";
-import { dummyTeam } from "./constants";
-import { initialTimeSchedule } from "@/components/scheduler/constants";
 
 interface TeamDetailContextValue {
   // API 데이터
   team: Nullable<TeamDetailResponse>;
+  teamId: string;
 
   activeIds: number[];
   filteredTypes: string[];
@@ -34,15 +33,18 @@ const TeamContext = createContext<Nullable<TeamDetailContextValue>>(null);
 
 interface TeamDetailProviderProps {
   children: React.ReactNode;
+  teamId: string;
 }
 
-export const TeamDetailProvider = ({ children }: TeamDetailProviderProps) => {
+export const TeamDetailProvider = ({
+  children,
+  teamId,
+}: TeamDetailProviderProps) => {
   const [team, setTeam] = useState<Nullable<TeamDetailResponse>>(null);
   const [activeIds, setActiveIds] = useState<number[]>([]);
   const [filteredTypes, setFilteredTypes] = useState<string[]>([]);
 
-  // const { id } = useParams();
-  // const { data, isLoading } = useGetTeamDetail(id ?? "");
+  const { data } = useGetTeamDetail(teamId);
 
   const members = team?.members;
   const membersIds = members?.filter((v) => v.isSubmitted).map((v) => v.userId);
@@ -158,13 +160,13 @@ export const TeamDetailProvider = ({ children }: TeamDetailProviderProps) => {
   }, [members]);
 
   useEffect(() => {
-    // if (!data) return;
-    // setTeam(data.data);
-    setTeam(dummyTeam);
-  }, []);
+    if (!data) return;
+    setTeam(data.data);
+  }, [data]);
 
   const value: TeamDetailContextValue = {
     team,
+    teamId,
     // isLoading,
     activeIds,
     filteredTypes,
@@ -178,11 +180,11 @@ export const TeamDetailProvider = ({ children }: TeamDetailProviderProps) => {
 };
 
 // Custom hook for using team context
-export const useTeam = () => {
+export const useTeamDetail = () => {
   const context = useContext(TeamContext);
   if (!context) {
     throw new Error(
-      "useTeam 는 반드시 TeamProvider 내부에서 사용되어야 합니다."
+      "useTeamDetail 는 반드시 TeamDetailProvider 내부에서 사용되어야 합니다."
     );
   }
   return context;
@@ -191,7 +193,7 @@ export const useTeam = () => {
 // 기존 useTeamController와 호환성을 위한 hook
 export const useTeamController = () => {
   const { handleActiveMember, handleFilteredType, handleFilterdTypeReset } =
-    useTeam();
+    useTeamDetail();
 
   return {
     handleActiveMember,

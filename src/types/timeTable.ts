@@ -17,7 +17,7 @@ export interface TimeTableRequest {
 }
 
 export interface TeamTimeTableRequest {
-  userTimetableId: number;
+  timetableData: Record<Range, string[]>;
 }
 
 export interface TeamTimeTableResponse {

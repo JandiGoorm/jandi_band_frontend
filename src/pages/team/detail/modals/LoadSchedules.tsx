@@ -2,8 +2,34 @@ import Button from "@/components/button/Button";
 import Modal from "@/components/modal/Modal";
 import styles from "./LoadSchedules.module.css";
 import { FiPlus } from "react-icons/fi";
+import { useGetMyTimeTables, useGetTimeScheduleDetail } from "@/apis/timetable";
+import TimeTableCards from "@/components/cards/TimeTableCards";
+import { useState, useEffect } from "react";
+import clsx from "clsx";
+import { convertTimeTableToMap } from "@/utils/timetable";
+import { useSelectableAreaContext } from "@/components/scheduler/SelectableArea";
 
 const LoadSchedules = () => {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const { data: timeTables } = useGetMyTimeTables();
+  const { data: timeTableDetail, refetch } = useGetTimeScheduleDetail(
+    String(selectedId ?? ""),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  const { setSelectedItems } = useSelectableAreaContext();
+
+  useEffect(() => {
+    if (!selectedId || !timeTableDetail) return;
+    const timeTable = convertTimeTableToMap(
+      timeTableDetail.data.timetableData ?? null
+    );
+    setSelectedItems(timeTable);
+  }, [selectedId, timeTableDetail, setSelectedItems]);
+
   return (
     <Modal
       trigger={
@@ -13,9 +39,41 @@ const LoadSchedules = () => {
       }
       title="내 시간표 가져오기"
     >
-      <section>
-        <h3>일정 불러오기</h3>
-      </section>
+      {(setOpen) => {
+        return (
+          <section className={styles.container}>
+            <h3 className={styles.title}>내 시간표 목록</h3>
+
+            <div className={styles.list_container}>
+              {timeTables?.data?.map((timeTable) => (
+                <div
+                  key={timeTable.id}
+                  className={clsx(
+                    selectedId === timeTable.id && styles.selected,
+                    styles.card
+                  )}
+                >
+                  <TimeTableCards
+                    timeTable={timeTable}
+                    onClick={() => setSelectedId(timeTable.id)}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <Button
+              variant="secondary"
+              className={styles.button}
+              onClick={() => {
+                refetch();
+                setOpen(false);
+              }}
+            >
+              불러오기
+            </Button>
+          </section>
+        );
+      }}
     </Modal>
   );
 };

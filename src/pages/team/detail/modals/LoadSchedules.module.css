@@ -13,3 +13,33 @@
 
   box-shadow: var(--shadow-md);
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.list_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-lg);
+}
+
+.button {
+  align-self: center;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.selected {
+  outline: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+}

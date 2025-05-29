@@ -4,7 +4,7 @@ import Field from "@/components/field/Field";
 import Input from "@/components/input/Input";
 import TimeScheduler from "@/components/scheduler/TimeScheduler";
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import { convertTimeTable } from "@/utils/convertTimeTable";
+import { convertTimeTable } from "@/utils/timetable";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
 import { useState } from "react";

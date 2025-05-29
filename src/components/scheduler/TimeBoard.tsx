@@ -3,15 +3,14 @@ import { range } from "./constants";
 import { SelectableAreaContainer, SelectableAreaItem } from "./SelectableArea";
 import styles from "./TimeBoard.module.css";
 import type { Range } from "@/types/timeTable";
+import { timeLineItems } from "@/utils/timetable";
 
 interface TimeBoardProps {
-  timeLineItems: string[];
   isEditable?: boolean;
   initialTimeSchedule?: Record<Range, string[]>;
 }
 
 const TimeBoard = ({
-  timeLineItems,
   isEditable = false,
   initialTimeSchedule,
 }: TimeBoardProps) => {
