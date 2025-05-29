@@ -25,13 +25,12 @@ export const usePutPoll = (pollId: number, songId: number, emoji: string) => {
 };
 
 // 곡 투표 취소 DELETE
-// 여기는 승휘님께 물어봐야할듯. 타입 정의 바꿔도되는지!
 export const useDeletePoll = (
   pollId: string,
   songId: string,
   emoji: string
 ) => {
-  return useDelete(
+  return useDelete<SongType>(
     buildPath(ApiEndpotins.POLL_VOTE, { pollId, songId, emoji })
   );
 };
