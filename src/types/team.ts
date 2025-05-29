@@ -64,3 +64,16 @@ export interface CreatorInfo {
   userId: number;
   name: string;
 }
+
+export interface MyTeamInfo {
+  id: number;
+  name: string;
+  description: string;
+  clubId: number;
+  clubName: string;
+  creatorId: number;
+  creatorName: string;
+  joinedAt: string;
+  createdAt: string;
+  memberCount: number;
+}
