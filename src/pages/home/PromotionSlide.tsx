@@ -8,7 +8,7 @@ import { PageEndpoints } from "@/constants/endpoints";
 
 const PromotionSlide = ({ promo }: { promo: PromotionListResponse[] }) => {
   const navigate = useNavigate();
-  const { data: promoListData } = useGetPromoList();
+  const { data: promoListData } = useGetPromoList({});
   const items = promoListData?.data.content;
   console.log(items);
   return (
