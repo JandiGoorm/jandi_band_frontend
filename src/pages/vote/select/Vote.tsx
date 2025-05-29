@@ -13,8 +13,6 @@ import kakao from "@/pages/vote/style/kakao.svg";
 import styles from "@/pages/vote/select/Vote.module.css";
 import Loading from "@/components/loading/Loading";
 
-// 더미데이터 로딩
-
 const Vote = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -59,7 +57,7 @@ const Vote = () => {
 
         <section className={styles.vote_grid}>
           {poll.songs.map((song) => (
-            <SongCard key={song.id} song={song} />
+            <SongCard key={song.id} song={song} pollId={poll.id} />
           ))}
         </section>
       </main>

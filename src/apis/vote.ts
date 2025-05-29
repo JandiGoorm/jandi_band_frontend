@@ -18,7 +18,7 @@ export const usePostPoll = (pollId: string) => {
 };
 
 // 곡에 투표하기 PUT
-export const usePutPoll = (pollId: string, songId: string, emoji: string) => {
+export const usePutPoll = (pollId: number, songId: number, emoji: string) => {
   return useUpdate<undefined, SongType>(
     buildPath(ApiEndpotins.POLL_VOTE, { pollId, songId, emoji })
   );
