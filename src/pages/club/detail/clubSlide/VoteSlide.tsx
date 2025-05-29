@@ -12,9 +12,11 @@ import { buildPath } from "@/utils/buildPath";
 const VoteSlide = ({
   polls,
   isMember,
+  refetch,
 }: {
   polls: Poll[];
   isMember: boolean;
+  refetch: () => void;
 }) => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -40,7 +42,7 @@ const VoteSlide = ({
               </Button>
             }
           >
-            <VoteModal />
+            {(setOpen) => <VoteModal setOpen={setOpen} refetch={refetch} />}
           </Modal>
         )}
       </header>

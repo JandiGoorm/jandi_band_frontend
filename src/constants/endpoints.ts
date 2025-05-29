@@ -6,12 +6,12 @@ export enum PageEndpoints {
   PROMOTION = "/promotion",
   PROMOTION_DETAIL = "/promotion/:id",
   PROMOTION_POST = "/promotion/post",
-  VOTE = "/vote",
+  VOTE = "/vote/:id",
   TEAM = "/team/*",
   TEAM_DETAIL = "/team/:id",
   CLUB = "/club/:id",
   CLUB_VOTE_LIST = "/club/:id/vote",
-  VOTE_RESULT = "/vote/result",
+  VOTE_RESULT = "/vote/:id/result",
   MYPAGE = "/mypage",
   POST_TIME_SCHEDULE = "/post/time-schedule",
   MY_TIMETABLE_DETAIL = "/time-schedule/:id",
@@ -23,7 +23,11 @@ export enum ApiEndpotins {
   SIGN_UP = "/auth/signup",
   REFRESH_TOKEN = "/auth/refresh",
   ME = "/users/me/info",
+
+  PROMOTION = "/promos",
   CLUB = "/clubs",
+  MY_CLUB = "/my/clubs",
+  MY_TEAM = "/my/teams",
   CLUB_DETAIL = "/clubs/:id",
   CLUB_MEMBERS = "/clubs/:id/members",
   UNIVERSITIES = "/univ/all",
@@ -35,4 +39,10 @@ export enum ApiEndpotins {
   MY_TIMETABLE_DETAIL = "/users/me/timetables/:id",
   TEAM_DETAIL = "/teams/:id",
   MY_TIMETABLE_BY_TEAM = "/teams/:id/members/me/timetable",
+
+  MAKE_POLL = "/polls", //투표 생성
+  POLL = "/polls/:pollId", // 투표 상세 조회
+  POLL_ADD_RECOMMEND = "/polls/:pollId/songs",
+  POLL_VOTE = "/polls/:pollId/songs/:songId/votes/:emoji",
+  POLL_LIST = "/polls/clubs/:clubId",
 }

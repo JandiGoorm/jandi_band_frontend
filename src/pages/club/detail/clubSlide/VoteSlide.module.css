@@ -16,7 +16,7 @@
   align-items: end;
 }
 .title {
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-main);
   cursor: pointer;
