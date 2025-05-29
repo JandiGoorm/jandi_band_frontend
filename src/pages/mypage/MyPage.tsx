@@ -11,20 +11,18 @@ import ProfilEdit from "@/pages/mypage/ProfilEdit";
 import Profile from "@/pages/vote/style/profile.svg";
 import { useGetMyTimeTables } from "@/apis/timetable";
 import Loading from "@/components/loading/Loading";
+import { useGetMyTeamList } from "@/apis/team";
+import Slide from "@/components/slide/Slide";
+import type { MyTeamInfo } from "@/types/team";
+import TeamCards from "@/components/cards/TeamCard";
 
 const MyPage = () => {
   const { data: myTimeTables, isLoading } = useGetMyTimeTables();
+  const { data: myTeamLists, isLoading: MyTeamLoading } = useGetMyTeamList();
 
-  // const sampleItems = [
-  //   { id: 1, name: "아이템 1" },
-  //   { id: 2, name: "아이템 2" },
-  //   { id: 3, name: "아이템 3" },
-  //   { id: 4, name: "아이템 4" },
-  //   { id: 5, name: "아이템 5" },
-  //   { id: 6, name: "아이템 6" },
-  // ];
+  console.log(myTeamLists);
 
-  if (isLoading || !myTimeTables) return <Loading />;
+  if (isLoading || !myTimeTables || MyTeamLoading) return <Loading />;
 
   return (
     <DefaultLayout>
@@ -72,9 +70,11 @@ const MyPage = () => {
             <img src={MusicNote2} alt="음표" />
             <h2>참여 팀 목록</h2>
           </div>
-          {/* <Slide items={sampleItems} size="sm">
-            {(item) => <TeamCards title={item.name} />}
-          </Slide> */}
+          {myTeamLists?.data && (
+            <Slide<MyTeamInfo> items={myTeamLists.data}>
+              {(item) => <TeamCards item={item} />}
+            </Slide>
+          )}
         </section>
 
         <section className={styles.timetable_box}>
