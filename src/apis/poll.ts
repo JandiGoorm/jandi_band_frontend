@@ -1,13 +1,22 @@
 import { useFetch, usePost } from "./hooks";
 import { buildPath } from "@/utils/buildPath";
+import type { Poll } from "@/types/poll";
+import type { PagiNationResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
 import type { CreatePollRequest, Poll } from "@/types/poll";
-import type { PageableResponse } from "@/types/common";
 
-// 클럽별 투표 목록 조회
-export const useGetClubPoll = (id: string) => {
-  return useFetch<PageableResponse<Poll>>(
-    buildPath(ApiEndpotins.CLUB_POLL, { id })
+export const useGetClubPoll = ({
+  id,
+  page = 0,
+  size = 20,
+}: {
+  id: string;
+  page?: number;
+  size?: number;
+}) => {
+  return useFetch<PagiNationResponse<Poll>>(
+    buildPath(ApiEndpotins.CLUB_POLL, { id }),
+    { page: page, size: size }
   );
 };
 

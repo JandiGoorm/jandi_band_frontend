@@ -33,7 +33,7 @@
 
 .bars {
   position: absolute;
-  bottom: 30%;
+  bottom: 25%;
   display: flex;
   gap: 0.25rem;
   align-items: flex-end;
@@ -55,5 +55,20 @@
   line-height: 1.2;
   text-align: center;
   word-break: break-word;
-  width: 100%;
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.end {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-white);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-lg);
 }
