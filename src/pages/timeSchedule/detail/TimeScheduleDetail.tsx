@@ -29,7 +29,7 @@ const TimeScheduleDetail = () => {
 
   const { data: timeSchedule } = useGetTimeScheduleDetail(id ?? "");
   const { mutate: updateTimeSchedule } = useUpdateTimeSchedule(id ?? "");
-  const { mutate: deleteTimeSchedule } = useDeleteTimeSchedule();
+  const { mutate: deleteTimeSchedule } = useDeleteTimeSchedule(id ?? "");
 
   const {
     register,
@@ -88,7 +88,7 @@ const TimeScheduleDetail = () => {
               }
               title="시간표 삭제"
               onDelete={() => {
-                deleteTimeSchedule(Number(id), {
+                deleteTimeSchedule(undefined, {
                   onSuccess: () => {
                     navigate(PageEndpoints.MYPAGE);
                   },
