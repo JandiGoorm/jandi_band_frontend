@@ -1,6 +1,6 @@
 import styles from "./QuickFilter.module.css";
 import clsx from "clsx";
-import { useTeamController, useTeam } from "../TeamDetailProvider";
+import { useTeamController, useTeamDetail } from "../TeamDetailProvider";
 import { type Position } from "@/types/team";
 
 const filterButtons: { label: string; type: Position | null }[] = [
@@ -32,7 +32,7 @@ const filterButtons: { label: string; type: Position | null }[] = [
 
 const QuickFilter = () => {
   const { handleFilteredType, handleFilterdTypeReset } = useTeamController();
-  const { filteredTypes, activeIds, team } = useTeam();
+  const { filteredTypes, activeIds, team } = useTeamDetail();
 
   return (
     <section className={styles.container}>

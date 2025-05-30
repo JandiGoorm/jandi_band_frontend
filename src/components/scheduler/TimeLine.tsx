@@ -1,10 +1,7 @@
+import { timeLineItems } from "@/utils/timetable";
 import styles from "./TimeLine.module.css";
 
-interface TimeLineProps {
-  timeLineItems: string[];
-}
-
-const TimeLine = ({ timeLineItems }: TimeLineProps) => {
+const TimeLine = () => {
   return (
     <div className={styles.container}>
       {timeLineItems.map((item) => (

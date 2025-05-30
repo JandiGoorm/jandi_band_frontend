@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Slot } from "@radix-ui/react-slot";
 import React, {
   createContext,
@@ -17,6 +18,7 @@ const SelectableAreaContext = createContext<{
   addItem: (id: string, isSelected: boolean) => void;
   toggle: (isSelecting: boolean) => void;
   selectedItems: Map<string, boolean>;
+  setSelectedItems: (items: Map<string, boolean>) => void;
   disabled?: boolean;
 }>({
   isDragging: false,
@@ -28,9 +30,10 @@ const SelectableAreaContext = createContext<{
   toggle: () => {},
   selectedItems: new Map(),
   disabled: false,
+  setSelectedItems: () => {},
 });
 
-const useSelectableAreaContext = () => {
+export const useSelectableAreaContext = () => {
   const context = useContext(SelectableAreaContext);
   if (!context) {
     throw new Error(
@@ -112,6 +115,7 @@ const SelectableArea = ({
       addItem,
       toggle,
       selectedItems,
+      setSelectedItems,
       disabled,
     }),
     [
@@ -123,6 +127,7 @@ const SelectableArea = ({
       addItem,
       toggle,
       selectedItems,
+      setSelectedItems,
       disabled,
     ]
   );
