@@ -2,22 +2,26 @@ import TimeScheduler from "@/components/scheduler/TimeScheduler";
 import { useNavigate } from "react-router-dom";
 import styles from "./TeamDetail.module.css";
 import { useTeamDetail } from "./TeamDetailProvider";
-import KakaoShare from "./modals/KakaoShare";
+import InviteTeam from "./modals/InviteTeam";
 import QuickFilter from "./quickFilter/QuickFilter";
 import ScheduleBoard from "./scheduleBoard/ScheduleBoard";
 import TeamMembers from "./teamMembers/TeamMembers";
 import Button from "@/components/button/Button";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
+import Loading from "@/components/loading/Loading";
 
 const TeamDetail = () => {
   const navigate = useNavigate();
-  const { teamTimeAvailableSchedule, teamId } = useTeamDetail();
+  const { teamTimeAvailableSchedule, teamId, team, isLoading } =
+    useTeamDetail();
 
+  if (isLoading) return <Loading />;
+  if (!team) return <div>팀 정보를 찾을 수 없습니다.</div>;
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1>뫄뫄 밴드부 A팀</h1>
+        <h1>{team.name}</h1>
 
         <div className={styles.header_button_container}>
           <Button
@@ -30,7 +34,7 @@ const TeamDetail = () => {
           >
             내 시간표 입력
           </Button>
-          <KakaoShare />
+          <InviteTeam />
         </div>
       </header>
 

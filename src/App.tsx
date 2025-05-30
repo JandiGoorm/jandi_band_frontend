@@ -18,6 +18,7 @@ import { queryClient } from "./config/queryClient";
 import TeamLayout from "./pages/team/TeamLayout";
 import TimeScheduleDetail from "./pages/timeSchedule/detail/TimeScheduleDetail";
 import VoteList from "./pages/club/more/VoteList";
+import Invite from "./pages/invite/Invite";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             path={PageEndpoints.MY_TIMETABLE_DETAIL}
             element={<TimeScheduleDetail />}
           />
+          <Route path={PageEndpoints.INVITE} element={<Invite />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
