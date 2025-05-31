@@ -3,7 +3,7 @@ import { MutationCache, QueryClient } from "@tanstack/react-query";
 import { useToastStore } from "../stores/toastStore";
 import { getRandomId } from "@/utils/random";
 import type { ApiResponse } from "../apis/types";
-import type { AxiosResponse } from "axios";
+import type { AxiosResponse, AxiosError } from "axios";
 import type { Nullable } from "../types/common";
 
 let currentToastId: Nullable<string> = null;
@@ -70,6 +70,27 @@ export const queryClient = new QueryClient({
           }
         }, remainingTime);
       }
+    },
+    onError: (error: unknown) => {
+      if (!currentToastId || !toastStartTime) return;
+      const elapsedTime = Date.now() - toastStartTime;
+      const remainingTime = Math.max(0, MIN_TOAST_DURATION - elapsedTime);
+
+      setTimeout(() => {
+        if (currentToastId) {
+          const axiosError = error as AxiosError<ApiResponse<unknown>>;
+          const errorMessage =
+            axiosError?.response?.data?.message ??
+            axiosError?.message ??
+            "오류가 발생했습니다. 다시 시도해주세요.";
+
+          useToastStore
+            .getState()
+            .updateToast(currentToastId, "error", errorMessage);
+          currentToastId = null;
+          toastStartTime = null;
+        }
+      }, remainingTime);
     },
   }),
 });
