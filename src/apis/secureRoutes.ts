@@ -11,6 +11,7 @@ enum Method {
 export const secureRoutes = [
   { method: Method.POST, url: ApiEndpotins.SIGN_UP },
   { method: Method.GET, url: ApiEndpotins.ME },
+  { method: Method.PATCH, url: ApiEndpotins.ME },
   { method: Method.GET, url: ApiEndpotins.MY_CLUB },
   { method: Method.GET, url: ApiEndpotins.MY_TEAM },
   { method: Method.GET, url: ApiEndpotins.UNIVERSITIES },
