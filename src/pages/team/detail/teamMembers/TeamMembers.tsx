@@ -19,6 +19,9 @@ const TeamMembers = () => {
         >
           <span className={styles.team_member_info}>{member.position}</span>
           <span className={styles.team_member_name}>{member.name}</span>
+          {!member.timetableData && (
+            <span className={styles.team_absolute}>미제출</span>
+          )}
         </button>
       ))}
     </section>
