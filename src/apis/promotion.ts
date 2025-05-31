@@ -1,4 +1,4 @@
-import { useFetch } from "@/apis/hooks";
+import { useFetch, usePost } from "@/apis/hooks";
 import { ApiEndpotins } from "@/constants/endpoints";
 import type { PagiNationResponse } from "@/types/common";
 import type { PromotionListResponse } from "@/types/promotion";
@@ -14,4 +14,8 @@ export const useGetPromoList = ({
     ApiEndpotins.PROMOTION,
     { page: page, size: size }
   );
+};
+
+export const usePostPromotion = () => {
+  return usePost<FormData, PromotionListResponse>(ApiEndpotins.PROMOTION);
 };

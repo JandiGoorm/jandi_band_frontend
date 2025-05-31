@@ -33,4 +33,5 @@ export const secureRoutes = [
   { method: Method.PUT, url: ApiEndpotins.POLL_VOTE },
   { method: Method.DELETE, url: ApiEndpotins.POLL_VOTE },
   { method: Method.GET, url: ApiEndpotins.POLL_LIST },
+  { method: Method.POST, url: ApiEndpotins.PROMOTION },
 ];

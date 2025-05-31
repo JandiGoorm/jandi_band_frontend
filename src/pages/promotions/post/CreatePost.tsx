@@ -1,8 +1,11 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "@/pages/promotions/post/CreatePost.module.css";
 import Button from "@/components/button/Button";
+import { usePostPromotion } from "@/apis/promotion";
+import { PageEndpoints } from "@/constants/endpoints";
+import { buildPath } from "@/utils/buildPath";
 // import Input from '@/components/input/Input';
 
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
@@ -11,6 +14,8 @@ const CreatePost = () => {
   const navigate = useNavigate();
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const [imageURL, setimageURL] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const { mutate: createPromo, data: postData } = usePostPromotion();
 
   const handleClickSection = () => {
     imageInputRef.current?.click();
@@ -28,7 +33,40 @@ const CreatePost = () => {
 
     const imageUrl = URL.createObjectURL(file);
     setimageURL(imageUrl);
+    setImageFile(file);
   };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!imageFile) return;
+
+    const form = e.currentTarget;
+
+    const formData = new FormData();
+
+    formData.append("image", imageFile);
+
+    formData.append("title", form.title.value);
+    formData.append("teamName", form.team.value);
+    formData.append("admissionFee", form.price.value);
+    formData.append(
+      "eventDatetime",
+      `${form.date.value}T${form.time.value}:00`
+    );
+    formData.append("location", form.location.value);
+    formData.append("address", form.location.value);
+    formData.append("description", form.description.value);
+
+    createPromo(formData);
+  };
+
+  useEffect(() => {
+    if (!postData || !imageFile) return;
+    console.log(postData);
+    const id = postData.data.data.id;
+
+    navigate(buildPath(PageEndpoints.PROMOTION_DETAIL, { id }));
+  }, [postData, navigate]);
 
   return (
     <DefaultLayout>
@@ -38,7 +76,7 @@ const CreatePost = () => {
           <p>* 공연 홍보와 관계 없는 글은 운영진에 의해 삭제될 수 있습니다.</p>
         </header>
 
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <input placeholder="제목" type="text" name="title" required />
 
           {/* 이미지와 정보 */}
@@ -62,6 +100,7 @@ const CreatePost = () => {
                   accept="image/*"
                   ref={imageInputRef}
                   onChange={imageUpload}
+                  required
                 />
               </div>
             </aside>
