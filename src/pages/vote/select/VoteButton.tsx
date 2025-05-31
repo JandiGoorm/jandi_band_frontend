@@ -34,8 +34,6 @@ export default function VoteButton({
     selectedEmoji ?? ""
   );
 
-  console.log(selectedEmoji);
-
   useEffect(() => {
     setSelectedEmoji(userVoteType);
   }, [userVoteType]);
