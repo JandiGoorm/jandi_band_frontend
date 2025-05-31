@@ -1,15 +1,33 @@
 import { FaRegHeart } from "react-icons/fa";
 import styles from "./DetailContent.module.css";
 import Button from "@/components/button/Button";
+import { useNavigate, useParams } from "react-router-dom";
+import { buildPath } from "@/utils/buildPath";
+import { PageEndpoints } from "@/constants/endpoints";
 
 const DetailContent = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  if (!id) return;
+
   return (
     <>
       <header className={styles.page_title}>
         <section>
           <span className={styles.promo_button}>공연 예정</span>
         </section>
-        <p className={styles.promo_title}>뫄 동아리 8월 정기 공연</p>
+        <div className={styles.title_box}>
+          <p className={styles.promo_title}>뫄 동아리 8월 정기 공연</p>
+          <Button
+            size="sm"
+            onClick={() =>
+              navigate(buildPath(PageEndpoints.PROMOTION_UPDATE, { id }))
+            }
+          >
+            수정
+          </Button>
+        </div>
         <section className={styles.basic_info}>
           <p>조회 20</p>
           <p>댓글 20</p>
