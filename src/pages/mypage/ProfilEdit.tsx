@@ -6,7 +6,7 @@ import camera from "/public/camera.svg";
 
 import { useForm } from "react-hook-form";
 import Field from "@/components/field/Field";
-// import UniversitySelect from "@/components/select/UniversitySelect";
+import UniversitySelect from "@/components/select/UniversitySelect";
 import PositionSelect from "@/pages/auth/signUp/PositionSelect";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpFormSchema } from "@/pages/auth/signUp/constants";
@@ -81,9 +81,13 @@ const ProfilEdit = () => {
           <PositionSelect formController={formController} />
         </Field>
 
-        {/* <Field label="소속대학" error={errors.university}>
-          <UniversitySelect formController={formController} />
-        </Field> */}
+        <Field label="소속대학" error={errors.university} isRequired>
+          <UniversitySelect
+            onValueChange={(university) => {
+              formController.setValue("university", university.name);
+            }}
+          />
+        </Field>
 
         <Button type="submit" variant="secondary">
           수정 완료
