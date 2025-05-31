@@ -27,3 +27,19 @@ export const useGetTeamList = (id: string) => {
 export const useGetMyTeamList = () => {
   return useFetch<MyTeamInfo[]>(ApiEndpotins.MY_TEAM);
 };
+
+export const useInviteTeam = (id: string) => {
+  return usePost<void, { link: string }>(
+    buildPath(ApiEndpotins.TEAM_INVITE, { id })
+  );
+};
+
+export const useInviteClub = (id: string) => {
+  return usePost<void, { link: string }>(
+    buildPath(ApiEndpotins.CLUB_INVITE, { id })
+  );
+};
+
+export const useJoinTeam = (code: string) => {
+  return usePost<void, void>(`${ApiEndpotins.JOIN_TEAM}?code=${code}`);
+};

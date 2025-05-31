@@ -8,6 +8,7 @@ import Button from "@/components/button/Button";
 import Modal from "@/components/modal/Modal";
 import ModifyClubModal from "./ModifyClubModal";
 import { useAuthStore } from "@/stores/authStore";
+import InviteModal from "./InviteModal";
 
 const ClubInfo = ({
   club,
@@ -34,12 +35,16 @@ const ClubInfo = ({
             {club.university?.name ?? "연합 동아리"}
           </p>
         </div>
+
         <div className={styles.left_title}>
+          <InviteModal />
+
           {mine ? (
             <Modal trigger={<Button>수정하기</Button>} title="동아리 수정하기">
               <ModifyClubModal club={club} />
             </Modal>
           ) : null}
+
           {club.instagramId ? (
             <FaInstagram
               size={40}

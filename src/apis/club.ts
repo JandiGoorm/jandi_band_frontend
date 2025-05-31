@@ -42,3 +42,13 @@ export const useGetClubMembers = (id: string) => {
     buildPath(ApiEndpotins.CLUB_MEMBERS, { id })
   );
 };
+
+export const useInviteClub = (id: string) => {
+  return usePost<void, { link: string }>(
+    buildPath(ApiEndpotins.CLUB_INVITE, { id })
+  );
+};
+
+export const useJoinClub = (code: string) => {
+  return usePost<void, object>(`${ApiEndpotins.JOIN_CLUB}?code=${code}`);
+};

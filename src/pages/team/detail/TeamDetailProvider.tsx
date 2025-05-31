@@ -18,7 +18,7 @@ interface TeamDetailContextValue {
   // API 데이터
   team: Nullable<TeamDetailResponse>;
   teamId: string;
-
+  isLoading: boolean;
   activeIds: number[];
   filteredTypes: string[];
   teamTimeAvailableSchedule: Record<Range, string[]>;
@@ -44,7 +44,7 @@ export const TeamDetailProvider = ({
   const [activeIds, setActiveIds] = useState<number[]>([]);
   const [filteredTypes, setFilteredTypes] = useState<string[]>([]);
 
-  const { data } = useGetTeamDetail(teamId);
+  const { data, isLoading } = useGetTeamDetail(teamId);
 
   const members = team?.members;
   const membersIds = members?.filter((v) => v.isSubmitted).map((v) => v.userId);
@@ -167,7 +167,7 @@ export const TeamDetailProvider = ({
   const value: TeamDetailContextValue = {
     team,
     teamId,
-    // isLoading,
+    isLoading,
     activeIds,
     filteredTypes,
     teamTimeAvailableSchedule,
