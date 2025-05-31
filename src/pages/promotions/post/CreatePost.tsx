@@ -61,7 +61,7 @@ const CreatePost = () => {
   };
 
   useEffect(() => {
-    if (!postData || !imageFile) return;
+    if (!postData) return;
     console.log(postData);
     const id = postData.data.data.id;
 
