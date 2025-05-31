@@ -6,6 +6,7 @@
 }
 
 .team_member {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -26,4 +27,16 @@
 .active {
   background: var(--color-tag-active-bg);
   color: var(--color-black);
+}
+
+.team_absolute {
+  position: absolute;
+  top: -12px;
+  right: 0;
+  font-size: var(--text-xs);
+
+  padding: 2px 4px;
+  border-radius: var(--radius-md);
+  background: var(--color-black);
+  color: var(--color-white);
 }

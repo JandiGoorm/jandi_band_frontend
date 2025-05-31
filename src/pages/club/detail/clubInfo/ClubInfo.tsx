@@ -1,14 +1,12 @@
-import styles from "./ClubInfo.module.css";
+import { useAuthStore } from "@/stores/authStore";
+import type { ClubDetailResponse, ClubMemberResponse } from "@/types/club";
 import { FaInstagram } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { GiGuitar, GiPianoKeys, GiDrumKit } from "react-icons/gi";
+import { GiDrumKit, GiGuitar, GiPianoKeys } from "react-icons/gi";
 import { PiMicrophoneStage } from "react-icons/pi";
-import type { ClubDetailResponse, ClubMemberResponse } from "@/types/club";
-import Button from "@/components/button/Button";
-import Modal from "@/components/modal/Modal";
-import ModifyClubModal from "./ModifyClubModal";
-import { useAuthStore } from "@/stores/authStore";
+import styles from "./ClubInfo.module.css";
 import InviteModal from "./InviteModal";
+import ModifyClubModal from "./ModifyClubModal";
 
 const ClubInfo = ({
   club,
@@ -39,11 +37,7 @@ const ClubInfo = ({
         <div className={styles.left_title}>
           <InviteModal />
 
-          {mine ? (
-            <Modal trigger={<Button>수정하기</Button>} title="동아리 수정하기">
-              <ModifyClubModal club={club} />
-            </Modal>
-          ) : null}
+          {mine && <ModifyClubModal club={club} />}
 
           {club.instagramId ? (
             <FaInstagram
