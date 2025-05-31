@@ -18,6 +18,12 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.title_button_box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 .promo_title {
   font-weight: var(--font-weight-bold);
   font-size: var(--text-2xl);

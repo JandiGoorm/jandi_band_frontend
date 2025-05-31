@@ -4,10 +4,13 @@ import Button from "@/components/button/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
+import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
+import { useDeletePromo } from "@/apis/promotion";
 
 const DetailContent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { mutate: deletePromo } = useDeletePromo(id!);
 
   if (!id) return;
 
@@ -19,14 +22,28 @@ const DetailContent = () => {
         </section>
         <div className={styles.title_box}>
           <p className={styles.promo_title}>뫄 동아리 8월 정기 공연</p>
-          <Button
-            size="sm"
-            onClick={() =>
-              navigate(buildPath(PageEndpoints.PROMOTION_UPDATE, { id }))
-            }
-          >
-            수정
-          </Button>
+          <div className={styles.title_button_box}>
+            <Button
+              size="sm"
+              onClick={() =>
+                navigate(buildPath(PageEndpoints.PROMOTION_UPDATE, { id }))
+              }
+            >
+              수정
+            </Button>
+            <DeleteModal
+              trigger={<Button size="sm">삭제</Button>}
+              title="게시물 삭제"
+              description="정말 해당 게시물을 삭제 하시겠어요?"
+              onDelete={() => {
+                deletePromo(Number(id), {
+                  onSuccess: () => {
+                    navigate(PageEndpoints.PROMOTION);
+                  },
+                });
+              }}
+            />
+          </div>
         </div>
         <section className={styles.basic_info}>
           <p>조회 20</p>

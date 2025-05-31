@@ -1,4 +1,4 @@
-import { useFetch, usePatch, usePost } from "@/apis/hooks";
+import { useDelete, useFetch, usePatch, usePost } from "@/apis/hooks";
 import { ApiEndpotins } from "@/constants/endpoints";
 import type { PagiNationResponse } from "@/types/common";
 import type { PromotionListResponse } from "@/types/promotion";
@@ -31,4 +31,8 @@ export const useGetPromo = (id: string) => {
   return useFetch<PromotionListResponse>(
     buildPath(ApiEndpotins.PROMOTION_DETAIL, { id })
   );
+};
+
+export const useDeletePromo = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.PROMOTION_DETAIL, { id }));
 };
