@@ -4,7 +4,7 @@ import { ApiEndpotins } from "@/constants/endpoints";
 import type { TeamFormData } from "@/pages/club/detail/clubSlide/modalContent/TeamModal";
 import type { MyTeamInfo, TeamBasicResponse, TeamResponse } from "@/types/team";
 import { buildPath } from "@/utils/buildPath";
-import type { PagiNationResponse } from "@/types/common";
+import type { PagiNationResponse, Nullable } from "@/types/common";
 
 export const useGetTeamDetail = (id: string) => {
   return useFetch<TeamDetailResponse>(
@@ -41,5 +41,7 @@ export const useInviteClub = (id: string) => {
 };
 
 export const useJoinTeam = (code: string) => {
-  return usePost<void, void>(`${ApiEndpotins.JOIN_TEAM}?code=${code}`);
+  return usePost<void, { teamId: Nullable<string>; clubId: Nullable<string> }>(
+    `${ApiEndpotins.JOIN_TEAM}?code=${code}`
+  );
 };
