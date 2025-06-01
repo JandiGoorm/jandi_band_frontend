@@ -1,3 +1,4 @@
+/* 2025년 몇월 */
 .header {
   display: flex;
   align-items: center;
@@ -10,6 +11,8 @@
   padding: 0 0.5rem;
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .nav_box {
