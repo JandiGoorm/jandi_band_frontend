@@ -55,3 +55,7 @@ export const useJoinClub = (code: string) => {
     `${ApiEndpotins.JOIN_CLUB}?code=${code}`
   );
 };
+
+export const useUpdateClubImage = (id: string) => {
+  return usePost<FormData, string>(buildPath(ApiEndpotins.CLUB_IMAGE, { id }));
+};

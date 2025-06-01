@@ -18,6 +18,7 @@ export const secureRoutes = [
   { method: Method.POST, url: ApiEndpotins.CLUB },
   { method: Method.GET, url: ApiEndpotins.CLUB_DETAIL },
   { method: Method.PATCH, url: ApiEndpotins.CLUB_DETAIL },
+  { method: Method.POST, url: ApiEndpotins.CLUB_IMAGE },
   { method: Method.GET, url: ApiEndpotins.CLUB_POLL },
   { method: Method.GET, url: ApiEndpotins.CLUB_TEAM },
   { method: Method.POST, url: ApiEndpotins.CLUB_TEAM },

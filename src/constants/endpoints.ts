@@ -33,6 +33,7 @@ export enum ApiEndpotins {
   CLUB_DETAIL = "/clubs/:id",
   CLUB_MEMBERS = "/clubs/:id/members",
   CLUB_TEAM = "/clubs/:id/teams",
+  CLUB_IMAGE = "/clubs/:id/main-image",
 
   MY_TEAM = "/my/teams",
   UNIVERSITIES = "/univ/all",
