@@ -50,7 +50,7 @@ const MyPage = () => {
               title="마이프로필 수정하기"
               trigger={<button>수정하기</button>}
             >
-              <ProfilEdit />
+              <ProfilEdit myInfo={myInfo} />
             </Modal>
           </header>
           <div className={styles.profile_content}>

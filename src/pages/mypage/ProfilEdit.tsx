@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import styles from "@/pages/mypage/ProfileEdit.module.css";
 import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
@@ -11,9 +11,21 @@ import PositionSelect from "@/pages/auth/signUp/PositionSelect";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { usePatchInfo } from "@/apis/mypage";
+
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
-const ProfilEdit = () => {
+interface ProfileEditProps {
+  myInfo:
+    | {
+        nickname: string | null;
+        position: string | null;
+        university: string | null;
+      }
+    | undefined;
+}
+
+const ProfilEdit = ({ myInfo }: ProfileEditProps) => {
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const [imageURL, setimageURL] = useState<string | null>(null);
 
@@ -36,22 +48,55 @@ const ProfilEdit = () => {
   };
 
   const MyPageFormSchema = z.object({
-    nickname: z.string(),
-    position: z
-      .string({ required_error: "포지션을 선택하세요." })
-      .min(1, { message: "포지션을 선택하세요." }),
-    university: z
-      .string({ required_error: "대학을 선택하세요." })
-      .min(1, { message: "대학을 선택하세요." }),
+    nickname: z.string().nullable(),
+    position: z.string().nullable(),
+    university: z.string().nullable(),
   });
 
   const formController = useForm({
     resolver: zodResolver(MyPageFormSchema),
+    defaultValues: {
+      nickname: null,
+      position: null,
+      university: null,
+    },
   });
 
+  const { reset } = formController;
+
+  useEffect(() => {
+    if (myInfo) {
+      reset({
+        nickname: myInfo.nickname ?? null,
+        position: myInfo.position ?? null,
+        university: myInfo.university ?? null,
+      });
+    }
+  }, [myInfo, reset]);
+
   const {
+    handleSubmit,
+    getValues,
     formState: { errors },
   } = formController;
+
+  const { mutate } = usePatchInfo();
+
+  const onSubmit = () => {
+    const file = imageInputRef.current?.files?.[0];
+    const { nickname, position, university } = getValues();
+
+    const formData = new FormData();
+    formData.append("nickname", nickname || "null");
+    formData.append("position", position || "null");
+    formData.append("university", university || "null");
+
+    if (file) {
+      formData.append("profilePhoto", file);
+    }
+
+    mutate(formData);
+  };
 
   return (
     <main className={styles.edit_container}>
@@ -81,13 +126,14 @@ const ProfilEdit = () => {
         </div>
       </header>
 
-      <form className={styles.form_container}>
+      <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
         <Field label="닉네임" error={errors.nickname}>
           <Input inputSize="sm" {...formController.register("nickname")} />
         </Field>
 
         <Field label="포지션" error={errors.position}>
           <PositionSelect
+            // value={formController.watch("position")}
             onValueChange={(position) => {
               formController.setValue("position", position);
             }}
