@@ -36,7 +36,7 @@ const DetailContent = () => {
               title="게시물 삭제"
               description="정말 해당 게시물을 삭제 하시겠어요?"
               onDelete={() => {
-                deletePromo(Number(id), {
+                deletePromo(undefined, {
                   onSuccess: () => {
                     navigate(PageEndpoints.PROMOTION);
                   },
