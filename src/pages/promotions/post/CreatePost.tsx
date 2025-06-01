@@ -1,71 +1,84 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "@/pages/promotions/post/CreatePost.module.css";
 import Button from "@/components/button/Button";
 import { usePostPromotion } from "@/apis/promotion";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
-// import Input from '@/components/input/Input';
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import clsx from "clsx";
 
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
+const schema = z.object({
+  title: z.string().min(1, "제목은 필수입니다"),
+  team: z.string().min(1, "팀명은 필수입니다"),
+  price: z
+    .string()
+    .min(1)
+    .refine((val) => !isNaN(Number(val)), { message: "숫자만 입력하세요" }),
+  date: z.string().min(1),
+  time: z.string().min(1),
+  location: z.string().min(1, "장소는 필수입니다"),
+  description: z.string().optional(),
+  image: z
+    .custom<FileList>()
+    .refine((files) => files && files.length > 0, {
+      message: "이미지를 선택해주세요",
+    })
+    .refine((files) => files?.[0]?.size <= MAX_IMAGE_SIZE_BYTES, {
+      message: "이미지는 10MB 이하만 가능합니다",
+    }),
+});
+
+type FormData = z.infer<typeof schema>;
+
 const CreatePost = () => {
   const navigate = useNavigate();
-  const imageInputRef = useRef<HTMLInputElement | null>(null);
-  const [imageURL, setimageURL] = useState<string | null>(null);
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageURL, setImageURL] = useState<string | null>(null);
   const { mutate: createPromo, data: postData } = usePostPromotion();
 
-  const handleClickSection = () => {
-    imageInputRef.current?.click();
-  };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
 
-  const imageUpload = () => {
-    const file = imageInputRef.current?.files?.item(0);
+  const imageFile = watch("image")?.[0];
 
-    if (!file) return;
-
-    if (file.size > MAX_IMAGE_SIZE_BYTES) {
-      alert("10MB 이하의 이미지만 업로드할 수 있습니다.");
-      return;
+  useEffect(() => {
+    if (imageFile) {
+      const url = URL.createObjectURL(imageFile);
+      setImageURL(url);
     }
+  }, [imageFile]);
 
-    const imageUrl = URL.createObjectURL(file);
-    setimageURL(imageUrl);
-    setImageFile(file);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!imageFile) return;
-
-    const form = e.currentTarget;
-
+  const onSubmit = (data: FormData) => {
     const formData = new FormData();
 
-    formData.append("image", imageFile);
-
-    formData.append("title", form.title.value);
-    formData.append("teamName", form.team.value);
-    formData.append("admissionFee", form.price.value);
-    formData.append(
-      "eventDatetime",
-      `${form.date.value}T${form.time.value}:00`
-    );
-    formData.append("location", form.location.value);
-    formData.append("address", form.location.value);
-    formData.append("description", form.description.value);
+    formData.append("image", data.image[0]);
+    formData.append("title", data.title);
+    formData.append("teamName", data.team);
+    formData.append("admissionFee", data.price);
+    formData.append("eventDatetime", `${data.date}T${data.time}:00`);
+    formData.append("location", data.location);
+    formData.append("address", data.location);
+    formData.append("description", data.description ?? "");
 
     createPromo(formData);
   };
 
   useEffect(() => {
-    if (!postData) return;
-    console.log(postData);
-    const id = postData.data.data.id;
-
-    navigate(buildPath(PageEndpoints.PROMOTION_DETAIL, { id }));
+    if (postData?.data?.data?.id) {
+      const id = postData.data.data.id;
+      navigate(buildPath(PageEndpoints.PROMOTION_DETAIL, { id }));
+    }
   }, [postData, navigate]);
 
   return (
@@ -76,13 +89,24 @@ const CreatePost = () => {
           <p>* 공연 홍보와 관계 없는 글은 운영진에 의해 삭제될 수 있습니다.</p>
         </header>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <input placeholder="제목" type="text" name="title" required />
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <input
+            placeholder="제목"
+            {...register("title")}
+            className={clsx(errors.title && styles.inputError)}
+          />
 
-          {/* 이미지와 정보 */}
           <section className={styles.centerbox}>
-            <aside className={styles.image_inputbox}>
-              <div className={styles.image_input} onClick={handleClickSection}>
+            <aside
+              className={clsx(
+                styles.image_inputbox,
+                errors.image && styles.inputError
+              )}
+            >
+              <div
+                className={styles.image_input}
+                onClick={() => document.getElementById("image")?.click()}
+              >
                 {imageURL ? (
                   <img src={imageURL} alt="선택된 이미지" />
                 ) : (
@@ -92,15 +116,12 @@ const CreatePost = () => {
                     추가해주세요
                   </p>
                 )}
-
                 <input
                   type="file"
                   id="image"
-                  name="image"
                   accept="image/*"
-                  ref={imageInputRef}
-                  onChange={imageUpload}
-                  required
+                  {...register("image")}
+                  style={{ display: "none" }}
                 />
               </div>
             </aside>
@@ -108,42 +129,58 @@ const CreatePost = () => {
             <aside className={styles.infomation_container}>
               <div>
                 <label htmlFor="team">공연팀명</label>
-                <input type="text" id="team" name="team" required />
+                <input
+                  id="team"
+                  {...register("team")}
+                  className={clsx(errors.team && styles.inputError)}
+                />
               </div>
 
               <div className={styles.price_div}>
                 <label htmlFor="price">관람료</label>
                 <input
-                  type="number"
                   id="price"
-                  name="price"
-                  placeholder="숫자만 입력 가능합니다. 무료일 경우 0"
-                  required
+                  type="number"
+                  {...register("price")}
+                  className={clsx(errors.price && styles.inputError)}
                 />
                 <p>원</p>
               </div>
 
               <div>
                 <label htmlFor="date">날짜</label>
-                <input type="date" id="date" name="date" required />
+                <input
+                  id="date"
+                  type="date"
+                  {...register("date")}
+                  className={clsx(errors.date && styles.inputError)}
+                />
               </div>
 
               <div>
                 <label htmlFor="time">시간</label>
-                <input type="time" id="time" name="time" required />
+                <input
+                  id="time"
+                  type="time"
+                  {...register("time")}
+                  className={clsx(errors.time && styles.inputError)}
+                />
               </div>
 
               <div className={styles.locationbox}>
                 <label htmlFor="location">장소</label>
-                <textarea id="location" name="location" required />
+                <textarea
+                  id="location"
+                  {...register("location")}
+                  className={clsx(errors.location && styles.inputError)}
+                />
               </div>
             </aside>
           </section>
 
-          {/* 소개글 */}
           <section className={styles.descriptionbox}>
             <label htmlFor="description">소개글</label>
-            <textarea id="description" name="description" />
+            <textarea id="description" {...register("description")} />
           </section>
 
           <footer className={styles.button_group}>
