@@ -1,0 +1,16 @@
+.cal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.add_but {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #afafaf;
+  background-color: white;
+  padding: 0.3rem 0.7rem;
+  color: #777777;
+}
