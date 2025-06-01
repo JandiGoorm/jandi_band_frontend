@@ -6,14 +6,15 @@
   align-items: center;
   width: 100%;
   gap: 0.25rem;
-  padding-top: 0.25rem;
-  color: var(--color-text-main);
+  /* paddinsg-top: 0.25rem; */
+  color: #5e5e5e;
 }
 
 .week_row {
   display: flex;
   width: 100%;
   gap: 0.25rem;
+  border-bottom: 1px solid #d6d6d6;
 }
 
 .day_cell {
@@ -22,8 +23,8 @@
   position: relative;
   box-sizing: border-box;
   padding: 0 0.5rem;
-  border: 1.2px solid #c7c7c7;
-  border-radius: var(--radius-sm);
+  /* border: 1.2px solid #c7c7c7; */
+  /* border-radius: var(--radius-sm); */
   text-align: end;
   display: flex;
   flex-direction: column;
@@ -42,13 +43,14 @@
   background-color: transparent;
   color: inherit;
 }
-
+/* 
 .not_current_month {
   border: 1px solid #f2f2f2;
-}
+} */
 
 .today_cell {
-  border: 2px solid var(--color-button-primary-bg);
+  background-color: rgba(176, 218, 201, 0.2);
+  /* border: 2px solid var(--color-button-primary-bg); */
 }
 
 .day_number {
