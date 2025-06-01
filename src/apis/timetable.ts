@@ -8,6 +8,8 @@ import type {
   TeamTimeTableResponse,
 } from "@/types/timeTable";
 import { buildPath } from "@/utils/buildPath";
+import type { QueryOptions, ApiResponse } from "./types";
+import { queryClient } from "@/config/queryClient";
 
 export const usePostTimeTable = () => {
   return usePost<TimeTableRequest, TimeTableDetailResponse>(
@@ -19,9 +21,14 @@ export const useGetMyTimeTables = () => {
   return useFetch<TimeTableResponse[]>(ApiEndpotins.MY_TIMETABLE);
 };
 
-export const useGetTimeScheduleDetail = (id: string) => {
+export const useGetTimeScheduleDetail = (
+  id: string,
+  options?: QueryOptions<ApiResponse<TimeTableDetailResponse>>
+) => {
   return useFetch<TimeTableDetailResponse>(
-    buildPath(ApiEndpotins.MY_TIMETABLE_DETAIL, { id })
+    buildPath(ApiEndpotins.MY_TIMETABLE_DETAIL, { id }),
+    undefined,
+    options
   );
 };
 
@@ -31,12 +38,19 @@ export const useUpdateTimeSchedule = (id: string) => {
   );
 };
 
-export const useDeleteTimeSchedule = () => {
-  return useDelete(ApiEndpotins.MY_TIMETABLE_DETAIL);
+export const useDeleteTimeSchedule = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.MY_TIMETABLE_DETAIL, { id }));
 };
 
-export const usePostTeamTimeTable = (id: string) => {
-  return usePost<TeamTimeTableRequest, TeamTimeTableResponse>(
-    buildPath(ApiEndpotins.MY_TIMETABLE_BY_TEAM, { id })
+export const usePatchTeamTimeTable = (id: string) => {
+  return usePatch<TeamTimeTableRequest, TeamTimeTableResponse>(
+    buildPath(ApiEndpotins.MY_TIMETABLE_BY_TEAM, { id }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: [buildPath(ApiEndpotins.TEAM_DETAIL, { id })],
+        });
+      },
+    }
   );
 };

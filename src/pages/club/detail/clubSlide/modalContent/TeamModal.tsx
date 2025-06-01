@@ -35,7 +35,7 @@ const TeamModal = () => {
   useEffect(() => {
     if (!data) return;
     const id = data.data.data.id;
-    navigate(buildPath(PageEndpoints.TEAM, { id }));
+    navigate(buildPath(PageEndpoints.TEAM_DETAIL, { id }));
   }, [data, navigate]);
 
   return (

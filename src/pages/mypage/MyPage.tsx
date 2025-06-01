@@ -15,12 +15,13 @@ import { useGetMyTeamList } from "@/apis/team";
 import Slide from "@/components/slide/Slide";
 import type { MyTeamInfo } from "@/types/team";
 import TeamCards from "@/components/cards/TeamCard";
+import { useNavigate } from "react-router-dom";
+import { PageEndpoints } from "@/constants/endpoints";
 
 const MyPage = () => {
   const { data: myTimeTables, isLoading } = useGetMyTimeTables();
   const { data: myTeamLists, isLoading: MyTeamLoading } = useGetMyTeamList();
-
-  console.log(myTeamLists);
+  const navigate = useNavigate();
 
   if (isLoading || !myTimeTables || MyTeamLoading) return <Loading />;
 
@@ -83,18 +84,23 @@ const MyPage = () => {
               <img src={MusicNote1} alt="음표" />
               <h2>내 시간표 관리</h2>
             </div>
-            <Button variant="primary" className={styles.timetable_button}>
+            <Button
+              variant="primary"
+              className={styles.timetable_button}
+              onClick={() => navigate(PageEndpoints.POST_TIME_SCHEDULE)}
+            >
               시간표 추가
             </Button>
           </header>
-          {/* <Slide items={myTimeTables.data} size="sm">
+
+          <Slide items={myTimeTables.data} size="sm">
             {(item) => (
               <div className={styles.itemCard}>
                 <h3>{item.name}</h3>
                 <p>ID: {item.id}</p>
               </div>
             )}
-          </Slide> */}
+          </Slide>
         </section>
       </main>
     </DefaultLayout>
