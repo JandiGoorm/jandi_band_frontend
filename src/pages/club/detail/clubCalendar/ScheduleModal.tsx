@@ -79,7 +79,7 @@ const ScheduleModal = () => {
           variant="secondary"
           className={styles.submit_button}
         >
-          팀 생성
+          추가하기
         </Button>
       </form>
     </main>

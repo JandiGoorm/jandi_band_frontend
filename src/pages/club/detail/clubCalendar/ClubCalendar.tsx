@@ -13,7 +13,7 @@ const ClubCalendar = ({ isMember }: { isMember: boolean }) => {
             title="일정 추가하기"
             trigger={
               <Button variant="primary" size="md">
-                일정 추가
+                일정 등록
               </Button>
             }
           >
