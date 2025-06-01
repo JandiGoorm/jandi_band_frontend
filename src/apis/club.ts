@@ -30,8 +30,17 @@ export const useGetClubs = () => {
   return useFetch(ApiEndpotins.CLUB);
 };
 
-export const useGetClubList = () => {
-  return useFetch<PagiNationResponse<ClubListResponse>>(ApiEndpotins.CLUB);
+export const useGetClubList = ({
+  page = 0,
+  size = 20,
+}: {
+  page?: number;
+  size?: number;
+}) => {
+  return useFetch<PagiNationResponse<ClubListResponse>>(ApiEndpotins.CLUB, {
+    page: page,
+    size: size,
+  });
 };
 
 export const useGetMyClubList = () => {

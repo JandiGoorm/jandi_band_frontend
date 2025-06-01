@@ -19,9 +19,9 @@ const Home = () => {
     useGetPromoList({ size: 10 });
   const { data: myClubListData, isLoading: isMyClubListLoading } =
     useGetMyClubList();
-  const { data: clubListData, isLoading: isClubListLoading } = useGetClubList();
-
-  console.log(promoListData?.data.content);
+  const { data: clubListData, isLoading: isClubListLoading } = useGetClubList({
+    size: 10,
+  });
 
   if (
     !myClubListData ||
