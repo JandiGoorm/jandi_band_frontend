@@ -16,7 +16,7 @@ const fadeInUp = {
 
 const Home = () => {
   const { data: promoListData, isLoading: isPromoListLoading } =
-    useGetPromoList({});
+    useGetPromoList({ size: 10 });
   const { data: myClubListData, isLoading: isMyClubListLoading } =
     useGetMyClubList();
   const { data: clubListData, isLoading: isClubListLoading } = useGetClubList();
