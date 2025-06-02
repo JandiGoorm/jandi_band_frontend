@@ -9,6 +9,9 @@ import {
 import styles from "./Cells.module.css";
 import clsx from "clsx";
 
+// 일정 라벨 만들기
+import { schedules } from "@/pages/club/detail/clubCalendar/calendarLabel/data";
+
 // currentMonth 현재 달 (=기준)
 interface Props {
   currentMonth: Date;
@@ -34,6 +37,11 @@ const Cells = ({ currentMonth }: Props) => {
       formattedDate = format(day, "yyyy-MM-dd"); // 현재 day 문자열로 반환
       num++; // 셀에 고유한 키
 
+      // 일정 라벨
+      const matchedSchedules = schedules.filter(
+        (s) => s.date === formattedDate
+      );
+
       // 해당 날짜가 이번 달인가?
       const isCurrentMonth = format(currentMonth, "M") === format(day, "M");
       const isToday = format(today, "yyyy-MM-dd") === formattedDate; // 해당 날짜가 오늘인가?
@@ -53,6 +61,17 @@ const Cells = ({ currentMonth }: Props) => {
           >
             {isCurrentMonth ? format(day, "d") : ""}
           </span>
+
+          {/* 일정 목록 렌더링 */}
+          {matchedSchedules.map((schedule, idx) => (
+            <div
+              key={idx}
+              className={styles.schedule_label}
+              style={{ backgroundColor: schedule.color }}
+            >
+              {schedule.name}
+            </div>
+          ))}
         </div>
       );
 
