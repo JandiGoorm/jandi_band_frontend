@@ -86,6 +86,8 @@ const ProfilEdit = ({ myInfo }: ProfileEditProps) => {
     const file = imageInputRef.current?.files?.[0];
     const { nickname, position, university } = getValues();
 
+    console.log("선택된 파일:", file);
+
     const formData = new FormData();
     formData.append("nickname", nickname || "null");
     formData.append("position", position || "null");
@@ -93,6 +95,11 @@ const ProfilEdit = ({ myInfo }: ProfileEditProps) => {
 
     if (file) {
       formData.append("profilePhoto", file);
+    }
+
+    console.log("===== 전송할 FormData =====");
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
     }
 
     mutate(formData);
