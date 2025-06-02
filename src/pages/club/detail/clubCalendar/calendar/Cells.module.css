@@ -32,19 +32,6 @@
   overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  /* .day_cell {
-    height: 6rem;
-  } */
-}
-
-@media (max-width: 480px) {
-  .schedule_label {
-    font-size: 0.65rem;
-    padding: 1px 3px;
-  }
-}
-
 .current_month {
   cursor: pointer;
   background-color: transparent;
@@ -57,7 +44,6 @@
 
 .today_cell {
   background-color: rgba(176, 218, 201, 0.2);
-  /* border: 2px solid var(--color-button-primary-bg); */
 }
 
 .day_number {
@@ -84,3 +70,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* 
+@media (max-width: 768px) {
+  .day_cell {
+    height: 6rem;
+  }
+} */
+
+/* @media (max-width: 480px) {
+  .schedule_label {
+    font-size: 0.65rem;
+    padding: 1px 3px;
+  }
+} */

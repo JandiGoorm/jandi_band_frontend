@@ -10,7 +10,12 @@ import styles from "./Cells.module.css";
 import clsx from "clsx";
 
 // 일정 라벨 만들기
-import { schedules } from "@/pages/club/detail/clubCalendar/calendarLabel/data";
+import {
+  schedules,
+  type Schedule,
+} from "@/pages/club/detail/clubCalendar/calendarLabel/data";
+import ScheduleModal from "@/pages/club/detail/clubCalendar/calendarLabel/ScheduleModal";
+import { useState } from "react";
 
 // currentMonth 현재 달 (=기준)
 interface Props {
@@ -26,15 +31,29 @@ const Cells = ({ currentMonth }: Props) => {
 
   const rows = [];
   let days = [];
-  let day = startDate;
-  let formattedDate = "";
+  // let day = startDate;
+  // let formattedDate = "";
   let num = 0;
+
+  const [selectedSchedules, setSelectedSchedules] = useState<Schedule[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  let day = new Date(startDate);
+
+  const handleDayClick = (date: string) => {
+    const matched = schedules.filter((s) => s.date === date);
+    setSelectedSchedules(matched);
+    setSelectedDate(date);
+    setIsModalOpen(true);
+  };
 
   // 날짜 셀 반복 생성
   while (day <= endDate) {
     // 한 주의 칸 만들기
     for (let i = 0; i < 7; i++) {
-      formattedDate = format(day, "yyyy-MM-dd"); // 현재 day 문자열로 반환
+      const thisDay = new Date(day); // ✅ 안정적 복제본
+      const formattedDate = format(thisDay, "yyyy-MM-dd");
+      // formattedDate = format(day, "yyyy-MM-dd"); // 현재 day 문자열로 반환
       num++; // 셀에 고유한 키
 
       // 일정 라벨
@@ -55,6 +74,7 @@ const Cells = ({ currentMonth }: Props) => {
             [styles.current_month]: isCurrentMonth,
             [styles.today_cell]: isToday,
           })}
+          onClick={() => handleDayClick(formattedDate)}
         >
           <span
             className={`${styles.day_number} ${isToday ? styles.today : ""}`}
@@ -63,7 +83,7 @@ const Cells = ({ currentMonth }: Props) => {
           </span>
 
           {/* 일정 목록 렌더링 */}
-          {matchedSchedules.map((schedule, idx) => (
+          {matchedSchedules.slice(0, 4).map((schedule, idx) => (
             <div
               key={idx}
               className={styles.schedule_label}
@@ -72,6 +92,11 @@ const Cells = ({ currentMonth }: Props) => {
               {schedule.name}
             </div>
           ))}
+          {matchedSchedules.length > 4 && (
+            <div className={styles.schedule_label_more}>
+              +{matchedSchedules.length - 4}개
+            </div>
+          )}
         </div>
       );
 
@@ -87,7 +112,17 @@ const Cells = ({ currentMonth }: Props) => {
     days = [];
   }
 
-  return <div className={styles.calendar_wrapper}>{rows}</div>;
+  return (
+    <div className={styles.calendar_wrapper}>
+      {rows}
+      <ScheduleModal
+        isOpen={isModalOpen}
+        schedules={selectedSchedules}
+        selectedDate={selectedDate}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </div>
+  );
 };
 
 export default Cells;
