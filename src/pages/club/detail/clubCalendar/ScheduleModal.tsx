@@ -52,17 +52,17 @@ const ScheduleModal = () => {
         className={styles.container}
         onSubmit={formController.handleSubmit(onSubmit)}
       >
-        <Field label="스케줄 제목" error={errors.title} isRequired>
+        <Field label="일정 제목" error={errors.title} isRequired>
           <Input inputSize="sm" {...formController.register("title")} />
         </Field>
-        <Field label="시작시간" error={errors.starttime} isRequired>
+        <Field label="시작 시간" error={errors.starttime} isRequired>
           <Input
             inputSize="sm"
             type="datetime-local"
             {...formController.register("starttime")}
           />
         </Field>
-        <Field label="마감시간" error={errors.endtime} isRequired>
+        <Field label="마감 시간" error={errors.endtime} isRequired>
           <Input
             inputSize="sm"
             type="datetime-local"
