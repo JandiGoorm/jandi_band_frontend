@@ -18,6 +18,17 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .title_box {
+    flex-direction: column;
+    align-items: center;
+  }
+  .member_box {
+    justify-content: center;
+  }
 }
 
 .info_title {
