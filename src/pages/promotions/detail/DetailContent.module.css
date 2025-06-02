@@ -51,6 +51,8 @@
 .promotion_img {
   width: 25%;
   min-width: 200px;
+  aspect-ratio: 376 / 504;
+  border-radius: var(--radius-xl);
 }
 
 @media (max-width: 768px) {
