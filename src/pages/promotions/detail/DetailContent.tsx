@@ -7,7 +7,11 @@ import { PageEndpoints } from "@/constants/endpoints";
 import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
 import { useDeletePromo, useGetPromo } from "@/apis/promotion";
 import Loading from "@/components/loading/Loading";
-import { formatPromotionDate } from "@/utils/dateStatus";
+import {
+  formatPromotionDate,
+  formatDate,
+  formatTime,
+} from "@/utils/dateStatus";
 
 const DetailContent = () => {
   const { id } = useParams();
@@ -82,11 +86,11 @@ const DetailContent = () => {
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>날짜</p>
-                <p>{fetchData.data.eventDatetime}</p>
+                <p>{formatDate(fetchData.data.eventDatetime)}</p>
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>시간</p>
-                <p>{fetchData.data.eventDatetime}</p>
+                <p>{formatTime(fetchData.data.eventDatetime)}</p>
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>장소</p>

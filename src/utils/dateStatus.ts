@@ -33,3 +33,24 @@ export const formatPromotionDate = (isoDate: string): string => {
 
   return `${year}.${month}.${day} ${period} ${hours}:${minutes}`;
 };
+
+export const formatDate = (isoString: string): string => {
+  const date = new Date(isoString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // 0-based
+  const day = date.getDate();
+  return `${year}년 ${month}월 ${day}일`;
+};
+
+export const formatTime = (isoString: string): string => {
+  const date = new Date(isoString);
+  let hour = date.getHours();
+  const minute = date.getMinutes();
+  const isAM = hour < 12;
+
+  const period = isAM ? "오전" : "오후";
+  if (hour === 0) hour = 12;
+  else if (hour > 12) hour -= 12;
+
+  return `${period} ${hour}시 ${minute}분`;
+};
