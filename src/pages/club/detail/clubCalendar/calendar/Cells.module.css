@@ -70,16 +70,27 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* 
+
 @media (max-width: 768px) {
+  .day_cell {
+    height: 7rem;
+  }
+}
+.schedule_label_more {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+@media (max-width: 480px) {
   .day_cell {
     height: 6rem;
   }
-} */
-
-/* @media (max-width: 480px) {
   .schedule_label {
     font-size: 0.65rem;
     padding: 1px 3px;
   }
-} */
+  .schedule_label_more {
+    font-size: 0.65rem;
+  }
+}

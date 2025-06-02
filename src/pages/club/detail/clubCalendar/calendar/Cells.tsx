@@ -16,6 +16,7 @@ import {
 } from "@/pages/club/detail/clubCalendar/calendarLabel/data";
 import ScheduleModal from "@/pages/club/detail/clubCalendar/calendarLabel/ScheduleModal";
 import { useState } from "react";
+import useMediaQuery from "@/pages/club/detail/clubCalendar/calendarLabel/useMediaQuery";
 
 // currentMonth 현재 달 (=기준)
 interface Props {
@@ -46,6 +47,9 @@ const Cells = ({ currentMonth }: Props) => {
     setSelectedDate(date);
     setIsModalOpen(true);
   };
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const maxVisible = isMobile ? 3 : 4;
 
   // 날짜 셀 반복 생성
   while (day <= endDate) {
@@ -83,7 +87,7 @@ const Cells = ({ currentMonth }: Props) => {
           </span>
 
           {/* 일정 목록 렌더링 */}
-          {matchedSchedules.slice(0, 4).map((schedule, idx) => (
+          {matchedSchedules.slice(0, maxVisible).map((schedule, idx) => (
             <div
               key={idx}
               className={styles.schedule_label}
@@ -92,9 +96,9 @@ const Cells = ({ currentMonth }: Props) => {
               {schedule.name}
             </div>
           ))}
-          {matchedSchedules.length > 4 && (
+          {matchedSchedules.length > maxVisible && (
             <div className={styles.schedule_label_more}>
-              +{matchedSchedules.length - 4}개
+              +{matchedSchedules.length - maxVisible}개
             </div>
           )}
         </div>
