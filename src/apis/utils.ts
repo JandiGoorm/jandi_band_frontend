@@ -21,9 +21,9 @@ type Api = {
 
 const axiosInstance = axios.create({
   baseURL: domain,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // headers: {
+  //   "Content-Type": "application/json",
+  // },
 });
 
 export const api: Api = {

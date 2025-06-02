@@ -7,6 +7,9 @@ import { PiMicrophoneStage } from "react-icons/pi";
 import styles from "./ClubInfo.module.css";
 import InviteModal from "./InviteModal";
 import ModifyClubModal from "./ModifyClubModal";
+import Modal from "@/components/modal/Modal";
+import Button from "@/components/button/Button";
+import ModifyProfileModal from "./ModifyProfileModal";
 
 const ClubInfo = ({
   club,
@@ -21,9 +24,25 @@ const ClubInfo = ({
   return (
     <main className={styles.container}>
       {club.photoUrl ? (
-        <header className={styles.banner}>
-          <img src={club.photoUrl} className={styles.banner} />
-        </header>
+        <>
+          <header className={styles.banner}>
+            <img src={club.photoUrl} className={styles.banner} />
+          </header>
+          <Modal
+            title="대표 사진 수정하기"
+            trigger={
+              <Button
+                variant="primary"
+                size="sm"
+                className={styles.image_button}
+              >
+                사진 수정
+              </Button>
+            }
+          >
+            <ModifyProfileModal image={club.photoUrl} />
+          </Modal>
+        </>
       ) : null}
 
       <section className={styles.title_box}>
