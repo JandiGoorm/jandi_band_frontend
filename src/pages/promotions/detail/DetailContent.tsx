@@ -11,6 +11,7 @@ import {
   formatPromotionDate,
   formatDate,
   formatTime,
+  getEventStatus,
 } from "@/utils/dateStatus";
 import { useAuthStore } from "@/stores/authStore";
 
@@ -27,12 +28,18 @@ const DetailContent = () => {
   if (!fetchData || fetchLoading) return <Loading />;
 
   const mine = user?.id === fetchData?.data.creatorId;
+  const status = getEventStatus(fetchData.data.eventDatetime);
 
   return (
     <>
       <header className={styles.page_title}>
         <section>
-          <span className={styles.promo_button}>공연 예정</span>
+          <span
+            className={styles.promo_button}
+            style={{ backgroundColor: status.backgroundColor }}
+          >
+            {status.text}
+          </span>
         </section>
         <div className={styles.title_box}>
           <p className={styles.promo_title}>{fetchData.data.title}</p>

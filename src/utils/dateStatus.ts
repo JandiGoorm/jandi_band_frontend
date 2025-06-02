@@ -54,3 +54,37 @@ export const formatTime = (isoString: string): string => {
 
   return `${period} ${hour}시 ${minute}분`;
 };
+
+export type EventStatus = {
+  text: string;
+  backgroundColor: string;
+};
+
+export const getEventStatus = (eventDatetime: Date | string): EventStatus => {
+  const now = new Date();
+  const eventDate = new Date(eventDatetime);
+
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const eventDay = new Date(
+    eventDate.getFullYear(),
+    eventDate.getMonth(),
+    eventDate.getDate()
+  );
+
+  if (eventDay.getTime() === today.getTime()) {
+    return {
+      text: "D-Day",
+      backgroundColor: "var(--color-bg-toast-success)",
+    };
+  } else if (eventDate > now) {
+    return {
+      text: "공연 예정",
+      backgroundColor: "var(--color-bg-button)",
+    };
+  } else {
+    return {
+      text: "공연 종료",
+      backgroundColor: "var(--color-bg-toast-error)",
+    };
+  }
+};
