@@ -12,18 +12,21 @@ import {
   formatDate,
   formatTime,
 } from "@/utils/dateStatus";
+import { useAuthStore } from "@/stores/authStore";
 
 const DetailContent = () => {
   const { id } = useParams();
+  const { user } = useAuthStore();
   const navigate = useNavigate();
   const { mutate: deletePromo } = useDeletePromo(id!);
   const { data: fetchData, isLoading: fetchLoading } = useGetPromo(id || "");
 
   console.log(fetchData);
-
   if (!id) return;
 
   if (!fetchData || fetchLoading) return <Loading />;
+
+  const mine = user?.id === fetchData?.data.creatorId;
 
   return (
     <>
@@ -33,28 +36,30 @@ const DetailContent = () => {
         </section>
         <div className={styles.title_box}>
           <p className={styles.promo_title}>{fetchData.data.title}</p>
-          <div className={styles.title_button_box}>
-            <Button
-              size="sm"
-              onClick={() =>
-                navigate(buildPath(PageEndpoints.PROMOTION_UPDATE, { id }))
-              }
-            >
-              수정
-            </Button>
-            <DeleteModal
-              trigger={<Button size="sm">삭제</Button>}
-              title="게시물 삭제"
-              description="정말 해당 게시물을 삭제 하시겠어요?"
-              onDelete={() => {
-                deletePromo(undefined, {
-                  onSuccess: () => {
-                    navigate(PageEndpoints.PROMOTION);
-                  },
-                });
-              }}
-            />
-          </div>
+          {mine && (
+            <div className={styles.title_button_box}>
+              <Button
+                size="sm"
+                onClick={() =>
+                  navigate(buildPath(PageEndpoints.PROMOTION_UPDATE, { id }))
+                }
+              >
+                수정
+              </Button>
+              <DeleteModal
+                trigger={<Button size="sm">삭제</Button>}
+                title="게시물 삭제"
+                description="정말 해당 게시물을 삭제 하시겠어요?"
+                onDelete={() => {
+                  deletePromo(undefined, {
+                    onSuccess: () => {
+                      navigate(PageEndpoints.PROMOTION);
+                    },
+                  });
+                }}
+              />
+            </div>
+          )}
         </div>
         <section className={styles.basic_info}>
           <p>조회 {fetchData.data.viewCount}</p>
@@ -66,7 +71,10 @@ const DetailContent = () => {
       </header>
       <section className={styles.promotion_container}>
         <section className={styles.promotion_info_box}>
-          <img className={styles.promotion_img} src="/promotion1.png"></img>
+          <img
+            className={styles.promotion_img}
+            src={fetchData.data.photoUrls[0]}
+          ></img>
           <section className={styles.promotion_info}>
             <section className={styles.promotion_like_box}>
               <p>이 공연을 응원하고 싶다면?</p>
@@ -102,7 +110,7 @@ const DetailContent = () => {
             </section>
           </section>
         </section>
-        {fetchData.data.description !== "" && (
+        {fetchData.data.description !== null && (
           <article className={styles.promo_content}>
             {fetchData.data.description}
           </article>
