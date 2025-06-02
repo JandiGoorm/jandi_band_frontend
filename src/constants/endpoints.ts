@@ -6,6 +6,7 @@ export enum PageEndpoints {
   PROMOTION = "/promotion",
   PROMOTION_DETAIL = "/promotion/:id",
   PROMOTION_POST = "/promotion/post",
+  PROMOTION_UPDATE = "/promotion/edit/:id",
   VOTE = "/vote/:id",
   TEAM_LAYOUT = "/team/:id/*",
   TEAM_DETAIL = "/team/:id",
@@ -25,11 +26,14 @@ export enum ApiEndpotins {
   REFRESH_TOKEN = "/auth/refresh",
   ME = "/users/me/info",
 
+  PROMOTION = "/promos",
+  PROMOTION_DETAIL = "/promos/:id",
   CLUB = "/clubs",
   MY_CLUB = "/my/clubs",
   CLUB_DETAIL = "/clubs/:id",
   CLUB_MEMBERS = "/clubs/:id/members",
   CLUB_TEAM = "/clubs/:id/teams",
+  CLUB_IMAGE = "/clubs/:id/main-image",
 
   MY_TEAM = "/my/teams",
   UNIVERSITIES = "/univ/all",
@@ -42,7 +46,6 @@ export enum ApiEndpotins {
   TEAM_DETAIL = "/teams/:id",
   TEAM_INVITE = "/invite/teams/:id",
   JOIN_TEAM = "/join/teams",
-  PROMOTION = "/promos",
 
   CLUB_POLL = "/polls/clubs/:id",
   MAKE_POLL = "/polls", //투표 생성

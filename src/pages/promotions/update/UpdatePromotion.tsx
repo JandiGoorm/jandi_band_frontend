@@ -1,11 +1,11 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "@/pages/promotions/post/CreatePost.module.css";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import styles from "./UpdatePromotion.module.css";
 import Button from "@/components/button/Button";
-import { usePostPromotion } from "@/apis/promotion";
-import { PageEndpoints } from "@/constants/endpoints";
-import { buildPath } from "@/utils/buildPath";
+import { useGetPromo, useUpdatePromotion } from "@/apis/promotion";
+import Loading from "@/components/loading/Loading";
+
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,26 +20,33 @@ const schema = z.object({
     .string()
     .min(1)
     .refine((val) => !isNaN(Number(val)), { message: "숫자만 입력하세요" }),
-  date: z.string().min(1),
-  time: z.string().min(1),
+  date: z.string().min(1, "날짜는 필수입니다"),
+  time: z.string().min(1, "시간은 필수입니다"),
   location: z.string().min(1, "장소는 필수입니다"),
   description: z.string().optional(),
   image: z
     .custom<FileList>()
-    .refine((files) => files && files.length > 0, {
-      message: "이미지를 선택해주세요",
-    })
-    .refine((files) => files?.[0]?.size <= MAX_IMAGE_SIZE_BYTES, {
-      message: "이미지는 10MB 이하만 가능합니다",
-    }),
+    .optional()
+    .refine(
+      (files) => {
+        if (!files) return true;
+        return files.length === 0 || files[0].size <= MAX_IMAGE_SIZE_BYTES;
+      },
+      {
+        message: "이미지는 10MB 이하만 가능합니다",
+      }
+    ),
 });
 
 type FormData = z.infer<typeof schema>;
 
-const CreatePost = () => {
+const UpdatePromotion = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
   const [imageURL, setImageURL] = useState<string | null>(null);
-  const { mutate: createPromo, data: postData } = usePostPromotion();
+  const { data: postData } = useGetPromo(id!);
+  const { mutate: updatePromo, data: updateData } = useUpdatePromotion(id!);
 
   const {
     register,
@@ -50,19 +57,23 @@ const CreatePost = () => {
     resolver: zodResolver(schema),
   });
 
-  const imageFile = watch("image")?.[0];
+  const watchedImage = watch("image");
 
   useEffect(() => {
-    if (imageFile) {
-      const url = URL.createObjectURL(imageFile);
+    if (watchedImage && watchedImage.length > 0) {
+      const url = URL.createObjectURL(watchedImage[0]);
       setImageURL(url);
+    } else if (postData?.data.photoUrls[0]) {
+      setImageURL(postData.data.photoUrls[0]);
     }
-  }, [imageFile]);
+  }, [watchedImage, postData]);
 
   const onSubmit = (data: FormData) => {
     const formData = new FormData();
 
-    formData.append("image", data.image[0]);
+    if (data.image && data.image.length > 0) {
+      formData.append("image", data.image[0]);
+    }
     formData.append("title", data.title);
     formData.append("teamName", data.team);
     formData.append("admissionFee", data.price);
@@ -71,49 +82,55 @@ const CreatePost = () => {
     formData.append("address", data.location);
     formData.append("description", data.description ?? "");
 
-    createPromo(formData);
+    updatePromo(formData);
   };
 
   useEffect(() => {
-    if (postData?.data?.data?.id) {
-      const id = postData.data.data.id;
-      navigate(buildPath(PageEndpoints.PROMOTION_DETAIL, { id }));
+    if (updateData?.data.success) {
+      navigate(-1);
     }
-  }, [postData, navigate]);
+  }, [updateData, navigate]);
+
+  if (!postData) return <Loading />;
 
   return (
     <DefaultLayout>
       <main className={styles.post_container}>
         <header className={styles.post_header}>
-          <h2>공연 홍보 게시글 작성하기</h2>
-          <p>* 공연 홍보와 관계 없는 글은 운영진에 의해 삭제될 수 있습니다.</p>
+          <h2>공연 홍보 게시글 수정하기</h2>
         </header>
 
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           <input
             placeholder="제목"
             {...register("title")}
+            defaultValue={postData.data.title}
             className={clsx(errors.title && styles.inputError)}
           />
+          {errors.title && (
+            <p className={styles.errorMessage}>{errors.title.message}</p>
+          )}
 
-          <section className={styles.centerbox}>
+          <section className={clsx(styles.centerbox)}>
             <aside
               className={clsx(
                 styles.image_inputbox,
                 errors.image && styles.inputError
               )}
+              onClick={() => imageInputRef.current?.click()}
             >
-              <div
-                className={styles.image_input}
-                onClick={() => document.getElementById("image")?.click()}
-              >
+              <div className={styles.image_input}>
                 {imageURL ? (
                   <img src={imageURL} alt="선택된 이미지" />
                 ) : (
                   <p className={styles.placeholder}>
                     이미지를
                     <br />
-                    추가해주세요
+                    수정해주세요
                   </p>
                 )}
                 <input
@@ -122,16 +139,20 @@ const CreatePost = () => {
                   accept="image/*"
                   {...register("image")}
                   style={{ display: "none" }}
+                  ref={(e) => {
+                    register("image").ref(e);
+                    imageInputRef.current = e;
+                  }}
                 />
               </div>
             </aside>
-
             <aside className={styles.infomation_container}>
               <div>
                 <label htmlFor="team">공연팀명</label>
                 <input
                   id="team"
                   {...register("team")}
+                  defaultValue={postData.data.teamName}
                   className={clsx(errors.team && styles.inputError)}
                 />
               </div>
@@ -142,6 +163,8 @@ const CreatePost = () => {
                   id="price"
                   type="number"
                   {...register("price")}
+                  placeholder="숫자만 입력 가능합니다. 무료일 경우 0"
+                  defaultValue={postData.data.admissionFee}
                   className={clsx(errors.price && styles.inputError)}
                 />
                 <p>원</p>
@@ -153,6 +176,7 @@ const CreatePost = () => {
                   id="date"
                   type="date"
                   {...register("date")}
+                  defaultValue={postData.data.eventDatetime.split("T")[0]}
                   className={clsx(errors.date && styles.inputError)}
                 />
               </div>
@@ -163,6 +187,9 @@ const CreatePost = () => {
                   id="time"
                   type="time"
                   {...register("time")}
+                  defaultValue={postData.data.eventDatetime
+                    .split("T")[1]
+                    .slice(0, 5)}
                   className={clsx(errors.time && styles.inputError)}
                 />
               </div>
@@ -172,6 +199,7 @@ const CreatePost = () => {
                 <textarea
                   id="location"
                   {...register("location")}
+                  defaultValue={postData.data.location}
                   className={clsx(errors.location && styles.inputError)}
                 />
               </div>
@@ -180,11 +208,15 @@ const CreatePost = () => {
 
           <section className={styles.descriptionbox}>
             <label htmlFor="description">소개글</label>
-            <textarea id="description" {...register("description")} />
+            <textarea
+              id="description"
+              {...register("description")}
+              defaultValue={postData.data.description}
+            />
           </section>
 
           <footer className={styles.button_group}>
-            <Button>등록</Button>
+            <Button type="submit">수정</Button>
             <Button
               type="button"
               className={styles.cancle}
@@ -199,4 +231,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default UpdatePromotion;

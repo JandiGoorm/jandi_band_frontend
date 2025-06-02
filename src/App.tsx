@@ -18,6 +18,7 @@ import { queryClient } from "./config/queryClient";
 import TeamLayout from "./pages/team/TeamLayout";
 import TimeScheduleDetail from "./pages/timeSchedule/detail/TimeScheduleDetail";
 import VoteList from "./pages/club/more/VoteList";
+import FetchPromotion from "./pages/promotions/update/UpdatePromotion";
 import Invite from "./pages/invite/Invite";
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
           <Route
             path={PageEndpoints.PROMOTION_POST}
             element={<PromotionPost />}
+          />
+          <Route
+            path={PageEndpoints.PROMOTION_UPDATE}
+            element={<FetchPromotion />}
           />
           <Route path={PageEndpoints.SIGN_IN} element={<SignIn />} />
           <Route path={PageEndpoints.SIGN_UP} element={<SignUp />} />
