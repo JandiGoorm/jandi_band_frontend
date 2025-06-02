@@ -36,8 +36,6 @@ const PromotionMain = () => {
     setShowRegions((prev) => !prev);
   };
 
-  console.log(promoData);
-
   useEffect(() => {
     if (promoData?.data.pageInfo.totalPages !== undefined) {
       setTotalPage(promoData.data.pageInfo.totalPages);
