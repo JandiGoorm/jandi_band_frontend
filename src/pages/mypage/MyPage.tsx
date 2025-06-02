@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 // 내 정보 불러오기
 import { useGetInfo } from "@/apis/mypage";
+import TimeTableCards from "@/components/cards/TimeTableCards";
 
 const MyPage = () => {
   const { data: myInfoResponse } = useGetInfo();
@@ -105,13 +106,17 @@ const MyPage = () => {
           </header>
 
           <Slide items={myTimeTables.data} size="sm">
+            {(item) => <TimeTableCards timeTable={item} />}
+          </Slide>
+
+          {/* <Slide items={myTimeTables.data} size="sm">
             {(item) => (
               <div className={styles.itemCard}>
                 <h3>{item.name}</h3>
                 <p>ID: {item.id}</p>
               </div>
             )}
-          </Slide>
+          </Slide> */}
         </section>
       </main>
     </DefaultLayout>
