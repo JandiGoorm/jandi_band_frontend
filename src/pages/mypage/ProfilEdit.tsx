@@ -6,10 +6,10 @@ import camera from "/public/camera.svg";
 
 import { useForm } from "react-hook-form";
 import Field from "@/components/field/Field";
-// import UniversitySelect from "@/components/select/UniversitySelect";
+import UniversitySelect from "@/components/select/UniversitySelect";
 import PositionSelect from "@/pages/auth/signUp/PositionSelect";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpFormSchema } from "@/pages/auth/signUp/constants";
 
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
@@ -35,8 +35,18 @@ const ProfilEdit = () => {
     setimageURL(imageUrl);
   };
 
+  const MyPageFormSchema = z.object({
+    nickname: z.string(),
+    position: z
+      .string({ required_error: "포지션을 선택하세요." })
+      .min(1, { message: "포지션을 선택하세요." }),
+    university: z
+      .string({ required_error: "대학을 선택하세요." })
+      .min(1, { message: "대학을 선택하세요." }),
+  });
+
   const formController = useForm({
-    resolver: zodResolver(signUpFormSchema),
+    resolver: zodResolver(MyPageFormSchema),
   });
 
   const {
@@ -72,18 +82,25 @@ const ProfilEdit = () => {
       </header>
 
       <form className={styles.form_container}>
-        <div>
-          <label>닉네임</label>
-          <Input inputSize="sm" />
-        </div>
-
-        <Field label="포지션" error={errors.position}>
-          <PositionSelect formController={formController} />
+        <Field label="닉네임" error={errors.nickname}>
+          <Input inputSize="sm" {...formController.register("nickname")} />
         </Field>
 
-        {/* <Field label="소속대학" error={errors.university}>
-          <UniversitySelect formController={formController} />
-        </Field> */}
+        <Field label="포지션" error={errors.position}>
+          <PositionSelect
+            onValueChange={(position) => {
+              formController.setValue("position", position);
+            }}
+          />
+        </Field>
+
+        <Field label="소속대학" error={errors.university}>
+          <UniversitySelect
+            onValueChange={(university) => {
+              formController.setValue("university", university.name);
+            }}
+          />
+        </Field>
 
         <Button type="submit" variant="secondary">
           수정 완료

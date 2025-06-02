@@ -5,6 +5,7 @@ import ArrowBack from "@/pages/vote/style/arrowback.svg";
 import styles from "@/pages/vote/result/VoteResult.module.css";
 import { usePollStore } from "@/stores/voteStore";
 import Loading from "@/components/loading/Loading";
+// import * as Select from "@radix-ui/react-select";
 
 const VoteResult = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const VoteResult = () => {
             <img src={ArrowBack} alt="뒤로가기" onClick={() => navigate(-1)} />
             <h1>{poll?.title}</h1>
           </section>
+
           <section>
             <select className={styles.result_filter}>
               <option value="기본">기본</option>

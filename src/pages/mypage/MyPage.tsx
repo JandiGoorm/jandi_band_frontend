@@ -1,29 +1,40 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "@/pages/mypage/MyPage.module.css";
-// import Slide from "@/components/slide/Slide";
+import Slide from "@/components/slide/Slide";
 import Button from "@/components/button/Button";
 import MusicNote1 from "/public/musical_note1.svg";
 import MusicNote2 from "/public/musical_notes2.svg";
-// import TeamCards from "@/components/cards/TeamCard";
+import TeamCards from "@/components/cards/TeamCard";
 import Modal from "@/components/modal/Modal";
 import ProfilEdit from "@/pages/mypage/ProfilEdit";
-// 임시 프로필사진
-import Profile from "@/pages/vote/style/profile.svg";
 import { useGetMyTimeTables } from "@/apis/timetable";
 import Loading from "@/components/loading/Loading";
 import { useGetMyTeamList } from "@/apis/team";
-import Slide from "@/components/slide/Slide";
 import type { MyTeamInfo } from "@/types/team";
-import TeamCards from "@/components/cards/TeamCard";
 import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
+// 내 정보 불러오기
+import { useGetInfo } from "@/apis/mypage";
 
 const MyPage = () => {
+  const { data: myInfoResponse } = useGetInfo();
   const { data: myTimeTables, isLoading } = useGetMyTimeTables();
   const { data: myTeamLists, isLoading: MyTeamLoading } = useGetMyTeamList();
   const navigate = useNavigate();
 
-  if (isLoading || !myTimeTables || MyTeamLoading) return <Loading />;
+  if (isLoading || !myTimeTables || MyTeamLoading || !myInfoResponse?.data)
+    return <Loading />;
+
+  const myInfo = myInfoResponse.data;
+
+  const positionLabelMap: Record<string, string> = {
+    VOCAL: "보컬",
+    GUITAR: "기타",
+    BASS: "베이스",
+    DRUM: "드럼",
+    KEYBOARD: "키보드",
+    OTHER: "그 외",
+  };
 
   return (
     <DefaultLayout>
@@ -43,24 +54,24 @@ const MyPage = () => {
             </Modal>
           </header>
           <div className={styles.profile_content}>
-            <img src={Profile} alt="프로필 사진" />
+            <img src={myInfo.profilePhoto} alt="프로필 사진" />
 
             <dl className={styles.profile_info}>
               <div>
                 <dt>이름</dt>
-                <dd>김개똥</dd>
+                <dd>{myInfo.nickname}</dd>
               </div>
-              <div>
+              {/* <div>
                 <dt>닉네임</dt>
                 <dd>김개똥</dd>
-              </div>
+              </div> */}
               <div>
                 <dt>포지션 </dt>
-                <dd>베이스</dd>
+                <dd>{positionLabelMap[myInfo.position]}</dd>
               </div>
               <div>
                 <dt>소속대학</dt>
-                <dd>대대대학교</dd>
+                <dd>{myInfo.university}</dd>
               </div>
             </dl>
           </div>

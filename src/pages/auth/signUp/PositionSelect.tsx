@@ -1,32 +1,46 @@
 import * as Select from "@radix-ui/react-select";
 import { FiChevronDown, FiChevronUp, FiCheck } from "react-icons/fi";
 import styles from "./PositionSelect.module.css";
-import type { UseFormReturn } from "react-hook-form";
-import type { z } from "zod";
-import { positions, type signUpFormSchema } from "./constants";
-import { useCallback } from "react";
+// import type { UseFormReturn } from "react-hook-form";
+// import type { z } from "zod";
+// import { positions, type signUpFormSchema } from "./constants";
+import { useState, useCallback } from "react";
+import { positions } from "./constants";
+import clsx from "clsx";
 
 interface PositionSelectProps {
   placeholder?: string;
-  formController: UseFormReturn<z.infer<typeof signUpFormSchema>>;
+  onValueChange: (position: string) => void;
+  // formController: UseFormReturn<z.infer<typeof signUpFormSchema>>;
 }
 
 export const PositionSelect = ({
   placeholder = "포지션 선택",
-  formController,
+  onValueChange,
+  // formController,
 }: PositionSelectProps) => {
-  const { setValue, getValues } = formController;
+  // const { setValue, getValues } = formController;
+  const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
 
   const handleValueChange = useCallback(
     (value: string) => {
-      setValue("position", value);
+      setSelectedPosition(value);
+      onValueChange(value);
     },
-    [setValue]
+    [onValueChange]
   );
+
+  // const handleValueChange = useCallback(
+  //   (value: string) => {
+  //     setValue("position", value);
+  //   },
+  //   [setValue]
+  // );
 
   return (
     <Select.Root
-      value={getValues("position")}
+      value={selectedPosition || ""}
+      // value={getValues("position")}
       onValueChange={handleValueChange}
     >
       <Select.Trigger className={styles.trigger} aria-label={placeholder}>
@@ -52,7 +66,7 @@ export const PositionSelect = ({
               <Select.Item
                 key={position.value}
                 value={position.value}
-                className={styles.item}
+                className={clsx(styles.item)}
               >
                 <Select.ItemText>{position.label}</Select.ItemText>
                 <Select.ItemIndicator className={styles.item_indicator}>

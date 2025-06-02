@@ -45,7 +45,12 @@ const SignUpForm = () => {
       onSubmit={formController.handleSubmit(onSubmit)}
     >
       <Field label="포지션" error={errors.position} isRequired>
-        <PositionSelect formController={formController} />
+        <PositionSelect
+          onValueChange={(position) => {
+            formController.setValue("position", position);
+          }}
+          // formController={formController}
+        />
       </Field>
 
       <Field label="소속대학" error={errors.university} isRequired>
