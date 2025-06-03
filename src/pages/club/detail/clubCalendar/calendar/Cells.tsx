@@ -37,8 +37,6 @@ const Cells = ({ currentMonth }: Props) => {
 
   const rows = [];
   let days = [];
-  // let day = startDate;
-  // let formattedDate = "";
   let num = 0;
 
   const [selectedSchedules, setSelectedSchedules] = useState<CalendarEvent[]>(
@@ -66,7 +64,6 @@ const Cells = ({ currentMonth }: Props) => {
     for (let i = 0; i < 7; i++) {
       const thisDay = new Date(day);
       const formattedDate = format(thisDay, "yyyy-MM-dd");
-      // formattedDate = format(day, "yyyy-MM-dd"); // 현재 day 문자열로 반환
       num++; // 셀에 고유한 키
 
       // 일정 라벨
