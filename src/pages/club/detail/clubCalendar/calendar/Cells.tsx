@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { useState } from "react";
 
 // 일정 라벨 만들기
+// import { useGetCalendar } from "@/apis/calendar"
 import { schedules } from "@/pages/club/detail/clubCalendar/calendarLabel/data";
 import type { CalendarEvent, EventType } from "@/types/calendar";
 import ScheduleModal from "@/pages/club/detail/clubCalendar/calendarLabel/ScheduleModal";
