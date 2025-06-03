@@ -21,7 +21,6 @@
   height: 8rem;
   position: relative;
   box-sizing: border-box;
-  padding: 0 0.5rem;
   text-align: end;
   display: flex;
   flex-direction: column;
@@ -63,9 +62,10 @@
   padding: 2px 4px;
   border-radius: 4px;
   margin-bottom: 2px;
+  /* width: 100%; */
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
 }
 
 @media (max-width: 768px) {
@@ -87,10 +87,10 @@
     height: 6rem;
   }
   .schedule_label {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     padding: 1px 3px;
   }
   .schedule_label_more {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
   }
 }
