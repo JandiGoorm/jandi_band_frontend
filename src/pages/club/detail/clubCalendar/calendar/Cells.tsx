@@ -11,11 +11,11 @@ import clsx from "clsx";
 import { useState } from "react";
 
 // 일정 라벨 만들기
-// import { useGetCalendar } from "@/apis/calendar"
-import { schedules } from "@/pages/club/detail/clubCalendar/calendarLabel/data";
+import { useGetCalendar } from "@/apis/calendar";
 import type { CalendarEvent, EventType } from "@/types/calendar";
 import ScheduleModal from "@/pages/club/detail/clubCalendar/calendarLabel/ScheduleModal";
 import useMediaQuery from "@/pages/club/detail/clubCalendar/calendarLabel/useMediaQuery";
+import { useClubStore } from "@/stores/clubStore";
 
 // currentMonth 현재 달 (=기준)
 interface Props {
@@ -35,6 +35,13 @@ const Cells = ({ currentMonth }: Props) => {
   const startDate = startOfWeek(monthStart); // 달력에서의 시작 (일))
   const endDate = endOfWeek(monthEnd); // 달력에서의 끝 (토)
   const today = new Date();
+
+  // api 연결을 위한 변수들
+  const clubId = useClubStore((state) => state.clubId);
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth() + 1;
+  const { data: response } = useGetCalendar(clubId!, year, month);
+  const schedules = response?.data ?? [];
 
   const rows = [];
   let days = [];

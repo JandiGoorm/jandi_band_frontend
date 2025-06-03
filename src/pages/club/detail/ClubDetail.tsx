@@ -6,14 +6,23 @@ import TeamSlide from "./clubSlide/TeamSlide";
 import VoteSlide from "./clubSlide/VoteSlide";
 // import PhotoSlide from "./clubSlide/PhotoSlide";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { useGetClubDetail, useGetClubMembers } from "@/apis/club";
 import Loading from "@/components/loading/Loading";
 import { useGetClubPoll } from "@/apis/poll";
 import { useGetTeamList } from "@/apis/team";
 import { useAuthStore } from "@/stores/authStore";
+// 클럽아이디 저장
+import { useClubStore } from "@/stores/clubStore";
 
 const Club = () => {
   const { id } = useParams();
+  const setClubId = useClubStore((id) => id.setClubId);
+
+  useEffect(() => {
+    if (id) setClubId(Number(id));
+  }, [id]);
+
   const { user } = useAuthStore();
   const { data: clubData, isLoading: clubLoading } = useGetClubDetail(
     id as string
