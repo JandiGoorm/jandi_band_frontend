@@ -1,11 +1,12 @@
+/* 2025년 몇월 */
 .header {
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: start;
   box-sizing: border-box;
   width: 100%;
   gap: 1rem;
-  padding: 1.25rem;
+  /* padding: 1.25rem; */
   font-size: var(--text-lg);
   padding: 0 0.5rem;
   font-weight: var(--font-weight-semibold);

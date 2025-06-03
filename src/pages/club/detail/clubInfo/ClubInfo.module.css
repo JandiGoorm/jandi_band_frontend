@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  padding-top: 18rem;
+  padding-top: 14rem;
 }
 .banner {
   width: 100vw;
@@ -24,6 +24,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  white-space: nowrap;
 }
 
 .info_title {
@@ -63,4 +64,30 @@
 .member {
   display: flex;
   gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .title_box {
+    flex-direction: column;
+    align-items: center;
+  }
+  .member_box {
+    justify-content: center;
+  }
+  .left_title {
+    margin-top: 0.5rem;
+  }
+  .left_title button {
+    font-size: 1rem;
+    height: 2rem;
+  }
+  .instagram_icon {
+    height: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .member_box {
+    font-size: 1rem;
+  }
 }

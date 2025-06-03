@@ -1,3 +1,4 @@
+/* 일월화수목금토 글자 */
 .days_wrapper {
   display: flex;
   align-items: center;
@@ -5,8 +6,9 @@
   padding: 0.25rem 0;
   box-sizing: border-box;
   text-align: end;
-  border-bottom: 1px solid var(--color-text-sub);
-  color: var(--color-text-main);
+  border-bottom: 2px solid #bfbfbf;
+  color: #5e5e5e;
+  padding-bottom: 0.7rem;
 }
 
 .day_item {

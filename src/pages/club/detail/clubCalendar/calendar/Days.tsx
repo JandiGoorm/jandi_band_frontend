@@ -1,3 +1,4 @@
+// 일월화수목금토 표시만
 import styles from "./Days.module.css";
 
 const Days = () => {

@@ -1,7 +1,7 @@
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "./ClubDetail.module.css";
 import ClubInfo from "./clubInfo/ClubInfo";
-import ClubCalendar from "./clubCalendar/ClubCalendar";
+import Calendar from "./clubCalendar/calendar/Calendar";
 import TeamSlide from "./clubSlide/TeamSlide";
 import VoteSlide from "./clubSlide/VoteSlide";
 // import PhotoSlide from "./clubSlide/PhotoSlide";
@@ -52,7 +52,7 @@ const Club = () => {
     <DefaultLayout>
       <main className={styles.container}>
         <ClubInfo club={clubData.data} memberData={memberData.data} />
-        <ClubCalendar isMember={isMember} />
+        <Calendar isMember={isMember} />
         {isMember && <TeamSlide teams={teamData?.data.content} />}
         <VoteSlide
           polls={pollData.data.content}
