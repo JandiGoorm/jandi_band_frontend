@@ -36,7 +36,10 @@ const DetailContent = () => {
         <section>
           <span
             className={styles.promo_button}
-            style={{ backgroundColor: status.backgroundColor }}
+            style={{
+              backgroundColor: status.backgroundColor,
+              color: status.color,
+            }}
           >
             {status.text}
           </span>
@@ -47,6 +50,7 @@ const DetailContent = () => {
             <div className={styles.title_button_box}>
               <Button
                 size="sm"
+                variant="transparent"
                 onClick={() =>
                   navigate(buildPath(PageEndpoints.PROMOTION_UPDATE, { id }))
                 }
@@ -54,7 +58,11 @@ const DetailContent = () => {
                 수정
               </Button>
               <DeleteModal
-                trigger={<Button size="sm">삭제</Button>}
+                trigger={
+                  <Button size="sm" variant="transparent">
+                    삭제
+                  </Button>
+                }
                 title="게시물 삭제"
                 description="정말 해당 게시물을 삭제 하시겠어요?"
                 onDelete={() => {
@@ -93,23 +101,29 @@ const DetailContent = () => {
             <section className={styles.info_box}>
               <div className={styles.info}>
                 <p className={styles.info_title}>공연팀</p>
-                <p>{fetchData.data.teamName}</p>
+                <p className={styles.info_text}>{fetchData.data.teamName}</p>
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>관람료</p>
-                <p>{fetchData.data.admissionFee}</p>
+                <p className={styles.info_text}>
+                  {fetchData.data.admissionFee}
+                </p>
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>날짜</p>
-                <p>{formatDate(fetchData.data.eventDatetime)}</p>
+                <p className={styles.info_text}>
+                  {formatDate(fetchData.data.eventDatetime)}
+                </p>
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>시간</p>
-                <p>{formatTime(fetchData.data.eventDatetime)}</p>
+                <p className={styles.info_text}>
+                  {formatTime(fetchData.data.eventDatetime)}
+                </p>
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>장소</p>
-                <p>{fetchData.data.location}</p>
+                <p className={styles.info_text}>{fetchData.data.location}</p>
                 <Button size="sm" variant="transparent">
                   지도보기
                 </Button>

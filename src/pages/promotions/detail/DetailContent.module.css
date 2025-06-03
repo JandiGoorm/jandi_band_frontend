@@ -65,7 +65,11 @@
   }
   .promotion_img {
     margin: 0 auto;
-    min-width: 300px;
+    min-width: 200px;
+  }
+
+  .promotion_container {
+    padding: 2rem 0;
   }
 }
 
@@ -96,6 +100,12 @@
 
 .info_title {
   font-weight: var(--font-weight-bold);
+  width: 25%;
+  text-align: left;
+}
+.info_text {
+  flex: 1;
+  text-align: left;
 }
 .promotion_info {
   display: flex;

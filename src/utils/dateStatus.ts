@@ -58,6 +58,7 @@ export const formatTime = (isoString: string): string => {
 export type EventStatus = {
   text: string;
   backgroundColor: string;
+  color: string;
 };
 
 export const getEventStatus = (eventDatetime: Date | string): EventStatus => {
@@ -75,16 +76,19 @@ export const getEventStatus = (eventDatetime: Date | string): EventStatus => {
     return {
       text: "D-Day",
       backgroundColor: "var(--color-bg-toast-success)",
+      color: "var(--color-button-primary-text)",
     };
   } else if (eventDate > now) {
     return {
       text: "공연 예정",
       backgroundColor: "var(--color-bg-button)",
+      color: "var(--color-text-main)",
     };
   } else {
     return {
       text: "공연 종료",
-      backgroundColor: "var(--color-bg-toast-error)",
+      backgroundColor: "oklch(0.5929 0.1227 20.84)",
+      color: "var(--color-button-primary-text)",
     };
   }
 };
