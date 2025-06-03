@@ -57,7 +57,14 @@ const CreateClubModal = () => {
   }, [data, navigate]);
 
   return (
-    <Modal trigger={<button>동아리 만들기</button>} title="동아리 생성하기">
+    <Modal
+      trigger={
+        <Button size="sm" variant="none">
+          동아리 생성
+        </Button>
+      }
+      title="동아리 생성하기"
+    >
       <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
         <Field label="동아리 이름" error={errors.name} isRequired>
           <Input {...register("name")} inputSize="md" />

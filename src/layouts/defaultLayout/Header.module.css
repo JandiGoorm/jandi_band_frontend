@@ -30,7 +30,7 @@
 
 .right {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 @media screen and (max-width: 1264px) {
