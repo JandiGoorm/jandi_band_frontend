@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 // 내 정보 불러오기
 import { useGetInfo } from "@/apis/mypage";
+import TimeTableCards from "@/components/cards/TimeTableCards";
 
 const MyPage = () => {
   const { data: myInfoResponse } = useGetInfo();
@@ -50,7 +51,7 @@ const MyPage = () => {
               title="마이프로필 수정하기"
               trigger={<button>수정하기</button>}
             >
-              <ProfilEdit />
+              <ProfilEdit myInfo={myInfo} />
             </Modal>
           </header>
           <div className={styles.profile_content}>
@@ -105,13 +106,17 @@ const MyPage = () => {
           </header>
 
           <Slide items={myTimeTables.data} size="sm">
+            {(item) => <TimeTableCards timeTable={item} />}
+          </Slide>
+
+          {/* <Slide items={myTimeTables.data} size="sm">
             {(item) => (
               <div className={styles.itemCard}>
                 <h3>{item.name}</h3>
                 <p>ID: {item.id}</p>
               </div>
             )}
-          </Slide>
+          </Slide> */}
         </section>
       </main>
     </DefaultLayout>

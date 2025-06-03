@@ -1,25 +1,21 @@
 import * as Select from "@radix-ui/react-select";
 import { FiChevronDown, FiChevronUp, FiCheck } from "react-icons/fi";
 import styles from "./PositionSelect.module.css";
-// import type { UseFormReturn } from "react-hook-form";
-// import type { z } from "zod";
-// import { positions, type signUpFormSchema } from "./constants";
 import { useState, useCallback } from "react";
 import { positions } from "./constants";
 import clsx from "clsx";
 
 interface PositionSelectProps {
+  // value?: string | null ;
   placeholder?: string;
   onValueChange: (position: string) => void;
-  // formController: UseFormReturn<z.infer<typeof signUpFormSchema>>;
 }
 
 export const PositionSelect = ({
+  // value,
   placeholder = "포지션 선택",
   onValueChange,
-  // formController,
 }: PositionSelectProps) => {
-  // const { setValue, getValues } = formController;
   const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
 
   const handleValueChange = useCallback(
@@ -30,17 +26,9 @@ export const PositionSelect = ({
     [onValueChange]
   );
 
-  // const handleValueChange = useCallback(
-  //   (value: string) => {
-  //     setValue("position", value);
-  //   },
-  //   [setValue]
-  // );
-
   return (
     <Select.Root
       value={selectedPosition || ""}
-      // value={getValues("position")}
       onValueChange={handleValueChange}
     >
       <Select.Trigger className={styles.trigger} aria-label={placeholder}>
