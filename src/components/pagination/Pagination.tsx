@@ -86,6 +86,7 @@ const Pagination: React.FC<PaginationProps> = ({
       {distance(safetyCurrentPage, totalPage) >= 3 && <span>...</span>}
       {totalPage > 1 && (
         <Button
+          size="sm"
           variant={safetyCurrentPage === totalPage ? "secondary" : "none"}
           onClick={() => handlePageChange(totalPage)}
           disabled={safetyCurrentPage === totalPage}
