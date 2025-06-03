@@ -19,6 +19,7 @@ export const secureRoutes = [
   { method: Method.POST, url: ApiEndpotins.CLUB },
   { method: Method.GET, url: ApiEndpotins.CLUB_DETAIL },
   { method: Method.PATCH, url: ApiEndpotins.CLUB_DETAIL },
+  { method: Method.POST, url: ApiEndpotins.CLUB_IMAGE },
   { method: Method.GET, url: ApiEndpotins.CLUB_POLL },
   { method: Method.GET, url: ApiEndpotins.CLUB_TEAM },
   { method: Method.POST, url: ApiEndpotins.CLUB_TEAM },
@@ -42,4 +43,7 @@ export const secureRoutes = [
   { method: Method.PUT, url: ApiEndpotins.POLL_VOTE },
   { method: Method.DELETE, url: ApiEndpotins.POLL_VOTE },
   { method: Method.GET, url: ApiEndpotins.POLL_LIST },
+  { method: Method.POST, url: ApiEndpotins.PROMOTION },
+  { method: Method.PATCH, url: ApiEndpotins.PROMOTION_DETAIL },
+  { method: Method.DELETE, url: ApiEndpotins.PROMOTION_DETAIL },
 ];

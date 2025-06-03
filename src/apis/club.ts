@@ -1,5 +1,5 @@
 import type { ClubListResponse, MyClubListResponse } from "@/types/club";
-import type { PagiNationResponse } from "@/types/common";
+import type { Nullable, PagiNationResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useDelete, useFetch, usePatch, usePost } from "./hooks";
 import type { ClubFormData } from "@/layouts/defaultLayout/CreateClubModal";
@@ -30,13 +30,23 @@ export const useGetClubs = () => {
   return useFetch(ApiEndpotins.CLUB);
 };
 
-export const useGetClubList = () => {
-  return useFetch<PagiNationResponse<ClubListResponse>>(ApiEndpotins.CLUB);
+export const useGetClubList = ({
+  page = 0,
+  size = 20,
+}: {
+  page?: number;
+  size?: number;
+}) => {
+  return useFetch<PagiNationResponse<ClubListResponse>>(ApiEndpotins.CLUB, {
+    page: page,
+    size: size,
+  });
 };
 
 export const useGetMyClubList = () => {
   return useFetch<MyClubListResponse[]>(ApiEndpotins.MY_CLUB);
 };
+
 export const useGetClubMembers = (id: string) => {
   return useFetch<ClubMemberResponse>(
     buildPath(ApiEndpotins.CLUB_MEMBERS, { id })
@@ -50,5 +60,11 @@ export const useInviteClub = (id: string) => {
 };
 
 export const useJoinClub = (code: string) => {
-  return usePost<void, object>(`${ApiEndpotins.JOIN_CLUB}?code=${code}`);
+  return usePost<void, { clubId: Nullable<string>; teamId: Nullable<string> }>(
+    `${ApiEndpotins.JOIN_CLUB}?code=${code}`
+  );
+};
+
+export const useUpdateClubImage = (id: string) => {
+  return usePost<FormData, string>(buildPath(ApiEndpotins.CLUB_IMAGE, { id }));
 };

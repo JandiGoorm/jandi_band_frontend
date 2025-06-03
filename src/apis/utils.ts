@@ -21,9 +21,9 @@ type Api = {
 
 const axiosInstance = axios.create({
   baseURL: domain,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // headers: {
+  //   "Content-Type": "application/json",
+  // },
 });
 
 export const api: Api = {
@@ -109,5 +109,7 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
       }
     }
+
+    return Promise.reject(error);
   }
 );
