@@ -47,7 +47,7 @@ const PromotionMain = () => {
     <DefaultLayout>
       <main className={styles.container}>
         <nav className={styles.header_nav}>
-          <div>
+          <div className={styles.header_nav_box}>
             <Button variant="transparent"> 지도보기 </Button>
             <Button
               variant="transparent"
@@ -57,7 +57,7 @@ const PromotionMain = () => {
               지역별
             </Button>
             <Button variant="transparent"> 날짜선택 </Button>
-            <Input inputSize="md" style={{ width: "100%" }} />
+            <Input inputSize="md" style={{ flex: 1, minWidth: "10rem" }} />
           </div>
           <div>
             <Button
