@@ -24,7 +24,7 @@ const Home = () => {
   });
 
   if (
-    !myClubListData ||
+    // !myClubListData ||
     isMyClubListLoading ||
     !promoListData ||
     isPromoListLoading ||
@@ -47,15 +47,17 @@ const Home = () => {
             <Banner />
           </motion.div>
 
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            transition={{ duration: 0.6, delay: 0.6 }}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <MyBandSlide club={myClubListData.data} />
-          </motion.div>
+          {myClubListData && (
+            <motion.div
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <MyBandSlide club={myClubListData.data} />
+            </motion.div>
+          )}
 
           <motion.div
             variants={fadeInUp}
