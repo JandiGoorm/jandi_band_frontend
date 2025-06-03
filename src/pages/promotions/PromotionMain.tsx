@@ -57,15 +57,14 @@ const PromotionMain = () => {
               지역별
             </Button>
             <Button variant="transparent"> 날짜선택 </Button>
+            <Input inputSize="md" style={{ width: "100%" }} />
           </div>
           <div>
-            <Input inputSize="md" style={{ width: "100%" }} />
             <Button
-              variant="transparent"
+              variant="primary"
               onClick={() => navigate("/promotion/post")}
             >
-              {" "}
-              +{" "}
+              등록
             </Button>
           </div>
         </nav>
