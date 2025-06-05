@@ -60,7 +60,6 @@ const ScheduleModal = ({ setOpen, currentMonth }: Props) => {
   };
 
   const onSubmit = (data: z.infer<typeof sceduleFormSchema>) => {
-    console.log(data);
     mutate(
       {
         name: data.title,
@@ -91,8 +90,6 @@ const ScheduleModal = ({ setOpen, currentMonth }: Props) => {
   const {
     formState: { errors },
   } = formController;
-
-  console.log("폼 에러", errors);
 
   return (
     <main className={styles.scedule_container}>
