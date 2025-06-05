@@ -33,3 +33,62 @@ export const formatPromotionDate = (isoDate: string): string => {
 
   return `${year}.${month}.${day} ${period} ${hours}:${minutes}`;
 };
+
+export const formatDate = (isoString: string): string => {
+  const date = new Date(isoString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // 0-based
+  const day = date.getDate();
+  return `${year}년 ${month}월 ${day}일`;
+};
+
+export const formatTime = (isoString: string): string => {
+  const date = new Date(isoString);
+  let hour = date.getHours();
+  const minute = date.getMinutes();
+  const isAM = hour < 12;
+
+  const period = isAM ? "오전" : "오후";
+  if (hour === 0) hour = 12;
+  else if (hour > 12) hour -= 12;
+
+  return `${period} ${hour}시 ${minute}분`;
+};
+
+export type EventStatus = {
+  text: string;
+  backgroundColor: string;
+  color: string;
+};
+
+export const getEventStatus = (eventDatetime: Date | string): EventStatus => {
+  const now = new Date();
+  const eventDate = new Date(eventDatetime);
+
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const eventDay = new Date(
+    eventDate.getFullYear(),
+    eventDate.getMonth(),
+    eventDate.getDate()
+  );
+
+  if (eventDay.getTime() === today.getTime()) {
+    return {
+      text: "D-Day",
+      backgroundColor: "var(--color-bg-toast-success)",
+      color: "var(--color-button-primary-text)",
+    };
+  } else if (eventDate > now) {
+    return {
+      text: "공연 예정",
+      backgroundColor: "var(--color-bg-button)",
+      color: "var(--color-text-main)",
+    };
+  } else {
+    return {
+      text: "공연 종료",
+      backgroundColor: "oklch(0.5929 0.1227 20.84)",
+      color: "var(--color-button-primary-text)",
+    };
+  }
+};

@@ -10,6 +10,12 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.header_nav_box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .region_buttons {
   display: flex;
   gap: 0.5rem;

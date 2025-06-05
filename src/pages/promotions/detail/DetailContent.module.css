@@ -7,9 +7,11 @@
 .promo_button {
   width: auto;
   padding: 0.25rem 2rem;
-  border: 1px solid var(--color-button-transparent-border);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-text-sub);
   background-color: var(--color-bg-button);
-  color: var(--color-text-sub);
+  color: var(--color-text-main);
+  font-weight: var(--font-weight-semibold);
   border-radius: var(--radius-input);
 }
 
@@ -17,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0.5rem;
 }
 
 .title_button_box {
@@ -51,6 +54,8 @@
 .promotion_img {
   width: 25%;
   min-width: 200px;
+  aspect-ratio: 376 / 504;
+  border-radius: var(--radius-xl);
 }
 
 @media (max-width: 768px) {
@@ -60,7 +65,11 @@
   }
   .promotion_img {
     margin: 0 auto;
-    min-width: 300px;
+    min-width: 200px;
+  }
+
+  .promotion_container {
+    padding: 2rem 0;
   }
 }
 
@@ -91,6 +100,12 @@
 
 .info_title {
   font-weight: var(--font-weight-bold);
+  width: 25%;
+  text-align: left;
+}
+.info_text {
+  flex: 1;
+  text-align: left;
 }
 .promotion_info {
   display: flex;

@@ -36,8 +36,6 @@ const PromotionMain = () => {
     setShowRegions((prev) => !prev);
   };
 
-  console.log(promoData);
-
   useEffect(() => {
     if (promoData?.data.pageInfo.totalPages !== undefined) {
       setTotalPage(promoData.data.pageInfo.totalPages);
@@ -49,7 +47,7 @@ const PromotionMain = () => {
     <DefaultLayout>
       <main className={styles.container}>
         <nav className={styles.header_nav}>
-          <div>
+          <div className={styles.header_nav_box}>
             <Button variant="transparent"> 지도보기 </Button>
             <Button
               variant="transparent"
@@ -59,15 +57,14 @@ const PromotionMain = () => {
               지역별
             </Button>
             <Button variant="transparent"> 날짜선택 </Button>
+            <Input inputSize="md" style={{ flex: 1, minWidth: "10rem" }} />
           </div>
           <div>
-            <Input inputSize="md" style={{ width: "100%" }} />
             <Button
-              variant="transparent"
+              variant="primary"
               onClick={() => navigate("/promotion/post")}
             >
-              {" "}
-              +{" "}
+              등록
             </Button>
           </div>
         </nav>
