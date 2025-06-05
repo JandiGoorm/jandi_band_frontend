@@ -18,6 +18,14 @@
   top: 9rem;
   right: 0rem;
   z-index: 1;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 0.8px solid rgba(255, 255, 255, 0.6);
+}
+.image_button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .title_box {
   display: flex;
