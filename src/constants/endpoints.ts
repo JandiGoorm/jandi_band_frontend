@@ -53,4 +53,7 @@ export enum ApiEndpotins {
   POLL_ADD_RECOMMEND = "/polls/:pollId/songs",
   POLL_VOTE = "/polls/:pollId/songs/:songId/votes/:emoji",
   POLL_LIST = "/polls/clubs/:clubId",
+
+  // 캘린더용 통합 일정 조회
+  CALENDAR = "/clubs/:clubId/calendar",
 }

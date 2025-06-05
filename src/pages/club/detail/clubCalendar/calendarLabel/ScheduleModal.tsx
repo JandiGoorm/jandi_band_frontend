@@ -1,9 +1,10 @@
+import { format } from "date-fns";
 import styles from "./ScheduleModal.module.css";
-import type { Schedule } from "@/pages/club/detail/clubCalendar/calendarLabel/data";
+import type { CalendarEvent } from "@/types/calendar";
 
 interface ScheduleModalProps {
   isOpen: boolean;
-  schedules: Schedule[];
+  schedules: CalendarEvent[];
   selectedDate: string | null;
   onClose: () => void;
 }
@@ -15,6 +16,10 @@ const ScheduleModal = ({
   onClose,
 }: ScheduleModalProps) => {
   if (!isOpen) return null;
+
+  const formatTimeRange = (start: string, end: string) => {
+    return `${format(new Date(start), "HH:mm")} ~ ${format(new Date(end), "HH:mm")}`;
+  };
 
   return (
     <main className={styles.modal_overlay} onClick={onClose}>
@@ -34,9 +39,29 @@ const ScheduleModal = ({
             <div
               key={i}
               className={styles.schedule_label}
-              style={{ backgroundColor: s.color }}
+              style={{
+                backgroundColor:
+                  s.eventType === "CLUB_EVENT" ? "lightblue" : "pink",
+              }}
             >
-              {s.name}
+              <div>{s.name}</div>
+              {s.eventType === "TEAM_EVENT" && (
+                <>
+                  {s.teamName && (
+                    <span className={styles.team_label}>
+                      [ 팀 : {s.teamName} ]{" "}
+                    </span>
+                  )}
+                  {s.noPosition && (
+                    <span className={styles.position_label}>
+                      [NO {s.noPosition}]{" "}
+                    </span>
+                  )}
+                </>
+              )}
+              <div className={styles.schedule_time}>
+                🕒 [ {formatTimeRange(s.startDatetime, s.endDatetime)} ]
+              </div>
             </div>
           ))
         )}

@@ -8,20 +8,26 @@ import {
 } from "date-fns";
 import styles from "./Cells.module.css";
 import clsx from "clsx";
+import { useState } from "react";
 
 // 일정 라벨 만들기
-import {
-  schedules,
-  type Schedule,
-} from "@/pages/club/detail/clubCalendar/calendarLabel/data";
+import { useGetCalendar } from "@/apis/calendar";
+import type { CalendarEvent, EventType } from "@/types/calendar";
 import ScheduleModal from "@/pages/club/detail/clubCalendar/calendarLabel/ScheduleModal";
-import { useState } from "react";
 import useMediaQuery from "@/pages/club/detail/clubCalendar/calendarLabel/useMediaQuery";
+import { useClubStore } from "@/stores/clubStore";
 
 // currentMonth 현재 달 (=기준)
 interface Props {
   currentMonth: Date;
 }
+
+// 임의의 색상 지정해두려고
+const eventTypeColors: Record<EventType, string> = {
+  CLUB_EVENT: "lightblue",
+  TEAM_EVENT: "pink",
+};
+const getColorByEventType = (type: EventType) => eventTypeColors[type];
 
 const Cells = ({ currentMonth }: Props) => {
   const monthStart = startOfMonth(currentMonth); // 전달받은 월의 1일
@@ -30,19 +36,28 @@ const Cells = ({ currentMonth }: Props) => {
   const endDate = endOfWeek(monthEnd); // 달력에서의 끝 (토)
   const today = new Date();
 
+  // api 연결을 위한 변수들
+  const clubId = useClubStore((state) => state.clubId);
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth() + 1;
+  const { data: response } = useGetCalendar(clubId!, year, month);
+  const schedules = response?.data ?? [];
+
   const rows = [];
   let days = [];
-  // let day = startDate;
-  // let formattedDate = "";
   let num = 0;
 
-  const [selectedSchedules, setSelectedSchedules] = useState<Schedule[]>([]);
+  const [selectedSchedules, setSelectedSchedules] = useState<CalendarEvent[]>(
+    []
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   let day = new Date(startDate);
 
   const handleDayClick = (date: string) => {
-    const matched = schedules.filter((s) => s.date === date);
+    const matched = schedules.filter(
+      (s) => format(new Date(s.startDatetime), "yyyy-MM-dd") === date
+    );
     setSelectedSchedules(matched);
     setSelectedDate(date);
     setIsModalOpen(true);
@@ -55,14 +70,13 @@ const Cells = ({ currentMonth }: Props) => {
   while (day <= endDate) {
     // 한 주의 칸 만들기
     for (let i = 0; i < 7; i++) {
-      const thisDay = new Date(day); // ✅ 안정적 복제본
+      const thisDay = new Date(day);
       const formattedDate = format(thisDay, "yyyy-MM-dd");
-      // formattedDate = format(day, "yyyy-MM-dd"); // 현재 day 문자열로 반환
       num++; // 셀에 고유한 키
 
       // 일정 라벨
       const matchedSchedules = schedules.filter(
-        (s) => s.date === formattedDate
+        (s) => format(new Date(s.startDatetime), "yyyy-MM-dd") === formattedDate
       );
 
       // 해당 날짜가 이번 달인가?
@@ -91,7 +105,9 @@ const Cells = ({ currentMonth }: Props) => {
             <div
               key={idx}
               className={styles.schedule_label}
-              style={{ backgroundColor: schedule.color }}
+              style={{
+                backgroundColor: getColorByEventType(schedule.eventType),
+              }}
             >
               {schedule.name}
             </div>

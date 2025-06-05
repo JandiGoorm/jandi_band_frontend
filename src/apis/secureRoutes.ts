@@ -46,4 +46,6 @@ export const secureRoutes = [
   { method: Method.POST, url: ApiEndpotins.PROMOTION },
   { method: Method.PATCH, url: ApiEndpotins.PROMOTION_DETAIL },
   { method: Method.DELETE, url: ApiEndpotins.PROMOTION_DETAIL },
+
+  { method: Method.GET, url: ApiEndpotins.CALENDAR },
 ];
