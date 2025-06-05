@@ -48,7 +48,13 @@ const PromotionMain = () => {
       <main className={styles.container}>
         <nav className={styles.header_nav}>
           <div className={styles.header_nav_box}>
-            <Button variant="transparent"> 지도보기 </Button>
+            <Button
+              variant="transparent"
+              onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
+            >
+              {" "}
+              지도보기{" "}
+            </Button>
             <Button
               variant="transparent"
               onClick={toggleRegions}

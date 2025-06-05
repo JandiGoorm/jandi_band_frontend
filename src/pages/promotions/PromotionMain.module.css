@@ -65,7 +65,7 @@
 
 .promotion_img {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 376 / 504;
   border-radius: var(--radius-lg);
 }
 .promotion_title {
