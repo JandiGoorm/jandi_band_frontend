@@ -11,3 +11,5 @@ export const useGetCalendar = (clubId: number, year: number, month: number) => {
 
   return useFetch<CalendarListType>(url);
 };
+
+// 동아리 일정 추가 POST
