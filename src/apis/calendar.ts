@@ -25,3 +25,5 @@ export const usePostCalendarEvent = (clubId: number) => {
     buildPath(ApiEndpotins.POST_CALENDAR_EVENT, { clubId })
   );
 };
+
+// 동아리 일정 삭제

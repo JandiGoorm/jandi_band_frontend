@@ -17,6 +17,8 @@ const ScheduleModal = ({
 }: ScheduleModalProps) => {
   if (!isOpen) return null;
 
+  console.log(schedules);
+
   const formatTimeRange = (start: string, end: string) => {
     return `${format(new Date(start), "HH:mm")} ~ ${format(new Date(end), "HH:mm")}`;
   };
@@ -62,6 +64,12 @@ const ScheduleModal = ({
               <div className={styles.schedule_time}>
                 🕒 [ {formatTimeRange(s.startDatetime, s.endDatetime)} ]
               </div>
+
+              {s.eventType === "CLUB_EVENT" && (
+                <>
+                  <button>🗑️ 삭제하기</button>
+                </>
+              )}
             </div>
           ))
         )}
