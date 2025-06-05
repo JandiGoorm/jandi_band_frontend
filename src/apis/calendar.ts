@@ -1,7 +1,7 @@
 // 동아리 일정 관련 로직들
 import { ApiEndpotins } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
-import { useFetch, usePost } from "./hooks";
+import { useFetch, usePost, useDelete } from "./hooks";
 import type {
   CalendarListType,
   ClubEventFormData,
@@ -26,4 +26,9 @@ export const usePostCalendarEvent = (clubId: number) => {
   );
 };
 
-// 동아리 일정 삭제
+// 동아리 일정 삭제 DELETE, 경로 파라미터로만 들어감
+export const useDeleteCalendarEvent = (clubId: number, eventId: number) => {
+  return useDelete(
+    buildPath(ApiEndpotins.DELETE_CALENDAR_EVENT, { clubId, eventId })
+  );
+};
