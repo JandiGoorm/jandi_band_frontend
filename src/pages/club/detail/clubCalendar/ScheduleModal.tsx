@@ -6,6 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Button from "@/components/button/Button";
 
+import { usePostCalendarEvent } from "@/apis/calendar";
+import { useClubStore } from "@/stores/clubStore"; //클럽 id
+
 export const sceduleFormSchema = z
   .object({
     title: z
@@ -23,24 +26,57 @@ export const sceduleFormSchema = z
       invalid_type_error: "올바른 날짜와 시간을 선택하세요.",
     }),
 
-    description: z.string().max(50, { message: "50자 이내로 입력해주세요." }),
+    // description: z.string().max(50, { message: "50자 이내로 입력해주세요." }),
   })
   .refine((data) => data.endtime > data.starttime, {
     path: ["endtime"],
     message: "마감시간은 시작시간보다 뒤여야 합니다.",
   });
 
-const ScheduleModal = () => {
+interface Props {
+  setOpen: (open: boolean) => void;
+  // refetch: () => void;
+}
+
+const ScheduleModal = ({ setOpen }: Props) => {
+  // 클럽 아이디
+  const clubId = useClubStore((state) => state.clubId);
+  const { mutate } = usePostCalendarEvent(clubId!);
+
   const formController = useForm({
     resolver: zodResolver(sceduleFormSchema),
   });
 
+  const formatKST = (date: Date) => {
+    const tzOffset = date.getTimezoneOffset() * 60000;
+    return new Date(date.getTime() - tzOffset).toISOString().slice(0, -1); // Z 제거
+  };
+
   const onSubmit = (data: z.infer<typeof sceduleFormSchema>) => {
     console.log(data);
+    mutate(
+      {
+        name: data.title,
+        startDatetime: formatKST(data.starttime),
+        endDatetime: formatKST(data.endtime),
+      },
+      {
+        onSuccess: () => {
+          // refetch();
+          setOpen(false);
+        },
+        onError: (err) => {
+          console.error("실패", err);
+        },
+      }
+    );
   };
+
   const {
     formState: { errors },
   } = formController;
+
+  console.log("폼 에러", errors);
 
   return (
     <main className={styles.scedule_container}>
