@@ -36,7 +36,9 @@ const Calendar = ({ isMember }: { isMember: boolean }) => {
                 </Button>
               }
             >
-              {(setOpen) => <ScheduleModal setOpen={setOpen} />}
+              {(setOpen) => (
+                <ScheduleModal setOpen={setOpen} currentMonth={currentMonth} />
+              )}
             </Modal>
           )}
         </>

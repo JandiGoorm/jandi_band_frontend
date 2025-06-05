@@ -11,9 +11,12 @@ import type {
 // 캘린더 전체 일정 조회 GET
 export const useGetCalendar = (clubId: number, year: number, month: number) => {
   const path = buildPath(ApiEndpotins.CALENDAR, { clubId });
-  const url = `${path}?year=${year}&month=${month}`;
+  // const url = `${path}?year=${year}&month=${month}`;
 
-  return useFetch<CalendarListType>(url);
+  // return useFetch<CalendarListType>(url);
+  const params = { year, month };
+
+  return useFetch<CalendarListType>(path, params);
 };
 
 // 동아리 일정 추가 POST

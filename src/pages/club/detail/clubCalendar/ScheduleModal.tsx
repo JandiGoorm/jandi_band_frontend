@@ -9,6 +9,11 @@ import Button from "@/components/button/Button";
 import { usePostCalendarEvent } from "@/apis/calendar";
 import { useClubStore } from "@/stores/clubStore"; //클럽 id
 
+// invalidateQueries 사용해보기
+import { ApiEndpotins } from "@/constants/endpoints";
+import { useQueryClient } from "@tanstack/react-query";
+import { buildPath } from "@/utils/buildPath";
+
 export const sceduleFormSchema = z
   .object({
     title: z
@@ -35,10 +40,12 @@ export const sceduleFormSchema = z
 
 interface Props {
   setOpen: (open: boolean) => void;
+  currentMonth: Date;
   // refetch: () => void;
 }
 
-const ScheduleModal = ({ setOpen }: Props) => {
+const ScheduleModal = ({ setOpen, currentMonth }: Props) => {
+  const queryClient = useQueryClient();
   // 클럽 아이디
   const clubId = useClubStore((state) => state.clubId);
   const { mutate } = usePostCalendarEvent(clubId!);
@@ -62,7 +69,16 @@ const ScheduleModal = ({ setOpen }: Props) => {
       },
       {
         onSuccess: () => {
-          // refetch();
+          const year = currentMonth.getFullYear();
+          const month = currentMonth.getMonth() + 1;
+
+          queryClient.invalidateQueries({
+            queryKey: [
+              buildPath(ApiEndpotins.CALENDAR, { clubId: clubId! }),
+              { year, month },
+            ] as const,
+          });
+
           setOpen(false);
         },
         onError: (err) => {
