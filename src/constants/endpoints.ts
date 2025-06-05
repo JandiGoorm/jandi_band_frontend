@@ -57,4 +57,5 @@ export enum ApiEndpotins {
   // 캘린더용 통합 일정 조회
   CALENDAR = "/clubs/:clubId/calendar",
   POST_CALENDAR_EVENT = "/clubs/:clubId/events", // 동아리 일정 추가
+  DELETE_CALENDAR_EVENT = "/clubs/:clubId/events/:eventId", // 동아리 일정 삭제
 }
