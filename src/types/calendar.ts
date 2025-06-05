@@ -14,3 +14,15 @@ export interface CalendarEvent {
 
 // 응답 타입
 export type CalendarListType = CalendarEvent[];
+
+// 일정 추가 타입 정의
+export interface ClubEventFormData {
+  name: string;
+  startDatetime: string;
+  endDatetime: string;
+}
+
+// 응답 타입
+export interface ClubEventType extends ClubEventFormData {
+  id: number;
+}
