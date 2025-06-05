@@ -42,9 +42,9 @@ export const useFetch = <T>(
  */
 export const usePost = <T = object, S = unknown>(
   url: string,
-  options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T>
+  options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T | void>
 ) => {
-  return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T>({
+  return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T | void>({
     mutationFn: (data) =>
       api.post<AxiosResponse<ApiResponse<S>>>(url, data ?? {}),
     ...options,
