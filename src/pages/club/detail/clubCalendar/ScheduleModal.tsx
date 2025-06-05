@@ -69,9 +69,9 @@ const ScheduleModal = () => {
             {...formController.register("endtime")}
           />
         </Field>
-        <Field label="추가 내용" error={errors.description}>
+        {/* <Field label="추가 내용" error={errors.description}>
           <Input inputSize="sm" {...formController.register("description")} />
-        </Field>
+        </Field> */}
 
         <Button
           type="submit"
