@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
+import Modal from "@/components/modal/Modal";
 
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
@@ -202,6 +203,16 @@ const UpdatePromotion = () => {
                   defaultValue={postData.data.location}
                   className={clsx(errors.location && styles.inputError)}
                 />
+                <Modal
+                  title="장소 수정하기"
+                  trigger={
+                    <Button variant="transparent" size="sm">
+                      장소 수정
+                    </Button>
+                  }
+                >
+                  <div>s</div>
+                </Modal>
               </div>
             </aside>
           </section>

@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
+import Modal from "@/components/modal/Modal";
 
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
@@ -174,6 +175,16 @@ const CreatePost = () => {
                   {...register("location")}
                   className={clsx(errors.location && styles.inputError)}
                 />
+                <Modal
+                  title="장소 추가하기"
+                  trigger={
+                    <Button variant="transparent" size="sm">
+                      장소 추가
+                    </Button>
+                  }
+                >
+                  <div>s</div>
+                </Modal>
               </div>
             </aside>
           </section>
