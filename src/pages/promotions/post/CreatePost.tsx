@@ -10,7 +10,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import Modal from "@/components/modal/Modal";
+import MapModal from "@/components/modal/mapModal/MapModal";
+import type { kakaoLocationRequest } from "@/types/kakao";
 
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
@@ -41,11 +42,14 @@ const CreatePost = () => {
   const navigate = useNavigate();
   const [imageURL, setImageURL] = useState<string | null>(null);
   const { mutate: createPromo, data: postData } = usePostPromotion();
+  const [selectedPlace, setSelectedPlace] =
+    useState<kakaoLocationRequest | null>(null);
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -61,6 +65,8 @@ const CreatePost = () => {
   }, [imageFile]);
 
   const onSubmit = (data: FormData) => {
+    if (!selectedPlace) return;
+
     const formData = new FormData();
 
     formData.append("image", data.image[0]);
@@ -68,8 +74,10 @@ const CreatePost = () => {
     formData.append("teamName", data.team);
     formData.append("admissionFee", data.price);
     formData.append("eventDatetime", `${data.date}T${data.time}:00`);
-    formData.append("location", data.location);
+    formData.append("location", selectedPlace.place_name);
     formData.append("address", data.location);
+    formData.append("latitude", selectedPlace.x);
+    formData.append("longitude", selectedPlace.y);
     formData.append("description", data.description ?? "");
 
     createPromo(formData);
@@ -81,6 +89,13 @@ const CreatePost = () => {
       navigate(buildPath(PageEndpoints.PROMOTION_DETAIL, { id }));
     }
   }, [postData, navigate]);
+
+  const SetAddress = (place: kakaoLocationRequest | null) => {
+    if (place) {
+      setValue("location", place.road_address_name);
+      setSelectedPlace(place);
+    }
+  };
 
   return (
     <DefaultLayout>
@@ -172,19 +187,19 @@ const CreatePost = () => {
                 <label htmlFor="location">장소</label>
                 <textarea
                   id="location"
+                  readOnly
                   {...register("location")}
                   className={clsx(errors.location && styles.inputError)}
                 />
-                <Modal
+                <MapModal
                   title="장소 추가하기"
                   trigger={
                     <Button variant="transparent" size="sm">
                       장소 추가
                     </Button>
                   }
-                >
-                  <div>s</div>
-                </Modal>
+                  onSubmit={(place) => SetAddress(place)}
+                />
               </div>
             </aside>
           </section>
