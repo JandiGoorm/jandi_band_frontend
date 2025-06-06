@@ -1,5 +1,7 @@
 import styles from "./ScheduleBoard.module.css";
+import { format } from "date-fns";
 import { FiPlus } from "react-icons/fi";
+import { dummyTeamSchedule } from "./dummyTeamSchedule";
 
 const ScheduleBoard = () => {
   return (
@@ -11,14 +13,18 @@ const ScheduleBoard = () => {
         </button>
       </header>
 
-      {/* <div className={styles.content_container}>
-        {dummyTeam.practiceTime.map((time) => (
-          <div className={styles.content_item} key={time.id}>
-            <span className={styles.content_type}>{time.type}</span>
-            <span>{time.time}</span>
+      {/* 연습일정 */}
+      <div className={styles.content_container}>
+        {dummyTeamSchedule.map((item) => (
+          <div className={styles.content_item} key={item.id}>
+            <span className={styles.content_type}>
+              {item.noPosition !== null ? `NO ${item.noPosition}` : "전체"}
+            </span>
+            <span>{item.name}</span>
+            <p>{`${format(new Date(item.startDatetime), "MM월 dd일 HH:mm")}~${format(new Date(item.endDatetime), "HH:mm")}`}</p>
           </div>
         ))}
-      </div> */}
+      </div>
     </section>
   );
 };
