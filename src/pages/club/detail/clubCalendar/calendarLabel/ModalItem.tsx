@@ -1,4 +1,4 @@
-// ScheduleModal에 들어가는
+// ScheduleModal에 들어가는 스케줄 아이템들 (invalidate쿼리를 위해 따로 분리함)
 import { format } from "date-fns";
 import type { CalendarEvent } from "@/types/calendar";
 import { useDeleteCalendarEvent } from "@/apis/calendar";
@@ -13,9 +13,10 @@ import { buildPath } from "@/utils/buildPath";
 
 interface ScheduleItemProps {
   event: CalendarEvent;
+  onDelete: (id: number) => void;
 }
 
-const ModalItem = ({ event }: ScheduleItemProps) => {
+const ModalItem = ({ event, onDelete }: ScheduleItemProps) => {
   const clubId = useClubStore((state) => state.clubId);
   const currentMonth = useCurrentStore((state) => state.currentMonth);
 
@@ -56,21 +57,21 @@ const ModalItem = ({ event }: ScheduleItemProps) => {
       {event.eventType === "CLUB_EVENT" && (
         <button
           onClick={() => {
-            if (confirm("정말 삭제하시겠습니까?")) {
-              deleteEvent(undefined, {
-                onSuccess: () => {
-                  const year = currentMonth.getFullYear();
-                  const month = currentMonth.getMonth() + 1;
+            deleteEvent(undefined, {
+              onSuccess: () => {
+                const year = currentMonth.getFullYear();
+                const month = currentMonth.getMonth() + 1;
 
-                  queryClient.invalidateQueries({
-                    queryKey: [
-                      buildPath(ApiEndpotins.CALENDAR, { clubId: clubId! }),
-                      { year, month },
-                    ] as const,
-                  });
-                },
-              });
-            }
+                onDelete(event.id);
+
+                queryClient.invalidateQueries({
+                  queryKey: [
+                    buildPath(ApiEndpotins.CALENDAR, { clubId: clubId! }),
+                    { year, month },
+                  ] as const,
+                });
+              },
+            });
           }}
         >
           🗑️ 삭제하기

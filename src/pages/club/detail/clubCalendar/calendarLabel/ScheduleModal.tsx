@@ -1,3 +1,5 @@
+// 일정 라벨의 모달
+import { useEffect, useState } from "react";
 import styles from "./ScheduleModal.module.css";
 import type { CalendarEvent } from "@/types/calendar";
 import ModalItem from "./ModalItem";
@@ -15,8 +17,17 @@ const ScheduleModal = ({
   selectedDate,
   onClose,
 }: ScheduleModalProps) => {
+  const [sechedulesState, setScheduleState] = useState<CalendarEvent[]>([]);
+
+  useEffect(() => {
+    setScheduleState(schedules); //props로 받은 스케줄
+  }, [schedules]);
+
   if (!isOpen) return null;
 
+  const handleDeleteState = (id: number) => {
+    setScheduleState((prev) => prev.filter((event) => event.id !== id));
+  };
   return (
     <main className={styles.modal_overlay} onClick={onClose}>
       <div
@@ -31,7 +42,9 @@ const ScheduleModal = ({
         {schedules.length === 0 ? (
           <p>등록된 일정이 없습니다.</p>
         ) : (
-          schedules.map((s, i) => <ModalItem key={i} event={s} />)
+          sechedulesState.map((s, i) => (
+            <ModalItem key={i} event={s} onDelete={handleDeleteState} />
+          ))
         )}
       </div>
     </main>
