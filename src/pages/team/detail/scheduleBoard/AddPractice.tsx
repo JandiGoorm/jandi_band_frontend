@@ -10,6 +10,14 @@ import { computeEndDatetime } from "./computeEndTime";
 import { usePostTeamSchedules } from "@/apis/calendar";
 import { useTeamStore } from "@/stores/teamStore";
 
+import { ApiEndpotins } from "@/constants/endpoints";
+import { useQueryClient } from "@tanstack/react-query";
+import { buildPath } from "@/utils/buildPath";
+
+// 일단 고정해놓긴 했는데 변경해야하나?
+const size = 10;
+const page = 0;
+
 interface Props {
   setOpen: (open: boolean) => void;
 }
@@ -47,6 +55,7 @@ const positions = {
 } as const;
 
 export default function AddPractice({ setOpen }: Props) {
+  const queryClient = useQueryClient();
   const teamId = useTeamStore((state) => state.teamId);
   // 스키마랑 연결
   const form = useForm<AddFormData>({
@@ -78,6 +87,13 @@ export default function AddPractice({ setOpen }: Props) {
 
     postSchedules(payload, {
       onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: [
+            buildPath(ApiEndpotins.TEAM_SCHEDULES, { teamId: teamId! }),
+            { page, size },
+          ] as const,
+        });
+
         setOpen(false);
       },
       onError: (err) => {
