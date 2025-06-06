@@ -39,6 +39,7 @@
 
 .content_item_info span {
   font-weight: var(--font-weight-bold);
+  white-space: wrap;
 }
 .content_item_info p {
   font-size: var(--text-sm);

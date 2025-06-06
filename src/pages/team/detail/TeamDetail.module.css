@@ -20,12 +20,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
   .header {
     text-align: center;
     flex-direction: column;
+    margin-bottom: 0;
   }
   .header h1 {
     padding: 10px;
@@ -60,6 +62,7 @@
   flex: 1;
   display: flex;
   gap: 2rem;
+  margin-top: 1rem;
 }
 
 .content_side_container {
