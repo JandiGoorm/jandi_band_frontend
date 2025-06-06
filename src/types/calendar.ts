@@ -56,3 +56,11 @@ export interface TeamScheduleResponse {
   content: PracticeSchedule[];
   pageInfo: PageInfo;
 }
+
+// 동아리 post 타입
+export interface TeamScheduleFormData {
+  name: string;
+  startDatetime: string;
+  endDatetime: string;
+  noPosition: string | null;
+}

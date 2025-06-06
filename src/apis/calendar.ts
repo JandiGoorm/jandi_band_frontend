@@ -6,6 +6,9 @@ import type {
   CalendarListType,
   ClubEventFormData,
   ClubEventType,
+  TeamScheduleResponse,
+  PracticeSchedule,
+  TeamScheduleFormData,
 } from "@/types/calendar";
 
 // 캘린더 전체 일정 조회 GET
@@ -42,10 +45,12 @@ export const useGetTeamSchedules = (
   const path = buildPath(ApiEndpotins.TEAM_SCHEDULES, { teamId });
 
   const params = { page, size };
-  return useFetch(path, params);
+  return useFetch<TeamScheduleResponse>(path, params);
 };
 
 // 팀별 연습 일정 생성 POST
 export const usePostTeamSchedules = (teamId: number) => {
-  return usePost(buildPath(ApiEndpotins.TEAM_SCHEDULES, { teamId }));
+  return usePost<TeamScheduleFormData, PracticeSchedule>(
+    buildPath(ApiEndpotins.TEAM_SCHEDULES, { teamId })
+  );
 };
