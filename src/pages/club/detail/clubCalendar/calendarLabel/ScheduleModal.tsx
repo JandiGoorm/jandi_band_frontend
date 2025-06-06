@@ -17,8 +17,6 @@ const ScheduleModal = ({
 }: ScheduleModalProps) => {
   if (!isOpen) return null;
 
-  // console.log(schedules);
-
   return (
     <main className={styles.modal_overlay} onClick={onClose}>
       <div

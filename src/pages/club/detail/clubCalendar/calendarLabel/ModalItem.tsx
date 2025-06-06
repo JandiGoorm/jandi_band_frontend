@@ -1,8 +1,15 @@
+// ScheduleModal에 들어가는
 import { format } from "date-fns";
 import type { CalendarEvent } from "@/types/calendar";
 import { useDeleteCalendarEvent } from "@/apis/calendar";
 import styles from "./ScheduleModal.module.css";
 import { useClubStore } from "@/stores/clubStore";
+import { useCurrentStore } from "@/stores/currentStore";
+
+// invalidateQueries 사용해보기
+import { ApiEndpotins } from "@/constants/endpoints";
+import { useQueryClient } from "@tanstack/react-query";
+import { buildPath } from "@/utils/buildPath";
 
 interface ScheduleItemProps {
   event: CalendarEvent;
@@ -10,7 +17,10 @@ interface ScheduleItemProps {
 
 const ModalItem = ({ event }: ScheduleItemProps) => {
   const clubId = useClubStore((state) => state.clubId);
+  const currentMonth = useCurrentStore((state) => state.currentMonth);
+
   const { mutate: deleteEvent } = useDeleteCalendarEvent(clubId!, event.id);
+  const queryClient = useQueryClient();
 
   const formatTimeRange = (start: string, end: string) => {
     return `${format(new Date(start), "HH:mm")} ~ ${format(new Date(end), "HH:mm")}`;
@@ -47,7 +57,19 @@ const ModalItem = ({ event }: ScheduleItemProps) => {
         <button
           onClick={() => {
             if (confirm("정말 삭제하시겠습니까?")) {
-              deleteEvent();
+              deleteEvent(undefined, {
+                onSuccess: () => {
+                  const year = currentMonth.getFullYear();
+                  const month = currentMonth.getMonth() + 1;
+
+                  queryClient.invalidateQueries({
+                    queryKey: [
+                      buildPath(ApiEndpotins.CALENDAR, { clubId: clubId! }),
+                      { year, month },
+                    ] as const,
+                  });
+                },
+              });
             }
           }}
         >
