@@ -33,5 +33,19 @@ export const useDeleteCalendarEvent = (clubId: number, eventId: number) => {
   );
 };
 
-// 여기서부터는 팀 일정입니다
 // 팀별 연습 일정 목록 조회
+export const useGetTeamSchedules = (
+  teamId: number,
+  page: number,
+  size: number
+) => {
+  const path = buildPath(ApiEndpotins.TEAM_SCHEDULES, { teamId });
+
+  const params = { page, size };
+  return useFetch(path, params);
+};
+
+// 팀별 연습 일정 생성 POST
+export const usePostTeamSchedules = (teamId: number) => {
+  return usePost(buildPath(ApiEndpotins.TEAM_SCHEDULES, { teamId }));
+};
