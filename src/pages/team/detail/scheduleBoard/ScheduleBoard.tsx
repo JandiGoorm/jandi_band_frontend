@@ -6,6 +6,7 @@ import Modal from "@/components/modal/Modal";
 import AddPractice from "./AddPractice";
 import { useGetTeamSchedules } from "@/apis/calendar";
 import { useTeamStore } from "@/stores/teamStore";
+import { DeleteButton } from "./DeleteButton";
 
 const size = 10;
 
@@ -55,6 +56,8 @@ const ScheduleBoard = () => {
                 <span className={styles.content_type}>
                   {item.noPosition ? positionLabelMap[item.noPosition] : "전체"}
                 </span>
+                <DeleteButton scheduleId={item.id} />
+
                 <div className={styles.content_item_info}>
                   <span>{item.name}</span>
                   <p>{`${format(new Date(item.startDatetime), "MM월 dd일 HH:mm")} ~ ${format(new Date(item.endDatetime), "HH:mm")}`}</p>

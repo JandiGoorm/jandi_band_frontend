@@ -92,3 +92,21 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-text-sub);
 }
+
+/* 삭제 추가 */
+.delete_btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: rgb(255, 90, 90);
+  }
+}
