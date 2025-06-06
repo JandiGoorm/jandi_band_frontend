@@ -10,7 +10,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import Modal from "@/components/modal/Modal";
+import MapModal from "@/components/modal/mapModal/MapModal";
+import type { kakaoLocationRequest } from "@/types/kakao";
 
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
@@ -48,11 +49,14 @@ const UpdatePromotion = () => {
   const [imageURL, setImageURL] = useState<string | null>(null);
   const { data: postData } = useGetPromo(id!);
   const { mutate: updatePromo, data: updateData } = useUpdatePromotion(id!);
+  const [selectedPlace, setSelectedPlace] =
+    useState<kakaoLocationRequest | null>(null);
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -79,9 +83,14 @@ const UpdatePromotion = () => {
     formData.append("teamName", data.team);
     formData.append("admissionFee", data.price);
     formData.append("eventDatetime", `${data.date}T${data.time}:00`);
-    formData.append("location", data.location);
-    formData.append("address", data.location);
     formData.append("description", data.description ?? "");
+
+    if (selectedPlace) {
+      formData.append("latitude", selectedPlace.x);
+      formData.append("longitude", selectedPlace.y);
+      formData.append("location", selectedPlace.place_name);
+      formData.append("address", data.location);
+    }
 
     updatePromo(formData);
   };
@@ -91,6 +100,13 @@ const UpdatePromotion = () => {
       navigate(-1);
     }
   }, [updateData, navigate]);
+
+  const SetAddress = (place: kakaoLocationRequest | null) => {
+    if (place) {
+      setValue("location", place.road_address_name);
+      setSelectedPlace(place);
+    }
+  };
 
   if (!postData) return <Loading />;
 
@@ -199,20 +215,20 @@ const UpdatePromotion = () => {
                 <label htmlFor="location">장소</label>
                 <textarea
                   id="location"
+                  readOnly
                   {...register("location")}
                   defaultValue={postData.data.location}
                   className={clsx(errors.location && styles.inputError)}
                 />
-                <Modal
+                <MapModal
                   title="장소 수정하기"
                   trigger={
                     <Button variant="transparent" size="sm">
                       장소 수정
                     </Button>
                   }
-                >
-                  <div>s</div>
-                </Modal>
+                  onSubmit={(place) => SetAddress(place)}
+                />
               </div>
             </aside>
           </section>
