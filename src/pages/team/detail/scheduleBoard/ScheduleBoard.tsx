@@ -1,11 +1,23 @@
+// import { useState } from "react";
 import styles from "./ScheduleBoard.module.css";
 import { format } from "date-fns";
 import { FiPlus } from "react-icons/fi";
 import Modal from "@/components/modal/Modal";
 import { dummyTeamSchedule } from "./dummyTeamSchedule";
 import AddPractice from "./AddPractice";
+// import { useGetTeamSchedules } from "@/apis/calendar"
+// import { useTeamStore } from "@/stores/teamStore";
+
+// const size = 10;
 
 const ScheduleBoard = () => {
+  // const teamId = useTeamStore((state) => state.teamId);
+  // const [page, setPage] = useState(0);
+  // const { data } = useGetTeamSchedules(teamId!, page, size);
+
+  // const schedules = data?.data.content ?? [];
+  // const pageInfo = data?.data.pageInfo;
+
   return (
     <section className={styles.container}>
       <header className={styles.header}>
