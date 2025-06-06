@@ -11,6 +11,7 @@ import { useGetPromoList } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
 import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 
 const PromotionMap = () => {
   const navigate = useNavigate();
@@ -36,7 +37,19 @@ const PromotionMap = () => {
             <FaArrowLeft size={20} />
           </Button>
         </nav>
-        <section className={styles.map_box}></section>
+        <section className={styles.map_box}>
+          <Map
+            center={{ lat: 37.5665, lng: 126.978 }} // 서울시청 기준
+            style={{ width: "100%", height: "100%", borderRadius: "12px" }}
+            level={5}
+          >
+            <MapMarker position={{ lat: 37.5665, lng: 126.978 }}>
+              <div style={{ padding: "5px", fontSize: "12px" }}>
+                서울 공연장
+              </div>
+            </MapMarker>
+          </Map>
+        </section>
         <section className={styles.promotion_container}>
           <p className={styles.page_title}>지도 내 공연 목록</p>
           {promoData.data.content.map((item) => (

@@ -12,7 +12,12 @@
   font-weight: var(--font-weight-bold);
   margin: 2rem 0;
 }
-
+.map_box {
+  width: 90%;
+  aspect-ratio: 2;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+}
 .promotion_container {
   gap: 1rem;
   width: 90%;
