@@ -84,3 +84,10 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.empty_message {
+  margin-top: 1rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-sub);
+}
