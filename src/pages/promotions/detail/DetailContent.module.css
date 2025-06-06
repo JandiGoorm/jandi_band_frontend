@@ -7,7 +7,6 @@
 .promo_button {
   width: auto;
   padding: 0.25rem 2rem;
-  box-shadow: var(--shadow-lg);
   border: 1px solid var(--color-text-sub);
   background-color: var(--color-bg-button);
   color: var(--color-text-main);
