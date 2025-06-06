@@ -118,7 +118,7 @@ const PromotionMap = () => {
         <section className={styles.promotion_container}>
           <p className={styles.page_title}>지도 내 공연 목록</p>
           {promoData.data.content.map((item) => (
-            <PromoComponent item={item} />
+            <PromoComponent item={item} key={item.id} />
           ))}
         </section>
         <section className={styles.page_navigate_box}>

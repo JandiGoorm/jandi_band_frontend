@@ -7,6 +7,7 @@ import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
 
 const PromoComponent = ({ item }: { item: PromotionListResponse }) => {
   const navigate = useNavigate();
+  const status = getEventStatus(item.eventDatetime);
   return (
     <article
       className={styles.promotion_box}
@@ -15,13 +16,19 @@ const PromoComponent = ({ item }: { item: PromotionListResponse }) => {
         navigate(buildPath(PageEndpoints.PROMOTION_DETAIL, { id: item.id }))
       }
     >
-      <div>
-        <img className={styles.promotion_img} src={item.photoUrls[0]} />
-      </div>
+      <img className={styles.promotion_img} src={item.photoUrls[0]} />
       <div className={styles.text_box}>
         <div className={styles.title_box}>
-          <p>{getEventStatus(item.eventDatetime).text}</p>
-          <p>{item.title}</p>
+          <span
+            className={styles.promo_button}
+            style={{
+              backgroundColor: status.backgroundColor,
+              color: status.color,
+            }}
+          >
+            {status.text}
+          </span>
+          <p className={styles.title}>{item.title}</p>
         </div>
         <div className={styles.sub_title_box}>
           <p>{formatPromotionDate(item.eventDatetime)}</p>
