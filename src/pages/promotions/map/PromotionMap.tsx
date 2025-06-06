@@ -2,31 +2,85 @@ import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "./PromotionMap.module.css";
 import Button from "@/components/button/Button";
 import { useNavigate } from "react-router-dom";
-import { PageEndpoints } from "@/constants/endpoints";
-import { buildPath } from "@/utils/buildPath";
 import { FaArrowLeft } from "react-icons/fa6";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import usePagination from "@/hooks/usePagination";
-import { useGetPromoList } from "@/apis/promotion";
+import { useGetPromoMap } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
-import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import PromoComponent from "./PromoComponent";
 
 const PromotionMap = () => {
   const navigate = useNavigate();
+  const mapRef = useRef<kakao.maps.Map | null>(null);
+  const [center, setCenter] = useState({ lat: 37.5665, lng: 126.978 });
+  const [level, setLevel] = useState(9);
+
+  const [bounds, setBounds] = useState({
+    swLat: 37,
+    swLng: 126,
+    neLat: 38,
+    neLng: 127,
+  });
+  const [searchBounds, setSearchBounds] = useState(bounds);
   const { currentPage, totalPage, setTotalPage, handlePageChange } =
     usePagination();
-  const { data: promoData, isLoading: promoLoading } = useGetPromoList({
+  const { data: promoData, isLoading: promoLoading } = useGetPromoMap({
+    startLatitude: searchBounds.swLat,
+    startLongitude: searchBounds.swLng,
+    endLatitude: searchBounds.neLat,
+    endLongitude: searchBounds.neLng,
     page: currentPage - 1,
-    size: 5,
+    size: 8,
   });
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    const map = mapRef.current;
+    const initBounds = map.getBounds();
+    const sw = initBounds.getSouthWest();
+    const ne = initBounds.getNorthEast();
+
+    const initialBounds = {
+      swLat: sw.getLat(),
+      swLng: sw.getLng(),
+      neLat: ne.getLat(),
+      neLng: ne.getLng(),
+    };
+
+    setBounds(initialBounds);
+    setSearchBounds(initialBounds);
+  }, []);
 
   useEffect(() => {
     if (promoData?.data.pageInfo.totalPages !== undefined) {
       setTotalPage(promoData.data.pageInfo.totalPages);
     }
   }, [promoData, setTotalPage]);
+
+  const handleBoundsChange = () => {
+    if (!mapRef.current) return;
+    const map = mapRef.current;
+    const newBounds = map.getBounds();
+    const sw = newBounds.getSouthWest();
+    const ne = newBounds.getNorthEast();
+
+    setBounds({
+      swLat: sw.getLat(),
+      swLng: sw.getLng(),
+      neLat: ne.getLat(),
+      neLng: ne.getLng(),
+    });
+    const center = map.getCenter();
+    setCenter({ lat: center.getLat(), lng: center.getLng() });
+    setLevel(map.getLevel());
+  };
+
+  const handleSearchClick = () => {
+    setSearchBounds(bounds);
+  };
 
   if (!promoData || promoLoading) return <Loading />;
   return (
@@ -39,47 +93,32 @@ const PromotionMap = () => {
         </nav>
         <section className={styles.map_box}>
           <Map
-            center={{ lat: 37.5665, lng: 126.978 }} // 서울시청 기준
+            center={center}
+            level={level}
             style={{ width: "100%", height: "100%", borderRadius: "12px" }}
-            level={5}
+            onBoundsChanged={handleBoundsChange}
+            ref={mapRef}
           >
-            <MapMarker position={{ lat: 37.5665, lng: 126.978 }}>
-              <div style={{ padding: "5px", fontSize: "12px" }}>
-                서울 공연장
-              </div>
-            </MapMarker>
+            {promoData.data.content.map((item) => (
+              <MapMarker
+                key={item.id}
+                position={{ lat: item.latitude, lng: item.longitude }}
+              />
+            ))}
           </Map>
+          <Button
+            className={styles.search_button}
+            size="md"
+            variant="secondary"
+            onClick={handleSearchClick}
+          >
+            현 지도에서 검색
+          </Button>
         </section>
         <section className={styles.promotion_container}>
           <p className={styles.page_title}>지도 내 공연 목록</p>
           {promoData.data.content.map((item) => (
-            <article
-              className={styles.promotion_box}
-              key={item.id}
-              onClick={() =>
-                navigate(
-                  buildPath(PageEndpoints.PROMOTION_DETAIL, { id: item.id })
-                )
-              }
-            >
-              <div>
-                <img className={styles.promotion_img} src={item.photoUrls[0]} />
-              </div>
-              <div className={styles.text_box}>
-                <div className={styles.title_box}>
-                  <p>{getEventStatus(item.eventDatetime).text}</p>
-                  <p>{item.title}</p>
-                </div>
-                <div className={styles.sub_title_box}>
-                  <p>{formatPromotionDate(item.eventDatetime)}</p>
-                  <p>{item.location}</p>
-                  <p>{item.admissionFee}원</p>
-                </div>
-                <div className={styles.description_box}>
-                  <p>{item.description}</p>
-                </div>
-              </div>
-            </article>
+            <PromoComponent item={item} />
           ))}
         </section>
         <section className={styles.page_navigate_box}>

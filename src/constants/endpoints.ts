@@ -29,6 +29,7 @@ export enum ApiEndpotins {
 
   PROMOTION = "/promos",
   PROMOTION_DETAIL = "/promos/:id",
+  PROMOTION_MAP = "/promos/map",
   CLUB = "/clubs",
   MY_CLUB = "/my/clubs",
   CLUB_DETAIL = "/clubs/:id",

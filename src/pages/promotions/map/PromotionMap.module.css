@@ -17,63 +17,20 @@
   aspect-ratio: 2;
   margin: 0 auto;
   border-radius: var(--radius-xl);
+  position: relative;
+}
+.search_button {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  translate: -50%;
+  z-index: 9;
 }
 .promotion_container {
   gap: 1rem;
   width: 90%;
   margin: 0 auto;
 }
-
-.promotion_box {
-  display: flex;
-  gap: 0.25rem;
-  padding: 1rem;
-  cursor: pointer;
-}
-
-.promotion_img {
-  max-width: 180px;
-  aspect-ratio: 376 / 504;
-  border-radius: var(--radius-lg);
-}
-
-.text_box {
-  flex: 1;
-  box-sizing: border-box;
-  padding-left: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.title_box {
-  display: flex;
-  gap: 1rem;
-  font-weight: var(--font-weight-bold);
-  font-size: var(--text-xl);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sub_title_box {
-  display: flex;
-  gap: 1rem;
-  font-weight: var(--font-weight-medium);
-  font-size: var(--text-lg);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.description_box {
-  font-size: var(--text-lg);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .page_navigate_box {
   display: flex;
   align-items: center;
