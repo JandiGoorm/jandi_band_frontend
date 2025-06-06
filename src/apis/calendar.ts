@@ -54,3 +54,10 @@ export const usePostTeamSchedules = (teamId: number) => {
     buildPath(ApiEndpotins.TEAM_SCHEDULES, { teamId })
   );
 };
+
+// 팀 연습 일정 삭제 DELETE
+export const useDeleteTeamSchedule = (teamId: number, scheduleId: number) => {
+  return useDelete(
+    buildPath(ApiEndpotins.DELETE_TEAM_SCHEDULES, { teamId, scheduleId })
+  );
+};
