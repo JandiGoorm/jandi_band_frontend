@@ -32,3 +32,6 @@ export const useDeleteCalendarEvent = (clubId: number, eventId: number) => {
     buildPath(ApiEndpotins.DELETE_CALENDAR_EVENT, { clubId, eventId })
   );
 };
+
+// 여기서부터는 팀 일정입니다
+// 팀별 연습 일정 목록 조회
