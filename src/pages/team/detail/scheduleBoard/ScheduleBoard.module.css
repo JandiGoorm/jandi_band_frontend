@@ -43,6 +43,7 @@
 }
 .content_item_info p {
   font-size: var(--text-sm);
+  margin-top: 0.5rem;
 }
 
 .content_item {
