@@ -6,6 +6,7 @@ import styles from "@/pages/team/detail/scheduleBoard/AddPractice.module.css";
 import Field from "@/components/field/Field";
 import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
+import { computeEndDatetime } from "./computeEndTime";
 
 interface Props {
   setOpen: (open: boolean) => void;
@@ -19,13 +20,8 @@ const addFormSchema = z
   })
   .refine(
     (data) => {
-      // 스타트 시간
-      const start = new Date(data.startDatetime);
-      // [시간,분] 으로 각각의 숫자를 분리해서 넣어놓음
-      const [endHour, endMinute] = data.endtime.split(":").map(Number);
-      const end = new Date(start); // ex) new Date("2024-06-06T16:00") 가 됨
-      end.setHours(endHour, endMinute); // Date에서 기본으로 제공되는 메서드임.
-      return end > start;
+      const end = computeEndDatetime(data.startDatetime, data.endtime);
+      return end > new Date(data.startDatetime);
     },
     {
       path: ["endtime"], // 에러 표시할 필드 설정
@@ -47,8 +43,21 @@ export default function AddPractice({ setOpen }: Props) {
     handleSubmit,
   } = form;
 
+  // 서버로 전송하기 위해 형식 변경 (서버와 일치)
+  const formatToServer = (date: Date) => date.toISOString().slice(0, 19);
+
   const onSubmit = (data: AddFormData) => {
-    console.log(data);
+    const start = new Date(data.startDatetime);
+    const end = computeEndDatetime(data.startDatetime, data.endtime);
+
+    // 서버와 양식 일치
+    const payload = {
+      name: data.name,
+      startDatetime: formatToServer(start),
+      endDatetime: formatToServer(end),
+    };
+
+    console.log(payload);
     setOpen(false);
   };
 

@@ -30,7 +30,7 @@ export const dummyTeamSchedule: PracticeSchedule[] = [
     id: 2,
     teamId: 1,
     teamName: "락밴드 A팀",
-    name: "니르바나 합주",
+    name: "헤브유씬더레인ㅋ",
     startDatetime: "2024-03-17T18:00:00",
     endDatetime: "2024-03-17T20:00:00",
     noPosition: "GUITAR",
