@@ -86,8 +86,8 @@ const UpdatePromotion = () => {
     formData.append("description", data.description ?? "");
 
     if (selectedPlace) {
-      formData.append("latitude", selectedPlace.x);
-      formData.append("longitude", selectedPlace.y);
+      formData.append("latitude", selectedPlace.y);
+      formData.append("longitude", selectedPlace.x);
       formData.append("location", selectedPlace.place_name);
       formData.append("address", data.location);
     }
