@@ -35,7 +35,7 @@
   font-weight: var(--font-weight-bold);
   border-radius: var(--radius-3xl);
   box-shadow: var(--shadow-sm);
-  padding: 1rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   text-wrap: nowrap;
   color: var(--color-text-sub);
 }

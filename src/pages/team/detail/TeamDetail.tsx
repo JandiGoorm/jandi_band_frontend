@@ -1,3 +1,4 @@
+// 팀 페이지
 import TimeScheduler from "@/components/scheduler/TimeScheduler";
 import { useNavigate } from "react-router-dom";
 import styles from "./TeamDetail.module.css";
