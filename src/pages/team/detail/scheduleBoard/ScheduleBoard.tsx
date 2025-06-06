@@ -20,8 +20,10 @@ const ScheduleBoard = () => {
             <span className={styles.content_type}>
               {item.noPosition !== null ? `NO ${item.noPosition}` : "전체"}
             </span>
-            <span>{item.name}</span>
-            <p>{`${format(new Date(item.startDatetime), "MM월 dd일 HH:mm")}~${format(new Date(item.endDatetime), "HH:mm")}`}</p>
+            <div className={styles.content_item_info}>
+              <span>{item.name}</span>
+              <p>{`${format(new Date(item.startDatetime), "MM월 dd일 HH:mm")} ~ ${format(new Date(item.endDatetime), "HH:mm")}`}</p>
+            </div>
           </div>
         ))}
       </div>

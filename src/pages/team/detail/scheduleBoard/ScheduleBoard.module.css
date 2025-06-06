@@ -33,23 +33,35 @@
   gap: 1.5rem;
 }
 
+.content_item_info {
+  margin-top: 0.5rem;
+}
+
+.content_item_info span {
+  font-weight: var(--font-weight-bold);
+}
+.content_item_info p {
+  font-size: var(--text-sm);
+}
+
 .content_item {
   position: relative;
-  background: var(--bg-color);
   border-radius: var(--radius-3xl);
   box-shadow: var(--shadow-sm);
   padding: 1rem 1.5rem;
   text-wrap: nowrap;
+  color: #343434;
 }
 
 .content_type {
   position: absolute;
   top: -12px;
   left: 4px;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-bold);
   font-size: var(--text-sm);
-  padding: 0.25rem 0.5rem;
+  padding: 0.4rem 0.8rem;
   border-radius: var(--radius-3xl);
-  background: oklch(82.82% 0.0843 199.13);
+  background: var(--bg-color);
   box-shadow: var(--shadow-md);
+  color: var(--color-white);
 }
