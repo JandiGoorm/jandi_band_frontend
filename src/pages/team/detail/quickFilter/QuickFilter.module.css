@@ -1,5 +1,5 @@
 .container {
-  min-height: 20rem;
+  /* min-height: 20rem; */
   width: 100%;
 
   display: flex;
@@ -25,6 +25,14 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .filter_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .filter_item {
