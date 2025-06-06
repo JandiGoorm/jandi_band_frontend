@@ -7,6 +7,8 @@ import Field from "@/components/field/Field";
 import Input from "@/components/input/Input";
 import Button from "@/components/button/Button";
 import { computeEndDatetime } from "./computeEndTime";
+import { usePostTeamSchedules } from "@/apis/calendar";
+import { useTeamStore } from "@/stores/teamStore";
 
 interface Props {
   setOpen: (open: boolean) => void;
@@ -35,8 +37,6 @@ const addFormSchema = z
 // 폼 타입 추출
 export type AddFormData = z.infer<typeof addFormSchema>;
 
-// const positions = ["VOCAL", "GUITAR", "KEYBOARD", "BASS", "DRUM", "NULL"];
-
 const positions = {
   NULL: "없음(전체참여)",
   VOCAL: "보컬",
@@ -47,6 +47,7 @@ const positions = {
 } as const;
 
 export default function AddPractice({ setOpen }: Props) {
+  const teamId = useTeamStore((state) => state.teamId);
   // 스키마랑 연결
   const form = useForm<AddFormData>({
     resolver: zodResolver(addFormSchema),
@@ -59,6 +60,8 @@ export default function AddPractice({ setOpen }: Props) {
 
   // 서버로 전송하기 위해 형식 변경 (서버와 일치)
   const formatToServer = (date: Date) => date.toISOString().slice(0, 19);
+
+  const { mutate: postSchedules } = usePostTeamSchedules(teamId!);
 
   const onSubmit = (data: AddFormData) => {
     const start = new Date(data.startDatetime);
@@ -73,8 +76,14 @@ export default function AddPractice({ setOpen }: Props) {
       noPosition: finalNoPosition,
     };
 
-    console.log(payload);
-    setOpen(false);
+    postSchedules(payload, {
+      onSuccess: () => {
+        setOpen(false);
+      },
+      onError: (err) => {
+        console.error("실패:", err);
+      },
+    });
   };
 
   return (
