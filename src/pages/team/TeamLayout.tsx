@@ -1,8 +1,8 @@
 import { Route, useLocation, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import { TeamDetailProvider } from "./detail/TeamDetailProvider";
-import { AnimatePresence } from "framer-motion";
 import { Routes } from "react-router-dom";
 import TeamDetail from "./detail/TeamDetail";
 import CreateTimeTable from "./detail/CreateTimeTable";
