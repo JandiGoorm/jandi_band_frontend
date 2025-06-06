@@ -1,16 +1,4 @@
-export interface PracticeSchedule {
-  id: number;
-  teamId: number;
-  teamName: string;
-  name: string;
-  startDatetime: string;
-  endDatetime: string;
-  noPosition: string | null;
-  creatorId: number;
-  creatorName: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import type { PracticeSchedule } from "@/types/calendar";
 
 export const dummyTeamSchedule: PracticeSchedule[] = [
   {

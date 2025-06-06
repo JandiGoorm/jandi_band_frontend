@@ -26,3 +26,33 @@ export interface ClubEventFormData {
 export interface ClubEventType extends ClubEventFormData {
   id: number;
 }
+
+// 동아리 응답 타입
+export interface PracticeSchedule {
+  id: number;
+  teamId: number;
+  teamName: string;
+  name: string;
+  startDatetime: string;
+  endDatetime: string;
+  noPosition: string | null;
+  creatorId: number;
+  creatorName: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PageInfo {
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+  empty: boolean;
+}
+
+export interface TeamScheduleResponse {
+  content: PracticeSchedule[];
+  pageInfo: PageInfo;
+}
