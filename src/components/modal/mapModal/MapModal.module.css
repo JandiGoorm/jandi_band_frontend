@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 350px;
+  width: 90%;
+}
+
+.input_box {
+  display: flex;
+  width: 90%;
+}
+
+.map_box {
+  width: 90%;
+  /* min-width: 300px; */
+  height: 200px;
+}
+
+.search_result_box {
+  width: 90%;
+  height: 8rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 1rem 0;
+}
+
+.place_box {
+  box-sizing: border-box;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: var(--radius-xl);
+}
+.place_box:hover {
+  background-color: var(--color-secondary-hover);
+}
+.selected {
+  background-color: var(--color-secondary-selected);
+  border-radius: 8px;
+}
+.place_name {
+  font-size: var(--text-sm);
+}
+
+.place_address {
+  font-size: var(--text-xs);
+  color: var(--color-text-sub);
+}
+
+.button_container {
+  display: flex;
+  gap: 0 1rem;
+}
+
+.description {
+  color: var(--color-text-sub);
+}
