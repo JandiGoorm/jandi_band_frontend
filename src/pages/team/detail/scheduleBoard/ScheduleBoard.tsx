@@ -1,16 +1,25 @@
 import styles from "./ScheduleBoard.module.css";
 import { format } from "date-fns";
 import { FiPlus } from "react-icons/fi";
+import Modal from "@/components/modal/Modal";
 import { dummyTeamSchedule } from "./dummyTeamSchedule";
+import AddPractice from "./AddPractice";
 
 const ScheduleBoard = () => {
   return (
     <section className={styles.container}>
       <header className={styles.header}>
         <h2>팀 연습 일정</h2>
-        <button className={styles.header_button}>
-          <FiPlus size={20} />
-        </button>
+        <Modal
+          title="팀 연습 일정 등록하기"
+          trigger={
+            <button className={styles.header_button}>
+              <FiPlus size={20} />
+            </button>
+          }
+        >
+          {(setOpen) => <AddPractice setOpen={setOpen} />}
+        </Modal>
       </header>
 
       {/* 연습일정 */}

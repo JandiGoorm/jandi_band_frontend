@@ -1,0 +1,32 @@
+.addpractice_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.guide {
+  font-size: var(--text-xs);
+  color: #414141;
+}
+
+.addpractice_container span {
+  font-weight: var(--font-weight-bold);
+}
+
+.dot {
+  color: var(--color-primary);
+}
+
+.form_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form_container button {
+  font-size: 1rem;
+}
