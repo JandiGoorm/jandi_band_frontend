@@ -69,7 +69,7 @@ export const dummyTeamSchedule: PracticeSchedule[] = [
     id: 5,
     teamId: 1,
     teamName: "락밴드 A팀",
-    name: "Don't Stop Believin' - Journey",
+    name: "Don't Stop Believin' - Journefdfddfdfay",
     startDatetime: "2024-03-25T18:00:00",
     endDatetime: "2024-03-25T20:00:00",
     noPosition: "KEYBOARD",

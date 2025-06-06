@@ -37,6 +37,8 @@ const TeamDetail = () => {
                   buildPath(PageEndpoints.POST_TEAM_TIMETABLE, { id: teamId })
                 )
               }
+              size="sm"
+              className={styles.header_button_mytimetable}
             >
               내 시간표 입력
             </Button>

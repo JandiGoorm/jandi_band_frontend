@@ -26,7 +26,11 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
 
   return (
     <Modal
-      trigger={<Button variant="kakao">팀원 초대</Button>}
+      trigger={
+        <Button variant="kakao" className={styles.invite_button}>
+          팀원 초대
+        </Button>
+      }
       title={`${name} 초대하기`}
     >
       {data ? (
