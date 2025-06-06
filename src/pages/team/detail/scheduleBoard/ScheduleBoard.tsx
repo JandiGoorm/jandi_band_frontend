@@ -9,6 +9,15 @@ import { useTeamStore } from "@/stores/teamStore";
 
 const size = 10;
 
+const positionLabelMap: Record<string, string> = {
+  NONE: "전체",
+  VOCAL: "보컬제외",
+  GUITAR: "기타제외",
+  KEYBOARD: "키보드제외",
+  BASS: "베이스제외",
+  DRUM: "드럼제외",
+};
+
 const ScheduleBoard = () => {
   const teamId = useTeamStore((state) => state.teamId);
   const [page, setPage] = useState(0);
@@ -44,7 +53,7 @@ const ScheduleBoard = () => {
             {schedules.map((item) => (
               <div className={styles.content_item} key={item.id}>
                 <span className={styles.content_type}>
-                  {item.noPosition !== null ? `NO ${item.noPosition}` : "전체"}
+                  {item.noPosition ? positionLabelMap[item.noPosition] : "전체"}
                 </span>
                 <div className={styles.content_item_info}>
                   <span>{item.name}</span>
