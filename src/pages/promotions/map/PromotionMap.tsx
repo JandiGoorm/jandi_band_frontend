@@ -8,8 +8,9 @@ import usePagination from "@/hooks/usePagination";
 import { useGetPromoMap } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
 import PromoComponent from "./PromoComponent";
+import { formatPromotionDate } from "@/utils/dateStatus";
 
 const PromotionMap = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const PromotionMap = () => {
     page: currentPage - 1,
     size: 8,
   });
+  const [selectedMarkerId, setSelectedMarkerId] = useState<number | null>(null);
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -103,8 +105,29 @@ const PromotionMap = () => {
               <MapMarker
                 key={item.id}
                 position={{ lat: item.latitude, lng: item.longitude }}
+                onClick={() =>
+                  setSelectedMarkerId((prev) =>
+                    prev === item.id ? null : item.id
+                  )
+                }
               />
             ))}
+
+            {promoData.data.content.map((item) =>
+              selectedMarkerId === item.id ? (
+                <CustomOverlayMap
+                  key={`info-${item.id}`}
+                  position={{ lat: item.latitude, lng: item.longitude }}
+                  yAnchor={1.5}
+                >
+                  <div className={styles.overlay_box}>
+                    <p className={styles.overlay_title}>{item.title}</p>
+                    <p>{item.location}</p>
+                    <p>{formatPromotionDate(item.eventDatetime)}</p>
+                  </div>
+                </CustomOverlayMap>
+              ) : null
+            )}
           </Map>
           <Button
             className={styles.search_button}
