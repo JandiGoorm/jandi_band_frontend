@@ -119,4 +119,5 @@
   border-radius: var(--radius-xl);
   padding: 1rem 1rem;
   min-height: 5rem;
+  white-space: pre-line;
 }
