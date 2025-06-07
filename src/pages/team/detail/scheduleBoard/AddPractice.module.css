@@ -1,0 +1,61 @@
+.addpractice_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.guide {
+  font-size: var(--text-xs);
+  color: #414141;
+}
+
+.addpractice_container span {
+  font-weight: var(--font-weight-bold);
+}
+
+.dot {
+  color: var(--color-primary);
+}
+
+.form_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form_container button {
+  font-size: 1rem;
+}
+
+/* 포지션 선택 */
+.radio_button_group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.radio_button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  background-color: white;
+  transition: all 0.2s;
+}
+
+.radio_input {
+  display: none;
+}
+
+.radio_input:checked + span,
+.radio_button:has(input:checked) {
+  background-color: #7cc5d8;
+  color: white;
+  border-color: #7cc5d8;
+}

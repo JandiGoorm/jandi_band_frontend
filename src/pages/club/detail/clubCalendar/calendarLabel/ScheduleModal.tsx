@@ -1,6 +1,8 @@
-import { format } from "date-fns";
+// 일정 라벨의 모달
+import { useEffect, useState } from "react";
 import styles from "./ScheduleModal.module.css";
 import type { CalendarEvent } from "@/types/calendar";
+import ModalItem from "./ModalItem";
 
 interface ScheduleModalProps {
   isOpen: boolean;
@@ -15,12 +17,17 @@ const ScheduleModal = ({
   selectedDate,
   onClose,
 }: ScheduleModalProps) => {
+  const [sechedulesState, setScheduleState] = useState<CalendarEvent[]>([]);
+
+  useEffect(() => {
+    setScheduleState(schedules); //props로 받은 스케줄
+  }, [schedules]);
+
   if (!isOpen) return null;
 
-  const formatTimeRange = (start: string, end: string) => {
-    return `${format(new Date(start), "HH:mm")} ~ ${format(new Date(end), "HH:mm")}`;
+  const handleDeleteState = (id: number) => {
+    setScheduleState((prev) => prev.filter((event) => event.id !== id));
   };
-
   return (
     <main className={styles.modal_overlay} onClick={onClose}>
       <div
@@ -35,34 +42,8 @@ const ScheduleModal = ({
         {schedules.length === 0 ? (
           <p>등록된 일정이 없습니다.</p>
         ) : (
-          schedules.map((s, i) => (
-            <div
-              key={i}
-              className={styles.schedule_label}
-              style={{
-                backgroundColor:
-                  s.eventType === "CLUB_EVENT" ? "lightblue" : "pink",
-              }}
-            >
-              <div>{s.name}</div>
-              {s.eventType === "TEAM_EVENT" && (
-                <>
-                  {s.teamName && (
-                    <span className={styles.team_label}>
-                      [ 팀 : {s.teamName} ]{" "}
-                    </span>
-                  )}
-                  {s.noPosition && (
-                    <span className={styles.position_label}>
-                      [NO {s.noPosition}]{" "}
-                    </span>
-                  )}
-                </>
-              )}
-              <div className={styles.schedule_time}>
-                🕒 [ {formatTimeRange(s.startDatetime, s.endDatetime)} ]
-              </div>
-            </div>
+          sechedulesState.map((s, i) => (
+            <ModalItem key={i} event={s} onDelete={handleDeleteState} />
           ))
         )}
       </div>
