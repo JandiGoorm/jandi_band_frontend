@@ -1,3 +1,4 @@
+// 팀 페이지
 import TimeScheduler from "@/components/scheduler/TimeScheduler";
 import { useNavigate } from "react-router-dom";
 import styles from "./TeamDetail.module.css";
@@ -36,6 +37,8 @@ const TeamDetail = () => {
                   buildPath(PageEndpoints.POST_TEAM_TIMETABLE, { id: teamId })
                 )
               }
+              size="sm"
+              className={styles.header_button_mytimetable}
             >
               내 시간표 입력
             </Button>

@@ -1,14 +1,24 @@
 import { Route, useLocation, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import { TeamDetailProvider } from "./detail/TeamDetailProvider";
-import { AnimatePresence } from "framer-motion";
 import { Routes } from "react-router-dom";
 import TeamDetail from "./detail/TeamDetail";
 import CreateTimeTable from "./detail/CreateTimeTable";
+import { useTeamStore } from "@/stores/teamStore";
+import { useEffect } from "react";
 
 const TeamLayout = () => {
   const { id } = useParams();
+  const setTeamId = useTeamStore((state) => state.setTeamId);
+
+  useEffect(() => {
+    if (id) {
+      setTeamId(Number(id));
+    }
+  }, [id, setTeamId]);
+
   const location = useLocation();
   const exitTransitionX = location.pathname.includes("/post/timetables")
     ? 70

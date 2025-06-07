@@ -1,3 +1,4 @@
+// 내 시간표 입력 페이지
 import { useCallback, useEffect, useState } from "react";
 import styles from "./CreateTimeTable.module.css";
 import TimeScheduler from "@/components/scheduler/TimeScheduler";

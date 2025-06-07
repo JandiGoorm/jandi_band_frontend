@@ -50,4 +50,8 @@ export const secureRoutes = [
   { method: Method.GET, url: ApiEndpotins.CALENDAR },
   { method: Method.POST, url: ApiEndpotins.POST_CALENDAR_EVENT },
   { method: Method.DELETE, url: ApiEndpotins.DELETE_CALENDAR_EVENT },
+
+  { method: Method.GET, url: ApiEndpotins.TEAM_SCHEDULES },
+  { method: Method.POST, url: ApiEndpotins.TEAM_SCHEDULES },
+  { method: Method.DELETE, url: ApiEndpotins.DELETE_TEAM_SCHEDULES },
 ];

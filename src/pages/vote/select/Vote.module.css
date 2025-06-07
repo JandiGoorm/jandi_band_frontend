@@ -24,6 +24,9 @@
 .share {
   display: flex;
   background-color: #f6df00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #361f1f;
 }
 .share img {
