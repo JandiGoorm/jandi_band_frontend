@@ -20,6 +20,7 @@ import TimeScheduleDetail from "./pages/timeSchedule/detail/TimeScheduleDetail";
 import VoteList from "./pages/club/more/VoteList";
 import FetchPromotion from "./pages/promotions/update/UpdatePromotion";
 import Invite from "./pages/invite/Invite";
+import PromotionMap from "./pages/promotions/map/PromotionMap";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
           <Route path={PageEndpoints.HOME} element={<Home />} />
           <Route path={PageEndpoints.CALLBACK} element={<Callback />} />
           <Route path={PageEndpoints.PROMOTION} element={<PromotionMain />} />
+          <Route
+            path={PageEndpoints.PROMOTION_MAP}
+            element={<PromotionMap />}
+          />
           <Route
             path={PageEndpoints.PROMOTION_DETAIL}
             element={<PromotionDetail />}

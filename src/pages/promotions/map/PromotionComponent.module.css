@@ -1,0 +1,78 @@
+.promotion_box {
+  display: flex;
+  gap: 0.25rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.promotion_img {
+  max-width: 180px;
+  aspect-ratio: 376 / 504;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 490px) {
+  .promotion_box {
+    flex-direction: column;
+  }
+  .promotion_img {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+}
+
+.text_box {
+  flex: 1;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title_box {
+  display: flex;
+  gap: 1rem;
+  white-space: wrap;
+}
+
+.promo_button {
+  width: auto;
+  padding: 0.25rem 1rem;
+  border: 1px solid var(--color-text-sub);
+  background-color: var(--color-bg-button);
+  color: var(--color-text-main);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-input);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-xl);
+  white-space: nowrap;
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
+  flex: 1 1 100%; /* 줄바꿈 시 전체 너비 사용 */
+  min-width: 0;
+}
+
+.sub_title_box {
+  display: flex;
+  gap: 1rem;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-md);
+  flex-wrap: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description_box {
+  font-size: var(--text-md);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+}

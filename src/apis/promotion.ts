@@ -36,3 +36,31 @@ export const useGetPromo = (id: string) => {
 export const useDeletePromo = (id: string) => {
   return useDelete(buildPath(ApiEndpotins.PROMOTION_DETAIL, { id }));
 };
+
+export const useGetPromoMap = ({
+  startLatitude = 1,
+  startLongitude = 1,
+  endLatitude = 1,
+  endLongitude = 1,
+  page = 0,
+  size = 20,
+}: {
+  startLatitude?: number;
+  startLongitude?: number;
+  endLatitude?: number;
+  endLongitude?: number;
+  page?: number;
+  size?: number;
+}) => {
+  return useFetch<PagiNationResponse<PromotionListResponse>>(
+    ApiEndpotins.PROMOTION_MAP,
+    {
+      startLatitude: startLatitude,
+      startLongitude: startLongitude,
+      endLatitude: endLatitude,
+      endLongitude: endLongitude,
+      page: page,
+      size: size,
+    }
+  );
+};

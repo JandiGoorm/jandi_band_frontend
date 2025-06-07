@@ -4,6 +4,7 @@ export enum PageEndpoints {
   SIGN_UP = "/sign-up",
   CALLBACK = "/callback",
   PROMOTION = "/promotion",
+  PROMOTION_MAP = "/promotion/map",
   PROMOTION_DETAIL = "/promotion/:id",
   PROMOTION_POST = "/promotion/post",
   PROMOTION_UPDATE = "/promotion/edit/:id",
@@ -28,6 +29,7 @@ export enum ApiEndpotins {
 
   PROMOTION = "/promos",
   PROMOTION_DETAIL = "/promos/:id",
+  PROMOTION_MAP = "/promos/map",
   CLUB = "/clubs",
   MY_CLUB = "/my/clubs",
   CLUB_DETAIL = "/clubs/:id",
