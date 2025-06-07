@@ -131,7 +131,7 @@ const PromotionMap = () => {
           </Map>
           <Button
             className={styles.search_button}
-            size="md"
+            size="sm"
             variant="secondary"
             onClick={handleSearchClick}
           >

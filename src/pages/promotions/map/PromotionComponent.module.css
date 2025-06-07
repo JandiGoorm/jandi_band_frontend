@@ -5,16 +5,20 @@
   cursor: pointer;
 }
 
-/* @media (max-width: 668px) {
-.promotion_box{
-  flex-direction: column;
-}
-} */
-
 .promotion_img {
   max-width: 180px;
   aspect-ratio: 376 / 504;
   border-radius: var(--radius-lg);
+}
+
+@media (max-width: 490px) {
+  .promotion_box {
+    flex-direction: column;
+  }
+  .promotion_img {
+    max-width: 240px;
+    margin: 0 auto;
+  }
 }
 
 .text_box {
