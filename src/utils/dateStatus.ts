@@ -81,7 +81,7 @@ export const getEventStatus = (eventDatetime: Date | string): EventStatus => {
   } else if (eventDate > now) {
     return {
       text: "공연 예정",
-      backgroundColor: "var(--color-bg-button)",
+      backgroundColor: "var(--color-white)",
       color: "var(--color-text-main)",
     };
   } else {
