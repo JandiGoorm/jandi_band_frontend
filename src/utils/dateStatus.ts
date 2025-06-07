@@ -8,9 +8,9 @@ export const getVoteStatus = (endDatetime: Date): VoteStatus => {
   const endDate = new Date(endDatetime);
 
   if (endDate > now) {
-    return { text: "투표중", backgroundColor: "var(--color-bg-toast-success)" }; // 초록색 예시
+    return { text: "투표중", backgroundColor: "var(--color-bg-toast-success)" };
   } else {
-    return { text: "투표마감", backgroundColor: "var(-color-bg-toast-error)" }; // 빨간색 예시
+    return { text: "투표마감", backgroundColor: "var(--color-error)" };
   }
 };
 
@@ -81,7 +81,7 @@ export const getEventStatus = (eventDatetime: Date | string): EventStatus => {
   } else if (eventDate > now) {
     return {
       text: "공연 예정",
-      backgroundColor: "var(--color-bg-button)",
+      backgroundColor: "var(--color-white)",
       color: "var(--color-text-main)",
     };
   } else {

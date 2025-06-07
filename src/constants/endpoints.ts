@@ -4,6 +4,7 @@ export enum PageEndpoints {
   SIGN_UP = "/sign-up",
   CALLBACK = "/callback",
   PROMOTION = "/promotion",
+  PROMOTION_MAP = "/promotion/map",
   PROMOTION_DETAIL = "/promotion/:id",
   PROMOTION_POST = "/promotion/post",
   PROMOTION_UPDATE = "/promotion/edit/:id",
@@ -30,6 +31,7 @@ export enum ApiEndpotins {
   PROMOTION_DETAIL = "/promos/:id",
   PROMOTION_LIKE = "/promos/:id/like",
   PROMOTION_ISLIKE = "/promos/:id/like/status",
+  PROMOTION_MAP = "/promos/map",
   CLUB = "/clubs",
   MY_CLUB = "/my/clubs",
   CLUB_DETAIL = "/clubs/:id",
@@ -55,4 +57,12 @@ export enum ApiEndpotins {
   POLL_ADD_RECOMMEND = "/polls/:pollId/songs",
   POLL_VOTE = "/polls/:pollId/songs/:songId/votes/:emoji",
   POLL_LIST = "/polls/clubs/:clubId",
+
+  // 캘린더용 통합 일정 조회
+  CALENDAR = "/clubs/:clubId/calendar", // 뒤에 쿼리 파라미터 들어감
+  POST_CALENDAR_EVENT = "/clubs/:clubId/events", // 동아리 일정 추가
+  DELETE_CALENDAR_EVENT = "/clubs/:clubId/events/:eventId", // 동아리 일정 삭제
+  // 팀 연습 일정 등록 및 조회
+  TEAM_SCHEDULES = "/teams/:teamId/practice-schedules",
+  DELETE_TEAM_SCHEDULES = "/teams/:teamId/practice-schedules/:scheduleId", // 팀 연습 일정 삭제
 }

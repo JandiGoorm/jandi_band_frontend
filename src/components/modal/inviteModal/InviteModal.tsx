@@ -7,6 +7,7 @@ import { type AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import styles from "./InviteModal.module.css";
+import kakao from "@/pages/vote/style/kakao.svg";
 
 interface InviteModalProps {
   data: AxiosResponse<ApiResponse<{ link: string }>> | undefined;
@@ -26,7 +27,12 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
 
   return (
     <Modal
-      trigger={<Button variant="kakao">팀원 초대</Button>}
+      trigger={
+        <Button variant="kakao" className={styles.invite_button}>
+          <img src={kakao} />
+          팀원 초대
+        </Button>
+      }
       title={`${name} 초대하기`}
     >
       {data ? (

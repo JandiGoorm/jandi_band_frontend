@@ -16,6 +16,8 @@ export interface PromotionListResponse {
   createdAt: string;
   updatedAt: string;
   photoUrls: string[];
+  latitude: number;
+  longitude: number;
 }
 
 export interface PromotionRequest {

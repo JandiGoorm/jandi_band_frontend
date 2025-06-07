@@ -10,7 +10,7 @@ import usePagination from "@/hooks/usePagination";
 import { useGetPromoList } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
-import { formatPromotionDate } from "@/utils/dateStatus";
+import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
 
 const regions = [
   "서울",
@@ -48,7 +48,13 @@ const PromotionMain = () => {
       <main className={styles.container}>
         <nav className={styles.header_nav}>
           <div className={styles.header_nav_box}>
-            <Button variant="transparent"> 지도보기 </Button>
+            <Button
+              variant="transparent"
+              onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
+            >
+              {" "}
+              지도보기{" "}
+            </Button>
             <Button
               variant="transparent"
               onClick={toggleRegions}
@@ -79,26 +85,41 @@ const PromotionMain = () => {
         )}
         <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
         <section className={styles.promotion_container}>
-          {promoData.data.content.map((item) => (
-            <article
-              className={styles.promotion_box}
-              key={item.id}
-              onClick={() =>
-                navigate(
-                  buildPath(PageEndpoints.PROMOTION_DETAIL, { id: item.id })
-                )
-              }
-            >
-              <div>
-                <img className={styles.promotion_img} src={item.photoUrls[0]} />
-              </div>
-              <p className={styles.promotion_title}>{item.title}</p>
-              <p className={styles.promotion_sub}>
-                {formatPromotionDate(item.eventDatetime)}
-              </p>
-              <p className={styles.promotion_sub}>{item.location}</p>
-            </article>
-          ))}
+          {promoData.data.content.map((item) => {
+            const status = getEventStatus(item.eventDatetime);
+            return (
+              <article
+                className={styles.promotion_box}
+                key={item.id}
+                onClick={() =>
+                  navigate(
+                    buildPath(PageEndpoints.PROMOTION_DETAIL, { id: item.id })
+                  )
+                }
+              >
+                <span
+                  className={styles.promo_button}
+                  style={{
+                    backgroundColor: status.backgroundColor,
+                    color: status.color,
+                  }}
+                >
+                  {status.text}
+                </span>
+                <div>
+                  <img
+                    className={styles.promotion_img}
+                    src={item.photoUrls[0]}
+                  />
+                </div>
+                <p className={styles.promotion_title}>{item.title}</p>
+                <p className={styles.promotion_sub}>
+                  {formatPromotionDate(item.eventDatetime)}
+                </p>
+                <p className={styles.promotion_sub}>{item.location}</p>
+              </article>
+            );
+          })}
         </section>
         <section className={styles.page_navigate_box}>
           <Pagination

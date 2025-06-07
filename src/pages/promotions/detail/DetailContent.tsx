@@ -20,6 +20,8 @@ import {
 } from "@/utils/dateStatus";
 import { useAuthStore } from "@/stores/authStore";
 import { queryClient } from "@/config/queryClient";
+import Modal from "@/components/modal/Modal";
+import LocationModal from "./LocationModal";
 
 const DetailContent = () => {
   const { id } = useParams();
@@ -156,9 +158,16 @@ const DetailContent = () => {
               <div className={styles.info}>
                 <p className={styles.info_title}>장소</p>
                 <p className={styles.info_text}>{fetchData.data.location}</p>
-                <Button size="sm" variant="transparent">
-                  지도보기
-                </Button>
+                <Modal
+                  title="장소 위치 보기"
+                  trigger={
+                    <Button size="sm" variant="transparent">
+                      지도보기
+                    </Button>
+                  }
+                >
+                  <LocationModal data={fetchData.data} />
+                </Modal>
               </div>
             </section>
           </section>
