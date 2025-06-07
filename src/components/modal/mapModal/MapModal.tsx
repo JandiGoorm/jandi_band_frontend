@@ -5,7 +5,7 @@ import styles from "./MapModal.module.css";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Input from "@/components/input/Input";
-import { useKakao } from "@/hooks/useKaKao";
+import { useKakao } from "@/hooks/useKakao";
 import type { kakaoLocationRequest } from "@/types/kakao";
 import clsx from "clsx";
 
