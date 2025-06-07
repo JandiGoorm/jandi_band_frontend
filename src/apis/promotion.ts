@@ -43,7 +43,8 @@ export const usePromoisLike = (id: string) => {
 
 export const usePromoLike = (id: string) => {
   return usePost(buildPath(ApiEndpotins.PROMOTION_LIKE, { id }));
-  
+};
+
 export const useGetPromoMap = ({
   startLatitude = 1,
   startLongitude = 1,
