@@ -1,11 +1,16 @@
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import styles from "./DetailContent.module.css";
 import Button from "@/components/button/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
-import { PageEndpoints } from "@/constants/endpoints";
+import { ApiEndpotins, PageEndpoints } from "@/constants/endpoints";
 import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
-import { useDeletePromo, useGetPromo } from "@/apis/promotion";
+import {
+  useDeletePromo,
+  useGetPromo,
+  usePromoisLike,
+  usePromoLike,
+} from "@/apis/promotion";
 import Loading from "@/components/loading/Loading";
 import {
   formatPromotionDate,
@@ -14,6 +19,7 @@ import {
   getEventStatus,
 } from "@/utils/dateStatus";
 import { useAuthStore } from "@/stores/authStore";
+import { queryClient } from "@/config/queryClient";
 import Modal from "@/components/modal/Modal";
 import LocationModal from "./LocationModal";
 
@@ -23,14 +29,31 @@ const DetailContent = () => {
   const navigate = useNavigate();
   const { mutate: deletePromo } = useDeletePromo(id!);
   const { data: fetchData, isLoading: fetchLoading } = useGetPromo(id || "");
+  const { data: likeData, isLoading: likeLoading } = usePromoisLike(id || "");
+  const { mutate: likePromo } = usePromoLike(id || "");
 
   console.log(fetchData);
+  console.log(likeData?.data);
   if (!id) return;
 
-  if (!fetchData || fetchLoading) return <Loading />;
+  if (!fetchData || fetchLoading || likeLoading || !likeData)
+    return <Loading />;
 
   const mine = user?.id === fetchData?.data.creatorId;
   const status = getEventStatus(fetchData.data.eventDatetime);
+
+  const handleLike = () => {
+    likePromo(undefined, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: [buildPath(ApiEndpotins.PROMOTION_ISLIKE, { id })],
+        });
+        queryClient.invalidateQueries({
+          queryKey: [buildPath(ApiEndpotins.PROMOTION_DETAIL, { id })],
+        });
+      },
+    });
+  };
 
   return (
     <>
@@ -95,9 +118,18 @@ const DetailContent = () => {
           <section className={styles.promotion_info}>
             <section className={styles.promotion_like_box}>
               <p>이 공연을 응원하고 싶다면?</p>
-              <Button variant="none" size="sm">
-                <FaRegHeart size={14} style={{ marginRight: "0.25rem" }} />
-                좋아요
+              <Button variant="none" size="sm" onClick={handleLike}>
+                {likeData.data ? (
+                  <>
+                    <FaHeart size={14} style={{ marginRight: "0.25rem" }} />
+                    좋아요 취소
+                  </>
+                ) : (
+                  <>
+                    <FaRegHeart size={14} style={{ marginRight: "0.25rem" }} />
+                    좋아요
+                  </>
+                )}
               </Button>
             </section>
             <section className={styles.info_box}>

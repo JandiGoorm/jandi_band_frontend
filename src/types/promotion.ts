@@ -11,6 +11,7 @@ export interface PromotionListResponse {
   description: string;
   viewCount: number;
   commentCount: number;
+  isLikedByUser: boolean | null;
   likeCount: number;
   createdAt: string;
   updatedAt: string;

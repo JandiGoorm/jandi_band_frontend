@@ -37,6 +37,13 @@ export const useDeletePromo = (id: string) => {
   return useDelete(buildPath(ApiEndpotins.PROMOTION_DETAIL, { id }));
 };
 
+export const usePromoisLike = (id: string) => {
+  return useFetch<boolean>(buildPath(ApiEndpotins.PROMOTION_ISLIKE, { id }));
+};
+
+export const usePromoLike = (id: string) => {
+  return usePost(buildPath(ApiEndpotins.PROMOTION_LIKE, { id }));
+  
 export const useGetPromoMap = ({
   startLatitude = 1,
   startLongitude = 1,

@@ -29,6 +29,8 @@ export enum ApiEndpotins {
 
   PROMOTION = "/promos",
   PROMOTION_DETAIL = "/promos/:id",
+  PROMOTION_LIKE = "/promos/:id/like",
+  PROMOTION_ISLIKE = "/promos/:id/like/status",
   PROMOTION_MAP = "/promos/map",
   CLUB = "/clubs",
   MY_CLUB = "/my/clubs",
