@@ -34,6 +34,7 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
                   maxWidth: "200px",
                   height: "auto",
                   maxHeight: "20rem",
+                  borderRadius: "var(--radius-xl)",
                 }}
                 onClick={() =>
                   navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
