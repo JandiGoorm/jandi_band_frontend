@@ -21,12 +21,14 @@ import VoteList from "./pages/club/more/VoteList";
 import FetchPromotion from "./pages/promotions/update/UpdatePromotion";
 import Invite from "./pages/invite/Invite";
 import PromotionMap from "./pages/promotions/map/PromotionMap";
+import GTMTracker from "./analytics/GTMTracker";
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalToast />
       <BrowserRouter>
+        <GTMTracker />
         <Routes>
           <Route path={PageEndpoints.HOME} element={<Home />} />
           <Route path={PageEndpoints.CALLBACK} element={<Callback />} />
