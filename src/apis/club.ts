@@ -17,7 +17,7 @@ export const useUpdateClub = (id: string) => {
 };
 
 export const useDeleteClub = (id: string) => {
-  return useDelete(buildPath(ApiEndpotins.CLUB, { id }));
+  return useDelete(buildPath(ApiEndpotins.CLUB_DETAIL, { id }));
 };
 
 export const useGetClubDetail = (id: string) => {
