@@ -8,8 +8,6 @@ import Dropdown from "@/components/dropdown/Dropdown";
 const Header = () => {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
-
-  console.log(user);
   return (
     <div className={styles.container}>
       <div className={styles.content}>
