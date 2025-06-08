@@ -12,14 +12,14 @@
 
 /* Size variants */
 .btn_sm {
-  padding: 0.3rem 0.5rem;
-  font-size: var(--text-base);
+  padding: 0.25rem 0.5rem;
+  font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
 }
 
 .btn_md {
-  padding: 0.5rem 1.5rem;
-  font-size: var(--text-lg);
+  padding: 0.25rem 1rem;
+  font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
 }
 
