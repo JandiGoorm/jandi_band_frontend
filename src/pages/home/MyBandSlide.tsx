@@ -9,7 +9,12 @@ const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
   const navigate = useNavigate();
   return (
     <main className={styles.main_container}>
-      <p className={styles.title}>내가 함께하는 밴드</p>
+      <p
+        className={styles.title}
+        onClick={() => navigate(PageEndpoints.MY_CLUB_LIST)}
+      >
+        내가 함께하는 밴드
+      </p>
       <MainSlide<MyClubListResponse> items={club}>
         {(item) => (
           <div

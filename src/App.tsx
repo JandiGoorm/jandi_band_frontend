@@ -21,6 +21,7 @@ import VoteList from "./pages/club/more/VoteList";
 import FetchPromotion from "./pages/promotions/update/UpdatePromotion";
 import Invite from "./pages/invite/Invite";
 import PromotionMap from "./pages/promotions/map/PromotionMap";
+import MyClubList from "./pages/club/more/MyClubList";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path={PageEndpoints.HOME} element={<Home />} />
+          <Route path={PageEndpoints.MY_CLUB_LIST} element={<MyClubList />} />
           <Route path={PageEndpoints.CALLBACK} element={<Callback />} />
           <Route path={PageEndpoints.PROMOTION} element={<PromotionMain />} />
           <Route
