@@ -26,7 +26,7 @@ const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
             }}
           >
             <img
-              src={item.photoUrl}
+              src={item.photoUrl || "./basic_club.png"}
               style={{ maxWidth: "200px", height: "auto", maxHeight: "20rem" }}
               onClick={() =>
                 navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))

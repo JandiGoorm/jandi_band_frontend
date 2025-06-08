@@ -31,7 +31,7 @@ const MyClubList = () => {
             }}
           >
             <img
-              src={item.photoUrl}
+              src={item.photoUrl || "./basic_club.png"}
               alt={item.name}
               style={{
                 maxWidth: "200px",
