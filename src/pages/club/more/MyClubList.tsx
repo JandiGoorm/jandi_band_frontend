@@ -19,7 +19,7 @@ const MyClubList = () => {
       <header>
         <p className={styles.title}>내 동아리 목록</p>
       </header>
-      <section className={styles.vote_container}>
+      <section className={styles.club_container}>
         {myClubListData.data.map((item) => (
           <div
             key={item.id}
@@ -34,10 +34,10 @@ const MyClubList = () => {
               src={item.photoUrl || "./basic_club.png"}
               alt={item.name}
               style={{
-                maxWidth: "200px",
-                height: "auto",
-                maxHeight: "20rem",
+                maxWidth: "220px",
+                aspectRatio: "5/3",
                 cursor: "pointer",
+                borderRadius: "var(--radius-xl)",
               }}
               onClick={() =>
                 navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))

@@ -8,17 +8,17 @@
 }
 
 .pagination_box {
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 
-.vote_container {
+.club_container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2rem;
 }
 
-@media (max-width: 768px) {
-  .vote_container {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+@media (max-width: 870px) {
+  .club_container {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   }
 }
