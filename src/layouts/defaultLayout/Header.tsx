@@ -2,13 +2,14 @@ import Button from "@/components/button/Button";
 import { PageEndpoints } from "@/constants/endpoints";
 import { useAuthStore } from "@/stores/authStore";
 import { Link, useNavigate } from "react-router-dom";
-import CreateClubModal from "./CreateClubModal";
 import styles from "./Header.module.css";
+import Dropdown from "@/components/dropdown/Dropdown";
 
 const Header = () => {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
 
+  console.log(user);
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -17,12 +18,23 @@ const Header = () => {
         </Link>
 
         <div className={styles.right}>
-          <CreateClubModal />
-
           {user ? (
-            <Button onClick={logout} variant="secondary">
-              로그아웃
-            </Button>
+            <Dropdown
+              trigger={
+                <img src={user.profilePhoto} className={styles.profile_img} />
+              }
+              items={[
+                {
+                  label: "마이페이지",
+                  onSelect: () => navigate(PageEndpoints.MYPAGE),
+                },
+                {
+                  label: "홍보물",
+                  onSelect: () => navigate(PageEndpoints.PROMOTION),
+                },
+                { label: "로그아웃", onSelect: logout },
+              ]}
+            />
           ) : (
             <Button
               onClick={() => navigate(PageEndpoints.SIGN_IN)}
