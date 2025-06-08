@@ -58,3 +58,11 @@
   background-color: var(--color-button-secondary-bg);
   color: var(--color-button-primary-text);
 }
+
+@media (max-width: 768px) {
+  .btn_md {
+    padding: 0.25rem 1rem;
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+  }
+}
