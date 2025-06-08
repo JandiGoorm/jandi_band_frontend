@@ -83,7 +83,7 @@ const Club = () => {
           refetch={refetch}
         />
         {/* <PhotoSlide isMember={isMember} /> */}
-        <section>
+        <section className={styles.Management_container}>
           {mine ? (
             <DeleteModal
               trigger={
@@ -105,7 +105,7 @@ const Club = () => {
             <LeaveModal
               trigger={
                 <Button size="md" variant="primary">
-                  나가기
+                  탈퇴
                 </Button>
               }
               title="동아리 나가기"

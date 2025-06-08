@@ -58,7 +58,7 @@ const ClubInfo = ({
 
           {mine && <ModifyClubModal club={club} />}
 
-          {club.instagramId ? (
+          {club.instagramId && (
             <FaInstagram
               size={40}
               className={styles.instagram_icon}
@@ -69,7 +69,7 @@ const ClubInfo = ({
                 )
               }
             />
-          ) : null}
+          )}
         </div>
       </section>
 
