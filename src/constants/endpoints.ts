@@ -50,6 +50,7 @@ export enum ApiEndpotins {
   TEAM_DETAIL = "/teams/:id",
   TEAM_INVITE = "/invite/teams/:id",
   JOIN_TEAM = "/join/teams",
+  LEAVE_TEAM = "/teams/:id/members/me",
 
   CLUB_POLL = "/polls/clubs/:id",
   MAKE_POLL = "/polls", //투표 생성
