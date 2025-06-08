@@ -86,6 +86,8 @@
     0 -8px 10px -6px rgb(var(--color-shadow) / var(--shadow-opacity));
   --shadow-top-2xl: 0 -25px 50px -12px rgb(var(--color-shadow) / 0.3);
 
+  --shadow-full: 0 0 10px rgb(var(--color-shadow)/ 0.2);
+
   /* common semantic tokens */
   --color-primary: oklch(63% 0.0667 194.85);
   --color-secondary: oklch(73.82% 0.0843 199.13);
