@@ -19,7 +19,8 @@ export enum PageEndpoints {
   MY_TIMETABLE_DETAIL = "/time-schedule/:id",
   POST_TEAM_TIMETABLE = "/team/:id/post/timetables",
   INVITE = "/invite/:type/accept",
-  MY_CLUB_LIST = "/club/my",
+  MY_CLUB_LIST = "/clubs/my",
+  CLUB_LIST = "/clubs",
 }
 
 export enum ApiEndpotins {

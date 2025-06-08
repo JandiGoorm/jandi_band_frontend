@@ -22,6 +22,7 @@ import FetchPromotion from "./pages/promotions/update/UpdatePromotion";
 import Invite from "./pages/invite/Invite";
 import PromotionMap from "./pages/promotions/map/PromotionMap";
 import MyClubList from "./pages/club/more/MyClubList";
+import ClubList from "./pages/club/more/ClubList";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           <Route path={PageEndpoints.HOME} element={<Home />} />
           <Route path={PageEndpoints.MY_CLUB_LIST} element={<MyClubList />} />
+          <Route path={PageEndpoints.CLUB_LIST} element={<ClubList />} />
           <Route path={PageEndpoints.CALLBACK} element={<Callback />} />
           <Route path={PageEndpoints.PROMOTION} element={<PromotionMain />} />
           <Route
