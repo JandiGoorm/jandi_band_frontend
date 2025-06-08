@@ -33,7 +33,7 @@ const ClubInfo = ({
             trigger={
               <Button
                 variant="primary"
-                size="sm"
+                size="md"
                 className={styles.image_button}
               >
                 사진 수정
@@ -51,16 +51,9 @@ const ClubInfo = ({
           <p className={styles.school}>
             {club.university?.name ?? "연합 동아리"}
           </p>
-        </div>
-
-        <div className={styles.left_title}>
-          <InviteModal />
-
-          {mine && <ModifyClubModal club={club} />}
-
           {club.instagramId && (
             <FaInstagram
-              size={40}
+              size={26}
               className={styles.instagram_icon}
               onClick={() =>
                 window.open(
@@ -70,6 +63,12 @@ const ClubInfo = ({
               }
             />
           )}
+        </div>
+
+        <div className={styles.left_title}>
+          <InviteModal />
+
+          {mine && <ModifyClubModal club={club} />}
         </div>
       </section>
 

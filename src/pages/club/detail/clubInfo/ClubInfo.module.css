@@ -42,13 +42,13 @@
 }
 
 .title {
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-main);
 }
 
 .school {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-sub);
 }
@@ -65,7 +65,7 @@
 .member_box {
   display: flex;
   gap: 1.5rem;
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   flex-wrap: wrap;
 }
 
@@ -89,9 +89,6 @@
     font-size: 1rem;
     height: 2rem;
   } */
-  .instagram_icon {
-    height: 2rem;
-  }
 }
 
 @media (max-width: 480px) {
