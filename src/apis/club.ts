@@ -68,3 +68,7 @@ export const useJoinClub = (code: string) => {
 export const useUpdateClubImage = (id: string) => {
   return usePost<FormData, string>(buildPath(ApiEndpotins.CLUB_IMAGE, { id }));
 };
+
+export const useLeaveClub = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.LEAVE_CLUB, { id }));
+};

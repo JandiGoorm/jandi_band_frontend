@@ -43,6 +43,7 @@ export enum ApiEndpotins {
   UNIVERSITIES = "/univ/all",
   CLUB_INVITE = "/invite/clubs/:id",
   JOIN_CLUB = "/join/clubs",
+  LEAVE_CLUB = "/clubs/:id/members/me",
   MY_TIMETABLE = "/users/me/timetables",
   MY_TIMETABLE_DETAIL = "/users/me/timetables/:id",
   MY_TIMETABLE_BY_TEAM = "/teams/:id/members/me/timetable",
