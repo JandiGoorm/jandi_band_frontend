@@ -13,6 +13,7 @@ import ModifyProfileModal from "./ModifyProfileModal";
 import Tooltip from "@/components/tooltip/Tooltip";
 import Dropdown from "@/components/dropdown/Dropdown";
 import { useState } from "react";
+import EditMemberModal from "./EditMemberModal";
 
 const ClubInfo = ({
   club,
@@ -107,7 +108,7 @@ const ClubInfo = ({
                 open={activeModal === "members"}
                 onOpenChange={(v) => !v && setActiveModal(null)}
               >
-                <ModifyClubModal
+                <EditMemberModal
                   club={club}
                   onClose={() => setActiveModal(null)}
                 />
