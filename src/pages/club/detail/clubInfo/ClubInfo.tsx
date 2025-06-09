@@ -11,6 +11,8 @@ import Modal from "@/components/modal/Modal";
 import Button from "@/components/button/Button";
 import ModifyProfileModal from "./ModifyProfileModal";
 import Tooltip from "@/components/tooltip/Tooltip";
+import Dropdown from "@/components/dropdown/Dropdown";
+import { useState } from "react";
 
 const ClubInfo = ({
   club,
@@ -21,6 +23,9 @@ const ClubInfo = ({
 }) => {
   const { user } = useAuthStore();
   const mine = user?.id === club.representativeId;
+  const [activeModal, setActiveModal] = useState<"modify" | "members" | null>(
+    null
+  );
 
   return (
     <main className={styles.container}>
@@ -69,7 +74,47 @@ const ClubInfo = ({
         <div className={styles.left_title}>
           <InviteModal />
 
-          {mine && <ModifyClubModal club={club} />}
+          {mine && (
+            <>
+              <Dropdown
+                size="sm"
+                trigger={<Button size="lg">동아리 관리</Button>}
+                items={[
+                  {
+                    label: "정보 수정",
+                    onSelect: () => setActiveModal("modify"),
+                  },
+                  {
+                    label: "멤버 관리",
+                    onSelect: () => setActiveModal("members"),
+                  },
+                ]}
+              />
+
+              <Modal
+                title="동아리 정보 수정"
+                open={activeModal === "modify"}
+                onOpenChange={(v) => !v && setActiveModal(null)}
+              >
+                <ModifyClubModal
+                  club={club}
+                  onClose={() => setActiveModal(null)}
+                />
+              </Modal>
+
+              <Modal
+                title="멤버 관리"
+                open={activeModal === "members"}
+                onOpenChange={(v) => !v && setActiveModal(null)}
+              >
+                <ModifyClubModal
+                  club={club}
+                  onClose={() => setActiveModal(null)}
+                />
+                {/* <MemberManageModal clubId={club.id} /> */}
+              </Modal>
+            </>
+          )}
         </div>
       </section>
 

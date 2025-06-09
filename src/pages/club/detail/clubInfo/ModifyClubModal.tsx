@@ -12,7 +12,6 @@ import type { ClubDetailResponse } from "@/types/club";
 import { queryClient } from "@/config/queryClient";
 import { buildPath } from "@/utils/buildPath";
 import { ApiEndpotins } from "@/constants/endpoints";
-import Modal from "@/components/modal/Modal";
 
 const createClubScheme = z.object({
   name: z
@@ -32,7 +31,12 @@ const createClubScheme = z.object({
 
 export type ClubFormData = z.infer<typeof createClubScheme>;
 
-const ModifyClubModal = ({ club }: { club: ClubDetailResponse }) => {
+interface ModifyClubModalProps {
+  club: ClubDetailResponse;
+  onClose: () => void;
+}
+
+const ModifyClubModal = ({ club, onClose }: ModifyClubModalProps) => {
   const { id } = useParams();
 
   const { mutate: updateClub } = useUpdateClub(id || "");
@@ -59,46 +63,40 @@ const ModifyClubModal = ({ club }: { club: ClubDetailResponse }) => {
 
   if (!id) return <div>잘못된 접근입니다.</div>;
 
+  const onSubmit = (data: ClubFormData) => {
+    updateClub(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: [buildPath(ApiEndpotins.CLUB_DETAIL, { id })],
+        });
+        onClose();
+      },
+    });
+  };
+
   return (
-    <Modal trigger={<Button>수정하기</Button>} title="동아리 수정하기">
-      {(setOpen) => {
-        const onSubmit = (data: ClubFormData) => {
-          updateClub(data, {
-            onSuccess: () => {
-              queryClient.invalidateQueries({
-                queryKey: [buildPath(ApiEndpotins.CLUB_DETAIL, { id })],
-              });
-              setOpen(false);
-            },
-          });
-        };
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+      <Field label="동아리 이름" error={errors.name} isRequired>
+        <Input {...register("name")} inputSize="md" />
+      </Field>
 
-        return (
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
-            <Field label="동아리 이름" error={errors.name} isRequired>
-              <Input {...register("name")} inputSize="md" />
-            </Field>
+      <Field label="카카오톡 채팅방 링크" error={errors.chatroomUrl}>
+        <Input {...register("chatroomUrl")} inputSize="md" />
+      </Field>
 
-            <Field label="카카오톡 채팅방 링크" error={errors.chatroomUrl}>
-              <Input {...register("chatroomUrl")} inputSize="md" />
-            </Field>
+      <Field label="인스타그램 아이디" error={errors.instagramId}>
+        <Input {...register("instagramId")} inputSize="md" />
+      </Field>
 
-            <Field label="인스타그램 아이디" error={errors.instagramId}>
-              <Input {...register("instagramId")} inputSize="md" />
-            </Field>
-
-            <Button
-              type="submit"
-              size="md"
-              className={styles.submit_button}
-              variant="secondary"
-            >
-              동아리 수정하기
-            </Button>
-          </form>
-        );
-      }}
-    </Modal>
+      <Button
+        type="submit"
+        size="md"
+        className={styles.submit_button}
+        variant="secondary"
+      >
+        동아리 수정하기
+      </Button>
+    </form>
   );
 };
 
