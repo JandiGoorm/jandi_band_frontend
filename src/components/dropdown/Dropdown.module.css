@@ -7,11 +7,8 @@
 }
 
 .dropdown_item {
-  padding: 8px 16px;
-  font-size: 2rem;
   cursor: pointer;
   outline: none;
-  font-size: var(--text-lg);
   color: black;
   background-color: white;
   border-radius: var(--radius-2xl);
@@ -23,4 +20,14 @@
 
 .arrow {
   fill: var(--color-white);
+}
+
+.dropdown_sm {
+  padding: 0.25rem 0.25rem;
+  font-size: var(--text-sm);
+}
+
+.dropdown_md {
+  padding: 0.5rem 1rem;
+  font-size: var(--text-lg);
 }

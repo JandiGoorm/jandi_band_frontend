@@ -1,5 +1,8 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import styles from "./Dropdown.module.css";
+import clsx from "clsx";
+
+type DropdownSize = "sm" | "md";
 
 interface DropdownItem {
   label: string;
@@ -7,11 +10,13 @@ interface DropdownItem {
 }
 
 interface DropdownProps {
+  size?: DropdownSize;
   trigger: React.ReactNode;
   items: DropdownItem[];
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ trigger, items }) => {
+const Dropdown: React.FC<DropdownProps> = ({ size = "md", trigger, items }) => {
+  const sizeClass = styles[`dropdown_${size}`];
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -27,7 +32,7 @@ const Dropdown: React.FC<DropdownProps> = ({ trigger, items }) => {
             <DropdownMenu.Item
               key={idx}
               onSelect={item.onSelect}
-              className={styles.dropdown_item}
+              className={clsx(styles.dropdown_item, sizeClass)}
             >
               {item.label}
             </DropdownMenu.Item>
