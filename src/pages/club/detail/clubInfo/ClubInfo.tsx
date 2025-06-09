@@ -10,6 +10,7 @@ import ModifyClubModal from "./ModifyClubModal";
 import Modal from "@/components/modal/Modal";
 import Button from "@/components/button/Button";
 import ModifyProfileModal from "./ModifyProfileModal";
+import Tooltip from "@/components/tooltip/Tooltip";
 
 const ClubInfo = ({
   club,
@@ -74,23 +75,33 @@ const ClubInfo = ({
 
       <section className={styles.member_box}>
         <div className={styles.member}>
-          <FaPeopleGroup />
+          <Tooltip
+            trigger={<FaPeopleGroup size={16} />}
+            description="전체인원"
+          />
           <p>{memberData.totalMemberCount}명</p>
         </div>
         <div className={styles.member}>
-          <PiMicrophoneStage />
+          <Tooltip
+            trigger={<PiMicrophoneStage size={16} />}
+            description="보컬"
+          />
           <p>{memberData.vocalCount}명</p>
         </div>
         <div className={styles.member}>
-          <GiGuitar />
-          <p>{memberData.guitarCount + memberData.bassCount}명</p>
+          <Tooltip trigger={<GiGuitar size={16} />} description="기타" />
+          <p>{memberData.guitarCount}명</p>
         </div>
         <div className={styles.member}>
-          <GiPianoKeys />
+          <Tooltip trigger={<GiGuitar size={16} />} description="베이스" />
+          <p>{memberData.bassCount}명</p>
+        </div>
+        <div className={styles.member}>
+          <Tooltip trigger={<GiPianoKeys size={16} />} description="키보드" />
           <p>{memberData.keyboardCount}명</p>
         </div>
         <div className={styles.member}>
-          <GiDrumKit />
+          <Tooltip trigger={<GiDrumKit size={16} />} description="드럼" />
           <p>{memberData.drumCount}명</p>
         </div>
       </section>
