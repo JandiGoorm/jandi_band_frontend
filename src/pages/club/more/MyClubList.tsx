@@ -24,6 +24,7 @@ const MyClubList = () => {
           <div
             key={item.id}
             style={{
+              position: "relative",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -43,6 +44,10 @@ const MyClubList = () => {
                 navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
               }
             />
+            {(item.photoUrl == import.meta.env.VITE_BASIC_IMG ||
+              !item.photoUrl) && (
+              <p className={styles.item_title}>{item.name}</p>
+            )}
           </div>
         ))}
       </section>

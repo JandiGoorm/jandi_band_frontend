@@ -11,6 +11,19 @@
   margin: 2rem auto;
 }
 
+.item_title {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+
 .club_container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
