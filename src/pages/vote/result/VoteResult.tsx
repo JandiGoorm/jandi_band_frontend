@@ -5,7 +5,7 @@ import ArrowBack from "@/pages/vote/style/arrowback.svg";
 import styles from "@/pages/vote/result/VoteResult.module.css";
 import { usePollStore } from "@/stores/voteStore";
 import Loading from "@/components/loading/Loading";
-// import * as Select from "@radix-ui/react-select";
+import FilterSelect from "./FilterSelect";
 
 const VoteResult = () => {
   const navigate = useNavigate();
@@ -31,14 +31,7 @@ const VoteResult = () => {
             <h1>{poll?.title}</h1>
           </section>
 
-          <section>
-            <select className={styles.result_filter}>
-              <option value="기본">기본</option>
-              <option value="기본">좋아요 순</option>
-              <option value="기본">별로에요 순</option>
-              <option value="기본">2:2 묶어보기</option>
-            </select>
-          </section>
+          <FilterSelect />
         </header>
 
         <BarChart data={voteData} />
