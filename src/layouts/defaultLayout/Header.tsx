@@ -23,12 +23,16 @@ const Header = () => {
               }
               items={[
                 {
-                  label: "마이페이지",
-                  onSelect: () => navigate(PageEndpoints.MYPAGE),
+                  label: "공연 목록",
+                  onSelect: () => navigate(PageEndpoints.PROMOTION),
                 },
                 {
-                  label: "홍보물",
-                  onSelect: () => navigate(PageEndpoints.PROMOTION),
+                  label: "동아리 목록",
+                  onSelect: () => navigate(PageEndpoints.CLUB_LIST),
+                },
+                {
+                  label: "마이페이지",
+                  onSelect: () => navigate(PageEndpoints.MYPAGE),
                 },
                 { label: "로그아웃", onSelect: logout },
               ]}
