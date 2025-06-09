@@ -32,6 +32,7 @@ const Dropdown: React.FC<DropdownProps> = ({ trigger, items }) => {
               {item.label}
             </DropdownMenu.Item>
           ))}
+          <DropdownMenu.Arrow className={styles.arrow} />
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>

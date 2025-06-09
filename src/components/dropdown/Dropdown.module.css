@@ -20,3 +20,7 @@
 .dropdown_item:hover {
   background-color: var(--color-secondary-hover);
 }
+
+.arrow {
+  fill: var(--color-white);
+}
