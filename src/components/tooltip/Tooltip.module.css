@@ -1,0 +1,13 @@
+.tooltip_content {
+  background-color: black;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.tooltip_arrow {
+  fill: black;
+}
