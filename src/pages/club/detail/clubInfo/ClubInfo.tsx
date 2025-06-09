@@ -108,10 +108,7 @@ const ClubInfo = ({
                 open={activeModal === "members"}
                 onOpenChange={(v) => !v && setActiveModal(null)}
               >
-                <EditMemberModal
-                  club={club}
-                  onClose={() => setActiveModal(null)}
-                />
+                <EditMemberModal />
                 {/* <MemberManageModal clubId={club.id} /> */}
               </Modal>
             </>

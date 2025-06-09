@@ -72,3 +72,7 @@ export const useUpdateClubImage = (id: string) => {
 export const useLeaveClub = (id: string) => {
   return useDelete(buildPath(ApiEndpotins.LEAVE_CLUB, { id }));
 };
+
+export const useOutMember = (clubId: string, userId: number) => {
+  return useDelete(buildPath(ApiEndpotins.MEMBER_OUT, { clubId, userId }));
+};
