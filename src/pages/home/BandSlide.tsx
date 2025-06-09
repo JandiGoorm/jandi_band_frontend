@@ -32,8 +32,7 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
                 src={item.photoUrl || "./basic_club.png"}
                 style={{
                   maxWidth: "200px",
-                  height: "auto",
-                  maxHeight: "20rem",
+                  aspectRatio: "5/3",
                   borderRadius: "var(--radius-xl)",
                 }}
                 onClick={() =>
