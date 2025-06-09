@@ -45,6 +45,10 @@
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-main);
+  max-width: 15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .school {
