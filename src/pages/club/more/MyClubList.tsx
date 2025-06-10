@@ -5,6 +5,8 @@ import { useGetMyClubList } from "@/apis/club";
 import { useNavigate } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
+import CreateClubModal from "@/pages/home/CreateClubModal";
+import Button from "@/components/button/Button";
 
 const MyClubList = () => {
   const navigate = useNavigate();
@@ -51,6 +53,15 @@ const MyClubList = () => {
           </div>
         ))}
       </section>
+      <div className={styles.add_button}>
+        <CreateClubModal
+          trigger={
+            <Button variant="primary" size="md">
+              동아리 만들기
+            </Button>
+          }
+        />
+      </div>
     </DefaultLayout>
   );
 };

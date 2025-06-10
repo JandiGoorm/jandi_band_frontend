@@ -8,6 +8,8 @@ import { useGetClubList } from "@/apis/club";
 import { useNavigate } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
+import CreateClubModal from "@/pages/home/CreateClubModal";
+import Button from "@/components/button/Button";
 
 const ClubList = () => {
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ const ClubList = () => {
       <header>
         <p className={styles.title}>동아리 목록</p>
       </header>
+
       <section className={styles.club_container}>
         {clubData.data.content.map((item) => (
           <div
@@ -72,6 +75,15 @@ const ClubList = () => {
           callback={handlePageChange}
         />
       </section>
+      <div className={styles.add_button}>
+        <CreateClubModal
+          trigger={
+            <Button variant="primary" size="md">
+              동아리 만들기
+            </Button>
+          }
+        />
+      </div>
     </DefaultLayout>
   );
 };

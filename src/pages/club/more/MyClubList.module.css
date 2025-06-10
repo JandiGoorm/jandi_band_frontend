@@ -35,3 +35,10 @@
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   }
 }
+
+.add_button {
+  margin: 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
