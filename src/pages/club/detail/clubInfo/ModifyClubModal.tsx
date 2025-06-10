@@ -77,15 +77,15 @@ const ModifyClubModal = ({ club, onClose }: ModifyClubModalProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
       <Field label="동아리 이름" error={errors.name} isRequired>
-        <Input {...register("name")} inputSize="md" />
+        <Input {...register("name")} />
       </Field>
 
       <Field label="카카오톡 채팅방 링크" error={errors.chatroomUrl}>
-        <Input {...register("chatroomUrl")} inputSize="md" />
+        <Input {...register("chatroomUrl")} />
       </Field>
 
       <Field label="인스타그램 아이디" error={errors.instagramId}>
-        <Input {...register("instagramId")} inputSize="md" />
+        <Input {...register("instagramId")} />
       </Field>
 
       <Button

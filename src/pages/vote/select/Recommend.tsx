@@ -64,19 +64,19 @@ const Recommend = ({ setOpen, refetch }: RecommendProps) => {
 
       <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
         <Field label="곡 제목" error={errors.songName} isRequired>
-          <Input inputSize="sm" {...form.register("songName")} />
+          <Input {...form.register("songName")} />
         </Field>
 
         <Field label="가수/밴드명" error={errors.artistName} isRequired>
-          <Input inputSize="sm" {...form.register("artistName")} />
+          <Input {...form.register("artistName")} />
         </Field>
 
         <Field label="선택 이유 한마디" error={errors.description}>
-          <Input inputSize="sm" {...form.register("description")} />
+          <Input {...form.register("description")} />
         </Field>
 
         <Field label="유튜브 링크" error={errors.youtubeUrl} isRequired>
-          <Input inputSize="sm" {...form.register("youtubeUrl")} />
+          <Input {...form.register("youtubeUrl")} />
         </Field>
         <p className={styles.guide}>
           단일 영상 링크만 입력해주세요. <br />

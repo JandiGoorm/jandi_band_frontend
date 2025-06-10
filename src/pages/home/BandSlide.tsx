@@ -5,7 +5,7 @@ import type { ClubListResponse } from "@/types/club";
 import { useNavigate } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
-import CreateClubModal from "@/layouts/defaultLayout/CreateClubModal";
+import CreateClubModal from "@/pages/home/CreateClubModal";
 
 const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
   const navigate = useNavigate();
