@@ -23,8 +23,8 @@
 }
 
 .dropdown_sm {
-  padding: 0.25rem 0.25rem;
-  font-size: var(--text-sm);
+  padding: 0.25rem 0.5rem;
+  font-size: var(--text-base);
 }
 
 .dropdown_md {
