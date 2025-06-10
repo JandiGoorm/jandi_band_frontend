@@ -7,6 +7,9 @@ import { PageEndpoints } from "@/constants/endpoints";
 
 const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
   const navigate = useNavigate();
+
+  if (!club || club.length === 0) return null;
+
   return (
     <main className={styles.main_container}>
       <p
