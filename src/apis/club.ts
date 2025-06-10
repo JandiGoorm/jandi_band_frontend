@@ -2,7 +2,7 @@ import type { ClubListResponse, MyClubListResponse } from "@/types/club";
 import type { Nullable, PagiNationResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useDelete, useFetch, usePatch, usePost } from "./hooks";
-import type { ClubFormData } from "@/layouts/defaultLayout/CreateClubModal";
+import type { ClubFormData } from "@/pages/home/CreateClubModal";
 import { buildPath } from "@/utils/buildPath";
 import type { ClubDetailResponse, ClubMemberResponse } from "@/types/club";
 

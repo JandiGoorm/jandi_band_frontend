@@ -5,6 +5,7 @@ import type { ClubListResponse } from "@/types/club";
 import { useNavigate } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
+import CreateClubModal from "@/layouts/defaultLayout/CreateClubModal";
 
 const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
   const navigate = useNavigate();
@@ -48,9 +49,13 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
           <p className={styles.line_title}>
             모두가 기다리는 그 밴드, 바로 여러분일지도!
           </p>
-          <Button variant="transparent" size="sm">
-            동아리 만들기
-          </Button>
+          <CreateClubModal
+            trigger={
+              <Button variant="transparent" size="sm">
+                동아리 만들기
+              </Button>
+            }
+          />
         </div>
       </section>
     </main>
