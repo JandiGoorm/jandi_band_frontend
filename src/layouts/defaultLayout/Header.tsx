@@ -34,7 +34,13 @@ const Header = () => {
                   label: "마이페이지",
                   onSelect: () => navigate(PageEndpoints.MYPAGE),
                 },
-                { label: "로그아웃", onSelect: logout },
+                {
+                  label: "로그아웃",
+                  onSelect: () => {
+                    logout();
+                    window.location.href = PageEndpoints.SIGN_IN;
+                  },
+                },
               ]}
             />
           ) : (
