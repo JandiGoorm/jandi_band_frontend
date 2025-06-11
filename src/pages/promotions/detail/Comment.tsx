@@ -8,17 +8,20 @@ import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
 import CommentItem from "./CommentItem";
-
 const Comment = () => {
   const { id } = useParams();
   const inputRef = useRef<HTMLInputElement>(null);
   const { mutate: postComment } = usePostComment(id || "");
   const { currentPage, totalPage, setTotalPage, handlePageChange } =
     usePagination();
-  const { data: commentData, isLoading: commentLoading } = useGetComment({
+  const {
+    data: commentData,
+    isLoading: commentLoading,
+    refetch: refetchComments,
+  } = useGetComment({
     id: id || "",
     page: currentPage - 1,
-    size: 20,
+    size: 10,
   });
 
   useEffect(() => {
@@ -27,11 +30,12 @@ const Comment = () => {
     }
   }, [commentData, setTotalPage]);
 
+  if (!id) return;
+
   const handleAddComment = () => {
     const value = inputRef.current?.value.trim();
     if (!value) return;
 
-    console.log(value);
     postComment(
       { description: value },
       {
@@ -39,6 +43,7 @@ const Comment = () => {
           if (inputRef.current) {
             inputRef.current.value = "";
           }
+          refetchComments();
         },
       }
     );
