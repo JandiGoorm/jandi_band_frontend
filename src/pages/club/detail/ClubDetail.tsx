@@ -4,7 +4,7 @@ import ClubInfo from "./clubInfo/ClubInfo";
 import Calendar from "./clubCalendar/calendar/Calendar";
 import TeamSlide from "./clubSlide/TeamSlide";
 import VoteSlide from "./clubSlide/VoteSlide";
-// import PhotoSlide from "./clubSlide/PhotoSlide";
+import PhotoSlide from "./clubSlide/PhotoSlide";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {
@@ -23,6 +23,7 @@ import LeaveModal from "@/components/modal/leaveModal/LeaveModal";
 import Button from "@/components/button/Button";
 import { PageEndpoints } from "@/constants/endpoints";
 import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
+import { useGetPhotos } from "@/apis/photo";
 
 const Club = () => {
   const { id } = useParams();
@@ -31,7 +32,7 @@ const Club = () => {
 
   useEffect(() => {
     if (id) setClubId(Number(id));
-  }, [id]);
+  }, [id, setClubId]);
 
   const { user } = useAuthStore();
   const { data: clubData, isLoading: clubLoading } = useGetClubDetail(
@@ -43,6 +44,10 @@ const Club = () => {
   const { data: teamData, isLoading: teamLoading } = useGetTeamList(
     id as string
   );
+  const { data: photoData, isLoading: photoLoading } = useGetPhotos({
+    id: id || "",
+  });
+
   const { mutate: leaveClub } = useLeaveClub(id!);
   const { mutate: deleteClub } = useDeleteClub(id!);
 
@@ -61,7 +66,9 @@ const Club = () => {
     pollLoading ||
     memberLoading ||
     !memberData ||
-    teamLoading
+    teamLoading ||
+    !photoData ||
+    photoLoading
   )
     return <Loading />;
 
@@ -82,7 +89,7 @@ const Club = () => {
           isMember={isMember}
           refetch={refetch}
         />
-        {/* <PhotoSlide isMember={isMember} /> */}
+        <PhotoSlide isMember={isMember} photos={photoData.data.content} />
         <section className={styles.Management_container}>
           {mine ? (
             <DeleteModal

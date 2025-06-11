@@ -29,7 +29,7 @@ const PhotoModal = () => {
       className={styles.container}
       onSubmit={formController.handleSubmit(onSubmit)}
     >
-      <Field label="" error={errors.photo}>
+      <Field label="사진 선택하기" error={errors.photo} isRequired>
         <Input
           type="file"
           accept="image/*"

@@ -61,4 +61,6 @@ export const secureRoutes = [
   { method: Method.GET, url: ApiEndpotins.TEAM_SCHEDULES },
   { method: Method.POST, url: ApiEndpotins.TEAM_SCHEDULES },
   { method: Method.DELETE, url: ApiEndpotins.DELETE_TEAM_SCHEDULES },
+
+  { method: Method.GET, url: ApiEndpotins.CLUB_PHOTO },
 ];

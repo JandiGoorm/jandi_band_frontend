@@ -3,14 +3,16 @@ import styles from "./PhotoSlide.module.css";
 import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import PhotoModal from "./modalContent/PhotoModal";
+import type { PhotoResponse } from "@/types/photo";
+import PhotoCard from "@/components/cards/PhotoCard";
 
-const dummyData = [
-  { id: 1, name: "Slide 1" },
-  { id: 2, name: "Slide 2" },
-  { id: 3, name: "Slide 3" },
-  { id: 4, name: "Slide 4" },
-];
-const PhotoSlide = ({ isMember }: { isMember: boolean }) => {
+const PhotoSlide = ({
+  isMember,
+  photos,
+}: {
+  isMember: boolean;
+  photos: PhotoResponse[];
+}) => {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
@@ -29,10 +31,8 @@ const PhotoSlide = ({ isMember }: { isMember: boolean }) => {
         ) : null}
       </header>
       <section className={styles.slider_box}>
-        <Slide items={dummyData} size="md">
-          {(item) => {
-            return <div>{item.name}</div>;
-          }}
+        <Slide<PhotoResponse> items={photos} size="md">
+          {(item) => <PhotoCard item={item} />}
         </Slide>
       </section>
     </main>

@@ -70,4 +70,7 @@ export enum ApiEndpotins {
   // 팀 연습 일정 등록 및 조회
   TEAM_SCHEDULES = "/teams/:teamId/practice-schedules",
   DELETE_TEAM_SCHEDULES = "/teams/:teamId/practice-schedules/:scheduleId", // 팀 연습 일정 삭제
+
+  CLUB_PHOTO = "/clubs/:id/photo",
+  CLUB_PHOTO_DETAIL = "/clubs/:clubId/photo/:photoId",
 }
