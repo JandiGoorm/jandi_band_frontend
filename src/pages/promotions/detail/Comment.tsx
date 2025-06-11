@@ -67,7 +67,7 @@ const Comment = () => {
       </section>
       <section className={styles.comment_container}>
         {commentData.data.content.map((item) => (
-          <CommentItem item={item} />
+          <CommentItem key={item.id} item={item} />
         ))}
       </section>
       <section className={styles.page_navigate_box}>
