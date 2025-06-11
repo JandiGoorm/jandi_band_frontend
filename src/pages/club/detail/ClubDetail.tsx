@@ -5,19 +5,29 @@ import Calendar from "./clubCalendar/calendar/Calendar";
 import TeamSlide from "./clubSlide/TeamSlide";
 import VoteSlide from "./clubSlide/VoteSlide";
 // import PhotoSlide from "./clubSlide/PhotoSlide";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useGetClubDetail, useGetClubMembers } from "@/apis/club";
+import {
+  useDeleteClub,
+  useGetClubDetail,
+  useGetClubMembers,
+  useLeaveClub,
+} from "@/apis/club";
 import Loading from "@/components/loading/Loading";
 import { useGetClubPoll } from "@/apis/poll";
 import { useGetTeamList } from "@/apis/team";
 import { useAuthStore } from "@/stores/authStore";
 // 클럽아이디 저장
 import { useClubStore } from "@/stores/clubStore";
+import LeaveModal from "@/components/modal/leaveModal/LeaveModal";
+import Button from "@/components/button/Button";
+import { PageEndpoints } from "@/constants/endpoints";
+import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
 
 const Club = () => {
   const { id } = useParams();
   const setClubId = useClubStore((id) => id.setClubId);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) setClubId(Number(id));
@@ -33,6 +43,8 @@ const Club = () => {
   const { data: teamData, isLoading: teamLoading } = useGetTeamList(
     id as string
   );
+  const { mutate: leaveClub } = useLeaveClub(id!);
+  const { mutate: deleteClub } = useDeleteClub(id!);
 
   const {
     data: pollData,
@@ -56,7 +68,9 @@ const Club = () => {
   const isMember = memberData.data.members.some(
     (member: { userId: number }) => member.userId === user?.id
   );
+  const mine = user?.id === clubData.data.representativeId;
 
+  console.log(clubData.data);
   return (
     <DefaultLayout>
       <main className={styles.container}>
@@ -69,6 +83,43 @@ const Club = () => {
           refetch={refetch}
         />
         {/* <PhotoSlide isMember={isMember} /> */}
+        <section className={styles.Management_container}>
+          {mine ? (
+            <DeleteModal
+              trigger={
+                <Button size="md" variant="primary">
+                  동아리 삭제
+                </Button>
+              }
+              title="동아리 삭제"
+              description="정말 해당 동아리를 삭제 하시겠어요?"
+              onDelete={() => {
+                deleteClub(undefined, {
+                  onSuccess: () => {
+                    navigate(PageEndpoints.HOME);
+                  },
+                });
+              }}
+            />
+          ) : (
+            <LeaveModal
+              trigger={
+                <Button size="md" variant="primary">
+                  탈퇴
+                </Button>
+              }
+              title="동아리 나가기"
+              description="정말 해당 동아리를 나가시겠어요?"
+              onLeave={() => {
+                leaveClub(undefined, {
+                  onSuccess: () => {
+                    navigate(PageEndpoints.HOME);
+                  },
+                });
+              }}
+            />
+          )}
+        </section>
       </main>
     </DefaultLayout>
   );

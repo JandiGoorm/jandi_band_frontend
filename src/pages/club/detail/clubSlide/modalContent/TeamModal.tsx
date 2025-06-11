@@ -50,7 +50,6 @@ const TeamModal = () => {
       >
         <Field label="팀 이름" error={errors.name} isRequired>
           <Input
-            inputSize="sm"
             {...formController.register("name")}
             placeholder="예시: Alive 공연 팀"
           />

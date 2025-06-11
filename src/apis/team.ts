@@ -1,5 +1,5 @@
 import { type TeamDetailResponse } from "@/types/team";
-import { useFetch, usePost } from "@/apis/hooks";
+import { useDelete, useFetch, usePost } from "@/apis/hooks";
 import { ApiEndpotins } from "@/constants/endpoints";
 import type { TeamFormData } from "@/pages/club/detail/clubSlide/modalContent/TeamModal";
 import type { MyTeamInfo, TeamBasicResponse, TeamResponse } from "@/types/team";
@@ -44,4 +44,8 @@ export const useJoinTeam = (code: string) => {
   return usePost<void, { teamId: Nullable<string>; clubId: Nullable<string> }>(
     `${ApiEndpotins.JOIN_TEAM}?code=${code}`
   );
+};
+
+export const useLeaveTeam = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.LEAVE_TEAM, { id }));
 };
