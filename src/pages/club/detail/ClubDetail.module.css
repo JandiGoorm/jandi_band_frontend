@@ -18,3 +18,9 @@
   display: flex;
   justify-content: right;
 }
+
+.Management_container button {
+  background-color: transparent;
+  color: #afafaf;
+  font-size: var(--text-sm);
+}
