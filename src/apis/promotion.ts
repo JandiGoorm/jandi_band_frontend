@@ -97,3 +97,7 @@ export const usePostComment = (id: string) => {
     buildPath(ApiEndpotins.COMMENT, { id })
   );
 };
+
+export const useDeleteComment = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.COMMENT_DETAIL, { id }));
+};

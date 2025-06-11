@@ -67,4 +67,5 @@ export enum ApiEndpotins {
   DELETE_TEAM_SCHEDULES = "/teams/:teamId/practice-schedules/:scheduleId", // 팀 연습 일정 삭제
 
   COMMENT = "/promos/:id/comments",
+  COMMENT_DETAIL = "/promos/comments/:id",
 }
