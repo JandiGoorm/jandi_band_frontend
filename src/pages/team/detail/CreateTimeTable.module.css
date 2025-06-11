@@ -35,7 +35,7 @@
   font-size: var(--text-base);
 }
 
-@media (max-width: 475px) {
+@media (max-width: 520px) {
   .title {
     font-size: var(--text-2xl);
   }
