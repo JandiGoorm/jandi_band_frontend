@@ -19,6 +19,7 @@ import Invite from "@/pages/invite/Invite";
 import PromotionMap from "@/pages/promotions/map/PromotionMap";
 import MyClubList from "@/pages/club/more/MyClubList";
 import ClubList from "@/pages/club/more/ClubList";
+import PhotoList from "@/pages/club/more/PhotoList";
 
 export const publicRoutes = [PageEndpoints.SIGN_IN, PageEndpoints.CALLBACK];
 
@@ -29,6 +30,7 @@ export const routes = [
   { path: PageEndpoints.HOME, element: <Home /> },
   { path: PageEndpoints.MY_CLUB_LIST, element: <MyClubList /> },
   { path: PageEndpoints.CLUB_LIST, element: <ClubList /> },
+  { path: PageEndpoints.PHOTO_LIST, element: <PhotoList /> },
   { path: PageEndpoints.PROMOTION, element: <PromotionMain /> },
   { path: PageEndpoints.PROMOTION_DETAIL, element: <PromotionDetail /> },
   { path: PageEndpoints.PROMOTION_POST, element: <PromotionPost /> },

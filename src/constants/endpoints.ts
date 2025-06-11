@@ -21,6 +21,7 @@ export enum PageEndpoints {
   INVITE = "/invite/:type/accept",
   MY_CLUB_LIST = "/clubs/my",
   CLUB_LIST = "/clubs",
+  PHOTO_LIST = "/photos/:id",
 }
 
 export enum ApiEndpotins {

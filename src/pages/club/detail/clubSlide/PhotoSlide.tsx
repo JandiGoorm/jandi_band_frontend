@@ -5,6 +5,9 @@ import Modal from "@/components/modal/Modal";
 import PhotoModal from "./modalContent/PhotoModal";
 import type { PhotoResponse } from "@/types/photo";
 import PhotoCard from "@/components/cards/PhotoCard";
+import { useNavigate, useParams } from "react-router-dom";
+import { buildPath } from "@/utils/buildPath";
+import { PageEndpoints } from "@/constants/endpoints";
 
 const PhotoSlide = ({
   isMember,
@@ -15,10 +18,20 @@ const PhotoSlide = ({
   photos: PhotoResponse[];
   refetchPhotos: () => void;
 }) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   return (
     <main className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.title}>동아리 사진들</div>
+        <div
+          className={styles.title_box}
+          onClick={() =>
+            navigate(buildPath(PageEndpoints.PHOTO_LIST, { id: id! }))
+          }
+        >
+          <p className={styles.title}>동아리 사진들</p>
+          <p className={styles.more}>더보기</p>
+        </div>
         {isMember ? (
           <Modal
             title="사진 등록하기"
