@@ -30,6 +30,11 @@
   gap: 0.5rem;
   align-items: center;
 }
+.comment_button {
+  color: var(--color-text-sub);
+  cursor: pointer;
+}
+
 .comment_time {
   color: var(--color-text-sub);
 }

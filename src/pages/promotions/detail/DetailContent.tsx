@@ -22,6 +22,7 @@ import { useAuthStore } from "@/stores/authStore";
 import { queryClient } from "@/config/queryClient";
 import Modal from "@/components/modal/Modal";
 import LocationModal from "./LocationModal";
+import ReportModal from "@/components/modal/reportModal/ReportModal";
 
 const DetailContent = () => {
   const { id } = useParams();
@@ -69,7 +70,7 @@ const DetailContent = () => {
         </section>
         <div className={styles.title_box}>
           <p className={styles.promo_title}>{fetchData.data.title}</p>
-          {mine && (
+          {mine ? (
             <div className={styles.title_button_box}>
               <Button
                 size="sm"
@@ -94,6 +95,21 @@ const DetailContent = () => {
                       navigate(PageEndpoints.PROMOTION);
                     },
                   });
+                }}
+              />
+            </div>
+          ) : (
+            <div className={styles.title_button_box}>
+              <ReportModal
+                trigger={
+                  <Button size="sm" variant="transparent">
+                    신고
+                  </Button>
+                }
+                title="게시물 신고"
+                description="신고 내역을 자세히 적어 제출해주세요!"
+                onReport={(desc) => {
+                  console.log("신고 내용:", desc);
                 }}
               />
             </div>
