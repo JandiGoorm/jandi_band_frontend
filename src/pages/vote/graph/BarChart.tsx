@@ -55,7 +55,7 @@ const BarChart = ({ data, keys, filter }: BarChartProps) => {
           ]}
           layout="vertical"
           colors={({ id }) => {
-            if (filter === "묶기") return id === "긍정" ? "#60CDBA" : "#FF9EAA";
+            if (filter === "묶기") return id === "긍정" ? "#FF9EAA" : "#a4c7dd";
             switch (id) {
               case "좋아요":
                 return "#FF9EAA";
