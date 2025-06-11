@@ -7,7 +7,7 @@ const options = [
   { value: "기본", label: "기본" },
   { value: "좋아요", label: "좋아요 순" },
   { value: "싫어요", label: "별로에요 순" },
-  { value: "묶기", label: "2:2 묶어보기" },
+  { value: "묶기", label: "긍정:부정 묶어보기" },
 ];
 
 interface FilterSelectProps {
