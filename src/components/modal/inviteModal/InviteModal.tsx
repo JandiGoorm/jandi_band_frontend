@@ -78,7 +78,12 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
       ) : (
         <div className={styles.container}>
           <h3>친구들을 {name}에 초대해보세요!</h3>
-          <Button onClick={() => mutate()} className={styles.invite_btn}>
+          <Button
+            onClick={() => mutate()}
+            className={styles.invite_btn}
+            size="lg"
+            variant="secondary"
+          >
             초대 링크 생성하기
           </Button>
         </div>

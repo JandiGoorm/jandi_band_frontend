@@ -6,7 +6,7 @@ import { useAuthStore } from "@/stores/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { signUpFormSchema } from "./constants";
 import styles from "./SignUpForm.module.css";
@@ -16,6 +16,9 @@ const SignUpForm = () => {
   const { mutate: signUp, data, isSuccess } = useSignUp();
   const { setUser } = useAuthStore();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from || PageEndpoints.HOME;
 
   const formController = useForm({
     resolver: zodResolver(signUpFormSchema),
@@ -36,7 +39,7 @@ const SignUpForm = () => {
   useEffect(() => {
     if (!data || !isSuccess) return;
     setUser(data.data.data);
-    navigate(PageEndpoints.HOME);
+    navigate(from, { replace: true });
   }, [data, isSuccess, navigate, setUser]);
 
   return (

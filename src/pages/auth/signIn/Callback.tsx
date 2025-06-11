@@ -14,7 +14,7 @@ const Callback = () => {
   const { data } = useSignIn(code ?? "");
   const { refetch: getMe, data: profile } = useGetMe();
   const { setUser } = useAuthStore();
-
+  const from = location.state?.from?.pathname || PageEndpoints.HOME;
   // 로그인 처리후 토큰 저장 및 isRegistered 여부에 따른 로직 처리
   useEffect(() => {
     if (!data) return;
@@ -28,7 +28,9 @@ const Callback = () => {
       getMe();
     } else {
       // 회원가입이 안되어있으면 회원가입 페이지로 이동
-      navigate(PageEndpoints.SIGN_UP);
+      navigate(PageEndpoints.SIGN_UP, {
+        state: { from }, // 회원가입 후 다시 돌아갈 수 있게 from 유지
+      });
     }
   }, [data, getMe, navigate, setUser]);
 
@@ -36,7 +38,7 @@ const Callback = () => {
   useEffect(() => {
     if (!profile) return;
     setUser(profile.data);
-    navigate(PageEndpoints.HOME);
+    navigate(from, { replace: true });
   }, [profile, navigate, setUser]);
 
   return <Loading />;

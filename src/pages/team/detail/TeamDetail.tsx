@@ -1,6 +1,6 @@
 // 팀 페이지
 import TimeScheduler from "@/components/scheduler/TimeScheduler";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./TeamDetail.module.css";
 import { useTeamDetail } from "./TeamDetailProvider";
 import InviteTeam from "./modals/InviteTeam";
@@ -12,12 +12,16 @@ import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
 import Loading from "@/components/loading/Loading";
 import { useAuthStore } from "@/stores/authStore";
+import LeaveModal from "@/components/modal/leaveModal/LeaveModal";
+import { useLeaveTeam } from "@/apis/team";
 
 const TeamDetail = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const { teamTimeAvailableSchedule, teamId, team, isLoading } =
     useTeamDetail();
   const { user } = useAuthStore();
+  const { mutate: leaveTeam } = useLeaveTeam(id!);
 
   if (isLoading) return <Loading />;
   if (!team) return <div>팀 정보를 찾을 수 없습니다.</div>;
@@ -55,6 +59,24 @@ const TeamDetail = () => {
           <QuickFilter />
           <ScheduleBoard />
         </div>
+      </section>
+      <section className={styles.footer_button_container}>
+        <LeaveModal
+          trigger={
+            <Button size="md" variant="primary">
+              나가기
+            </Button>
+          }
+          title="팀 나가기"
+          description="정말 해당 팀을 나가시겠어요?"
+          onLeave={() => {
+            leaveTeam(undefined, {
+              onSuccess: () => {
+                navigate(buildPath(PageEndpoints.CLUB, { id: team.clubId }));
+              },
+            });
+          }}
+        />
       </section>
     </div>
   );
