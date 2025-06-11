@@ -10,6 +10,10 @@ import ModifyClubModal from "./ModifyClubModal";
 import Modal from "@/components/modal/Modal";
 import Button from "@/components/button/Button";
 import ModifyProfileModal from "./ModifyProfileModal";
+import Tooltip from "@/components/tooltip/Tooltip";
+import Dropdown from "@/components/dropdown/Dropdown";
+import { useState } from "react";
+import EditMemberModal from "./EditMemberModal";
 
 const ClubInfo = ({
   club,
@@ -20,6 +24,9 @@ const ClubInfo = ({
 }) => {
   const { user } = useAuthStore();
   const mine = user?.id === club.representativeId;
+  const [activeModal, setActiveModal] = useState<"modify" | "members" | null>(
+    null
+  );
 
   return (
     <main className={styles.container}>
@@ -33,7 +40,7 @@ const ClubInfo = ({
             trigger={
               <Button
                 variant="primary"
-                size="sm"
+                size="md"
                 className={styles.image_button}
               >
                 사진 수정
@@ -51,16 +58,9 @@ const ClubInfo = ({
           <p className={styles.school}>
             {club.university?.name ?? "연합 동아리"}
           </p>
-        </div>
-
-        <div className={styles.left_title}>
-          <InviteModal />
-
-          {mine && <ModifyClubModal club={club} />}
-
-          {club.instagramId ? (
+          {club.instagramId && (
             <FaInstagram
-              size={40}
+              size={26}
               className={styles.instagram_icon}
               onClick={() =>
                 window.open(
@@ -69,29 +69,82 @@ const ClubInfo = ({
                 )
               }
             />
-          ) : null}
+          )}
+        </div>
+
+        <div className={styles.left_title}>
+          <InviteModal />
+
+          {mine && (
+            <>
+              <Dropdown
+                size="sm"
+                trigger={<Button size="lg">동아리 관리</Button>}
+                items={[
+                  {
+                    label: "정보 수정",
+                    onSelect: () => setActiveModal("modify"),
+                  },
+                  {
+                    label: "멤버 관리",
+                    onSelect: () => setActiveModal("members"),
+                  },
+                ]}
+              />
+
+              <Modal
+                title="동아리 정보 수정"
+                open={activeModal === "modify"}
+                onOpenChange={(v) => !v && setActiveModal(null)}
+              >
+                <ModifyClubModal
+                  club={club}
+                  onClose={() => setActiveModal(null)}
+                />
+              </Modal>
+
+              <Modal
+                title="멤버 관리"
+                open={activeModal === "members"}
+                onOpenChange={(v) => !v && setActiveModal(null)}
+              >
+                <EditMemberModal />
+                {/* <MemberManageModal clubId={club.id} /> */}
+              </Modal>
+            </>
+          )}
         </div>
       </section>
 
       <section className={styles.member_box}>
         <div className={styles.member}>
-          <FaPeopleGroup />
+          <Tooltip
+            trigger={<FaPeopleGroup size={16} />}
+            description="전체인원"
+          />
           <p>{memberData.totalMemberCount}명</p>
         </div>
         <div className={styles.member}>
-          <PiMicrophoneStage />
+          <Tooltip
+            trigger={<PiMicrophoneStage size={16} />}
+            description="보컬"
+          />
           <p>{memberData.vocalCount}명</p>
         </div>
         <div className={styles.member}>
-          <GiGuitar />
-          <p>{memberData.guitarCount + memberData.bassCount}명</p>
+          <Tooltip trigger={<GiGuitar size={16} />} description="기타" />
+          <p>{memberData.guitarCount}명</p>
         </div>
         <div className={styles.member}>
-          <GiPianoKeys />
+          <Tooltip trigger={<GiGuitar size={16} />} description="베이스" />
+          <p>{memberData.bassCount}명</p>
+        </div>
+        <div className={styles.member}>
+          <Tooltip trigger={<GiPianoKeys size={16} />} description="키보드" />
           <p>{memberData.keyboardCount}명</p>
         </div>
         <div className={styles.member}>
-          <GiDrumKit />
+          <Tooltip trigger={<GiDrumKit size={16} />} description="드럼" />
           <p>{memberData.drumCount}명</p>
         </div>
       </section>

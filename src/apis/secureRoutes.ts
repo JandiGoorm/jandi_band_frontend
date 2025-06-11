@@ -17,6 +17,7 @@ export const secureRoutes = [
   { method: Method.GET, url: ApiEndpotins.UNIVERSITIES },
 
   { method: Method.POST, url: ApiEndpotins.CLUB },
+  { method: Method.DELETE, url: ApiEndpotins.CLUB_DETAIL },
   { method: Method.GET, url: ApiEndpotins.CLUB_DETAIL },
   { method: Method.PATCH, url: ApiEndpotins.CLUB_DETAIL },
   { method: Method.POST, url: ApiEndpotins.CLUB_IMAGE },
@@ -28,6 +29,9 @@ export const secureRoutes = [
   { method: Method.GET, url: ApiEndpotins.TEAM_DETAIL },
   { method: Method.POST, url: ApiEndpotins.TEAM_INVITE },
   { method: Method.POST, url: ApiEndpotins.JOIN_TEAM },
+  { method: Method.DELETE, url: ApiEndpotins.LEAVE_TEAM },
+  { method: Method.DELETE, url: ApiEndpotins.LEAVE_CLUB },
+  { method: Method.DELETE, url: ApiEndpotins.MEMBER_OUT },
 
   { method: Method.POST, url: ApiEndpotins.MY_TIMETABLE },
   { method: Method.GET, url: ApiEndpotins.MY_TIMETABLE },

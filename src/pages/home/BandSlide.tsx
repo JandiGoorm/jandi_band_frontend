@@ -5,6 +5,7 @@ import type { ClubListResponse } from "@/types/club";
 import { useNavigate } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
+import CreateClubModal from "@/pages/home/CreateClubModal";
 
 const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
   const navigate = useNavigate();
@@ -12,7 +13,12 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
   return (
     <main className={styles.container}>
       <section className={styles.main_container}>
-        <p className={styles.title}>당신의 귀를 사로잡을 밴드들이 여기에!</p>
+        <p
+          className={styles.title}
+          onClick={() => navigate(PageEndpoints.CLUB_LIST)}
+        >
+          당신의 귀를 사로잡을 밴드들이 여기에!
+        </p>
         <MainSlide<ClubListResponse> items={club}>
           {(item) => (
             <div
@@ -24,11 +30,11 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
               }}
             >
               <img
-                src={item.photoUrl || "promotion3.png"}
+                src={item.photoUrl || "./basic_club.png"}
                 style={{
                   maxWidth: "200px",
-                  height: "auto",
-                  maxHeight: "20rem",
+                  aspectRatio: "5/3",
+                  borderRadius: "var(--radius-xl)",
                 }}
                 onClick={() =>
                   navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
@@ -43,9 +49,13 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
           <p className={styles.line_title}>
             모두가 기다리는 그 밴드, 바로 여러분일지도!
           </p>
-          <Button variant="transparent" size="sm">
-            동아리 만들기
-          </Button>
+          <CreateClubModal
+            trigger={
+              <Button variant="transparent" size="sm">
+                동아리 만들기
+              </Button>
+            }
+          />
         </div>
       </section>
     </main>

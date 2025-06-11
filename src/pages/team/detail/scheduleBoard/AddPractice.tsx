@@ -110,21 +110,13 @@ export default function AddPractice({ setOpen }: Props) {
 
       <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
         <Field label="일정 이름" error={errors.name} isRequired>
-          <Input
-            inputSize="sm"
-            {...form.register("name")}
-            placeholder="예시: 새벽별 합주"
-          />
+          <Input {...form.register("name")} placeholder="예시: 새벽별 합주" />
         </Field>
         <Field label="연습 시간" error={errors.startDatetime} isRequired>
-          <Input
-            inputSize="sm"
-            type="datetime-local"
-            {...form.register("startDatetime")}
-          />
+          <Input type="datetime-local" {...form.register("startDatetime")} />
         </Field>
         <Field label="연습 종료 시간" error={errors.endtime} isRequired>
-          <Input inputSize="sm" type="time" {...form.register("endtime")} />
+          <Input type="time" {...form.register("endtime")} />
         </Field>
 
         <Field label="불참 포지션" error={errors.noPosition} isRequired>

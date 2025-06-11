@@ -4,20 +4,31 @@ import styles from "./Modal.module.css";
 import close from "/public/modal_cancle.svg";
 
 interface ModalProps {
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode; // optional 처리
   title: string;
   children:
     | React.ReactNode
     | ((setOpen: (open: boolean) => void) => React.ReactNode);
+  open?: boolean; // 외부에서 제어 가능
+  onOpenChange?: (open: boolean) => void; // 외부 제어용 콜백
 }
 
-const Modal: React.FC<ModalProps> = ({ trigger, title, children }) => {
-  // 모달 자동으로 닫기 위한 state 추가
-  const [open, setOpen] = useState(false);
+const Modal: React.FC<ModalProps> = ({
+  trigger,
+  title,
+  children,
+  open: controlledOpen,
+  onOpenChange: controlledOnOpenChange,
+}) => {
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : uncontrolledOpen;
+  const setOpen = isControlled ? controlledOnOpenChange! : setUncontrolledOpen;
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+      {trigger && <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>}
       <Dialog.Portal>
         <Dialog.Overlay className={styles.dialog_overlay} />
         <Dialog.Content

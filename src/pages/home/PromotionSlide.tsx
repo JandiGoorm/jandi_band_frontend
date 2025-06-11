@@ -10,7 +10,12 @@ const PromotionSlide = ({ promo }: { promo: PromotionListResponse[] }) => {
 
   return (
     <main className={styles.main_container}>
-      <p className={styles.title}>현장을 달굴 밴드들의 무대, 지금 바로 확인!</p>
+      <p
+        className={styles.title}
+        onClick={() => navigate(PageEndpoints.PROMOTION)}
+      >
+        현장을 달굴 밴드들의 무대, 지금 바로 확인!
+      </p>
       <MainSlide<PromotionListResponse> items={promo}>
         {(item) => (
           <div
@@ -23,7 +28,11 @@ const PromotionSlide = ({ promo }: { promo: PromotionListResponse[] }) => {
           >
             <img
               src={item.photoUrls[0]}
-              style={{ maxWidth: "200px", height: "auto", maxHeight: "20rem" }}
+              style={{
+                maxWidth: "200px",
+                aspectRatio: "376 / 504",
+                borderRadius: "var(--radius-xl)",
+              }}
               alt="promo"
               onClick={() =>
                 navigate(

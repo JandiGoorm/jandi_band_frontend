@@ -49,6 +49,7 @@ const PromotionMain = () => {
         <nav className={styles.header_nav}>
           <div className={styles.header_nav_box}>
             <Button
+              size="lg"
               variant="transparent"
               onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
             >
@@ -56,19 +57,25 @@ const PromotionMain = () => {
               지도보기{" "}
             </Button>
             <Button
+              size="lg"
               variant="transparent"
               onClick={toggleRegions}
               isClicked={showRegions}
             >
               지역별
             </Button>
-            <Button variant="transparent"> 날짜선택 </Button>
-            <Input inputSize="md" style={{ flex: 1, minWidth: "10rem" }} />
+            <Button variant="transparent" size="lg">
+              {" "}
+              날짜선택{" "}
+            </Button>
+            {/* <Input inputSize="lg" style={{ flex: 1, minWidth: "10rem" }} /> */}
           </div>
           <div>
+            <Input inputSize="lg" style={{ flex: 1, minWidth: "10rem" }} />
             <Button
               variant="primary"
               onClick={() => navigate("/promotion/post")}
+              size="lg"
             >
               등록
             </Button>

@@ -6,8 +6,8 @@ export interface LoginResponse {
 
 export interface UserInfo {
   id: number;
-  email: string;
-  name: string;
+  profilePhoto: string;
+  nickname: string;
   position: string;
   university: string;
 }

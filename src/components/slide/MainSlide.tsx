@@ -52,53 +52,50 @@ const MainSlide = <T extends { id: number }>({
     autoplaySpeed: 4000,
     beforeChange: (_: number, next: number) => setCurrent(next),
   };
+  const oneSlideSettings = {
+    dots: true,
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: false,
+    swipeToSlide: false,
+    autoplay: false,
+  };
+
+  let appliedSettings;
+
+  if (items.length > 5) {
+    appliedSettings = settings;
+  } else if (items.length === 1) {
+    appliedSettings = oneSlideSettings;
+  } else {
+    appliedSettings = minSettings;
+  }
 
   return (
     <div className={styles.container}>
       <section className={styles.slider_box}>
-        {items.length > 5 ? (
-          <Slider ref={sliderRef} {...settings} className={styles.slider}>
-            {items.map((item, index) => {
-              let className = styles.slide_item;
-              const len = items.length;
+        <Slider ref={sliderRef} {...appliedSettings} className={styles.slider}>
+          {items.map((item, index) => {
+            let className = styles.slide_item;
+            const len = items.length;
+            const diff = (index - current + len) % len;
 
-              const diff = (index - current + len) % len;
+            if (index === current) {
+              className += ` ${styles.center}`;
+            } else if (diff === 1 || diff === len - 1) {
+              className += ` ${styles.side1}`;
+            } else if (diff === 2 || diff === len - 2) {
+              className += ` ${styles.side2}`;
+            }
 
-              if (index === current) {
-                className += ` ${styles.center}`;
-              } else if (diff === 1 || diff === len - 1) {
-                className += ` ${styles.side1}`;
-              } else if (diff === 2 || diff === len - 2) {
-                className += ` ${styles.side2}`;
-              }
-
-              return (
-                <div key={item.id} className={className}>
-                  {children(item)}
-                </div>
-              );
-            })}
-          </Slider>
-        ) : (
-          <Slider ref={sliderRef} {...minSettings} className={styles.slider}>
-            {items.map((item, index) => {
-              let className = styles.slide_item;
-              const len = items.length;
-
-              const diff = (index - current + len) % len;
-              if (index === current) {
-                className += ` ${styles.center}`;
-              } else if (diff === 1 || diff === len - 1) {
-                className += ` ${styles.side1}`;
-              }
-              return (
-                <div key={item.id} className={className}>
-                  {children(item)}
-                </div>
-              );
-            })}
-          </Slider>
-        )}
+            return (
+              <div key={item.id} className={className}>
+                {children(item)}
+              </div>
+            );
+          })}
+        </Slider>
       </section>
     </div>
   );
