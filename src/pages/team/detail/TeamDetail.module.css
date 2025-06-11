@@ -72,6 +72,10 @@
   gap: 3rem;
 }
 
-/* @media (max-width: 475px) {
-
-} */
+@media (max-width: 475px) {
+  .header_button_container button {
+    font-size: 0.8rem;
+    width: 6.5rem;
+    height: 2rem;
+  }
+}
