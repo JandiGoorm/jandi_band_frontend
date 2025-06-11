@@ -11,17 +11,26 @@ export interface VoteResultType {
   [key: string]: string | number;
 }
 
+// interface BarChartProps {
+//   data: VoteResultType[];
+// }
+
+// BarChart.tsx
 interface BarChartProps {
-  data: VoteResultType[];
+  data: { song: string; [key: string]: number | string }[];
+  keys: string[];
+  filter: string;
 }
 
-const BarChart = ({ data }: BarChartProps) => {
+const BarChart = ({ data, keys, filter }: BarChartProps) => {
   return (
     // div안에 스타일 지정해놓아야 출력됨.
     <section className={styles.chart}>
-      <ResponsiveBar<VoteResultType>
+      <ResponsiveBar
+        // <VoteResultType>
         data={data}
-        keys={["좋아요", "별로예요", "실력부족", "하않존중"]}
+        keys={keys}
+        // keys={["좋아요", "별로예요", "실력부족", "하않존중"]}
         indexBy="song"
         margin={{ top: 50, right: 10, bottom: 50, left: 40 }}
         groupMode="grouped"
@@ -52,7 +61,24 @@ const BarChart = ({ data }: BarChartProps) => {
           },
         ]}
         layout="vertical"
+        // colors={({ id }) => {
+        //   switch (id) {
+        //     case "좋아요":
+        //       return "#FF9EAA";
+        //     case "별로예요":
+        //       return "#a4c7dd";
+        //     case "실력부족":
+        //       return "#97E3D5";
+        //     case "하않존중":
+        //       return "#60CDBA";
+        //     default:
+        //       return "#ccc";
+        //   }
+        // }}
         colors={({ id }) => {
+          if (filter === "묶기") {
+            return id === "긍정" ? "#FF9EAA" : "#a4c7dd";
+          }
           switch (id) {
             case "좋아요":
               return "#FF9EAA";

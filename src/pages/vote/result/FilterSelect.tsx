@@ -10,9 +10,13 @@ const options = [
   { value: "묶기", label: "2:2 묶어보기" },
 ];
 
-export default function FilterSelect() {
+interface FilterSelectProps {
+  onChange: (value: string) => void;
+}
+
+export default function FilterSelect({ onChange }: FilterSelectProps) {
   return (
-    <Select.Root defaultValue="기본" onValueChange={(v) => console.log(v)}>
+    <Select.Root defaultValue="기본" onValueChange={onChange}>
       <Select.Trigger className={styles.result_filter} aria-label="정렬 필터">
         <Select.Value placeholder="정렬 기준" />
         <Select.Icon>
