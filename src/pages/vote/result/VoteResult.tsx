@@ -14,15 +14,6 @@ const VoteResult = () => {
 
   const [filter, setFilter] = useState("기본");
 
-  // const voteData =
-  //   poll?.songs.map((song) => ({
-  //     song: song.songName,
-  //     좋아요: song.likeCount,
-  //     별로예요: song.dislikeCount,
-  //     실력부족: song.cantCount,
-  //     하않존중: song.hajjCount,
-  //   })) ?? [];
-
   const voteData = useMemo(() => {
     if (!poll?.songs) return [];
 
@@ -59,6 +50,21 @@ const VoteResult = () => {
     return base;
   }, [poll, filter]);
 
+  // 텍스트 렌더링용
+  const mostLiked = useMemo(() => {
+    if (!poll?.songs || poll.songs.length === 0) return null;
+    return poll.songs.reduce((max, song) =>
+      song.likeCount > max.likeCount ? song : max
+    );
+  }, [poll]);
+
+  const mostDisliked = useMemo(() => {
+    if (!poll?.songs || poll.songs.length === 0) return null;
+    return poll.songs.reduce((max, song) =>
+      song.dislikeCount > max.dislikeCount ? song : max
+    );
+  }, [poll]);
+
   if (!poll) return <Loading />;
 
   return (
@@ -72,6 +78,23 @@ const VoteResult = () => {
 
           <FilterSelect onChange={setFilter} />
         </header>
+
+        <section className={styles.summary_box}>
+          {mostLiked && (
+            <span>
+              좋아요 1위 :{" "}
+              <span className={styles.song_name}>{mostLiked.songName}</span> (
+              {mostLiked.likeCount}표)
+            </span>
+          )}
+          {mostDisliked && (
+            <span>
+              별로에요 1위:{" "}
+              <span className={styles.song_name}>{mostDisliked.songName}</span>{" "}
+              ({mostDisliked.dislikeCount}표)
+            </span>
+          )}
+        </section>
 
         <BarChart
           data={voteData}
