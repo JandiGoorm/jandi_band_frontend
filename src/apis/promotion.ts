@@ -73,6 +73,21 @@ export const useGetPromoMap = ({
   );
 };
 
+export const useGetComment = ({
+  id,
+  page = 0,
+  size = 20,
+}: {
+  id: string;
+  page: number;
+  size: number;
+}) => {
+  return useFetch<PagiNationResponse<CommemtResponse>>(
+    buildPath(ApiEndpotins.COMMENT, { id }),
+    { page: page, size: size }
+  );
+};
+
 export const usePostComment = (id: string) => {
   return usePost<string, CommemtResponse>(
     buildPath(ApiEndpotins.COMMENT, { id })
