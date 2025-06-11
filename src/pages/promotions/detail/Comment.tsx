@@ -31,13 +31,17 @@ const Comment = () => {
     const value = inputRef.current?.value.trim();
     if (!value) return;
 
-    postComment(value, {
-      onSuccess: () => {
-        if (inputRef.current) {
-          inputRef.current.value = "";
-        }
-      },
-    });
+    console.log(value);
+    postComment(
+      { description: value },
+      {
+        onSuccess: () => {
+          if (inputRef.current) {
+            inputRef.current.value = "";
+          }
+        },
+      }
+    );
   };
 
   if (!commentData || commentLoading) return <Loading />;

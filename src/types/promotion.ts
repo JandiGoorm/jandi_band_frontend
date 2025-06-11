@@ -42,3 +42,7 @@ export interface CommemtResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface CommentRequest {
+  description: string;
+}

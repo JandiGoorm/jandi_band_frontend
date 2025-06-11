@@ -1,7 +1,11 @@
 import { useDelete, useFetch, usePatch, usePost } from "@/apis/hooks";
 import { ApiEndpotins } from "@/constants/endpoints";
 import type { PagiNationResponse } from "@/types/common";
-import type { CommemtResponse, PromotionListResponse } from "@/types/promotion";
+import type {
+  CommemtResponse,
+  CommentRequest,
+  PromotionListResponse,
+} from "@/types/promotion";
 import { buildPath } from "@/utils/buildPath";
 
 export const useGetPromoList = ({
@@ -89,7 +93,7 @@ export const useGetComment = ({
 };
 
 export const usePostComment = (id: string) => {
-  return usePost<string, CommemtResponse>(
+  return usePost<CommentRequest, CommemtResponse>(
     buildPath(ApiEndpotins.COMMENT, { id })
   );
 };
