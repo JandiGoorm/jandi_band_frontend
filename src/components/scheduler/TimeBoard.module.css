@@ -19,8 +19,9 @@
 .time_board_item_range {
   flex: 1;
   min-height: 0;
-  height: 6rem;
-  border-bottom: 1px solid var(--board-border-color);
+  height: 5rem;
+  /* border-bottom: 1px solid var(--board-border-color); */
+  border-bottom: 1px solid #bedfe4cd;
 
   display: flex;
   flex-direction: column;

@@ -26,6 +26,12 @@
   column-gap: 0.5rem;
 }
 
+@media (max-width: 475px) {
+  .table_header {
+    padding-left: 2rem;
+  }
+}
+
 .range_item {
   display: flex;
   align-items: center;
