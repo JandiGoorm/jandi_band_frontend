@@ -32,7 +32,7 @@ const createClubScheme = z.object({
 
 export type ClubFormData = z.infer<typeof createClubScheme>;
 
-const CreateClubModal = () => {
+const CreateClubModal = ({ trigger }: { trigger: React.ReactNode }) => {
   const navigate = useNavigate();
   const { mutate: createClub, data } = usePostClub();
 
@@ -57,10 +57,10 @@ const CreateClubModal = () => {
   }, [data, navigate]);
 
   return (
-    <Modal trigger={<button>동아리 만들기</button>} title="동아리 생성하기">
+    <Modal trigger={trigger} title="동아리 생성하기">
       <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
         <Field label="동아리 이름" error={errors.name} isRequired>
-          <Input {...register("name")} inputSize="md" />
+          <Input {...register("name")} inputSize="lg" />
         </Field>
 
         <Field label="소속대학" error={errors.universityId}>
@@ -72,11 +72,11 @@ const CreateClubModal = () => {
         </Field>
 
         <Field label="카카오톡 채팅방 링크" error={errors.chatroomUrl}>
-          <Input {...register("chatroomUrl")} inputSize="md" />
+          <Input {...register("chatroomUrl")} inputSize="lg" />
         </Field>
 
         <Field label="인스타그램 아이디" error={errors.instagramId}>
-          <Input {...register("instagramId")} inputSize="md" />
+          <Input {...register("instagramId")} inputSize="lg" />
         </Field>
 
         <Button

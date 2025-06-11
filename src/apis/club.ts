@@ -2,7 +2,7 @@ import type { ClubListResponse, MyClubListResponse } from "@/types/club";
 import type { Nullable, PagiNationResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useDelete, useFetch, usePatch, usePost } from "./hooks";
-import type { ClubFormData } from "@/layouts/defaultLayout/CreateClubModal";
+import type { ClubFormData } from "@/pages/home/CreateClubModal";
 import { buildPath } from "@/utils/buildPath";
 import type { ClubDetailResponse, ClubMemberResponse } from "@/types/club";
 
@@ -17,7 +17,7 @@ export const useUpdateClub = (id: string) => {
 };
 
 export const useDeleteClub = (id: string) => {
-  return useDelete(buildPath(ApiEndpotins.CLUB, { id }));
+  return useDelete(buildPath(ApiEndpotins.CLUB_DETAIL, { id }));
 };
 
 export const useGetClubDetail = (id: string) => {
@@ -67,4 +67,12 @@ export const useJoinClub = (code: string) => {
 
 export const useUpdateClubImage = (id: string) => {
   return usePost<FormData, string>(buildPath(ApiEndpotins.CLUB_IMAGE, { id }));
+};
+
+export const useLeaveClub = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.LEAVE_CLUB, { id }));
+};
+
+export const useOutMember = (clubId: string, userId: number) => {
+  return useDelete(buildPath(ApiEndpotins.MEMBER_OUT, { clubId, userId }));
 };

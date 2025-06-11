@@ -11,6 +11,7 @@
 .title {
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-semibold);
+  cursor: pointer;
 }
 .centered {
   width: 100%;

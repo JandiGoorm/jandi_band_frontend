@@ -15,17 +15,17 @@
 }
 
 .input_sm {
-  font-size: var(--text-base);
-  padding: 0.3rem 1rem;
+  padding: 0.25rem 0.5rem;
+  font-size: var(--text-sm);
 }
 .input_md {
-  padding: 0.5rem 1rem;
-  font-size: var(--text-lg);
+  padding: 0.25rem 1rem;
+  font-size: var(--text-base);
 }
 
 .input_lg {
-  padding: 0.75rem 1rem;
-  font-size: var(--text-xl);
+  padding: 0.5rem 1.5rem;
+  font-size: var(--text-lg);
 }
 
 input[type="number"]::-webkit-outer-spin-button,
