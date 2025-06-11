@@ -1,6 +1,5 @@
 .wrapper_container {
   width: 100%;
-  padding: 2rem 0;
   display: flex;
   justify-content: center;
 }
@@ -14,7 +13,8 @@
 }
 
 .back_button {
-  align-self: end;
+  align-self: start;
+  margin-bottom: -2.5rem;
 }
 
 .header {
@@ -35,6 +35,15 @@
   font-size: var(--text-base);
 }
 
-.save_button {
-  height: 3rem;
+@media (max-width: 475px) {
+  .title {
+    font-size: var(--text-2xl);
+  }
+  .description {
+    font-size: var(--text-sm);
+  }
+  .back_button {
+    width: 1.5rem;
+    margin-bottom: -1.9rem;
+  }
 }
