@@ -21,7 +21,7 @@ const Comment = () => {
   } = useGetComment({
     id: id || "",
     page: currentPage - 1,
-    size: 10,
+    size: 5,
   });
 
   useEffect(() => {
@@ -49,6 +49,20 @@ const Comment = () => {
     );
   };
 
+  const handleDeleteSuccess = () => {
+    // const { totalElements } = commentData!.data.pageInfo;
+    const contentLength = commentData!.data.content.length;
+
+    const isLastItemOnPage = contentLength === 1;
+    const isNotFirstPage = currentPage > 1;
+
+    if (isLastItemOnPage && isNotFirstPage) {
+      handlePageChange(currentPage - 1);
+    } else {
+      refetchComments();
+    }
+  };
+
   if (!commentData || commentLoading) return <Loading />;
   return (
     <section className={styles.comment_container}>
@@ -67,7 +81,11 @@ const Comment = () => {
       </section>
       <section className={styles.comment_container}>
         {commentData.data.content.map((item) => (
-          <CommentItem key={item.id} item={item} refetch={refetchComments} />
+          <CommentItem
+            key={item.id}
+            item={item}
+            onDeleteSuccess={handleDeleteSuccess}
+          />
         ))}
       </section>
       <section className={styles.page_navigate_box}>

@@ -8,10 +8,10 @@ import ReportModal from "@/components/modal/reportModal/ReportModal";
 
 const CommentItem = ({
   item,
-  refetch,
+  onDeleteSuccess,
 }: {
   item: CommemtResponse;
-  refetch: () => void;
+  onDeleteSuccess: () => void;
 }) => {
   const { user } = useAuthStore();
   const { mutate: deleteComment } = useDeleteComment(String(item.id) || "");
@@ -35,7 +35,7 @@ const CommentItem = ({
                 onDelete={() => {
                   deleteComment(undefined, {
                     onSuccess: () => {
-                      refetch();
+                      onDeleteSuccess();
                     },
                   });
                 }}
