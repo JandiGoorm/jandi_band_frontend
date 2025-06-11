@@ -35,10 +35,13 @@ const BarChart = ({ data, keys, filter }: BarChartProps) => {
             legendOffset: -40,
           }}
           totalsOffset={9}
-          labelSkipWidth={12}
-          labelSkipHeight={12}
+          // labelSkipWidth={12}
+          // labelSkipHeight={12}
+          // enableLabel={true}
+          labelSkipWidth={0}
+          labelSkipHeight={0}
           labelPosition="end"
-          labelOffset={-8}
+          labelOffset={8}
           legends={[
             {
               dataFrom: "keys",
