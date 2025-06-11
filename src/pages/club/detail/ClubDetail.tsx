@@ -44,7 +44,11 @@ const Club = () => {
   const { data: teamData, isLoading: teamLoading } = useGetTeamList(
     id as string
   );
-  const { data: photoData, isLoading: photoLoading } = useGetPhotos({
+  const {
+    data: photoData,
+    isLoading: photoLoading,
+    refetch: refetchPhotos,
+  } = useGetPhotos({
     id: id || "",
   });
 
@@ -89,7 +93,11 @@ const Club = () => {
           isMember={isMember}
           refetch={refetch}
         />
-        <PhotoSlide isMember={isMember} photos={photoData.data.content} />
+        <PhotoSlide
+          isMember={isMember}
+          photos={photoData.data.content}
+          refetchPhotos={refetchPhotos}
+        />
         <section className={styles.Management_container}>
           {mine ? (
             <DeleteModal

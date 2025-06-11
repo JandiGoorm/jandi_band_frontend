@@ -1,4 +1,4 @@
-import { useFetch } from "./hooks";
+import { useFetch, usePost } from "./hooks";
 import { buildPath } from "@/utils/buildPath";
 import type { PagiNationResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
@@ -16,5 +16,11 @@ export const useGetPhotos = ({
   return useFetch<PagiNationResponse<PhotoResponse>>(
     buildPath(ApiEndpotins.CLUB_PHOTO, { id }),
     { page: page, size: size }
+  );
+};
+
+export const usePostPhoto = (id: string) => {
+  return usePost<FormData, PhotoResponse>(
+    buildPath(ApiEndpotins.CLUB_PHOTO, { id })
   );
 };

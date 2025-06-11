@@ -9,9 +9,11 @@ import PhotoCard from "@/components/cards/PhotoCard";
 const PhotoSlide = ({
   isMember,
   photos,
+  refetchPhotos,
 }: {
   isMember: boolean;
   photos: PhotoResponse[];
+  refetchPhotos: () => void;
 }) => {
   return (
     <main className={styles.container}>
@@ -26,7 +28,7 @@ const PhotoSlide = ({
               </Button>
             }
           >
-            <PhotoModal />
+            <PhotoModal refetchPhotos={refetchPhotos} />
           </Modal>
         ) : null}
       </header>
