@@ -32,8 +32,6 @@ const DetailContent = () => {
   const { data: likeData, isLoading: likeLoading } = usePromoisLike(id || "");
   const { mutate: likePromo } = usePromoLike(id || "");
 
-  console.log(fetchData);
-  console.log(likeData?.data);
   if (!id) return;
 
   if (!fetchData || fetchLoading || likeLoading || !likeData)
@@ -172,11 +170,12 @@ const DetailContent = () => {
             </section>
           </section>
         </section>
-        {fetchData.data.description !== null && (
-          <article className={styles.promo_content}>
-            {fetchData.data.description}
-          </article>
-        )}
+        {fetchData.data.description !== null &&
+          fetchData.data.description !== "" && (
+            <article className={styles.promo_content}>
+              {fetchData.data.description}
+            </article>
+          )}
       </section>
     </>
   );
