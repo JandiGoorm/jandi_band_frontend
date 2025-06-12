@@ -71,3 +71,21 @@
   flex-direction: column;
   gap: 3rem;
 }
+
+@media (max-width: 475px) {
+  .header_button_container button {
+    font-size: 0.8rem;
+    width: 6.5rem;
+    height: 2rem;
+  }
+}
+
+.footer_button_container {
+  display: flex;
+  justify-content: end;
+}
+.footer_button_container button {
+  background-color: transparent;
+  color: #afafaf;
+  font-size: var(--text-sm);
+}

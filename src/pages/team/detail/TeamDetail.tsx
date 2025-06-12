@@ -60,11 +60,12 @@ const TeamDetail = () => {
           <ScheduleBoard />
         </div>
       </section>
+
       <section className={styles.footer_button_container}>
         <LeaveModal
           trigger={
             <Button size="md" variant="primary">
-              나가기
+              팀 나가기
             </Button>
           }
           title="팀 나가기"

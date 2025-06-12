@@ -105,7 +105,7 @@ const Club = () => {
             <LeaveModal
               trigger={
                 <Button size="md" variant="primary">
-                  탈퇴
+                  동아리 탈퇴
                 </Button>
               }
               title="동아리 나가기"
