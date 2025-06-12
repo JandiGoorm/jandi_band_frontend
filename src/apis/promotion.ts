@@ -1,7 +1,11 @@
 import { useDelete, useFetch, usePatch, usePost } from "@/apis/hooks";
 import { ApiEndpotins } from "@/constants/endpoints";
 import type { PagiNationResponse } from "@/types/common";
-import type { PromotionListResponse } from "@/types/promotion";
+import type {
+  CommemtResponse,
+  CommentRequest,
+  PromotionListResponse,
+} from "@/types/promotion";
 import { buildPath } from "@/utils/buildPath";
 
 export const useGetPromoList = ({
@@ -71,4 +75,29 @@ export const useGetPromoMap = ({
       size: size,
     }
   );
+};
+
+export const useGetComment = ({
+  id,
+  page = 0,
+  size = 20,
+}: {
+  id: string;
+  page: number;
+  size: number;
+}) => {
+  return useFetch<PagiNationResponse<CommemtResponse>>(
+    buildPath(ApiEndpotins.COMMENT, { id }),
+    { page: page, size: size }
+  );
+};
+
+export const usePostComment = (id: string) => {
+  return usePost<CommentRequest, CommemtResponse>(
+    buildPath(ApiEndpotins.COMMENT, { id })
+  );
+};
+
+export const useDeleteComment = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.COMMENT_DETAIL, { id }));
 };
