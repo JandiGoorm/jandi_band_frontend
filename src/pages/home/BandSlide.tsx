@@ -21,22 +21,16 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
         </p>
         <MainSlide<ClubListResponse> items={club}>
           {(item) => (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <img
-                src={item.photoUrl || "./basic_club.png"}
-                style={{
-                  maxWidth: "200px",
-                }}
-                onClick={() =>
-                  navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
-                }
-              />
+            <div className={styles.slide_item}>
+              <div className={styles.band_image_wrapper}>
+                <img
+                  src={item.photoUrl || "./basic_club.png"}
+                  className={styles.band_image}
+                  onClick={() =>
+                    navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+                  }
+                />
+              </div>
             </div>
           )}
         </MainSlide>
