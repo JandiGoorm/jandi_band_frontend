@@ -18,6 +18,7 @@
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
+  color: #2d2d2d;
 }
 
 @media (max-width: 520px) {
