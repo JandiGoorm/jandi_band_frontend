@@ -5,7 +5,19 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  /* gap: 2rem; */
+}
+
+.band_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.band_image {
+  max-width: 200px;
+  cursor: pointer;
 }
 
 .title {
@@ -13,6 +25,7 @@
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
 }
+
 .centered {
   width: 100%;
   display: flex;

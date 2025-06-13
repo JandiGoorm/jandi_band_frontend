@@ -30,8 +30,6 @@ const PromotionSlide = ({ promo }: { promo: PromotionListResponse[] }) => {
               src={item.photoUrls[0]}
               style={{
                 maxWidth: "200px",
-                aspectRatio: "376 / 504",
-                borderRadius: "var(--radius-xl)",
               }}
               alt="promo"
               onClick={() =>

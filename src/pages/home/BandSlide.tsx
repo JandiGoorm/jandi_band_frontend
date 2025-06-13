@@ -26,15 +26,12 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "100%",
               }}
             >
               <img
                 src={item.photoUrl || "./basic_club.png"}
                 style={{
                   maxWidth: "200px",
-                  aspectRatio: "5/3",
-                  borderRadius: "var(--radius-xl)",
                 }}
                 onClick={() =>
                   navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
