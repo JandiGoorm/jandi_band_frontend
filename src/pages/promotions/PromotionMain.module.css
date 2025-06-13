@@ -69,8 +69,9 @@
   top: 1.3rem;
   left: 1.3rem;
   width: auto;
-  padding: 0.25rem 1rem;
-  border: 1px solid var(--color-text-sub);
+  padding: 0.3rem 1rem;
+  border: 0.5px solid #afafaf;
+  font-size: 0.8rem;
   font-weight: var(--font-weight-semibold);
   border-radius: var(--radius-input);
 }
@@ -88,6 +89,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
 }
 .promotion_sub {
   font-size: var(--text-sm);
