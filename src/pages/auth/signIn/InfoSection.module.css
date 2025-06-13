@@ -10,6 +10,18 @@
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s ease;
+  margin-bottom: 1rem;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 3rem;
+  border-radius: 25px;
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
 }
 
 .serviceSection.animate {
@@ -18,14 +30,8 @@
 }
 
 .serviceContent {
-  /* max-width: 1200px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center; */
   display: flex;
-  gap: 80px;
+  gap: 70px;
   align-items: center;
   justify-content: center;
 }
@@ -38,6 +44,9 @@
   .serviceContent {
     flex-direction: column !important; /* 역방향 무시하고 수직 정렬 */
     text-align: center;
+  }
+  .serviceSection {
+    margin: 0.5rem;
   }
 }
 
