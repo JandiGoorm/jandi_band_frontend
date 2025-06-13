@@ -157,17 +157,30 @@ const DetailContent = () => {
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>장소</p>
-                <p className={styles.info_text}>{fetchData.data.location}</p>
-                <Modal
-                  title="장소 위치 보기"
-                  trigger={
-                    <Button size="sm" variant="transparent">
-                      지도보기
-                    </Button>
-                  }
-                >
-                  <LocationModal data={fetchData.data} />
-                </Modal>
+                <div className={styles.location_box}>
+                  <p className={styles.info_text}>{fetchData.data.location}</p>
+                  <p className={styles.address}>({fetchData.data.address})</p>
+                  <Modal
+                    title="장소 위치 보기"
+                    trigger={
+                      <Button size="sm" variant="transparent">
+                        지도보기
+                      </Button>
+                    }
+                  >
+                    <LocationModal data={fetchData.data} />
+                  </Modal>
+                </div>
+                {/* <Modal
+                    title="장소 위치 보기"
+                    trigger={
+                      <Button size="sm" variant="transparent">
+                        지도보기
+                      </Button>
+                    }
+                  >
+                    <LocationModal data={fetchData.data} />
+                </Modal> */}
               </div>
             </section>
           </section>
