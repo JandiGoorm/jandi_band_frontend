@@ -44,6 +44,13 @@ const SignIn = () => {
 
       {/* 스크롤 정보 */}
       <InfoSection />
+
+      <div className={styles.ctaFooter}>
+        <p>우리가 모일 시간, Rhythmeet에서 찾아보세요.</p>
+        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          지금 함께하기
+        </button>
+      </div>
     </main>
   );
 };
