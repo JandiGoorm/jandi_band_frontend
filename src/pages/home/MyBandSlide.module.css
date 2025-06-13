@@ -5,14 +5,44 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  /* gap: 2rem; */
+}
+
+.band_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.band_image_wrapper {
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(68, 68, 68, 0.15);
+  border: 0.5px solid rgba(200, 200, 200, 0.415);
+}
+
+.band_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 .title {
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-semibold);
+  color: #2d2d2d;
   cursor: pointer;
 }
+@media (max-width: 520px) {
+  .title {
+    font-size: var(--text-xl);
+  }
+}
+
 .centered {
   width: 100%;
   display: flex;

@@ -71,7 +71,7 @@ const Comment = () => {
       </header>
       <section className={styles.comment_input}>
         <Input
-          inputSize="md"
+          inputSize="lg"
           style={{ flex: "1", marginRight: "1rem" }}
           ref={inputRef}
         />

@@ -134,15 +134,15 @@ const DetailContent = () => {
               <p>이 공연을 응원하고 싶다면?</p>
               <Button variant="none" size="sm" onClick={handleLike}>
                 {likeData.data ? (
-                  <>
-                    <FaHeart size={14} style={{ marginRight: "0.25rem" }} />
-                    좋아요 취소
-                  </>
+                  <div className={styles.heart}>
+                    <FaHeart size={17} style={{ marginRight: "0.25rem" }} />
+                    <span>좋아요</span>
+                  </div>
                 ) : (
-                  <>
-                    <FaRegHeart size={14} style={{ marginRight: "0.25rem" }} />
-                    좋아요
-                  </>
+                  <div className={styles.heart}>
+                    <FaRegHeart size={17} style={{ marginRight: "0.25rem" }} />
+                    <span>좋아요</span>
+                  </div>
                 )}
               </Button>
             </section>
@@ -171,17 +171,30 @@ const DetailContent = () => {
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>장소</p>
-                <p className={styles.info_text}>{fetchData.data.location}</p>
-                <Modal
-                  title="장소 위치 보기"
-                  trigger={
-                    <Button size="sm" variant="transparent">
-                      지도보기
-                    </Button>
-                  }
-                >
-                  <LocationModal data={fetchData.data} />
-                </Modal>
+                <div className={styles.location_box}>
+                  <p className={styles.info_text}>{fetchData.data.location}</p>
+                  <p className={styles.address}>({fetchData.data.address})</p>
+                  <Modal
+                    title="장소 위치 보기"
+                    trigger={
+                      <Button size="sm" variant="transparent">
+                        지도보기
+                      </Button>
+                    }
+                  >
+                    <LocationModal data={fetchData.data} />
+                  </Modal>
+                </div>
+                {/* <Modal
+                    title="장소 위치 보기"
+                    trigger={
+                      <Button size="sm" variant="transparent">
+                        지도보기
+                      </Button>
+                    }
+                  >
+                    <LocationModal data={fetchData.data} />
+                </Modal> */}
               </div>
             </section>
           </section>

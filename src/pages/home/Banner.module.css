@@ -34,3 +34,9 @@
   font-size: 2rem;
   font-weight: var(--font-weight-bold);
 }
+
+@media (max-width: 520px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
