@@ -127,7 +127,7 @@
 .promo_content {
   background-color: var(--color-comment-bg);
   border-radius: var(--radius-xl);
-  padding: 1rem 1rem;
+  padding: 1.4rem 1.5rem;
   min-height: 5rem;
   white-space: pre-line;
   margin-top: 1rem;
