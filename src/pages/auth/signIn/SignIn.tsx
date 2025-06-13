@@ -37,6 +37,7 @@ const SignIn = () => {
           <span>카카오 계정으로 계속하기</span>
         </button>
       </section>
+      <div className={styles.scroll_indicator}>↓ 스크롤해서 더 알아보기 ↓</div>
     </main>
   );
 };

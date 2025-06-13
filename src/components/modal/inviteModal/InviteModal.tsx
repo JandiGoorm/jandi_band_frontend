@@ -57,6 +57,7 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
             </Button>
           </div>
 
+          {/* 카톡 공유 */}
           <div className={styles.btn_container}>
             <Button className={styles.share_btn} variant="kakao">
               카카오톡으로 공유
