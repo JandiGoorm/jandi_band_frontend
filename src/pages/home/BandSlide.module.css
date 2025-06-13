@@ -20,6 +20,12 @@
   cursor: pointer;
 }
 
+@media (max-width: 520px) {
+  .title {
+    font-size: var(--text-xl);
+  }
+}
+
 .slide_item {
   display: flex;
   justify-content: center;
