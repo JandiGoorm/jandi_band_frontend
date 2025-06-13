@@ -29,3 +29,20 @@ export interface PromotionRequest {
   address: string;
   description: string;
 }
+
+export interface CommemtResponse {
+  id: number;
+  promoId: number;
+  description: string;
+  creatorId: number;
+  creatorName: string;
+  creatorProfilePhoto: string;
+  likeCount: number;
+  isLikedByUser: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CommentRequest {
+  description: string;
+}

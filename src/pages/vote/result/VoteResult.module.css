@@ -49,3 +49,21 @@ select:focus {
   outline: none;
   box-shadow: 0 0 0 1px rgba(90, 90, 90, 0.5);
 }
+
+/* 결과 텍스트 섹션 */
+.summary_box {
+  display: flex;
+  justify-content: space-around;
+
+  margin-top: 1.5rem;
+  background-color: #f6f6f6;
+  color: #6c6c6c;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 14px 20px;
+  border-radius: 15px;
+}
+
+.song_name {
+  font-weight: 500;
+}
