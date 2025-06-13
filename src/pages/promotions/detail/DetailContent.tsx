@@ -120,15 +120,15 @@ const DetailContent = () => {
               <p>이 공연을 응원하고 싶다면?</p>
               <Button variant="none" size="sm" onClick={handleLike}>
                 {likeData.data ? (
-                  <>
-                    <FaHeart size={14} style={{ marginRight: "0.25rem" }} />
-                    좋아요 취소
-                  </>
+                  <div className={styles.heart}>
+                    <FaHeart size={17} style={{ marginRight: "0.25rem" }} />
+                    <span>좋아요</span>
+                  </div>
                 ) : (
-                  <>
-                    <FaRegHeart size={14} style={{ marginRight: "0.25rem" }} />
-                    좋아요
-                  </>
+                  <div className={styles.heart}>
+                    <FaRegHeart size={17} style={{ marginRight: "0.25rem" }} />
+                    <span>좋아요</span>
+                  </div>
                 )}
               </Button>
             </section>
