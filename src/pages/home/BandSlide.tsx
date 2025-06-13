@@ -39,6 +39,7 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
                     }
                   }}
                 />
+                <div className={styles.overlay}>{item.name}</div>
               </div>
             </div>
           )}

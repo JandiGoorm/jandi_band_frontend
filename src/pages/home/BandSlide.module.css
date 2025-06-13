@@ -27,6 +27,7 @@
 }
 
 .band_image_wrapper {
+  position: relative;
   width: 200px;
   aspect-ratio: 1 / 1;
   overflow: hidden;
@@ -38,6 +39,35 @@
   height: 100%;
   object-fit: cover;
   cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(47, 50, 51, 0.298);
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.band_image_wrapper:hover .overlay {
+  opacity: 1;
+}
+/* 모바일은 항상보이게 */
+@media (hover: none) and (pointer: coarse) {
+  .overlay {
+    opacity: 1;
+  }
 }
 
 .centered {
