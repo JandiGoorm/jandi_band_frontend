@@ -21,13 +21,15 @@ const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
       <MainSlide<MyClubListResponse> items={club}>
         {(item) => (
           <div className={styles.band_item}>
-            <img
-              src={item.photoUrl || "./basic_club.png"}
-              className={styles.band_image}
-              onClick={() =>
-                navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
-              }
-            />
+            <div className={styles.band_image_wrapper}>
+              <img
+                src={item.photoUrl || "./basic_club.png"}
+                className={styles.band_image}
+                onClick={() =>
+                  navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+                }
+              />
+            </div>
           </div>
         )}
       </MainSlide>
