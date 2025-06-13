@@ -39,6 +39,8 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(68, 68, 68, 0.15);
+  border: 0.5px solid rgba(200, 200, 200, 0.415);
 }
 
 .band_image {
