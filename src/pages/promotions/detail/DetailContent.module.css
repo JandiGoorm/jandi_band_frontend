@@ -54,6 +54,7 @@
   width: 25%;
   min-width: 200px;
   aspect-ratio: 376 / 504;
+  object-fit: cover;
   border-radius: var(--radius-xl);
 }
 

@@ -78,8 +78,10 @@
 .promotion_img {
   width: 100%;
   aspect-ratio: 376 / 504;
+  object-fit: cover;
   border-radius: var(--radius-lg);
 }
+
 .promotion_title {
   font-weight: var(--font-weight-bold);
   font-size: var(--text-base);
