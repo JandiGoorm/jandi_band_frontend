@@ -30,7 +30,7 @@ const PromotionMain = () => {
     usePagination();
   const { data: promoData, isLoading: promoLoading } = useGetPromoList({
     page: currentPage - 1,
-    size: 20,
+    size: 10,
   });
   const toggleRegions = () => {
     setShowRegions((prev) => !prev);
