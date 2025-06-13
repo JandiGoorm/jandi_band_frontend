@@ -16,15 +16,6 @@
   padding: 0 1rem;
 }
 
-.input {
-  /* border: 1px solid var(--color-button-transparent-border); */
-  /* border-radius: var(--radius-input);
-  color: var(--color-button-transparent-text);
-  padding: 0.5rem 1rem;
-  margin-right: 1rem;
-  width: 80%; */
-}
-
 .page_navigate_box {
   display: flex;
   align-items: center;
