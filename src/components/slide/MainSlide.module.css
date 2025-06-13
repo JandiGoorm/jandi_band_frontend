@@ -27,6 +27,7 @@
   opacity: 0.3;
   width: 100%;
   height: 16rem;
+  /* 여기 높이 변경하면됨. */
 }
 .slide_item:focus,
 .slide_item:active {
