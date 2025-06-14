@@ -1,6 +1,8 @@
 export interface PhotoResponse {
-  id: number;
+  photoId: number;
   imageUrl: string;
   isPinned: boolean;
   isPublic: boolean;
+  uploaderId: number;
+  uploaderName: string;
 }

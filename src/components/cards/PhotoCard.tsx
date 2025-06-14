@@ -2,7 +2,13 @@ import PhotoModal from "../modal/photoModal/PhotoModal";
 import styles from "./PhotoCard.module.css";
 import type { PhotoResponse } from "@/types/photo";
 
-const PhotoCard = ({ item }: { item: PhotoResponse }) => {
+const PhotoCard = ({
+  item,
+  refetch,
+}: {
+  item: PhotoResponse;
+  refetch: () => void;
+}) => {
   return (
     <PhotoModal
       trigger={
@@ -13,6 +19,7 @@ const PhotoCard = ({ item }: { item: PhotoResponse }) => {
       }
       title="사진 상세보기"
       photo={item}
+      refetch={refetch}
     />
   );
 };

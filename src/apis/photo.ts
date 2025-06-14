@@ -1,4 +1,4 @@
-import { useFetch, usePost } from "./hooks";
+import { useDelete, useFetch, usePost } from "./hooks";
 import { buildPath } from "@/utils/buildPath";
 import type { PagiNationResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
@@ -22,5 +22,11 @@ export const useGetPhotos = ({
 export const usePostPhoto = (id: string) => {
   return usePost<FormData, PhotoResponse>(
     buildPath(ApiEndpotins.CLUB_PHOTO, { id })
+  );
+};
+
+export const useDeletePhoto = (clubId: string, photoId: number) => {
+  return useDelete(
+    buildPath(ApiEndpotins.CLUB_PHOTO_DETAIL, { clubId, photoId })
   );
 };

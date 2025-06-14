@@ -53,7 +53,7 @@ const PhotoList = () => {
 
       <section className={styles.club_container}>
         {photoData.data.content.map((item) => (
-          <PhotoCard key={item.id} item={item} />
+          <PhotoCard key={item.photoId} item={item} refetch={refetchPhotos} />
         ))}
       </section>
       <section className={styles.pagination_box}>

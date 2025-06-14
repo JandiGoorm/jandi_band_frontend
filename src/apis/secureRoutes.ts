@@ -64,4 +64,5 @@ export const secureRoutes = [
 
   { method: Method.GET, url: ApiEndpotins.CLUB_PHOTO },
   { method: Method.POST, url: ApiEndpotins.CLUB_PHOTO },
+  { method: Method.DELETE, url: ApiEndpotins.CLUB_PHOTO_DETAIL },
 ];

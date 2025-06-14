@@ -46,8 +46,10 @@ const PhotoSlide = ({
         ) : null}
       </header>
       <section className={styles.slider_box}>
-        <Slide<PhotoResponse> items={photos} size="md">
-          {(item) => <PhotoCard item={item} />}
+        <Slide items={photos.map((p) => ({ ...p, id: p.photoId }))} size="md">
+          {(item) => (
+            <PhotoCard key={item.photoId} item={item} refetch={refetchPhotos} />
+          )}
         </Slide>
       </section>
     </main>
