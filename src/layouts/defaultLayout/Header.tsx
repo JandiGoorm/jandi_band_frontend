@@ -4,6 +4,7 @@ import { useAuthStore } from "@/stores/authStore";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import Dropdown from "@/components/dropdown/Dropdown";
+import { FaGuitar, FaUsers, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 
 const Header = () => {
   const { user, logout } = useAuthStore();
@@ -24,18 +25,22 @@ const Header = () => {
               items={[
                 {
                   label: "공연 목록",
+                  icon: <FaGuitar />,
                   onSelect: () => navigate(PageEndpoints.PROMOTION),
                 },
                 {
                   label: "동아리 목록",
+                  icon: <FaUsers />,
                   onSelect: () => navigate(PageEndpoints.CLUB_LIST),
                 },
                 {
                   label: "마이페이지",
+                  icon: <FaUserCircle />,
                   onSelect: () => navigate(PageEndpoints.MYPAGE),
                 },
                 {
                   label: "로그아웃",
+                  icon: <FaSignOutAlt />,
                   onSelect: () => {
                     logout();
                     window.location.href = PageEndpoints.SIGN_IN;
