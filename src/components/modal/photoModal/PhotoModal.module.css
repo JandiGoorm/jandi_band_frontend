@@ -5,6 +5,7 @@
   gap: 1rem;
 
   padding: 1rem 0;
+  position: relative;
 }
 
 .header_button {
@@ -24,4 +25,23 @@
   max-width: 90vw;
   max-height: 60vh;
   border-radius: var(--radius-xl);
+}
+
+.delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+}
+
+.download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 1.5rem;
 }

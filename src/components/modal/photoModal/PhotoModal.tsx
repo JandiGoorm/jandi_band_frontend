@@ -6,6 +6,7 @@ import { useAuthStore } from "@/stores/authStore";
 import DeleteModal from "../deleteModal/DeleteModal";
 import { useDeletePhoto } from "@/apis/photo";
 import { useParams } from "react-router-dom";
+import { IoMdDownload } from "react-icons/io";
 
 interface PhotoModalProps {
   trigger: React.ReactNode;
@@ -46,7 +47,11 @@ const PhotoModal = ({ trigger, title, photo, refetch }: PhotoModalProps) => {
         <div className={styles.header_button}>
           {mine && (
             <DeleteModal
-              trigger={<Button>삭제</Button>}
+              trigger={
+                <Button variant="transparent" className={styles.delete}>
+                  삭제
+                </Button>
+              }
               title="사진삭제"
               description="정말 해당 사진을 삭제 하시겠어요?"
               onDelete={() => {
@@ -59,8 +64,14 @@ const PhotoModal = ({ trigger, title, photo, refetch }: PhotoModalProps) => {
               }}
             />
           )}
-          <Button onClick={handleDownload}>다운로드</Button>
         </div>
+        <Button
+          variant="primary"
+          onClick={handleDownload}
+          className={styles.download}
+        >
+          <IoMdDownload size={20} />
+        </Button>
       </div>
     </Modal>
   );
