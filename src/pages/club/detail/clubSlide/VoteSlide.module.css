@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.title_box {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+}
+.title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+  cursor: pointer;
+}
+
+.more {
+  font-size: var(--text-md);
+  color: var(--color-text-sub);
+  cursor: pointer;
+}

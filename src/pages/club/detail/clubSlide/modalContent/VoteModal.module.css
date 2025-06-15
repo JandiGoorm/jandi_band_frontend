@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.submit_button {
+  margin: 0 auto;
+}
+
+.make_poll_container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.guide {
+  font-size: var(--text-xs);
+  color: #414141;
+}
+
+.make_poll_container span {
+  font-weight: var(--font-weight-bold);
+}
+
+.dot {
+  color: var(--color-primary);
+}

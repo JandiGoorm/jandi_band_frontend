@@ -1,0 +1,98 @@
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-sub);
+  margin: 2rem 0;
+}
+
+.pagination_box {
+  margin: 2rem auto;
+}
+
+.item_title {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+
+.club_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 870px) {
+  .club_container {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  }
+}
+
+.add_button {
+  margin: 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.club_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.image_wrapper {
+  position: relative;
+  width: 220px;
+  aspect-ratio: 5 / 3;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.club_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(47, 50, 51, 0.298);
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.image_wrapper:hover .overlay {
+  opacity: 1;
+}
+
+/* 모바일은 항상 보이게 */
+@media (hover: none) and (pointer: coarse) {
+  .overlay {
+    opacity: 1;
+  }
+}

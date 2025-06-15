@@ -1,0 +1,71 @@
+/* 투표 제목 및 버튼 */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h1 {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.button_group {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.share {
+  display: flex;
+  background-color: #f6df00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #361f1f;
+}
+.share img {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    text-align: center;
+    flex-direction: column;
+  }
+  .header h1 {
+    margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 390px) {
+  .button_group button {
+    font-size: 0.8rem;
+  }
+}
+
+/* 투표방법 안내 */
+.guide {
+  background-color: #f6f6f6;
+  color: #6c6c6c;
+  font-size: 0.9rem;
+  padding: 14px 20px;
+  border-radius: 15px;
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+/* 곡 투표 공간 */
+.vote_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 765px) {
+  .vote_grid {
+    grid-template-columns: 1fr;
+  }
+}

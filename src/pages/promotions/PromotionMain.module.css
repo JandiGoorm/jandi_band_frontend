@@ -1,0 +1,114 @@
+.header_nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+.header_nav div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header_nav_box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.region_buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.input {
+  border: 1px solid var(--color-button-transparent-border);
+  border-radius: var(--radius-input);
+  color: var(--color-button-transparent-text);
+  padding: 0.5rem 1rem;
+}
+
+.page_title {
+  display: flex;
+  justify-content: center;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-sub);
+  margin: 2rem 0;
+}
+
+.promotion_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .header_nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .promotion_container {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+.promotion_box {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.promo_button {
+  position: absolute;
+  top: 1.3rem;
+  left: 1.3rem;
+  width: auto;
+  padding: 0.3rem 1rem;
+  border: 0.5px solid #afafaf;
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-input);
+}
+
+.promotion_img {
+  width: 100%;
+  aspect-ratio: 376 / 504;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.promotion_title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+.promotion_sub {
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.page_navigate_box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.post_button_box {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}

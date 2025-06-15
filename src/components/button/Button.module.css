@@ -4,21 +4,28 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s;
+  white-space: nowrap;
 
   border-radius: var(--radius-button-primary);
   color: var(--color-button-primary-text);
 }
 
 /* Size variants */
+.btn_sm {
+  padding: 0.25rem 0.5rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+}
+
 .btn_md {
-  padding: 0.3rem 1.5rem;
-  font-size: var(--text-lg);
+  padding: 0.25rem 1rem;
+  font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
 }
 
 .btn_lg {
-  padding: 0.75rem 2rem;
-  font-size: var(--text-xl);
+  padding: 0.5rem 1.5rem;
+  font-size: var(--text-lg);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -29,4 +36,33 @@
 
 .btn_secondary {
   background-color: var(--color-button-secondary-bg);
+}
+
+.btn_transparent {
+  color: var(--color-button-transparent-text);
+  background-color: transparent;
+  border: 1px solid var(--color-button-transparent-border);
+}
+
+.btn_none {
+  color: var(--color-text-main);
+}
+
+.btn_kakao {
+  background-color: var(--color-kakao);
+  color: var(--color-black);
+}
+
+/* IsClicked styles */
+.btn_transparent_clicked {
+  background-color: var(--color-button-secondary-bg);
+  color: var(--color-button-primary-text);
+}
+
+@media (max-width: 768px) {
+  .btn_md {
+    padding: 0.25rem 1rem;
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+  }
 }

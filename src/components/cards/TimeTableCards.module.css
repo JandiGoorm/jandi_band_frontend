@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 10rem;
+  padding: 0.5rem;
+  aspect-ratio: 1;
+
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.time_table_ui {
+  width: 100%;
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1px;
+}
+
+.active {
+  background-color: var(--color-secondary);
+}

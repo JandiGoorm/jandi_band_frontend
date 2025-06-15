@@ -1,0 +1,71 @@
+.header_nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.page_title {
+  display: flex;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  margin: 2rem 0;
+}
+.map_box {
+  width: 90%;
+  aspect-ratio: 2;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  position: relative;
+}
+.search_button {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  translate: -50%;
+  z-index: 9;
+}
+.promotion_container {
+  gap: 1rem;
+  width: 90%;
+  margin: 0 auto;
+}
+.page_navigate_box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.overlay_box {
+  background: var(--color-white);
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  min-width: 5rem;
+  font-size: var(--text-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.overlay_title {
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10rem;
+}
+.back_button {
+  align-self: start;
+  margin-bottom: -2.5rem;
+  cursor: pointer;
+}
+.post_button_box {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}

@@ -1,0 +1,96 @@
+/* 셀 안에 글자 색 */
+.calendar_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 0.25rem;
+  color: #5e5e5e;
+}
+
+.week_row {
+  display: flex;
+  width: 100%;
+  gap: 0.25rem;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.day_cell {
+  width: 100%;
+  height: 8rem;
+  position: relative;
+  box-sizing: border-box;
+  text-align: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.current_month {
+  cursor: pointer;
+  background-color: transparent;
+  color: inherit;
+}
+/* 
+.not_current_month {
+  border: 1px solid #f2f2f2;
+} */
+
+.today_cell {
+  background-color: rgba(176, 218, 201, 0.2);
+}
+
+.day_number {
+  padding: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: normal;
+}
+
+.today {
+  color: var(--color-button-primary-bg);
+  font-weight: var(--font-weight-bold);
+}
+
+/* 스케줄 라벨 */
+.schedule_label {
+  color: #2a2a2a;
+  text-align: start;
+  font-size: 0.9rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  /* width: 100%; */
+  white-space: nowrap;
+  overflow: hidden;
+  /* text-overflow: ellipsis; */
+}
+
+@media (max-width: 768px) {
+  .day_cell {
+    height: 7rem;
+  }
+}
+.schedule_label_more {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+.schedule_label_more:hover {
+  color: #252525;
+}
+
+@media (max-width: 480px) {
+  .day_cell {
+    height: 6rem;
+  }
+  .schedule_label {
+    font-size: 0.8rem;
+    padding: 1px 3px;
+  }
+  .schedule_label_more {
+    font-size: 0.7rem;
+  }
+}

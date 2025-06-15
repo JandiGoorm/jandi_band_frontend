@@ -1,0 +1,42 @@
+.container {
+  position: relative;
+  padding-top: 5rem;
+}
+
+.back {
+  opacity: 0.06;
+  width: 60%;
+  position: absolute;
+  right: 50%;
+  top: 20%;
+  transform: translateX(50%);
+}
+
+.title_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.title {
+  background:
+    radial-gradient(
+      84.11% 295.71% at 9.04% 81.2%,
+      rgba(167, 255, 152, 0.4) 13.46%,
+      rgba(144, 158, 189, 0.4) 100%
+    ),
+    radial-gradient(84.08% 84.08% at 84.87% 6.93%, #ffe5b2 0%, #58a7ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 520px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}

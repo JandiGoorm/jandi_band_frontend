@@ -1,0 +1,22 @@
+.container {
+  width: 3rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.time_line_item {
+  text-align: right;
+  padding-right: 1rem;
+  height: 4rem;
+  color: var(--board-text-color);
+}
+
+@media (max-width: 475px) {
+  .container {
+    width: 2rem;
+  }
+  .time_line_item {
+    text-align: right;
+    padding-right: 1rem;
+    height: 2.5rem;
+  }
+}

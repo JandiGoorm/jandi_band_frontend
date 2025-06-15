@@ -1,12 +1,17 @@
 .container {
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 5rem;
+  height: 4rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   box-shadow: var(--shadow-sm);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 999;
 }
 
 .content {
@@ -16,4 +21,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.logo {
+  width: 10rem;
+  object-fit: contain;
+}
+
+.right {
+  display: flex;
+  gap: 1rem;
+}
+
+.profile_img {
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border-radius: var(--radius-full);
+}
+@media screen and (max-width: 1264px) {
+  .content {
+    padding: 0 2rem;
+  }
 }

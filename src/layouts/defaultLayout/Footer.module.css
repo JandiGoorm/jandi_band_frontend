@@ -17,3 +17,9 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media screen and (max-width: 1264px) {
+  .content {
+    padding: 0 2rem;
+  }
+}

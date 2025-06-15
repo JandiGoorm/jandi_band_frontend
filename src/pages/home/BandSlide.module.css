@@ -1,0 +1,115 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.main_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  color: #2d2d2d;
+}
+
+@media (max-width: 520px) {
+  .title {
+    font-size: var(--text-xl);
+  }
+}
+
+.slide_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.band_image_wrapper {
+  position: relative;
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(68, 68, 68, 0.15);
+  border: 0.5px solid rgba(200, 200, 200, 0.415);
+}
+
+.band_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(47, 50, 51, 0.298);
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.band_image_wrapper:hover .overlay {
+  opacity: 1;
+}
+/* 모바일은 항상보이게 */
+@media (hover: none) and (pointer: coarse) {
+  .overlay {
+    opacity: 1;
+  }
+}
+
+.centered {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: oklch(0.9466 0.0225 207.08);
+  padding: 0.8rem 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.line_box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .line_box {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.line_title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+@media (max-width: 768px) {
+  .line_title {
+    font-size: var(--text-md);
+  }
+}

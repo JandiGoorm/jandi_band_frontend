@@ -1,0 +1,72 @@
+.trigger {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid var(--color-input);
+  background-color: var(--color-white);
+  outline: none;
+  font-size: var(--text-base);
+  border-radius: var(--radius-input);
+  padding: 0.5rem 1rem;
+}
+
+.content {
+  overflow: hidden;
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  z-index: 10;
+  max-height: var(--radix-select-content-available-height);
+  width: calc(var(--radix-select-trigger-width) - 1rem);
+  position: absolute;
+  left: 0.5rem;
+  z-index: 1001;
+}
+
+.scroll_button {
+  height: 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-white);
+  cursor: default;
+}
+
+.viewport {
+  padding: 0.25rem;
+}
+
+.item {
+  height: 2rem;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0.5rem 1.5rem;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.item:focus {
+  background-color: #eff6ff;
+  outline: none;
+}
+
+.item_indicator {
+  position: absolute;
+  left: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  height: 1rem;
+  width: 1rem;
+}

@@ -2,6 +2,7 @@
   --color-white: oklch(1 0 0);
   --color-black: oklch(0 0 0);
   --color-whitepure: oklch(100% 0 0);
+  --color-white-transparent: oklch(100% 0 0 / 0.4);
 
   /* breakpoint  */
   --breakpoint-sm: 390px;
@@ -55,7 +56,7 @@
   --shadow-2xs: 0 1px rgb(var(--color-shadow) / 0.05);
   --shadow-xs: 0 1px 2px 0 rgb(var(--color-shadow) / 0.05);
   --shadow-sm:
-    0 1px 3px 0 rgb(var(--color-shadow) / var(--shadow-opacity)),
+    0 1px 4px 0 rgb(var(--color-shadow) / var(--shadow-opacity)),
     0 1px 2px -1px rgb(var(--color-shadow) / var(--shadow-opacity));
   --shadow-md:
     0 4px 6px -1px rgb(var(--color-shadow) / var(--shadow-opacity)),
@@ -85,17 +86,45 @@
     0 -8px 10px -6px rgb(var(--color-shadow) / var(--shadow-opacity));
   --shadow-top-2xl: 0 -25px 50px -12px rgb(var(--color-shadow) / 0.3);
 
+  --shadow-full: 0 0 10px rgb(var(--color-shadow)/ 0.2);
+
   /* common semantic tokens */
+  --color-primary: oklch(73.82% 0.0843 199.13);
+  --color-primary-hover: oklch(63% 0.0667 194.85);
+  --color-secondary: oklch(73.82% 0.0843 199.13);
+  --color-secondary-hover: oklch(0.7382 0.0843 199.13 / 18%);
+  --color-secondary-selected: oklch(0.7382 0.0843 199.13 / 30%);
+  --color-text-main: var(--color-black);
+  --color-text-sub: oklch(0.55 0 0);
+  --color-kakao: oklch(0.8746 0.203 101.27);
+  --color-text-sub-trans: oklch(0.88 0 0);
+
+  --color-comment-bg: oklch(0.97 0 0);
   --color-button-primary-bg: oklch(60.11% 0.0667 194.85);
-  --color-button-secondary-bg: oklch(73.82% 0.0843 199.13);
+  --color-border: oklch(0.6 0.05 220);
+
+  --color-button-primary-bg: var(--color-primary);
+  --color-button-secondary-bg: var(--color-secondary);
+  --color-button-transparent-border: oklch(0.85 0 0);
   --color-button-primary-text: var(--color-white);
+  --color-button-transparent-text: var(--color-text-sub);
   --radius-button-primary: var(--radius-5xl);
+  --color-input: oklch(0.85 0 0);
+  --color-error: oklch(0.577 0.245 27.325);
 
   --radius-button-sm: var(--radius-sm);
   --radius-button-md: var(--radius-md);
   --radius-button-lg: var(--radius-lg);
-  --radius-input: var(--radius-md);
+  --radius-input: var(--radius-4xl);
 
   --color-bg-toast-success: oklch(0.627 0.194 149.214);
   --color-bg-toast-error: oklch(0.577 0.245 27.325);
+
+  --color-input-header-background:
+    radial-gradient(
+      84.11% 295.71% at 9.04% 81.2%,
+      rgba(167, 255, 152, 0.4) 13.46%,
+      rgba(144, 158, 189, 0.4) 100%
+    ),
+    radial-gradient(84.08% 84.08% at 84.87% 6.93%, #ffe5b2 0%, #58a7ff 100%);
 }

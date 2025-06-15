@@ -1,0 +1,112 @@
+.container {
+  min-height: 20rem;
+  width: 100%;
+
+  --bg-color:
+    linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+    radial-gradient(
+      84.11% 295.71% at 9.04% 81.2%,
+      rgba(167, 255, 152, 0.4) 13.46%,
+      rgba(144, 158, 189, 0.4) 100%
+    ),
+    radial-gradient(84.08% 84.08% at 84.87% 6.93%, #ffe5b2 0%, #58a7ff 100%);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-lg);
+}
+
+.header_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content_container {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.content_item_info {
+  margin-top: 0.5rem;
+}
+
+.content_item_info span {
+  font-weight: var(--font-weight-bold);
+  white-space: wrap;
+}
+.content_item_info p {
+  font-size: var(--text-sm);
+  margin-top: 0.5rem;
+}
+
+.content_item {
+  position: relative;
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.5rem;
+  text-wrap: nowrap;
+  color: #343434;
+}
+
+.content_type {
+  position: absolute;
+  top: -12px;
+  left: 4px;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-sm);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-3xl);
+  background: var(--bg-color);
+  box-shadow: var(--shadow-md);
+  color: var(--color-white);
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pagination button {
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.empty_message {
+  margin-top: 1rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-sub);
+}
+
+/* 삭제 추가 */
+.delete_btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: rgb(255, 90, 90);
+  }
+}
