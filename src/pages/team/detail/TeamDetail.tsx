@@ -85,22 +85,24 @@ const TeamDetail = () => {
             }}
           />
         )}
-        <LeaveModal
-          trigger={
-            <Button size="md" variant="primary">
-              팀 나가기
-            </Button>
-          }
-          title="팀 나가기"
-          description="정말 해당 팀을 나가시겠어요?"
-          onLeave={() => {
-            leaveTeam(undefined, {
-              onSuccess: () => {
-                navigate(buildPath(PageEndpoints.CLUB, { id: team.clubId }));
-              },
-            });
-          }}
-        />
+        {isMember && (
+          <LeaveModal
+            trigger={
+              <Button size="md" variant="primary">
+                나가기
+              </Button>
+            }
+            title="팀 나가기"
+            description="정말 해당 팀을 나가시겠어요?"
+            onLeave={() => {
+              leaveTeam(undefined, {
+                onSuccess: () => {
+                  navigate(buildPath(PageEndpoints.CLUB, { id: team.clubId }));
+                },
+              });
+            }}
+          />
+        )}
       </section>
     </div>
   );

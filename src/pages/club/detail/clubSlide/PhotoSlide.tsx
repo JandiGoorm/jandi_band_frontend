@@ -3,18 +3,35 @@ import styles from "./PhotoSlide.module.css";
 import Slide from "@/components/slide/Slide";
 import Modal from "@/components/modal/Modal";
 import PhotoModal from "./modalContent/PhotoModal";
+import type { PhotoResponse } from "@/types/photo";
+import PhotoCard from "@/components/cards/PhotoCard";
+import { useNavigate, useParams } from "react-router-dom";
+import { buildPath } from "@/utils/buildPath";
+import { PageEndpoints } from "@/constants/endpoints";
 
-const dummyData = [
-  { id: 1, name: "Slide 1" },
-  { id: 2, name: "Slide 2" },
-  { id: 3, name: "Slide 3" },
-  { id: 4, name: "Slide 4" },
-];
-const PhotoSlide = ({ isMember }: { isMember: boolean }) => {
+const PhotoSlide = ({
+  isMember,
+  photos,
+  refetchPhotos,
+}: {
+  isMember: boolean;
+  photos: PhotoResponse[];
+  refetchPhotos: () => void;
+}) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   return (
     <main className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.title}>동아리 사진들</div>
+        <div
+          className={styles.title_box}
+          onClick={() =>
+            navigate(buildPath(PageEndpoints.PHOTO_LIST, { id: id! }))
+          }
+        >
+          <p className={styles.title}>동아리 사진들</p>
+          <p className={styles.more}>더보기</p>
+        </div>
         {isMember ? (
           <Modal
             title="사진 등록하기"
@@ -24,15 +41,15 @@ const PhotoSlide = ({ isMember }: { isMember: boolean }) => {
               </Button>
             }
           >
-            <PhotoModal />
+            <PhotoModal refetchPhotos={refetchPhotos} />
           </Modal>
         ) : null}
       </header>
       <section className={styles.slider_box}>
-        <Slide items={dummyData} size="md">
-          {(item) => {
-            return <div>{item.name}</div>;
-          }}
+        <Slide items={photos.map((p) => ({ ...p, id: p.photoId }))} size="md">
+          {(item) => (
+            <PhotoCard key={item.photoId} item={item} refetch={refetchPhotos} />
+          )}
         </Slide>
       </section>
     </main>

@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  min-width: 25vw;
+  padding: 1rem 0;
+  position: relative;
+}
+
+.header_button {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: right;
+}
+
+.description {
+  color: var(--color-text-sub);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  max-width: 90vw;
+  max-height: 60vh;
+  border-radius: var(--radius-xl);
+}
+
+.delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+}
+
+.download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  padding: 0.5rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 1.5rem;
+}

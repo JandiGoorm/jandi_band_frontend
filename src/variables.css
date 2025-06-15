@@ -89,9 +89,10 @@
   --shadow-full: 0 0 10px rgb(var(--color-shadow)/ 0.2);
 
   /* common semantic tokens */
-  --color-primary: oklch(63% 0.0667 194.85);
+  --color-primary: oklch(73.82% 0.0843 199.13);
+  --color-primary-hover: oklch(63% 0.0667 194.85);
   --color-secondary: oklch(73.82% 0.0843 199.13);
-  --color-secondary-hover: oklch(0.7382 0.0843 199.13 / 12%);
+  --color-secondary-hover: oklch(0.7382 0.0843 199.13 / 18%);
   --color-secondary-selected: oklch(0.7382 0.0843 199.13 / 30%);
   --color-text-main: var(--color-black);
   --color-text-sub: oklch(0.55 0 0);

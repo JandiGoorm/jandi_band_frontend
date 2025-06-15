@@ -23,7 +23,7 @@
   width: calc(var(--radix-select-trigger-width) - 1rem);
   position: absolute;
   left: 0.5rem;
-  z-index: 10;
+  z-index: 1001;
 }
 
 .scroll_button {

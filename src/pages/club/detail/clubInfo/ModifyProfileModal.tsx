@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import Button from "@/components/button/Button";
 import { useUpdateClubImage } from "@/apis/club";
+import { queryClient } from "@/config/queryClient";
+import { buildPath } from "@/utils/buildPath";
+import { ApiEndpotins } from "@/constants/endpoints";
 
 const ModifyProfileModal = ({ image }: { image: string }) => {
   const { id } = useParams();
@@ -10,6 +13,8 @@ const ModifyProfileModal = ({ image }: { image: string }) => {
   const [imageURL, setimageURL] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const { mutate: updateImage } = useUpdateClubImage(id!);
+
+  if (!id) return <div>잘못된 접근입니다.</div>;
 
   const handleClickSection = () => {
     imageInputRef.current?.click();
@@ -31,7 +36,14 @@ const ModifyProfileModal = ({ image }: { image: string }) => {
     const formData = new FormData();
     formData.append("image", imageFile);
 
-    updateImage(formData);
+    updateImage(formData, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: [buildPath(ApiEndpotins.CLUB_DETAIL, { id })],
+        });
+        close();
+      },
+    });
   };
   return (
     <main className={styles.container}>
