@@ -8,6 +8,22 @@ import Modal from "../Modal";
 import styles from "./InviteModal.module.css";
 import kakao from "@/pages/vote/style/kakao.svg";
 
+declare global {
+  interface Window {
+    // Kakao: any;
+    Kakao: {
+      init: (key: string) => void;
+      isInitialized: () => boolean;
+      Link: {
+        sendCustom: (options: {
+          templateId: number;
+          templateArgs?: Record<string, string>;
+        }) => void;
+      };
+    };
+  }
+}
+
 interface InviteModalProps {
   data: AxiosResponse<ApiResponse<{ code: string }>> | undefined;
   mutate: () => void;
@@ -71,7 +87,25 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
 
           {/* 카톡 공유 */}
           <div className={styles.btn_container}>
-            <Button className={styles.share_btn} variant="kakao">
+            <Button
+              className={styles.share_btn}
+              variant="kakao"
+              onClick={() => {
+                if (!window.Kakao?.Link || !inviteCode) return;
+
+                const templateId = type === "club" ? 121060 : 121500;
+                const nameKey = type === "club" ? "clubName" : "teamName";
+                const nameValue = type === "club" ? "잔디밴드" : "구준표금잔디"; // 여기 props로 변경 예정
+
+                window.Kakao.Link.sendCustom({
+                  templateId,
+                  templateArgs: {
+                    [nameKey]: nameValue,
+                    inviteCode, // ${inviteCode}
+                  },
+                });
+              }}
+            >
               카카오톡으로 공유
             </Button>
             <Button
