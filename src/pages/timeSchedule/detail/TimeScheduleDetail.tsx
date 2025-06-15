@@ -87,7 +87,7 @@ const TimeScheduleDetail = () => {
               trigger={
                 <Button
                   type="button"
-                  variant="secondary"
+                  variant="transparent"
                   size="sm"
                   className={styles.delete_button}
                 >
