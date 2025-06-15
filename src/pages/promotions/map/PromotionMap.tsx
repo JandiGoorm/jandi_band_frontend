@@ -2,7 +2,6 @@ import DefaultLayout from "@/layouts/defaultLayout/DefaultLayout";
 import styles from "./PromotionMap.module.css";
 import Button from "@/components/button/Button";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import usePagination from "@/hooks/usePagination";
 import { useGetPromoMap } from "@/apis/promotion";
@@ -11,6 +10,8 @@ import Loading from "@/components/loading/Loading";
 import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
 import PromoComponent from "./PromoComponent";
 import { formatPromotionDate } from "@/utils/dateStatus";
+
+import ArrowBack from "@/pages/vote/style/arrowback.svg";
 
 const PromotionMap = () => {
   const navigate = useNavigate();
@@ -89,9 +90,12 @@ const PromotionMap = () => {
     <DefaultLayout>
       <main className={styles.container}>
         <nav className={styles.header_nav}>
-          <Button variant="transparent" size="md" onClick={() => navigate(-1)}>
-            <FaArrowLeft size={20} />
-          </Button>
+          <img
+            src={ArrowBack}
+            alt="뒤로가기"
+            onClick={() => navigate(-1)}
+            className={styles.back_button}
+          />
         </nav>
         <section className={styles.map_box}>
           <Map

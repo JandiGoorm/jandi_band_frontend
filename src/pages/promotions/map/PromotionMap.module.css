@@ -59,3 +59,8 @@
   text-overflow: ellipsis;
   max-width: 10rem;
 }
+.back_button {
+  align-self: start;
+  margin-bottom: -2.5rem;
+  cursor: pointer;
+}
