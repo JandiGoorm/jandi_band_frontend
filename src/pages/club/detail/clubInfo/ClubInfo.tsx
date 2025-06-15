@@ -18,9 +18,11 @@ import EditMemberModal from "./EditMemberModal";
 const ClubInfo = ({
   club,
   memberData,
+  isMember,
 }: {
   club: ClubDetailResponse;
   memberData: ClubMemberResponse;
+  isMember: boolean;
 }) => {
   const { user } = useAuthStore();
   const mine = user?.id === club.representativeId;
@@ -73,7 +75,7 @@ const ClubInfo = ({
         </div>
 
         <div className={styles.left_title}>
-          <InviteModal />
+          {isMember && <InviteModal />}
 
           {mine && (
             <>

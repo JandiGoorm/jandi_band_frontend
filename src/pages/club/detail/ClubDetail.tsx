@@ -81,11 +81,14 @@ const Club = () => {
   );
   const mine = user?.id === clubData.data.representativeId;
 
-  console.log(clubData.data);
   return (
     <DefaultLayout>
       <main className={styles.container}>
-        <ClubInfo club={clubData.data} memberData={memberData.data} />
+        <ClubInfo
+          club={clubData.data}
+          memberData={memberData.data}
+          isMember={isMember}
+        />
         <Calendar isMember={isMember} />
         {isMember && <TeamSlide teams={teamData?.data.content} />}
         <VoteSlide
