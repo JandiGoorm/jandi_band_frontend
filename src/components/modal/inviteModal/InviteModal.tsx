@@ -1,5 +1,4 @@
 // 해당 컴포넌트는 동아리 초대 및 팀 초대를 지원하는 모달 컴포넌트 입니다.
-
 import type { ApiResponse } from "@/apis/types";
 import Button from "@/components/button/Button";
 import Input from "@/components/input/Input";
@@ -16,16 +15,19 @@ interface InviteModalProps {
 }
 
 const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false); // 복사 버튼 클릭시 복사됨!
 
+  // 모달에 동아리초대,팀초대 표시 위해서
   const name = type === "club" ? "동아리" : "팀";
 
+  //  새 링크 생성시마다 복사 상태 초기화
   useEffect(() => {
     if (!data) return;
     setCopied(false);
   }, [data]);
 
   return (
+    // 모달로 유도하는 버튼
     <Modal
       trigger={
         <Button variant="kakao" className={styles.invite_button}>
@@ -35,6 +37,7 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
       }
       title={`${name} 초대하기`}
     >
+      {/* 조건부 렌더링 */}
       {data ? (
         <div className={styles.container}>
           <h3>초대 링크가 생성되었습니다 !</h3>
