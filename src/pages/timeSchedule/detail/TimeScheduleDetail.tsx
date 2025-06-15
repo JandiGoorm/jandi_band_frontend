@@ -22,6 +22,8 @@ import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
 import { PageEndpoints } from "@/constants/endpoints";
 import { useNavigate } from "react-router-dom";
 
+import ArrowBack from "@/pages/vote/style/arrowback.svg";
+
 const TimeScheduleDetail = () => {
   const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
   const { id } = useParams();
@@ -70,6 +72,12 @@ const TimeScheduleDetail = () => {
       <section className={styles.wrapper_container}>
         <form onSubmit={handleFormSubmit} className={styles.container}>
           <div className={styles.header}>
+            <img
+              src={ArrowBack}
+              alt="뒤로가기"
+              onClick={() => navigate(PageEndpoints.MYPAGE)}
+              className={styles.back_button}
+            />
             <h1 className={styles.title}>시간표 수정</h1>
             <p className={styles.description}>
               시간표 이름과 시간표 데이터를 수정할 수 있어요.

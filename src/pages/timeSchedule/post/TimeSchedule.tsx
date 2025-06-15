@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
 
+import ArrowBack from "@/pages/vote/style/arrowback.svg";
+
 const TimeSchedule = () => {
   const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
   const navigate = useNavigate();
@@ -57,6 +59,12 @@ const TimeSchedule = () => {
       <main className={styles.wrapper_container}>
         <form onSubmit={handleFormSubmit} className={styles.container}>
           <header className={styles.header}>
+            <img
+              src={ArrowBack}
+              alt="뒤로가기"
+              onClick={() => navigate(PageEndpoints.MYPAGE)}
+              className={styles.back_button}
+            />
             <h1 className={styles.title}>내 시간표 설정</h1>
             <p className={styles.description}>
               가능한 시간대를 클릭하거나 드래그하여 선택해주세요.

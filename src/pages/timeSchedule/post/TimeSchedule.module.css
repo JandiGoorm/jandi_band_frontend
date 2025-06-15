@@ -13,7 +13,14 @@
   gap: 1.5rem;
 }
 
+.back_button {
+  align-self: start;
+  margin-bottom: -2.5rem;
+  cursor: pointer;
+}
+
 .header {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
