@@ -98,43 +98,45 @@ const Club = () => {
           photos={photoData.data.content}
           refetchPhotos={refetchPhotos}
         />
-        <section className={styles.Management_container}>
-          {mine ? (
-            <DeleteModal
-              trigger={
-                <Button size="md" variant="primary">
-                  동아리 삭제
-                </Button>
-              }
-              title="동아리 삭제"
-              description="정말 해당 동아리를 삭제 하시겠어요?"
-              onDelete={() => {
-                deleteClub(undefined, {
-                  onSuccess: () => {
-                    navigate(PageEndpoints.HOME);
-                  },
-                });
-              }}
-            />
-          ) : (
-            <LeaveModal
-              trigger={
-                <Button size="md" variant="primary">
-                  탈퇴
-                </Button>
-              }
-              title="동아리 나가기"
-              description="정말 해당 동아리를 나가시겠어요?"
-              onLeave={() => {
-                leaveClub(undefined, {
-                  onSuccess: () => {
-                    navigate(PageEndpoints.HOME);
-                  },
-                });
-              }}
-            />
-          )}
-        </section>
+        {isMember && (
+          <section className={styles.Management_container}>
+            {mine ? (
+              <DeleteModal
+                trigger={
+                  <Button size="md" variant="primary">
+                    동아리 삭제
+                  </Button>
+                }
+                title="동아리 삭제"
+                description="정말 해당 동아리를 삭제 하시겠어요?"
+                onDelete={() => {
+                  deleteClub(undefined, {
+                    onSuccess: () => {
+                      navigate(PageEndpoints.HOME);
+                    },
+                  });
+                }}
+              />
+            ) : (
+              <LeaveModal
+                trigger={
+                  <Button size="md" variant="primary">
+                    탈퇴
+                  </Button>
+                }
+                title="동아리 나가기"
+                description="정말 해당 동아리를 나가시겠어요?"
+                onLeave={() => {
+                  leaveClub(undefined, {
+                    onSuccess: () => {
+                      navigate(PageEndpoints.HOME);
+                    },
+                  });
+                }}
+              />
+            )}
+          </section>
+        )}
       </main>
     </DefaultLayout>
   );
