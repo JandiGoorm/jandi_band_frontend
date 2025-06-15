@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import styles from "./SignIn.module.css";
+import InfoSection from "./InfoSection";
 
 const SignIn = () => {
   const handleKakaoLogin = useCallback(() => {
@@ -14,7 +15,7 @@ const SignIn = () => {
 
   return (
     <main className={styles.container}>
-      <section className={styles.content}>
+      <section className={styles.hero_content}>
         <img src="/logo_anti.png" alt="logo" className={styles.logo} />
 
         <div className={styles.text_container}>
@@ -36,7 +37,20 @@ const SignIn = () => {
           />
           <span>카카오 계정으로 계속하기</span>
         </button>
+        <div className={styles.scroll_indicator}>
+          ↓ 스크롤해서 더 알아보기 ↓
+        </div>
       </section>
+
+      {/* 스크롤 정보 */}
+      <InfoSection />
+
+      <div className={styles.ctaFooter}>
+        <p>우리가 모일 시간, Rhythmeet에서 찾아보세요.</p>
+        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          지금 함께하기
+        </button>
+      </div>
     </main>
   );
 };

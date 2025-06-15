@@ -22,6 +22,7 @@ import { useAuthStore } from "@/stores/authStore";
 import { queryClient } from "@/config/queryClient";
 import Modal from "@/components/modal/Modal";
 import LocationModal from "./LocationModal";
+import ReportModal from "@/components/modal/reportModal/ReportModal";
 
 const DetailContent = () => {
   const { id } = useParams();
@@ -32,8 +33,6 @@ const DetailContent = () => {
   const { data: likeData, isLoading: likeLoading } = usePromoisLike(id || "");
   const { mutate: likePromo } = usePromoLike(id || "");
 
-  console.log(fetchData);
-  console.log(likeData?.data);
   if (!id) return;
 
   if (!fetchData || fetchLoading || likeLoading || !likeData)
@@ -71,7 +70,7 @@ const DetailContent = () => {
         </section>
         <div className={styles.title_box}>
           <p className={styles.promo_title}>{fetchData.data.title}</p>
-          {mine && (
+          {mine ? (
             <div className={styles.title_button_box}>
               <Button
                 size="sm"
@@ -99,6 +98,21 @@ const DetailContent = () => {
                 }}
               />
             </div>
+          ) : (
+            <div className={styles.title_button_box}>
+              <ReportModal
+                trigger={
+                  <Button size="sm" variant="transparent">
+                    신고
+                  </Button>
+                }
+                title="게시물 신고"
+                description="신고 내역을 자세히 적어 제출해주세요!"
+                onReport={(desc) => {
+                  console.log("신고 내용:", desc);
+                }}
+              />
+            </div>
           )}
         </div>
         <section className={styles.basic_info}>
@@ -120,15 +134,15 @@ const DetailContent = () => {
               <p>이 공연을 응원하고 싶다면?</p>
               <Button variant="none" size="sm" onClick={handleLike}>
                 {likeData.data ? (
-                  <>
-                    <FaHeart size={14} style={{ marginRight: "0.25rem" }} />
-                    좋아요 취소
-                  </>
+                  <div className={styles.heart}>
+                    <FaHeart size={17} style={{ marginRight: "0.25rem" }} />
+                    <span>좋아요</span>
+                  </div>
                 ) : (
-                  <>
-                    <FaRegHeart size={14} style={{ marginRight: "0.25rem" }} />
-                    좋아요
-                  </>
+                  <div className={styles.heart}>
+                    <FaRegHeart size={17} style={{ marginRight: "0.25rem" }} />
+                    <span>좋아요</span>
+                  </div>
                 )}
               </Button>
             </section>
@@ -157,26 +171,40 @@ const DetailContent = () => {
               </div>
               <div className={styles.info}>
                 <p className={styles.info_title}>장소</p>
-                <p className={styles.info_text}>{fetchData.data.location}</p>
-                <Modal
-                  title="장소 위치 보기"
-                  trigger={
-                    <Button size="sm" variant="transparent">
-                      지도보기
-                    </Button>
-                  }
-                >
-                  <LocationModal data={fetchData.data} />
-                </Modal>
+                <div className={styles.location_box}>
+                  <p className={styles.info_text}>{fetchData.data.location}</p>
+                  <p className={styles.address}>({fetchData.data.address})</p>
+                  <Modal
+                    title="장소 위치 보기"
+                    trigger={
+                      <Button size="sm" variant="transparent">
+                        지도보기
+                      </Button>
+                    }
+                  >
+                    <LocationModal data={fetchData.data} />
+                  </Modal>
+                </div>
+                {/* <Modal
+                    title="장소 위치 보기"
+                    trigger={
+                      <Button size="sm" variant="transparent">
+                        지도보기
+                      </Button>
+                    }
+                  >
+                    <LocationModal data={fetchData.data} />
+                </Modal> */}
               </div>
             </section>
           </section>
         </section>
-        {fetchData.data.description !== null && (
-          <article className={styles.promo_content}>
-            {fetchData.data.description}
-          </article>
-        )}
+        {fetchData.data.description !== null &&
+          fetchData.data.description !== "" && (
+            <article className={styles.promo_content}>
+              {fetchData.data.description}
+            </article>
+          )}
       </section>
     </>
   );

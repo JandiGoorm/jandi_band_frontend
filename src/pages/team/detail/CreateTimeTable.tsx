@@ -16,6 +16,8 @@ import { usePatchTeamTimeTable } from "@/apis/timetable";
 import { useTeamDetail } from "./TeamDetailProvider";
 import { useAuthStore } from "@/stores/authStore";
 
+import ArrowBack from "@/pages/vote/style/arrowback.svg";
+
 const CreateTimeTable = () => {
   const [initialTimeSchedule, setInitialTimeSchedule] = useState<
     Record<Range, string[]> | undefined
@@ -65,16 +67,14 @@ const CreateTimeTable = () => {
     <div className={styles.wrapper_container}>
       <form className={styles.container} onSubmit={handleFormSubmit}>
         <header className={styles.header}>
-          <Button
-            className={styles.back_button}
-            variant="secondary"
+          <img
+            src={ArrowBack}
+            alt="뒤로가기"
             onClick={() =>
               navigate(buildPath(PageEndpoints.TEAM_DETAIL, { id: teamId }))
             }
-            type="button"
-          >
-            팀페이지로
-          </Button>
+            className={styles.back_button}
+          />
           <h1 className={styles.title}>시간표 입력</h1>
           <p className={styles.description}>
             가능한 시간대를 클릭하거나 드래그하여 선택해주세요.

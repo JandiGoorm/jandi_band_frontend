@@ -21,7 +21,11 @@ import MyClubList from "@/pages/club/more/MyClubList";
 import ClubList from "@/pages/club/more/ClubList";
 import PhotoList from "@/pages/club/more/PhotoList";
 
-export const publicRoutes = [PageEndpoints.SIGN_IN, PageEndpoints.CALLBACK];
+export const publicRoutes = [
+  PageEndpoints.SIGN_IN,
+  PageEndpoints.CALLBACK,
+  PageEndpoints.SIGN_UP,
+];
 
 export const routes = [
   { path: PageEndpoints.SIGN_IN, element: <SignIn /> },

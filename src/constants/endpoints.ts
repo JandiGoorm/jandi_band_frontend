@@ -74,4 +74,10 @@ export enum ApiEndpotins {
 
   CLUB_PHOTO = "/clubs/:id/photo",
   CLUB_PHOTO_DETAIL = "/clubs/:clubId/photo/:photoId",
+  
+  COMMENT = "/promos/:id/comments",
+  COMMENT_DETAIL = "/promos/comments/:id",
+
+  REPORT_PROMO = "/promos/reports",
+  REPORT_COMMENT = "/promos/comments/reports",
 }

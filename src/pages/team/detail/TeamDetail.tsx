@@ -60,6 +60,7 @@ const TeamDetail = () => {
           <ScheduleBoard />
         </div>
       </section>
+
       <section className={styles.footer_button_container}>
         {isMember && (
           <LeaveModal

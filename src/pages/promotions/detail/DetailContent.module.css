@@ -4,6 +4,7 @@
   gap: 1rem;
   margin: 2rem 0 0 0;
 }
+
 .promo_button {
   width: auto;
   padding: 0.25rem 2rem;
@@ -54,6 +55,7 @@
   width: 25%;
   min-width: 200px;
   aspect-ratio: 376 / 504;
+  object-fit: cover;
   border-radius: var(--radius-xl);
 }
 
@@ -80,14 +82,22 @@
   background-color: var(--color-comment-bg);
   padding: 0.5rem 1rem;
   border-radius: var(--radius-input);
+  color: #6c6c6c;
 }
+
+.heart {
+  display: flex;
+  align-items: center;
+  color: #6c6c6c;
+}
+
 .info_box {
   display: flex;
   flex-direction: column;
   text-align: center;
   flex: 1;
   gap: 1.5rem;
-  margin: 1rem 0;
+  margin: 2.3rem 2rem 2rem 1rem;
   font-size: var(--text-xl);
 }
 
@@ -117,7 +127,20 @@
 .promo_content {
   background-color: var(--color-comment-bg);
   border-radius: var(--radius-xl);
-  padding: 1rem 1rem;
+  padding: 1.4rem 1.5rem;
   min-height: 5rem;
   white-space: pre-line;
+  margin-top: 1rem;
+}
+
+.address {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.location_box {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
