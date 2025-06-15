@@ -20,7 +20,11 @@ import PromotionMap from "@/pages/promotions/map/PromotionMap";
 import MyClubList from "@/pages/club/more/MyClubList";
 import ClubList from "@/pages/club/more/ClubList";
 
-export const publicRoutes = [PageEndpoints.SIGN_IN, PageEndpoints.CALLBACK];
+export const publicRoutes = [
+  PageEndpoints.SIGN_IN,
+  PageEndpoints.CALLBACK,
+  PageEndpoints.SIGN_UP,
+];
 
 export const routes = [
   { path: PageEndpoints.SIGN_IN, element: <SignIn /> },
