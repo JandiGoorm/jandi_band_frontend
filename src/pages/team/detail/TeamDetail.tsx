@@ -51,7 +51,7 @@ const TeamDetail = () => {
             >
               내 시간표 입력
             </Button>
-            <InviteTeam />
+            <InviteTeam nameValue={team.name} />
           </div>
         )}
       </header>

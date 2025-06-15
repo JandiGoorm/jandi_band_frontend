@@ -5,7 +5,16 @@ import { queryClient } from "./config/queryClient";
 import { routes, publicRoutes } from "@/routes/Routes";
 import PrivateRoute from "@/routes/PrivateRoute";
 
+import { useEffect } from "react";
+
 function App() {
+  // 카카오 메세지 공유를 위한 추가
+  useEffect(() => {
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      window.Kakao.init(import.meta.env.VITE_KAKAO_JAVASCRIPT_KEY);
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalToast />

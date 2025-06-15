@@ -29,7 +29,7 @@ export const useGetMyTeamList = () => {
 };
 
 export const useInviteTeam = (id: string) => {
-  return usePost<void, { link: string }>(
+  return usePost<void, { code: string }>(
     buildPath(ApiEndpotins.TEAM_INVITE, { id })
   );
 };

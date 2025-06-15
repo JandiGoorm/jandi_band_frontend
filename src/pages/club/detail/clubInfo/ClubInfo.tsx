@@ -75,6 +75,7 @@ const ClubInfo = ({
         </div>
 
         <div className={styles.left_title}>
+          
           {isMember && <InviteModal />}
 
           {mine && (
