@@ -4,12 +4,13 @@
   flex-direction: column;
   gap: 0.5rem;
 
-  width: 8rem;
+  width: 10rem;
   padding: 0.5rem;
   aspect-ratio: 1;
 
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
+  cursor: pointer;
 }
 
 .time_table_ui {

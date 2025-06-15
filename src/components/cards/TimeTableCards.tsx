@@ -14,6 +14,8 @@ const TimeTableCards = ({ timeTable, ...props }: TimeTableCardsProps) => {
     return new Set(shuffled.slice(0, 10));
   }, []);
 
+  console.log(timeTable);
+
   return (
     <section className={styles.container} {...props}>
       <h3 className={styles.title}>{timeTable.name}</h3>
