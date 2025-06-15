@@ -16,6 +16,8 @@ import { PageEndpoints } from "@/constants/endpoints";
 // 내 정보 불러오기
 import { useGetInfo } from "@/apis/mypage";
 import TimeTableCards from "@/components/cards/TimeTableCards";
+import { buildPath } from "@/utils/buildPath";
+import type { TimeTableResponse } from "@/types/timeTable";
 
 const MyPage = () => {
   const { data: myInfoResponse } = useGetInfo();
@@ -62,10 +64,6 @@ const MyPage = () => {
                 <dt>이름</dt>
                 <dd>{myInfo.nickname}</dd>
               </div>
-              {/* <div>
-                <dt>닉네임</dt>
-                <dd>김개똥</dd>
-              </div> */}
               <div>
                 <dt>포지션 </dt>
                 <dd>{positionLabelMap[myInfo.position]}</dd>
@@ -79,7 +77,7 @@ const MyPage = () => {
         </section>
 
         <section className={styles.team_box}>
-          <div>
+          <div className={styles.slide_title_box}>
             <img src={MusicNote2} alt="음표" />
             <h2>참여 팀 목록</h2>
           </div>
@@ -92,7 +90,7 @@ const MyPage = () => {
 
         <section className={styles.timetable_box}>
           <header className={styles.timetable_title}>
-            <div>
+            <div className={styles.slide_title_box}>
               <img src={MusicNote1} alt="음표" />
               <h2>내 시간표 관리</h2>
             </div>
@@ -104,19 +102,20 @@ const MyPage = () => {
               시간표 추가
             </Button>
           </header>
-
-          <Slide items={myTimeTables.data} size="sm">
-            {(item) => <TimeTableCards timeTable={item} />}
-          </Slide>
-
-          {/* <Slide items={myTimeTables.data} size="sm">
+          <Slide<TimeTableResponse> items={myTimeTables.data} size="sm">
             {(item) => (
-              <div className={styles.itemCard}>
-                <h3>{item.name}</h3>
-                <p>ID: {item.id}</p>
-              </div>
+              <TimeTableCards
+                timeTable={item}
+                onClick={() => {
+                  navigate(
+                    buildPath(PageEndpoints.MY_TIMETABLE_DETAIL, {
+                      id: item.id,
+                    })
+                  );
+                }}
+              />
             )}
-          </Slide> */}
+          </Slide>
         </section>
       </main>
     </DefaultLayout>

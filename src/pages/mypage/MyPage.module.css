@@ -1,6 +1,9 @@
 .mypage_container {
   /* margin: 0 auto; */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .mypage_container h2 {
@@ -69,20 +72,11 @@
   font-weight: bold;
 }
 
-.timetable_box {
-  margin-top: 5rem;
-}
-
 .timetable_title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-}
-
-.timetable_title div {
-  display: flex;
-  align-items: center;
 }
 
 .timetable_title img {
@@ -100,12 +94,12 @@
   margin-top: 2rem;
 }
 
-.team_box div {
+.slide_title_box {
   display: flex;
   text-align: center;
 }
 
-.team_box div img {
+.slide_title_box img {
   width: 25px;
   height: 23px;
   margin-right: 0.3rem;

@@ -28,7 +28,24 @@ const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
                 onClick={() =>
                   navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
                 }
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (
+                    target.src !==
+                    window.location.origin + "/basic_club.png"
+                  ) {
+                    target.src = "./basic_club.png";
+                  }
+                }}
               />
+              <div
+                className={styles.overlay}
+                onClick={() =>
+                  navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+                }
+              >
+                {item.name}
+              </div>
             </div>
           </div>
         )}

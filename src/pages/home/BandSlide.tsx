@@ -26,9 +26,6 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
                 <img
                   src={item.photoUrl || "./basic_club.png"}
                   className={styles.band_image}
-                  onClick={() =>
-                    navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
-                  }
                   onError={(e) => {
                     const target = e.currentTarget;
                     if (
@@ -39,7 +36,14 @@ const BandSlide = ({ club }: { club: ClubListResponse[] }) => {
                     }
                   }}
                 />
-                <div className={styles.overlay}>{item.name}</div>
+                <div
+                  className={styles.overlay}
+                  onClick={() =>
+                    navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+                  }
+                >
+                  {item.name}
+                </div>
               </div>
             </div>
           )}

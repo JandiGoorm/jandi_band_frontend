@@ -5,36 +5,35 @@ import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
 import Input from "@/components/input/Input";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import usePagination from "@/hooks/usePagination";
-import { useGetPromoList } from "@/apis/promotion";
+import { useGetPromoList, useSearchPromotion } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
 import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
 
-const regions = [
-  "서울",
-  "부산",
-  "대구",
-  "인천",
-  "광주",
-  "울산",
-  "경기",
-  "강원",
-];
-
 const PromotionMain = () => {
   const navigate = useNavigate();
-  const [showRegions, setShowRegions] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null); // 🔹 ref 선언
+  const [searchKeyword, setSearchKeyword] = useState(""); // 🔹 검색 버튼 눌렀을 때만 업데이트
   const { currentPage, totalPage, setTotalPage, handlePageChange } =
     usePagination();
-  const { data: promoData, isLoading: promoLoading } = useGetPromoList({
+
+  const { data: defaultPromoData, isLoading: defaultLoading } = useGetPromoList(
+    {
+      page: currentPage - 1,
+      size: 10,
+    }
+  );
+
+  const { data: searchData, isLoading: searchLoading } = useSearchPromotion({
+    keyword: searchKeyword,
     page: currentPage - 1,
     size: 10,
   });
-  const toggleRegions = () => {
-    setShowRegions((prev) => !prev);
-  };
+
+  const promoData = searchKeyword ? searchData : defaultPromoData;
+  const isLoading = searchKeyword ? searchLoading : defaultLoading;
 
   useEffect(() => {
     if (promoData?.data.pageInfo.totalPages !== undefined) {
@@ -42,7 +41,14 @@ const PromotionMain = () => {
     }
   }, [promoData, setTotalPage]);
 
-  if (!promoData || promoLoading) return <Loading />;
+  if (!promoData || isLoading) return <Loading />;
+
+  const handleSearch = () => {
+    if (inputRef.current) {
+      setSearchKeyword(inputRef.current.value); // 🔹 버튼 클릭 시 검색어 업데이트
+    }
+  };
+
   return (
     <DefaultLayout>
       <main className={styles.container}>
@@ -53,44 +59,24 @@ const PromotionMain = () => {
               variant="transparent"
               onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
             >
-              {" "}
-              지도보기{" "}
+              지도보기
             </Button>
-            <Button
-              size="lg"
-              variant="transparent"
-              onClick={toggleRegions}
-              isClicked={showRegions}
-            >
-              지역별
-            </Button>
-            <Button variant="transparent" size="lg">
-              {" "}
-              날짜선택{" "}
-            </Button>
-            {/* <Input inputSize="lg" style={{ flex: 1, minWidth: "10rem" }} /> */}
           </div>
-          <div>
-            <Input inputSize="lg" style={{ flex: 1, minWidth: "10rem" }} />
-            <Button
-              variant="primary"
-              onClick={() => navigate("/promotion/post")}
-              size="lg"
-            >
-              등록
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            <Input
+              inputSize="lg"
+              style={{ flex: 1, minWidth: "10rem" }}
+              ref={inputRef} // 🔹 ref 할당
+              placeholder="제목, 장소로 검색"
+            />
+            <Button variant="transparent" size="lg" onClick={handleSearch}>
+              검색
             </Button>
           </div>
         </nav>
-        {showRegions && (
-          <nav className={styles.region_buttons}>
-            {regions.map((region) => (
-              <Button key={region} variant="transparent">
-                {region}
-              </Button>
-            ))}
-          </nav>
-        )}
+
         <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
+
         <section className={styles.promotion_container}>
           {promoData.data.content.map((item) => {
             const status = getEventStatus(item.eventDatetime);
@@ -117,6 +103,7 @@ const PromotionMain = () => {
                   <img
                     className={styles.promotion_img}
                     src={item.photoUrls[0]}
+                    alt={item.title}
                   />
                 </div>
                 <p className={styles.promotion_title}>{item.title}</p>
@@ -128,12 +115,22 @@ const PromotionMain = () => {
             );
           })}
         </section>
+
         <section className={styles.page_navigate_box}>
           <Pagination
             currentPage={currentPage}
             totalPage={totalPage}
             callback={handlePageChange}
           />
+        </section>
+        <section className={styles.post_button_box}>
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={() => navigate("/promotion/post")}
+          >
+            홍보물 등록
+          </Button>
         </section>
       </main>
     </DefaultLayout>

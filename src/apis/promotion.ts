@@ -101,3 +101,18 @@ export const usePostComment = (id: string) => {
 export const useDeleteComment = (id: string) => {
   return useDelete(buildPath(ApiEndpotins.COMMENT_DETAIL, { id }));
 };
+
+export const useSearchPromotion = ({
+  keyword,
+  page = 0,
+  size = 20,
+}: {
+  keyword: string;
+  page?: number;
+  size?: number;
+}) => {
+  return useFetch<PagiNationResponse<PromotionListResponse>>(
+    ApiEndpotins.PROMOTION_SEARCH,
+    { keyword: keyword, page: page, size: size }
+  );
+};

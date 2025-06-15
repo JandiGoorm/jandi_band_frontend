@@ -106,3 +106,9 @@
   justify-content: center;
   margin: 2rem 0;
 }
+
+.post_button_box {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}

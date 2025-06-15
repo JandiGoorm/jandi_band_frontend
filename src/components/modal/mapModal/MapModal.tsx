@@ -10,12 +10,20 @@ import type { kakaoLocationRequest } from "@/types/kakao";
 import clsx from "clsx";
 
 interface MapModalProps {
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
   title: string;
   onSubmit: (selectedPlace: kakaoLocationRequest | null) => void;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-const MapModal = ({ trigger, title, onSubmit }: MapModalProps) => {
+const MapModal = ({
+  trigger,
+  title,
+  onSubmit,
+  open,
+  onOpenChange,
+}: MapModalProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { searchKeyword } = useKakao();
 
@@ -34,7 +42,6 @@ const MapModal = ({ trigger, title, onSubmit }: MapModalProps) => {
     try {
       const results = await searchKeyword(keyword);
       if (results.length > 0) {
-        console.log(results);
         setSearchResult(results);
       } else {
         alert("검색 결과가 없습니다.");
@@ -53,7 +60,12 @@ const MapModal = ({ trigger, title, onSubmit }: MapModalProps) => {
   };
 
   return (
-    <Modal trigger={trigger} title={title}>
+    <Modal
+      trigger={trigger}
+      title={title}
+      open={open}
+      onOpenChange={onOpenChange}
+    >
       <div className={styles.container}>
         <div className={styles.input_box}>
           <Input
@@ -67,24 +79,22 @@ const MapModal = ({ trigger, title, onSubmit }: MapModalProps) => {
           </Button>
         </div>
         {searchResult && (
-          <>
-            <div className={styles.search_result_box}>
-              {searchResult.map((item) => (
-                <div
-                  className={clsx(styles.place_box, {
-                    [styles.selected]: selectedPlace?.id === item.id,
-                  })}
-                  key={item.id}
-                  onClick={() => handlePlaceClick(item)}
-                >
-                  <p className={styles.place_name}>{item.place_name}</p>
-                  <p className={styles.place_address}>
-                    {item.road_address_name}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </>
+          <div className={styles.search_result_box}>
+            {searchResult.map((item) => (
+              <div
+                className={clsx(styles.place_box, {
+                  [styles.selected]: selectedPlace?.id === item.id,
+                })}
+                key={item.id}
+                onClick={() => handlePlaceClick(item)}
+              >
+                <p className={styles.place_name}>{item.place_name}</p>
+                <p className={styles.place_address}>
+                  {item.road_address_name || item.address_name}
+                </p>
+              </div>
+            ))}
+          </div>
         )}
 
         <div className={styles.map_box}>

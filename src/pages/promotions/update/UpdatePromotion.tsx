@@ -44,6 +44,7 @@ type FormData = z.infer<typeof schema>;
 
 const UpdatePromotion = () => {
   const { id } = useParams();
+  const [isMapOpen, setIsMapOpen] = useState(false);
   const navigate = useNavigate();
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const [imageURL, setImageURL] = useState<string | null>(null);
@@ -218,16 +219,17 @@ const UpdatePromotion = () => {
                   readOnly
                   {...register("location")}
                   defaultValue={postData.data.location}
+                  onClick={() => setIsMapOpen(true)}
                   className={clsx(errors.location && styles.inputError)}
                 />
                 <MapModal
                   title="장소 수정하기"
-                  trigger={
-                    <Button variant="transparent" size="sm">
-                      장소 수정
-                    </Button>
-                  }
-                  onSubmit={(place) => SetAddress(place)}
+                  open={isMapOpen}
+                  onOpenChange={setIsMapOpen}
+                  onSubmit={(place) => {
+                    SetAddress(place);
+                    setIsMapOpen(false);
+                  }}
                 />
               </div>
             </aside>

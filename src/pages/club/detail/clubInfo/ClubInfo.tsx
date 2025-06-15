@@ -18,9 +18,11 @@ import EditMemberModal from "./EditMemberModal";
 const ClubInfo = ({
   club,
   memberData,
+  isMember,
 }: {
   club: ClubDetailResponse;
   memberData: ClubMemberResponse;
+  isMember: boolean;
 }) => {
   const { user } = useAuthStore();
   const mine = user?.id === club.representativeId;
@@ -73,8 +75,7 @@ const ClubInfo = ({
         </div>
 
         <div className={styles.left_title}>
-          {/* 컴포넌트 아니고, 클럽 Info 내에 있는 모달임. */}
-          <InviteModal nameValue={club.name} />
+          {isMember && <InviteModal nameValue={club.name} />}
 
           {mine && (
             <>
