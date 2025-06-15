@@ -27,6 +27,7 @@ export const secureRoutes = [
   { method: Method.POST, url: ApiEndpotins.CLUB_INVITE },
   { method: Method.POST, url: ApiEndpotins.JOIN_CLUB },
   { method: Method.GET, url: ApiEndpotins.TEAM_DETAIL },
+  { method: Method.DELETE, url: ApiEndpotins.TEAM_DETAIL },
   { method: Method.POST, url: ApiEndpotins.TEAM_INVITE },
   { method: Method.POST, url: ApiEndpotins.JOIN_TEAM },
   { method: Method.DELETE, url: ApiEndpotins.LEAVE_TEAM },

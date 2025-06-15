@@ -49,3 +49,7 @@ export const useJoinTeam = (code: string) => {
 export const useLeaveTeam = (id: string) => {
   return useDelete(buildPath(ApiEndpotins.LEAVE_TEAM, { id }));
 };
+
+export const useDeleteTeam = (id: string) => {
+  return useDelete(buildPath(ApiEndpotins.TEAM_DETAIL, { id }));
+};
