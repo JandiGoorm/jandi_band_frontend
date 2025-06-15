@@ -96,7 +96,6 @@ const InviteModal = ({ data, mutate, type, nameValue }: InviteModalProps) => {
 
                 const templateId = type === "club" ? 121060 : 121500;
                 const nameKey = type === "club" ? "clubName" : "teamName";
-                // const nameValue = type === "club" ? "잔디밴드" : "구준표금잔디"; // 여기 props로 변경 예정
 
                 window.Kakao.Link.sendCustom({
                   templateId,
