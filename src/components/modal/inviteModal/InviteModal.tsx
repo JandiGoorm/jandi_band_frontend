@@ -9,7 +9,7 @@ import styles from "./InviteModal.module.css";
 import kakao from "@/pages/vote/style/kakao.svg";
 
 interface InviteModalProps {
-  data: AxiosResponse<ApiResponse<{ link: string }>> | undefined;
+  data: AxiosResponse<ApiResponse<{ code: string }>> | undefined;
   mutate: () => void;
   type: "club" | "team";
 }
@@ -25,6 +25,13 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
     if (!data) return;
     setCopied(false);
   }, [data]);
+
+  // 초대코드로 링크 조립
+  const inviteCode = data?.data?.data.code;
+  const baseUrl = import.meta.env.VITE_FRONT_URL ?? "http://localhost:5173";
+  const fullLink = inviteCode
+    ? `${baseUrl}/invite/${type}/accept?code=${inviteCode}`
+    : "";
 
   return (
     // 모달로 유도하는 버튼
@@ -46,14 +53,21 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
             <Input
               readOnly
               type="text"
-              value={data?.data?.data.link}
+              // value={data?.data?.data.link}
+              value={fullLink}
               className={styles.input}
             />
             <Button
               className={styles.copy_btn}
+              // onClick={() => {
+              //   setCopied(true);
+              //   navigator.clipboard.writeText(data?.data?.data.link);
+              // }}
               onClick={() => {
-                setCopied(true);
-                navigator.clipboard.writeText(data?.data?.data.link);
+                if (fullLink) {
+                  setCopied(true);
+                  navigator.clipboard.writeText(fullLink);
+                }
               }}
             >
               {copied ? "복사됨!" : "복사"}
