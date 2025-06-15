@@ -5,36 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
 import Input from "@/components/input/Input";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import usePagination from "@/hooks/usePagination";
 import { useGetPromoList } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
 import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
 
-const regions = [
-  "서울",
-  "부산",
-  "대구",
-  "인천",
-  "광주",
-  "울산",
-  "경기",
-  "강원",
-];
-
 const PromotionMain = () => {
   const navigate = useNavigate();
-  const [showRegions, setShowRegions] = useState(false);
   const { currentPage, totalPage, setTotalPage, handlePageChange } =
     usePagination();
   const { data: promoData, isLoading: promoLoading } = useGetPromoList({
     page: currentPage - 1,
     size: 10,
   });
-  const toggleRegions = () => {
-    setShowRegions((prev) => !prev);
-  };
 
   useEffect(() => {
     if (promoData?.data.pageInfo.totalPages !== undefined) {
@@ -56,14 +41,6 @@ const PromotionMain = () => {
               {" "}
               지도보기{" "}
             </Button>
-            <Button
-              size="lg"
-              variant="transparent"
-              onClick={toggleRegions}
-              isClicked={showRegions}
-            >
-              지역별
-            </Button>
             <Button variant="transparent" size="lg">
               {" "}
               날짜선택{" "}
@@ -81,15 +58,6 @@ const PromotionMain = () => {
             </Button>
           </div>
         </nav>
-        {showRegions && (
-          <nav className={styles.region_buttons}>
-            {regions.map((region) => (
-              <Button key={region} variant="transparent">
-                {region}
-              </Button>
-            ))}
-          </nav>
-        )}
         <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
         <section className={styles.promotion_container}>
           {promoData.data.content.map((item) => {
