@@ -7,6 +7,7 @@ type DropdownSize = "sm" | "md";
 interface DropdownItem {
   label: string;
   onSelect: () => void;
+  icon?: React.ReactNode;
 }
 
 interface DropdownProps {
@@ -34,6 +35,7 @@ const Dropdown: React.FC<DropdownProps> = ({ size = "md", trigger, items }) => {
               onSelect={item.onSelect}
               className={clsx(styles.dropdown_item, sizeClass)}
             >
+              {item.icon && <span className={styles.icon}>{item.icon}</span>}
               {item.label}
             </DropdownMenu.Item>
           ))}

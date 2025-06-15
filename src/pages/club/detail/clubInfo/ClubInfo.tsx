@@ -78,7 +78,6 @@ const ClubInfo = ({
           {mine && (
             <>
               <Dropdown
-                size="sm"
                 trigger={<Button size="lg">동아리 관리</Button>}
                 items={[
                   {

@@ -7,33 +7,51 @@ import { photoCreateFormSchema } from "./constants";
 import { z } from "zod";
 import Button from "@/components/button/Button";
 import { useRef } from "react";
+import { usePostPhoto } from "@/apis/photo";
+import { useParams } from "react-router-dom";
 
-const PhotoModal = () => {
+const PhotoModal = ({ refetchPhotos }: { refetchPhotos: () => void }) => {
+  const { id } = useParams();
+  const { mutate: postPhoto } = usePostPhoto(id || "");
   const formController = useForm({
     resolver: zodResolver(photoCreateFormSchema),
   });
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const onSubmit = (data: z.infer<typeof photoCreateFormSchema>) => {
-    console.log(data);
-  };
   const {
     formState: { errors },
     watch,
+    reset,
   } = formController;
 
   const selectedFiles = watch("photo");
+
+  const onSubmit = (data: z.infer<typeof photoCreateFormSchema>) => {
+    if (!data.photo || data.photo.length === 0) return;
+
+    const formData = new FormData();
+    formData.append("image", data.photo[0]);
+
+    postPhoto(formData, {
+      onSuccess: () => {
+        reset();
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        refetchPhotos();
+      },
+    });
+  };
 
   return (
     <form
       className={styles.container}
       onSubmit={formController.handleSubmit(onSubmit)}
     >
-      <Field label="" error={errors.photo}>
+      <Field label="사진 선택하기" error={errors.photo} isRequired>
         <Input
           type="file"
           accept="image/*"
-          multiple
           inputSize="sm"
           {...formController.register("photo")}
           ref={(e) => {
@@ -52,12 +70,9 @@ const PhotoModal = () => {
             사진 선택
           </Button>
           <div className={styles.file_list}>
-            {selectedFiles &&
-              Array.from(selectedFiles).map((file, index) => (
-                <div key={index} className={styles.file_name}>
-                  {file.name}
-                </div>
-              ))}
+            {selectedFiles && (
+              <div className={styles.file_name}>{selectedFiles[0]?.name}</div>
+            )}
           </div>
         </div>
       </Field>

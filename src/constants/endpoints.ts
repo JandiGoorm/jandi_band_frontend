@@ -21,6 +21,7 @@ export enum PageEndpoints {
   INVITE = "/invite/:type/accept",
   MY_CLUB_LIST = "/clubs/my",
   CLUB_LIST = "/clubs",
+  PHOTO_LIST = "/photos/:id",
 }
 
 export enum ApiEndpotins {
@@ -71,6 +72,9 @@ export enum ApiEndpotins {
   TEAM_SCHEDULES = "/teams/:teamId/practice-schedules",
   DELETE_TEAM_SCHEDULES = "/teams/:teamId/practice-schedules/:scheduleId", // 팀 연습 일정 삭제
 
+  CLUB_PHOTO = "/clubs/:id/photo",
+  CLUB_PHOTO_DETAIL = "/clubs/:clubId/photo/:photoId",
+  
   COMMENT = "/promos/:id/comments",
   COMMENT_DETAIL = "/promos/comments/:id",
 
