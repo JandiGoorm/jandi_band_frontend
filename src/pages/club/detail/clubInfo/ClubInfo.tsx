@@ -75,8 +75,7 @@ const ClubInfo = ({
         </div>
 
         <div className={styles.left_title}>
-          
-          {isMember && <InviteModal />}
+          {isMember && <InviteModal nameValue={club.name} />}
 
           {mine && (
             <>
