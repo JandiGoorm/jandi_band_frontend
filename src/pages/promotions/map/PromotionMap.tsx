@@ -155,6 +155,15 @@ const PromotionMap = () => {
             callback={handlePageChange}
           />
         </section>
+        <section className={styles.post_button_box}>
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={() => navigate("/promotion/post")}
+          >
+            홍보물 등록
+          </Button>
+        </section>
       </main>
     </DefaultLayout>
   );

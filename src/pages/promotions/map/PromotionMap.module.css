@@ -64,3 +64,8 @@
   margin-bottom: -2.5rem;
   cursor: pointer;
 }
+.post_button_box {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
