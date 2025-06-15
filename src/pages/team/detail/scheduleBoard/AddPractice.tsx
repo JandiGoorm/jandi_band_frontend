@@ -68,7 +68,18 @@ export default function AddPractice({ setOpen }: Props) {
   } = form;
 
   // 서버로 전송하기 위해 형식 변경 (서버와 일치)
-  const formatToServer = (date: Date) => date.toISOString().slice(0, 19);
+  const formatToServer = (date: Date) => {
+    const pad = (n: number) => n.toString().padStart(2, "0");
+
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1);
+    const day = pad(date.getDate());
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    const seconds = pad(date.getSeconds());
+
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+  };
 
   const { mutate: postSchedules } = usePostTeamSchedules(teamId!);
 
