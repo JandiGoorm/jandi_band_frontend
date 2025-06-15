@@ -78,9 +78,9 @@ const PromotionMain = () => {
             >
               지도보기
             </Button>
-            <Button variant="transparent" size="lg">
+            {/* <Button variant="transparent" size="lg">
               날짜선택
-            </Button>
+            </Button> */}
           </div>
           <div>
             <Input
