@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
 import Input from "@/components/input/Input";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import usePagination from "@/hooks/usePagination";
 import { useGetPromoList, useSearchPromotion } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
@@ -14,57 +14,40 @@ import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
 
 const PromotionMain = () => {
   const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null); // 🔹 ref 선언
+  const [searchKeyword, setSearchKeyword] = useState(""); // 🔹 검색 버튼 눌렀을 때만 업데이트
   const { currentPage, totalPage, setTotalPage, handlePageChange } =
     usePagination();
 
-  const [keyword, setKeyword] = useState("");
-  const [debouncedKeyword, setDebouncedKeyword] = useState("");
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedKeyword(keyword.trim());
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [keyword]);
-
-  useEffect(() => {
-    handlePageChange(1);
-  }, [debouncedKeyword]);
-
-  const { data: promoData, isLoading: promoLoading } = useGetPromoList({
-    page: currentPage - 1,
-    size: 10,
-  });
-
-  const { data: searchResult, isLoading: searchLoading } = useSearchPromotion({
-    keyword: debouncedKeyword,
-    page: currentPage - 1,
-    size: 10,
-  });
-
-  useEffect(() => {
-    if (
-      !debouncedKeyword &&
-      promoData?.data.pageInfo.totalPages !== undefined
-    ) {
-      setTotalPage(promoData.data.pageInfo.totalPages);
-    } else if (
-      debouncedKeyword &&
-      searchResult?.data.pageInfo.totalPages !== undefined
-    ) {
-      setTotalPage(searchResult.data.pageInfo.totalPages);
+  const { data: defaultPromoData, isLoading: defaultLoading } = useGetPromoList(
+    {
+      page: currentPage - 1,
+      size: 10,
     }
-  }, [promoData, searchResult, debouncedKeyword, setTotalPage]);
+  );
 
-  if (
-    (debouncedKeyword && searchLoading) ||
-    (!debouncedKeyword && promoLoading)
-  )
-    return <Loading />;
+  const { data: searchData, isLoading: searchLoading } = useSearchPromotion({
+    keyword: searchKeyword,
+    page: currentPage - 1,
+    size: 10,
+  });
 
-  const dataToShow = debouncedKeyword
-    ? searchResult?.data.content
-    : promoData?.data.content;
+  const promoData = searchKeyword ? searchData : defaultPromoData;
+  const isLoading = searchKeyword ? searchLoading : defaultLoading;
+
+  useEffect(() => {
+    if (promoData?.data.pageInfo.totalPages !== undefined) {
+      setTotalPage(promoData.data.pageInfo.totalPages);
+    }
+  }, [promoData, setTotalPage]);
+
+  if (!promoData || isLoading) return <Loading />;
+
+  const handleSearch = () => {
+    if (inputRef.current) {
+      setSearchKeyword(inputRef.current.value); // 🔹 버튼 클릭 시 검색어 업데이트
+    }
+  };
 
   return (
     <DefaultLayout>
@@ -78,24 +61,16 @@ const PromotionMain = () => {
             >
               지도보기
             </Button>
-            {/* <Button variant="transparent" size="lg">
-              날짜선택
-            </Button> */}
           </div>
-          <div>
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
             <Input
               inputSize="lg"
-              style={{ flex: 1 }}
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              placeholder="검색어 입력"
+              style={{ flex: 1, minWidth: "10rem" }}
+              ref={inputRef} // 🔹 ref 할당
+              placeholder="제목, 장소로 검색"
             />
-            <Button
-              variant="primary"
-              onClick={() => navigate("/promotion/post")}
-              size="lg"
-            >
-              등록
+            <Button variant="transparent" size="lg" onClick={handleSearch}>
+              검색
             </Button>
           </div>
         </nav>
@@ -103,59 +78,60 @@ const PromotionMain = () => {
         <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
 
         <section className={styles.promotion_container}>
-          {dataToShow?.length ? (
-            dataToShow.map((item) => {
-              const status = getEventStatus(item.eventDatetime);
-              return (
-                <article
-                  className={styles.promotion_box}
-                  key={item.id}
-                  onClick={() =>
-                    navigate(
-                      buildPath(PageEndpoints.PROMOTION_DETAIL, { id: item.id })
-                    )
-                  }
+          {promoData.data.content.map((item) => {
+            const status = getEventStatus(item.eventDatetime);
+            return (
+              <article
+                className={styles.promotion_box}
+                key={item.id}
+                onClick={() =>
+                  navigate(
+                    buildPath(PageEndpoints.PROMOTION_DETAIL, { id: item.id })
+                  )
+                }
+              >
+                <span
+                  className={styles.promo_button}
+                  style={{
+                    backgroundColor: status.backgroundColor,
+                    color: status.color,
+                  }}
                 >
-                  <span
-                    className={styles.promo_button}
-                    style={{
-                      backgroundColor: status.backgroundColor,
-                      color: status.color,
-                    }}
-                  >
-                    {status.text}
-                  </span>
-                  <div>
-                    <img
-                      className={styles.promotion_img}
-                      src={item.photoUrls[0]}
-                      alt={item.title}
-                    />
-                  </div>
-                  <p className={styles.promotion_title}>{item.title}</p>
-                  <p className={styles.promotion_sub}>
-                    {formatPromotionDate(item.eventDatetime)}
-                  </p>
-                  <p className={styles.promotion_sub}>{item.location}</p>
-                </article>
-              );
-            })
-          ) : (
-            <p style={{ textAlign: "center", width: "100%" }}>
-              검색 결과가 없습니다.
-            </p>
-          )}
+                  {status.text}
+                </span>
+                <div>
+                  <img
+                    className={styles.promotion_img}
+                    src={item.photoUrls[0]}
+                    alt={item.title}
+                  />
+                </div>
+                <p className={styles.promotion_title}>{item.title}</p>
+                <p className={styles.promotion_sub}>
+                  {formatPromotionDate(item.eventDatetime)}
+                </p>
+                <p className={styles.promotion_sub}>{item.location}</p>
+              </article>
+            );
+          })}
         </section>
 
-        {totalPage > 1 && (
-          <section className={styles.page_navigate_box}>
-            <Pagination
-              currentPage={currentPage}
-              totalPage={totalPage}
-              callback={handlePageChange}
-            />
-          </section>
-        )}
+        <section className={styles.page_navigate_box}>
+          <Pagination
+            currentPage={currentPage}
+            totalPage={totalPage}
+            callback={handlePageChange}
+          />
+        </section>
+        <section className={styles.post_button_box}>
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={() => navigate("/promotion/post")}
+          >
+            홍보물 등록
+          </Button>
+        </section>
       </main>
     </DefaultLayout>
   );
