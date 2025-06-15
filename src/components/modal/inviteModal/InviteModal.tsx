@@ -1,5 +1,4 @@
 // 해당 컴포넌트는 동아리 초대 및 팀 초대를 지원하는 모달 컴포넌트 입니다.
-
 import type { ApiResponse } from "@/apis/types";
 import Button from "@/components/button/Button";
 import Input from "@/components/input/Input";
@@ -9,23 +8,51 @@ import Modal from "../Modal";
 import styles from "./InviteModal.module.css";
 import kakao from "@/pages/vote/style/kakao.svg";
 
-interface InviteModalProps {
-  data: AxiosResponse<ApiResponse<{ link: string }>> | undefined;
-  mutate: () => void;
-  type: "club" | "team";
+declare global {
+  interface Window {
+    // Kakao: any;
+    Kakao: {
+      init: (key: string) => void;
+      isInitialized: () => boolean;
+      Link: {
+        sendCustom: (options: {
+          templateId: number;
+          templateArgs?: Record<string, string>;
+        }) => void;
+      };
+    };
+  }
 }
 
-const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
-  const [copied, setCopied] = useState(false);
+interface InviteModalProps {
+  data: AxiosResponse<ApiResponse<{ code: string }>> | undefined;
+  mutate: () => void;
+  type: "club" | "team";
+  nameValue: string; // props로 이름 변경하기 위해 추가함
+}
 
+const InviteModal = ({ data, mutate, type, nameValue }: InviteModalProps) => {
+  const [copied, setCopied] = useState(false); // 복사 버튼 클릭시 복사됨!
+
+  // 모달에 동아리초대,팀초대 표시 위해서
   const name = type === "club" ? "동아리" : "팀";
 
+  //  새 링크 생성시마다 복사 상태 초기화
   useEffect(() => {
     if (!data) return;
     setCopied(false);
   }, [data]);
 
+  // 초대코드로 링크 조립
+  const inviteCode = data?.data?.data.code;
+  const baseUrl =
+    import.meta.env.VITE_FRONT_URL ?? "https://rhythmeetdevelop.netlify.app";
+  const fullLink = inviteCode
+    ? `${baseUrl}/invite/${type}/accept?code=${inviteCode}`
+    : "";
+
   return (
+    // 모달로 유도하는 버튼
     <Modal
       trigger={
         <Button variant="kakao" className={styles.invite_button}>
@@ -35,6 +62,7 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
       }
       title={`${name} 초대하기`}
     >
+      {/* 조건부 렌더링 */}
       {data ? (
         <div className={styles.container}>
           <h3>초대 링크가 생성되었습니다 !</h3>
@@ -43,14 +71,16 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
             <Input
               readOnly
               type="text"
-              value={data?.data?.data.link}
+              value={fullLink}
               className={styles.input}
             />
             <Button
               className={styles.copy_btn}
               onClick={() => {
-                setCopied(true);
-                navigator.clipboard.writeText(data?.data?.data.link);
+                if (fullLink) {
+                  setCopied(true);
+                  navigator.clipboard.writeText(fullLink);
+                }
               }}
             >
               {copied ? "복사됨!" : "복사"}
@@ -59,7 +89,24 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
 
           {/* 카톡 공유 */}
           <div className={styles.btn_container}>
-            <Button className={styles.share_btn} variant="kakao">
+            <Button
+              className={styles.share_btn}
+              variant="kakao"
+              onClick={() => {
+                if (!window.Kakao?.Link || !inviteCode) return;
+
+                const templateId = type === "club" ? 121060 : 121500;
+                const nameKey = type === "club" ? "clubName" : "teamName";
+
+                window.Kakao.Link.sendCustom({
+                  templateId,
+                  templateArgs: {
+                    [nameKey]: nameValue,
+                    inviteCode, // ${inviteCode}
+                  },
+                });
+              }}
+            >
               카카오톡으로 공유
             </Button>
             <Button

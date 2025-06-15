@@ -1,8 +1,3 @@
-.vote_container {
-  /* margin: 3vh 5vw; */
-  margin-top: 3vh;
-}
-
 /* 투표 제목 및 버튼 */
 .header {
   display: flex;

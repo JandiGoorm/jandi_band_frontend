@@ -73,7 +73,8 @@ const ClubInfo = ({
         </div>
 
         <div className={styles.left_title}>
-          <InviteModal />
+          {/* 컴포넌트 아니고, 클럽 Info 내에 있는 모달임. */}
+          <InviteModal nameValue={club.name} />
 
           {mine && (
             <>
