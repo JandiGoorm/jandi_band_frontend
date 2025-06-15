@@ -28,9 +28,10 @@ interface InviteModalProps {
   data: AxiosResponse<ApiResponse<{ code: string }>> | undefined;
   mutate: () => void;
   type: "club" | "team";
+  nameValue: string; // props로 이름 변경하기 위해 추가함
 }
 
-const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
+const InviteModal = ({ data, mutate, type, nameValue }: InviteModalProps) => {
   const [copied, setCopied] = useState(false); // 복사 버튼 클릭시 복사됨!
 
   // 모달에 동아리초대,팀초대 표시 위해서
@@ -95,7 +96,7 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
 
                 const templateId = type === "club" ? 121060 : 121500;
                 const nameKey = type === "club" ? "clubName" : "teamName";
-                const nameValue = type === "club" ? "잔디밴드" : "구준표금잔디"; // 여기 props로 변경 예정
+                // const nameValue = type === "club" ? "잔디밴드" : "구준표금잔디"; // 여기 props로 변경 예정
 
                 window.Kakao.Link.sendCustom({
                   templateId,
