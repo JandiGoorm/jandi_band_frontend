@@ -45,7 +45,8 @@ const InviteModal = ({ data, mutate, type, nameValue }: InviteModalProps) => {
 
   // 초대코드로 링크 조립
   const inviteCode = data?.data?.data.code;
-  const baseUrl = import.meta.env.VITE_FRONT_URL ?? "http://localhost:5173";
+  const baseUrl =
+    import.meta.env.VITE_FRONT_URL ?? "https://rhythmeetdevelop.netlify.app";
   const fullLink = inviteCode
     ? `${baseUrl}/invite/${type}/accept?code=${inviteCode}`
     : "";
