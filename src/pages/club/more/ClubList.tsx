@@ -37,34 +37,20 @@ const ClubList = () => {
 
       <section className={styles.club_container}>
         {clubData.data.content.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100%",
-            }}
-          >
-            <img
-              src={item.photoUrl || "./basic_club.png"}
-              alt={item.name}
-              style={{
-                width: "220px",
-                aspectRatio: "5/3",
-                cursor: "pointer",
-                borderRadius: "var(--radius-xl)",
-              }}
+          <div key={item.id} className={styles.club_card}>
+            <div
+              className={styles.image_wrapper}
               onClick={() =>
                 navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
               }
-            />
-            {(item.photoUrl == import.meta.env.VITE_BASIC_IMG ||
-              !item.photoUrl) && (
-              <p className={styles.item_title}>{item.name}</p>
-            )}
+            >
+              <img
+                src={item.photoUrl || "./basic_club.png"}
+                alt={item.name}
+                className={styles.club_image}
+              />
+              <div className={styles.overlay}>{item.name}</div>
+            </div>
           </div>
         ))}
       </section>
