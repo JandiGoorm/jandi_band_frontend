@@ -40,6 +40,7 @@ type FormData = z.infer<typeof schema>;
 
 const CreatePost = () => {
   const navigate = useNavigate();
+  const [isMapOpen, setIsMapOpen] = useState(false);
   const [imageURL, setImageURL] = useState<string | null>(null);
   const { mutate: createPromo, data: postData } = usePostPromotion();
   const [selectedPlace, setSelectedPlace] =
@@ -186,19 +187,21 @@ const CreatePost = () => {
               <div className={styles.locationbox}>
                 <label htmlFor="location">장소</label>
                 <textarea
+                  placeholder="장소를 선택하려면 클릭하세요"
                   id="location"
                   readOnly
                   {...register("location")}
+                  onClick={() => setIsMapOpen(true)}
                   className={clsx(errors.location && styles.inputError)}
                 />
                 <MapModal
                   title="장소 추가하기"
-                  trigger={
-                    <Button variant="transparent" size="sm">
-                      장소 추가
-                    </Button>
-                  }
-                  onSubmit={(place) => SetAddress(place)}
+                  open={isMapOpen}
+                  onOpenChange={setIsMapOpen}
+                  onSubmit={(place) => {
+                    SetAddress(place);
+                    setIsMapOpen(false);
+                  }}
                 />
               </div>
             </aside>
