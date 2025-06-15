@@ -53,16 +53,11 @@ const InviteModal = ({ data, mutate, type }: InviteModalProps) => {
             <Input
               readOnly
               type="text"
-              // value={data?.data?.data.link}
               value={fullLink}
               className={styles.input}
             />
             <Button
               className={styles.copy_btn}
-              // onClick={() => {
-              //   setCopied(true);
-              //   navigator.clipboard.writeText(data?.data?.data.link);
-              // }}
               onClick={() => {
                 if (fullLink) {
                   setCopied(true);
