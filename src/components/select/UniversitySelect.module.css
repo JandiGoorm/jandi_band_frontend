@@ -22,7 +22,7 @@
   width: calc(var(--radix-select-trigger-width) - 1rem);
   position: absolute;
   left: 0.5rem;
-  z-index: 10;
+  z-index: 1001;
 }
 
 .search_container {
@@ -33,7 +33,7 @@
   padding: 0.5rem;
   border-bottom: 1px solid #e5e7ebda;
   background-color: var(--color-white);
-  z-index: 10;
+  z-index: 1001;
 }
 
 .search_input {
