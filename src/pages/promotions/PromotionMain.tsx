@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { PageEndpoints } from "@/constants/endpoints";
 import { buildPath } from "@/utils/buildPath";
 import Input from "@/components/input/Input";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import usePagination from "@/hooks/usePagination";
-import { useGetPromoList } from "@/apis/promotion";
+import { useGetPromoList, useSearchPromotion } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
 import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
@@ -16,18 +16,56 @@ const PromotionMain = () => {
   const navigate = useNavigate();
   const { currentPage, totalPage, setTotalPage, handlePageChange } =
     usePagination();
+
+  const [keyword, setKeyword] = useState("");
+  const [debouncedKeyword, setDebouncedKeyword] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedKeyword(keyword.trim());
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [keyword]);
+
+  useEffect(() => {
+    handlePageChange(1);
+  }, [debouncedKeyword]);
+
   const { data: promoData, isLoading: promoLoading } = useGetPromoList({
     page: currentPage - 1,
     size: 10,
   });
 
-  useEffect(() => {
-    if (promoData?.data.pageInfo.totalPages !== undefined) {
-      setTotalPage(promoData.data.pageInfo.totalPages);
-    }
-  }, [promoData, setTotalPage]);
+  const { data: searchResult, isLoading: searchLoading } = useSearchPromotion({
+    keyword: debouncedKeyword,
+    page: currentPage - 1,
+    size: 10,
+  });
 
-  if (!promoData || promoLoading) return <Loading />;
+  useEffect(() => {
+    if (
+      !debouncedKeyword &&
+      promoData?.data.pageInfo.totalPages !== undefined
+    ) {
+      setTotalPage(promoData.data.pageInfo.totalPages);
+    } else if (
+      debouncedKeyword &&
+      searchResult?.data.pageInfo.totalPages !== undefined
+    ) {
+      setTotalPage(searchResult.data.pageInfo.totalPages);
+    }
+  }, [promoData, searchResult, debouncedKeyword, setTotalPage]);
+
+  if (
+    (debouncedKeyword && searchLoading) ||
+    (!debouncedKeyword && promoLoading)
+  )
+    return <Loading />;
+
+  const dataToShow = debouncedKeyword
+    ? searchResult?.data.content
+    : promoData?.data.content;
+
   return (
     <DefaultLayout>
       <main className={styles.container}>
@@ -38,17 +76,20 @@ const PromotionMain = () => {
               variant="transparent"
               onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
             >
-              {" "}
-              지도보기{" "}
+              지도보기
             </Button>
             <Button variant="transparent" size="lg">
-              {" "}
-              날짜선택{" "}
+              날짜선택
             </Button>
-            {/* <Input inputSize="lg" style={{ flex: 1, minWidth: "10rem" }} /> */}
           </div>
           <div>
-            <Input inputSize="lg" style={{ flex: 1, minWidth: "10rem" }} />
+            <Input
+              inputSize="lg"
+              style={{ flex: 1 }}
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+              placeholder="검색어 입력"
+            />
             <Button
               variant="primary"
               onClick={() => navigate("/promotion/post")}
@@ -58,51 +99,63 @@ const PromotionMain = () => {
             </Button>
           </div>
         </nav>
+
         <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
+
         <section className={styles.promotion_container}>
-          {promoData.data.content.map((item) => {
-            const status = getEventStatus(item.eventDatetime);
-            return (
-              <article
-                className={styles.promotion_box}
-                key={item.id}
-                onClick={() =>
-                  navigate(
-                    buildPath(PageEndpoints.PROMOTION_DETAIL, { id: item.id })
-                  )
-                }
-              >
-                <span
-                  className={styles.promo_button}
-                  style={{
-                    backgroundColor: status.backgroundColor,
-                    color: status.color,
-                  }}
+          {dataToShow?.length ? (
+            dataToShow.map((item) => {
+              const status = getEventStatus(item.eventDatetime);
+              return (
+                <article
+                  className={styles.promotion_box}
+                  key={item.id}
+                  onClick={() =>
+                    navigate(
+                      buildPath(PageEndpoints.PROMOTION_DETAIL, { id: item.id })
+                    )
+                  }
                 >
-                  {status.text}
-                </span>
-                <div>
-                  <img
-                    className={styles.promotion_img}
-                    src={item.photoUrls[0]}
-                  />
-                </div>
-                <p className={styles.promotion_title}>{item.title}</p>
-                <p className={styles.promotion_sub}>
-                  {formatPromotionDate(item.eventDatetime)}
-                </p>
-                <p className={styles.promotion_sub}>{item.location}</p>
-              </article>
-            );
-          })}
+                  <span
+                    className={styles.promo_button}
+                    style={{
+                      backgroundColor: status.backgroundColor,
+                      color: status.color,
+                    }}
+                  >
+                    {status.text}
+                  </span>
+                  <div>
+                    <img
+                      className={styles.promotion_img}
+                      src={item.photoUrls[0]}
+                      alt={item.title}
+                    />
+                  </div>
+                  <p className={styles.promotion_title}>{item.title}</p>
+                  <p className={styles.promotion_sub}>
+                    {formatPromotionDate(item.eventDatetime)}
+                  </p>
+                  <p className={styles.promotion_sub}>{item.location}</p>
+                </article>
+              );
+            })
+          ) : (
+            <p style={{ textAlign: "center", width: "100%" }}>
+              검색 결과가 없습니다.
+            </p>
+          )}
         </section>
-        <section className={styles.page_navigate_box}>
-          <Pagination
-            currentPage={currentPage}
-            totalPage={totalPage}
-            callback={handlePageChange}
-          />
-        </section>
+
+        {totalPage > 1 && (
+          <section className={styles.page_navigate_box}>
+            <Pagination
+              currentPage={currentPage}
+              totalPage={totalPage}
+              callback={handlePageChange}
+            />
+          </section>
+        )}
       </main>
     </DefaultLayout>
   );
