@@ -1,3 +1,4 @@
+// 여기서 오류 발생해서 수정해야됨.
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Loading from "@/components/loading/Loading";
 import { useEffect } from "react";
