@@ -22,17 +22,23 @@ const urlSchema = z.object({
 type UrlFormData = z.infer<typeof urlSchema>;
 
 export default function EveryTimeModal() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const form = useForm<UrlFormData>({
     resolver: zodResolver(urlSchema),
   });
 
   const {
     register,
-    // handleSubmit,
+    handleSubmit,
     formState: { errors },
   } = form;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const onSubmit = (data: UrlFormData) => {
+    console.log("제출됨:", data);
+    // API 호출 여기
+  };
+
   return (
     <main className={styles.container}>
       <p className={styles.guide}>
@@ -57,7 +63,7 @@ export default function EveryTimeModal() {
         </div>
       )}
 
-      <form className={styles.form_container}>
+      <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
         <Field
           label="시간표 URL 붙여넣기"
           error={errors.url}
