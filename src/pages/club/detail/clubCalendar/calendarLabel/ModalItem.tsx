@@ -16,6 +16,15 @@ interface ScheduleItemProps {
   onDelete: (id: number) => void;
 }
 
+const positionLabelMap: Record<string, string> = {
+  NONE: "전체참여",
+  VOCAL: "보컬제외",
+  GUITAR: "기타제외",
+  KEYBOARD: "키보드제외",
+  BASS: "베이스제외",
+  DRUM: "드럼제외",
+};
+
 const ModalItem = ({ event, onDelete }: ScheduleItemProps) => {
   const clubId = useClubStore((state) => state.clubId);
   const currentMonth = useCurrentStore((state) => state.currentMonth);
@@ -29,6 +38,20 @@ const ModalItem = ({ event, onDelete }: ScheduleItemProps) => {
         event.eventType === "CLUB_EVENT" ? styles.club_event : styles.team_event
       }`}
     >
+      {event.eventType === "TEAM_EVENT" && (
+        <div className={styles.team_info}>
+          {event.teamName && (
+            <span className={styles.team_label}>
+              <span className={styles.team_keyword}>TEAM</span> {event.teamName}
+            </span>
+          )}
+          {event.noPosition && (
+            <span className={styles.position_label}>
+              {positionLabelMap[event.noPosition] ?? `NO ${event.noPosition}`}
+            </span>
+          )}
+        </div>
+      )}
       <div className={styles.name_delete_box}>
         <div className={styles.event_name}>{event.name}</div>
 
@@ -57,19 +80,9 @@ const ModalItem = ({ event, onDelete }: ScheduleItemProps) => {
           </button>
         )}
       </div>
-      {event.eventType === "TEAM_EVENT" && (
-        <>
-          {event.teamName && (
-            <span className={styles.team_label}> TEAM : {event.teamName}</span>
-          )}
-          {event.noPosition && (
-            <span className={styles.position_label}>NO {event.noPosition}</span>
-          )}
-        </>
-      )}
       <div className={styles.schedule_time}>
-        {format(new Date(event.startDatetime), "MM월 dd일 HH:mm")} ~{" "}
-        {format(new Date(event.endDatetime), "HH:mm")}
+        {format(new Date(event.startDatetime), "a h시 mm분")} ~{" "}
+        {format(new Date(event.endDatetime), "h시 mm분")}
       </div>
     </main>
   );

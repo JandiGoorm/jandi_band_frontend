@@ -14,13 +14,13 @@
 
 .modal_content {
   background: #ffffff;
-  border-radius: 1rem;
-  width: 100%;
+  border-radius: 1.2rem;
+  width: 90%;
   max-width: 420px;
   max-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  padding: 1rem 1.5rem 0.3rem 1.5rem;
+  padding: 1rem 1rem 0.3rem 1rem;
   animation: fadeIn 0.2s ease-in-out;
 }
 
@@ -39,7 +39,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0.3rem;
 }
 
 .modal_header h2 {
@@ -50,7 +51,7 @@
 .close_button {
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   cursor: pointer;
   color: #999;
   transition: color 0.2s;

@@ -1,7 +1,7 @@
 /* 스케줄 라벨 */
 .schedule_label {
   background: white;
-  padding: 1rem 1.2rem 0 1.2rem;
+  padding: 0.75rem 1.2rem 0 1.2rem;
   border-radius: 12px;
   margin-bottom: 1rem;
   font-size: 0.95rem;
@@ -38,7 +38,7 @@
 
 .event_name {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #0f172a;
 }
 
@@ -53,26 +53,24 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 0.75rem;
 }
 
 .team_label,
 .position_label {
   display: inline-block;
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
   color: #475569;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
+  padding: 0.4rem 0.5rem;
   font-size: 0.8rem;
   font-weight: 500;
-  border: 1px solid #cbd5e1;
-  transition: all 0.2s ease;
+  margin: 0 0 0.7rem -0.2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
 }
 
-.team_label:hover,
-.position_label:hover {
-  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-  transform: translateY(-1px);
+.team_keyword {
+  color: #5c8b98;
+  font-weight: bolder;
 }
 
 .schedule_time {
@@ -81,20 +79,14 @@
   gap: 0.5rem;
   color: #64748b;
   font-weight: 500;
-  margin: 0.75rem 0;
-  padding: 0.6rem 1rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
   font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
 
 /* 삭제버튼 */
 .delete_button {
-  /* background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); */
-  color: #dc2626;
+  color: #453e3e;
   border: none;
-  border-radius: 10px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s ease;
@@ -109,10 +101,19 @@
 /* 클럽 이벤트와 팀 이벤트 구분 */
 .schedule_label.club_event::before {
   background-color: #c4c9bc;
-  /* background: linear-gradient(180deg, #c4c9bc 0%, #c4c9bc 100%); */
 }
 
 .schedule_label.team_event::before {
   background-color: #8bc2d1;
-  /* background: linear-gradient(180deg, #8bc2d1 0%, #8bc2d1 100%); */
+}
+
+@media (max-width: 475px) {
+  .team_info {
+    gap: 0.3rem;
+  }
+
+  .team_label,
+  .position_label {
+    font-size: 0.7rem;
+  }
 }
