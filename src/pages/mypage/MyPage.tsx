@@ -20,7 +20,7 @@ import { buildPath } from "@/utils/buildPath";
 import type { TimeTableResponse } from "@/types/timeTable";
 
 const MyPage = () => {
-  const { data: myInfoResponse } = useGetInfo();
+  const { data: myInfoResponse, refetch } = useGetInfo();
   const { data: myTimeTables, isLoading } = useGetMyTimeTables();
   const { data: myTeamLists, isLoading: MyTeamLoading } = useGetMyTeamList();
   const navigate = useNavigate();
@@ -53,7 +53,13 @@ const MyPage = () => {
               title="마이프로필 수정하기"
               trigger={<button>수정하기</button>}
             >
-              <ProfilEdit myInfo={myInfo} />
+              {(setOpen) => (
+                <ProfilEdit
+                  myInfo={myInfo}
+                  setOpen={setOpen}
+                  refetch={refetch}
+                />
+              )}
             </Modal>
           </header>
           <div className={styles.profile_content}>
