@@ -52,8 +52,7 @@ export default function EveryTimeModal({ onApply }: EveryTimeModalProps) {
       setIsLoading(true);
       const res = await fetchTimeTableFromEverytime(data.url);
       onApply(res.data.timetableData);
-    } catch (err) {
-      console.error("시간표 요청 실패:", err);
+    } catch {
       setErrorMessage("시간표를 불러오지 못했습니다. URL을 다시 확인해주세요.");
     } finally {
       setIsLoading(false); // 로딩 종료
