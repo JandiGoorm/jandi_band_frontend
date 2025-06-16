@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@/components/button/Button";
 
 import { fetchTimeTableFromEverytime } from "@/apis/everytime";
+import FullscreenLoading from "./FullscreenLoading";
 
 interface EveryTimeModalProps {
   onApply: (timetableData: Record<string, string[]>) => void;
@@ -30,6 +31,9 @@ type UrlFormData = z.infer<typeof urlSchema>;
 export default function EveryTimeModal({ onApply }: EveryTimeModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  // 로딩가딩가딩
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<UrlFormData>({
     resolver: zodResolver(urlSchema),
   });
@@ -42,17 +46,23 @@ export default function EveryTimeModal({ onApply }: EveryTimeModalProps) {
 
   const onSubmit = async (data: UrlFormData) => {
     try {
+      setIsLoading(true);
+
       const res = await fetchTimeTableFromEverytime(data.url);
 
       console.log("성공적으로 받은 시간표:", res.data.timetableData);
       onApply(res.data.timetableData);
     } catch (err) {
       console.error("시간표 요청 실패:", err);
+    } finally {
+      setIsLoading(false); // 로딩 종료
     }
   };
 
   return (
     <main className={styles.container}>
+      {isLoading && <FullscreenLoading />}
+
       <p className={styles.guide}>
         에브리타임 시간표를 불러올 수 있어요.
         <br />
