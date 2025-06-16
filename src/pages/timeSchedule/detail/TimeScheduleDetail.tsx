@@ -106,12 +106,6 @@ const TimeScheduleDetail = () => {
             />
           </div>
 
-          <TimeScheduler
-            isEditable
-            onTimeScheduleChange={setMySchedule}
-            initialTimeSchedule={timeSchedule?.data.timetableData}
-          />
-
           <div className={styles.footer}>
             <Field
               label="시간표 제목"
@@ -119,7 +113,7 @@ const TimeScheduleDetail = () => {
               className={styles.field}
               isRequired
             >
-              <Input {...register("name")} style={{ height: "3rem" }} />
+              <Input {...register("name")} style={{ height: "2rem" }} />
             </Field>
 
             <Button
@@ -132,6 +126,12 @@ const TimeScheduleDetail = () => {
               수정완료
             </Button>
           </div>
+
+          <TimeScheduler
+            isEditable
+            onTimeScheduleChange={setMySchedule}
+            initialTimeSchedule={timeSchedule?.data.timetableData}
+          />
         </form>
       </section>
     </DefaultLayout>
