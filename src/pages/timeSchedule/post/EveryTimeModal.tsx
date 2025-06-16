@@ -1,7 +1,37 @@
 import { useState } from "react";
 import styles from "./EveryTimeModal.module.css";
+import Field from "@/components/field/Field";
+import Input from "@/components/input/Input";
+
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Button from "@/components/button/Button";
+
+const urlSchema = z.object({
+  url: z
+    .string()
+    .nonempty("URL을 입력해주세요.")
+    .url("유효한 URL 형식이 아닙니다.")
+    .regex(
+      /^https?:\/\/(everytime\.kr|everytime.kr)\/?[\w-/?=&]*/i,
+      "에브리타임 주소만 입력 가능합니다."
+    ),
+});
+
+type UrlFormData = z.infer<typeof urlSchema>;
 
 export default function EveryTimeModal() {
+  const form = useForm<UrlFormData>({
+    resolver: zodResolver(urlSchema),
+  });
+
+  const {
+    register,
+    // handleSubmit,
+    formState: { errors },
+  } = form;
+
   const [isOpen, setIsOpen] = useState(false);
   return (
     <main className={styles.container}>
@@ -26,6 +56,25 @@ export default function EveryTimeModal() {
           />
         </div>
       )}
+
+      <form className={styles.form_container}>
+        <Field
+          label="시간표 URL 붙여넣기"
+          error={errors.url}
+          isRequired
+          style={{ fontSize: "0.9rem" }}
+        >
+          <Input
+            placeholder="https://everytime.kr/..."
+            {...register("url")}
+            style={{ height: "2rem" }}
+          />
+        </Field>
+
+        <Button type="submit" size="md" variant="secondary">
+          등록하기
+        </Button>
+      </form>
     </main>
   );
 }

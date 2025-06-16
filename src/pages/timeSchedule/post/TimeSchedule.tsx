@@ -59,7 +59,8 @@ const TimeSchedule = () => {
   return (
     <DefaultLayout>
       <main className={styles.wrapper_container}>
-        <form onSubmit={handleFormSubmit} className={styles.container}>
+        {/* <form onSubmit={handleFormSubmit} className={styles.container}> */}
+        <section className={styles.container}>
           <header className={styles.header}>
             <img
               src={ArrowBack}
@@ -74,7 +75,7 @@ const TimeSchedule = () => {
           </header>
 
           <div className={styles.user_play_box}>
-            <div className={styles.footer}>
+            <form onSubmit={handleFormSubmit} className={styles.footer}>
               <Field
                 label="시간표 제목"
                 error={errors.name}
@@ -93,7 +94,7 @@ const TimeSchedule = () => {
               >
                 저장하기
               </Button>
-            </div>
+            </form>
 
             <Modal
               title="에타 시간표 불러오기"
@@ -107,7 +108,7 @@ const TimeSchedule = () => {
             </Modal>
           </div>
           <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
-        </form>
+        </section>
       </main>
     </DefaultLayout>
   );
