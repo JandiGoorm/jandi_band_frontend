@@ -52,20 +52,18 @@ const PromotionMain = () => {
   return (
     <DefaultLayout>
       <main className={styles.container}>
+        <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
         <nav className={styles.header_nav}>
-          <div className={styles.header_nav_box}>
-            <Button
-              size="md"
-              variant="transparent"
-              onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
-            >
-              지도보기
-            </Button>
-          </div>
+          <Button
+            size="md"
+            variant="transparent"
+            onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
+          >
+            지도보기
+          </Button>
           <div>
             <Input
               inputSize="md"
-              style={{ flex: 1, minWidth: "10rem" }}
               ref={inputRef} // 🔹 ref 할당
               placeholder="제목, 장소로 검색"
             />
@@ -73,10 +71,14 @@ const PromotionMain = () => {
               검색
             </Button>
           </div>
+          <Button
+            variant="primary"
+            size="md"
+            onClick={() => navigate("/promotion/post")}
+          >
+            글 작성
+          </Button>
         </nav>
-
-        <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
-
         <section className={styles.promotion_container}>
           {promoData.data.content.map((item) => {
             const status = getEventStatus(item.eventDatetime);
@@ -122,15 +124,6 @@ const PromotionMain = () => {
             totalPage={totalPage}
             callback={handlePageChange}
           />
-        </section>
-        <section className={styles.post_button_box}>
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={() => navigate("/promotion/post")}
-          >
-            홍보물 등록
-          </Button>
         </section>
       </main>
     </DefaultLayout>
