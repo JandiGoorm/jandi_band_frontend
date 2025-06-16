@@ -13,10 +13,6 @@
 
 @media (max-width: 768px) {
   .chart_inner {
-    height: 500px;
-  }
-
-  .chart_wrapper {
-    padding-bottom: 1rem;
+    height: 80vh;
   }
 }
