@@ -71,8 +71,6 @@ const TimeSchedule = () => {
             </p>
           </header>
 
-          <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
-
           <div className={styles.footer}>
             <Field
               label="시간표 제목"
@@ -80,7 +78,7 @@ const TimeSchedule = () => {
               className={styles.field}
               isRequired
             >
-              <Input {...register("name")} style={{ height: "3rem" }} />
+              <Input {...register("name")} style={{ height: "2rem" }} />
             </Field>
 
             <Button
@@ -93,6 +91,8 @@ const TimeSchedule = () => {
               저장하기
             </Button>
           </div>
+
+          <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
         </form>
       </main>
     </DefaultLayout>
