@@ -50,7 +50,7 @@ export default function EveryTimeModal() {
       {isOpen && (
         <div className={styles.imageWrapper}>
           <img
-            src="/guide/everytime_guide.png"
+            src="/everytime_guide.png"
             alt="에브리타임 사용 가이드"
             className={styles.guideImage}
           />
