@@ -71,4 +71,5 @@
   color: var(--color-white);
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius-lg);
+  white-space: nowrap;
 }
