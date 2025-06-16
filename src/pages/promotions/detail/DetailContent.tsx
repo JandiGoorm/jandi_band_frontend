@@ -10,6 +10,7 @@ import {
   useGetPromo,
   usePromoisLike,
   usePromoLike,
+  useReportPromotion,
 } from "@/apis/promotion";
 import Loading from "@/components/loading/Loading";
 import {
@@ -32,6 +33,7 @@ const DetailContent = () => {
   const { data: fetchData, isLoading: fetchLoading } = useGetPromo(id || "");
   const { data: likeData, isLoading: likeLoading } = usePromoisLike(id || "");
   const { mutate: likePromo } = usePromoLike(id || "");
+  const { mutate: reportPromo } = useReportPromotion();
 
   if (!id) return;
 
@@ -108,8 +110,12 @@ const DetailContent = () => {
                 }
                 title="게시물 신고"
                 description="신고 내역을 자세히 적어 제출해주세요!"
-                onReport={(desc) => {
-                  console.log("신고 내용:", desc);
+                onReport={(description, reasonId) => {
+                  reportPromo({
+                    promoId: parseInt(id),
+                    reportReasonId: reasonId,
+                    description,
+                  });
                 }}
               />
             </div>
@@ -185,16 +191,6 @@ const DetailContent = () => {
                     <LocationModal data={fetchData.data} />
                   </Modal>
                 </div>
-                {/* <Modal
-                    title="장소 위치 보기"
-                    trigger={
-                      <Button size="sm" variant="transparent">
-                        지도보기
-                      </Button>
-                    }
-                  >
-                    <LocationModal data={fetchData.data} />
-                </Modal> */}
               </div>
             </section>
           </section>

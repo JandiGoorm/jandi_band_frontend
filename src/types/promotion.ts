@@ -46,3 +46,9 @@ export interface CommemtResponse {
 export interface CommentRequest {
   description: string;
 }
+
+export interface PromoReportRequest {
+  promoId: number;
+  reportReasonId: number;
+  description: string;
+}

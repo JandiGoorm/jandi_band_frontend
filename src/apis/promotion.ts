@@ -4,6 +4,7 @@ import type { PagiNationResponse } from "@/types/common";
 import type {
   CommemtResponse,
   CommentRequest,
+  PromoReportRequest,
   PromotionListResponse,
 } from "@/types/promotion";
 import { buildPath } from "@/utils/buildPath";
@@ -115,4 +116,8 @@ export const useSearchPromotion = ({
     ApiEndpotins.PROMOTION_SEARCH,
     { keyword: keyword, page: page, size: size }
   );
+};
+
+export const useReportPromotion = () => {
+  return usePost<PromoReportRequest, null>(ApiEndpotins.REPORT_PROMO);
 };
