@@ -33,6 +33,7 @@
 .description {
   color: var(--color-text-sub);
   font-size: var(--text-base);
+  text-align: center;
 }
 
 @media (max-width: 520px) {
