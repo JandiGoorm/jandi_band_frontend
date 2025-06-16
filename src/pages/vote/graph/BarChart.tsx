@@ -72,6 +72,7 @@ const BarChart = ({ data, keys, filter }: BarChartProps) => {
                 return "#ccc";
             }
           }}
+          motionConfig="stiff"
         />
       </div>
     </section>
