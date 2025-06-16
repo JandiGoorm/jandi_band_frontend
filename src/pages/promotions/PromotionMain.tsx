@@ -55,21 +55,21 @@ const PromotionMain = () => {
         <nav className={styles.header_nav}>
           <div className={styles.header_nav_box}>
             <Button
-              size="lg"
+              size="md"
               variant="transparent"
               onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
             >
               지도보기
             </Button>
           </div>
-          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+          <div>
             <Input
-              inputSize="lg"
+              inputSize="md"
               style={{ flex: 1, minWidth: "10rem" }}
               ref={inputRef} // 🔹 ref 할당
               placeholder="제목, 장소로 검색"
             />
-            <Button variant="transparent" size="lg" onClick={handleSearch}>
+            <Button variant="transparent" size="md" onClick={handleSearch}>
               검색
             </Button>
           </div>
