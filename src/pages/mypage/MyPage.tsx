@@ -86,6 +86,7 @@ const MyPage = () => {
           <div className={styles.slide_title_box}>
             <img src={MusicNote2} alt="음표" />
             <h2>참여 팀 목록</h2>
+            <p>좌우로 넘겨보세요!</p>
           </div>
           {myTeamLists?.data && (
             <Slide<MyTeamInfo> items={myTeamLists.data}>

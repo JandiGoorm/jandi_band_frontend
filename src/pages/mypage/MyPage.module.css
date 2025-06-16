@@ -114,3 +114,11 @@
   height: 23px;
   margin-right: 0.3rem;
 }
+
+.slide_title_box p {
+  margin-left: 0.7rem;
+  display: flex;
+  align-items: self-end;
+  color: #777777;
+  font-size: 0.9rem;
+}
