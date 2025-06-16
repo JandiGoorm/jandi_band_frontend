@@ -102,6 +102,7 @@
   display: flex;
   justify-content: right;
 }
+
 @media (max-width: 450px) {
   .header_nav {
     justify-content: center;
@@ -115,5 +116,12 @@
   .promotion_box {
     padding: 0.2rem;
     margin-bottom: 0.9rem;
+  }
+  .promo_button {
+    top: 0.7rem;
+    left: 0.7rem;
+    padding: 0.3rem 0.7rem;
+    border: 0.5px solid #afafaf;
+    font-size: 0.8rem;
   }
 }
