@@ -24,8 +24,8 @@ interface Props {
 
 // 임의의 색상 지정해두려고
 const eventTypeColors: Record<EventType, string> = {
-  CLUB_EVENT: "lightblue",
-  TEAM_EVENT: "pink",
+  CLUB_EVENT: "#c4c9bc",
+  TEAM_EVENT: "#8bc2d1",
 };
 const getColorByEventType = (type: EventType) => eventTypeColors[type];
 
