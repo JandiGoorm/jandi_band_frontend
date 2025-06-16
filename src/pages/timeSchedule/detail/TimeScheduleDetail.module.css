@@ -1,6 +1,6 @@
 .wrapper_container {
   width: 100%;
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   display: flex;
   justify-content: center;
 }
@@ -51,7 +51,7 @@
 }
 
 .save_button {
-  height: 3rem;
+  height: 2rem;
   position: relative;
   top: 1.4rem;
 }

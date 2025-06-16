@@ -17,11 +17,28 @@ import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
 
 import ArrowBack from "@/pages/vote/style/arrowback.svg";
+import Modal from "@/components/modal/Modal";
+import EveryTimeModal from "./EveryTimeModal";
+
+import type { Range } from "@/types/timeTable";
 
 const TimeSchedule = () => {
   const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
   const navigate = useNavigate();
   const { mutate: postTimeTable } = usePostTimeTable();
+
+  // 에타 불러오면서 추가한거
+  const [importedSchedule, setImportedSchedule] = useState<
+    Record<Range, string[]>
+  >({
+    Mon: [],
+    Tue: [],
+    Wed: [],
+    Thu: [],
+    Fri: [],
+    Sat: [],
+    Sun: [],
+  });
 
   const formController = useForm<z.infer<typeof timeTableSchema>>({
     resolver: zodResolver(timeTableSchema),
@@ -57,7 +74,7 @@ const TimeSchedule = () => {
   return (
     <DefaultLayout>
       <main className={styles.wrapper_container}>
-        <form onSubmit={handleFormSubmit} className={styles.container}>
+        <section className={styles.container}>
           <header className={styles.header}>
             <img
               src={ArrowBack}
@@ -71,29 +88,47 @@ const TimeSchedule = () => {
             </p>
           </header>
 
-          <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
+          <div className={styles.user_play_box}>
+            <form onSubmit={handleFormSubmit} className={styles.footer}>
+              <Field
+                label="시간표 제목"
+                error={errors.name}
+                className={styles.field}
+                isRequired
+              >
+                <Input {...register("name")} style={{ height: "2rem" }} />
+              </Field>
 
-          <div className={styles.footer}>
-            <Field
-              label="시간표 제목"
-              error={errors.name}
-              className={styles.field}
-              isRequired
-            >
-              <Input {...register("name")} style={{ height: "3rem" }} />
-            </Field>
+              <Button
+                type="submit"
+                className={clsx(
+                  !errors.name && styles.not_error,
+                  styles.save_button
+                )}
+              >
+                저장하기
+              </Button>
+            </form>
 
-            <Button
-              type="submit"
-              className={clsx(
-                !errors.name && styles.not_error,
-                styles.save_button
-              )}
+            <Modal
+              title="에타 시간표 불러오기"
+              trigger={
+                <button className={styles.etbut}>
+                  <img className={styles.etimg} src="/et.png" />
+                </button>
+              }
             >
-              저장하기
-            </Button>
+              <EveryTimeModal
+                onApply={(timetableData) => setImportedSchedule(timetableData)}
+              />
+            </Modal>
           </div>
-        </form>
+          <TimeScheduler
+            isEditable
+            onTimeScheduleChange={setMySchedule}
+            initialTimeSchedule={importedSchedule}
+          />
+        </section>
       </main>
     </DefaultLayout>
   );

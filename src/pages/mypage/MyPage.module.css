@@ -83,10 +83,24 @@
 }
 
 .timetable_title {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-bottom: 1.8rem;
+}
+.timetable_title_box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+}
+
+.timetable_title p {
+  margin-top: 0.3rem;
+  margin-left: 1.9rem;
+  display: flex;
+  align-items: start;
+  color: #777777;
+  font-size: 0.9rem;
 }
 
 .timetable_title img {
@@ -113,4 +127,12 @@
   width: 25px;
   height: 23px;
   margin-right: 0.3rem;
+}
+
+.slide_title_box p {
+  margin-left: 0.7rem;
+  display: flex;
+  align-items: self-end;
+  color: #777777;
+  font-size: 0.9rem;
 }
