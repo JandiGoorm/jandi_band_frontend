@@ -34,6 +34,9 @@ export default function EveryTimeModal({ onApply }: EveryTimeModalProps) {
   // 로딩가딩가딩
   const [isLoading, setIsLoading] = useState(false);
 
+  // 에러메세지 추가
+  const [errorMessage, setErrorMessage] = useState("");
+
   const form = useForm<UrlFormData>({
     resolver: zodResolver(urlSchema),
   });
@@ -47,13 +50,11 @@ export default function EveryTimeModal({ onApply }: EveryTimeModalProps) {
   const onSubmit = async (data: UrlFormData) => {
     try {
       setIsLoading(true);
-
       const res = await fetchTimeTableFromEverytime(data.url);
-
-      console.log("성공적으로 받은 시간표:", res.data.timetableData);
       onApply(res.data.timetableData);
     } catch (err) {
       console.error("시간표 요청 실패:", err);
+      setErrorMessage("시간표를 불러오지 못했습니다. URL을 다시 확인해주세요.");
     } finally {
       setIsLoading(false); // 로딩 종료
     }
@@ -98,6 +99,8 @@ export default function EveryTimeModal({ onApply }: EveryTimeModalProps) {
             style={{ height: "2rem" }}
           />
         </Field>
+
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
         <Button type="submit" size="md" variant="secondary">
           등록하기

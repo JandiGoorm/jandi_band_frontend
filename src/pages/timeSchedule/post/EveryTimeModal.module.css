@@ -47,3 +47,10 @@
   align-items: center;
   gap: 1rem;
 }
+
+.errorMessage {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  text-align: left;
+}
