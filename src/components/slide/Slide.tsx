@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface SlideProps<T> {
   items: T[];
@@ -18,37 +18,38 @@ const Slide = <T extends { id: number }>({
 }: SlideProps<T>) => {
   const sliderRef = useRef<Slider | null>(null);
 
-  const baseSlidesToShow = size === "sm" ? 4 : 3;
+  const [currentSlidesToShow, setCurrentSlidesToShow] = useState<number>(4); // 초기값
+
+  const updateSlidesToShow = () => {
+    const width = window.innerWidth;
+    let slides = size === "sm" ? 4 : 3;
+
+    if (width < 400) {
+      slides = 1;
+    } else if (width < 850) {
+      slides = size === "sm" ? 2 : 1;
+    } else if (width < 1110) {
+      slides = size === "sm" ? 3 : 2;
+    }
+
+    setCurrentSlidesToShow(slides);
+  };
+
+  useEffect(() => {
+    updateSlidesToShow();
+    window.addEventListener("resize", updateSlidesToShow);
+    return () => window.removeEventListener("resize", updateSlidesToShow);
+  }, [size]);
 
   const commonSettings = {
     dots: false,
     arrows: false,
-    slidesToShow: baseSlidesToShow,
+    slidesToShow: currentSlidesToShow,
     slidesToScroll: 1,
     infinite: false,
-    responsive: [
-      {
-        breakpoint: 1110,
-        settings: {
-          slidesToShow: size === "sm" ? 3 : 2,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: size === "sm" ? 2 : 1,
-        },
-      },
-      {
-        breakpoint: 400,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
   };
 
-  const isFullSlide = items.length > baseSlidesToShow;
+  const isFullSlide = items.length > currentSlidesToShow;
 
   return (
     <main className={styles.container}>
