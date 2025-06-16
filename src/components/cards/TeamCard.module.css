@@ -24,13 +24,6 @@
   }
 }
 
-@media (max-width: 475px) {
-  .card {
-    width: 8rem;
-    height: 8rem;
-  }
-}
-
 .notes {
   display: flex;
   align-items: flex-end;
@@ -38,6 +31,19 @@
 
 .note {
   transition: transform 0.3s ease;
+  font-size: 3em;
+}
+
+@media (max-width: 768px) {
+  .note {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 475px) {
+  .note {
+    font-size: 2em;
+  }
 }
 
 .text {
@@ -45,7 +51,6 @@
   top: 80%;
   left: 50%;
   transform: translate(-50%);
-  font-size: var(--text-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-main);
   line-height: 1.2;
@@ -54,4 +59,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+}
+
+@media (max-width: 510px) {
+  .card {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+@media (max-width: 410px) {
+  .card {
+    width: 7rem;
+    height: 7rem;
+  }
 }

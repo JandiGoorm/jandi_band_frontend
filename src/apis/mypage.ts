@@ -10,12 +10,5 @@ export const useGetInfo = () => {
 
 // 내 정보 수정
 export const usePatchInfo = () => {
-  return usePatch<FormData>(ApiEndpotins.ME, {
-    onSuccess: (response) => {
-      console.log("✅ 서버 응답:", response.data);
-    },
-    onError: (error) => {
-      console.error("❌ 요청 실패:", error);
-    },
-  });
+  return usePatch<FormData>(ApiEndpotins.ME);
 };

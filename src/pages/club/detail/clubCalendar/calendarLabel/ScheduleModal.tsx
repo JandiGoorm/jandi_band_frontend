@@ -28,6 +28,17 @@ const ScheduleModal = ({
   const handleDeleteState = (id: number) => {
     setScheduleState((prev) => prev.filter((event) => event.id !== id));
   };
+
+  const formattedDate =
+    selectedDate != null
+      ? new Date(selectedDate).toLocaleDateString("ko-KR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          weekday: "long",
+        })
+      : "";
+
   return (
     <main className={styles.modal_overlay} onClick={onClose}>
       <div
@@ -35,12 +46,14 @@ const ScheduleModal = ({
         onClick={(e) => e.stopPropagation()}
       >
         <header className={styles.modal_header}>
-          <h3>{selectedDate} 일정</h3>
-          <button onClick={onClose}>닫기</button>
+          <h2>{formattedDate}</h2>
+          <button className={styles.close_button} onClick={onClose}>
+            닫기
+          </button>
         </header>
 
         {schedules.length === 0 ? (
-          <p>등록된 일정이 없습니다.</p>
+          <p className={styles.schedule_empty}>등록된 일정이 없습니다.</p>
         ) : (
           sechedulesState.map((s, i) => (
             <ModalItem key={i} event={s} onDelete={handleDeleteState} />

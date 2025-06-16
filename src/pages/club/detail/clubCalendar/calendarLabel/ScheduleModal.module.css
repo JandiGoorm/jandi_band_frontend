@@ -4,32 +4,71 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(3px);
 }
 
 .modal_content {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  min-width: 20rem;
-  max-width: 90vw;
-  max-height: 70%;
+  background: #ffffff;
+  border-radius: 1.2rem;
+  width: 90%;
+  max-width: 420px;
+  max-height: 80vh;
   overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 1rem 1rem 0.3rem 1rem;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.5rem;
+  margin-top: 0.3rem;
 }
 
-.schedule_label {
-  padding: 4px 6px;
-  border-radius: 4px;
-  margin-top: 4px;
-  font-size: 0.9rem;
+.modal_header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+.close_button {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.close_button:hover {
+  color: #000;
+}
+
+.schedule_empty {
+  text-align: center;
+  color: #777;
+  padding: 2rem 0;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.no_schedules {
+  margin-bottom: 0.7rem;
 }

@@ -20,7 +20,7 @@ import { buildPath } from "@/utils/buildPath";
 import type { TimeTableResponse } from "@/types/timeTable";
 
 const MyPage = () => {
-  const { data: myInfoResponse } = useGetInfo();
+  const { data: myInfoResponse, refetch } = useGetInfo();
   const { data: myTimeTables, isLoading } = useGetMyTimeTables();
   const { data: myTeamLists, isLoading: MyTeamLoading } = useGetMyTeamList();
   const navigate = useNavigate();
@@ -53,7 +53,13 @@ const MyPage = () => {
               title="마이프로필 수정하기"
               trigger={<button>수정하기</button>}
             >
-              <ProfilEdit myInfo={myInfo} />
+              {(setOpen) => (
+                <ProfilEdit
+                  myInfo={myInfo}
+                  setOpen={setOpen}
+                  refetch={refetch}
+                />
+              )}
             </Modal>
           </header>
           <div className={styles.profile_content}>
@@ -80,6 +86,7 @@ const MyPage = () => {
           <div className={styles.slide_title_box}>
             <img src={MusicNote2} alt="음표" />
             <h2>참여 팀 목록</h2>
+            <p>좌우로 넘겨보세요!</p>
           </div>
           {myTeamLists?.data && (
             <Slide<MyTeamInfo> items={myTeamLists.data}>
@@ -90,18 +97,22 @@ const MyPage = () => {
 
         <section className={styles.timetable_box}>
           <header className={styles.timetable_title}>
-            <div className={styles.slide_title_box}>
-              <img src={MusicNote1} alt="음표" />
-              <h2>내 시간표 관리</h2>
+            <div className={styles.timetable_title_box}>
+              <div className={styles.slide_title_box}>
+                <img src={MusicNote1} alt="음표" />
+                <h2>내 시간표 관리</h2>
+              </div>
+              <Button
+                variant="primary"
+                className={styles.timetable_button}
+                onClick={() => navigate(PageEndpoints.POST_TIME_SCHEDULE)}
+              >
+                시간표 추가
+              </Button>
             </div>
-            <Button
-              variant="primary"
-              className={styles.timetable_button}
-              onClick={() => navigate(PageEndpoints.POST_TIME_SCHEDULE)}
-            >
-              시간표 추가
-            </Button>
+            <p>자주 사용하는 시간표를 저장할 수 있어요</p>
           </header>
+
           <Slide<TimeTableResponse> items={myTimeTables.data} size="sm">
             {(item) => (
               <TimeTableCards

@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.guide {
+  font-size: var(--text-xs);
+  color: #414141;
+  text-align: center;
+}
+
+.toggleBtn {
+  margin-top: 0.5rem;
+  color: #475569;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+ㄴ .toggleBtn:hover {
+  background: linear-gradient(135deg, #e5e9ed 0%, #dde3ea 100%);
+}
+
+.imageWrapper {
+  margin-top: 0.7rem;
+  text-align: center;
+}
+
+.guideImage {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* 입력 */
+.form_container {
+  margin-top: 1.4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  text-align: left;
+}

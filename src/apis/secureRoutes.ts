@@ -68,4 +68,7 @@ export const secureRoutes = [
   { method: Method.DELETE, url: ApiEndpotins.CLUB_PHOTO_DETAIL },
   { method: Method.POST, url: ApiEndpotins.COMMENT },
   { method: Method.DELETE, url: ApiEndpotins.COMMENT_DETAIL },
+
+  { method: Method.POST, url: ApiEndpotins.REPORT_PROMO },
+  { method: Method.POST, url: ApiEndpotins.REPORT_COMMENT },
 ];

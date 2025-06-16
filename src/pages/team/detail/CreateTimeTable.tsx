@@ -78,6 +78,8 @@ const CreateTimeTable = () => {
           <h1 className={styles.title}>시간표 입력</h1>
           <p className={styles.description}>
             가능한 시간대를 클릭하거나 드래그하여 선택해주세요.
+            <br />
+            에브리타임 시간표는 마이페이지에서 등록할 수 있습니다.
           </p>
         </header>
 

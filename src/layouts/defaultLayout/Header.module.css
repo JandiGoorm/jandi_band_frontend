@@ -43,3 +43,9 @@
     padding: 0 2rem;
   }
 }
+
+@media (max-width: 768px) {
+  .profile_img {
+    width: 2rem;
+  }
+}

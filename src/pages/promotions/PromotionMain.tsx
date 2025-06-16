@@ -14,8 +14,8 @@ import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
 
 const PromotionMain = () => {
   const navigate = useNavigate();
-  const inputRef = useRef<HTMLInputElement>(null); // 🔹 ref 선언
-  const [searchKeyword, setSearchKeyword] = useState(""); // 🔹 검색 버튼 눌렀을 때만 업데이트
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [searchKeyword, setSearchKeyword] = useState("");
   const { currentPage, totalPage, setTotalPage, handlePageChange } =
     usePagination();
 
@@ -45,38 +45,45 @@ const PromotionMain = () => {
 
   const handleSearch = () => {
     if (inputRef.current) {
-      setSearchKeyword(inputRef.current.value); // 🔹 버튼 클릭 시 검색어 업데이트
+      setSearchKeyword(inputRef.current.value);
     }
   };
 
   return (
     <DefaultLayout>
       <main className={styles.container}>
+        <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
         <nav className={styles.header_nav}>
-          <div className={styles.header_nav_box}>
-            <Button
-              size="lg"
-              variant="transparent"
-              onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
-            >
-              지도보기
-            </Button>
-          </div>
-          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+          <Button
+            size="md"
+            variant="transparent"
+            onClick={() => navigate(PageEndpoints.PROMOTION_MAP)}
+          >
+            지도보기
+          </Button>
+          <div>
             <Input
-              inputSize="lg"
-              style={{ flex: 1, minWidth: "10rem" }}
-              ref={inputRef} // 🔹 ref 할당
+              inputSize="md"
+              ref={inputRef}
               placeholder="제목, 장소로 검색"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
             />
-            <Button variant="transparent" size="lg" onClick={handleSearch}>
+            <Button variant="transparent" size="md" onClick={handleSearch}>
               검색
             </Button>
           </div>
+          <Button
+            variant="primary"
+            size="md"
+            onClick={() => navigate("/promotion/post")}
+          >
+            글 작성
+          </Button>
         </nav>
-
-        <header className={styles.page_title}>동아리 공연 홍보 게시판</header>
-
         <section className={styles.promotion_container}>
           {promoData.data.content.map((item) => {
             const status = getEventStatus(item.eventDatetime);
@@ -122,15 +129,6 @@ const PromotionMain = () => {
             totalPage={totalPage}
             callback={handlePageChange}
           />
-        </section>
-        <section className={styles.post_button_box}>
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={() => navigate("/promotion/post")}
-          >
-            홍보물 등록
-          </Button>
         </section>
       </main>
     </DefaultLayout>

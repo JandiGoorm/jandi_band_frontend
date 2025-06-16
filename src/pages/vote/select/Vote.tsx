@@ -41,9 +41,33 @@ const Vote = () => {
               결과보기
             </Button>
             <Modal title="곡 추천하기" trigger={<Button>곡 추가</Button>}>
-              {(setOpen) => <Recommend setOpen={setOpen} refetch={refetch} />}
+              {(setOpen) => (
+                <Recommend
+                  setOpen={setOpen}
+                  refetch={refetch}
+                  existingSongs={poll.songs.map((s) => ({
+                    songName: s.songName,
+                    artistName: s.artistName,
+                  }))}
+                />
+              )}
             </Modal>
-            <Button className={styles.share}>
+            <Button
+              className={styles.share}
+              onClick={() => {
+                if (!window.Kakao || !poll?.id) return;
+
+                const voteId = poll.id;
+                const templateId = 121498;
+
+                window.Kakao.Link.sendCustom({
+                  templateId,
+                  templateArgs: {
+                    voteId: String(voteId),
+                  },
+                });
+              }}
+            >
               <img src={kakao} />
               공유하기
             </Button>
