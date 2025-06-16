@@ -24,10 +24,17 @@
   }
 }
 
-@media (max-width: 475px) {
+@media (max-width: 510px) {
   .card {
     width: 8rem;
     height: 8rem;
+  }
+}
+
+@media (max-width: 410px) {
+  .card {
+    width: 7rem;
+    height: 7rem;
   }
 }
 
@@ -37,6 +44,12 @@
   display: flex;
   gap: 0.25rem;
   align-items: flex-end;
+}
+
+@media (max-width: 510px) {
+  .bars {
+    bottom: 15%;
+  }
 }
 
 .bar {

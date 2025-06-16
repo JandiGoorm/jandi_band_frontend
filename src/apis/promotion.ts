@@ -3,7 +3,9 @@ import { ApiEndpotins } from "@/constants/endpoints";
 import type { PagiNationResponse } from "@/types/common";
 import type {
   CommemtResponse,
+  CommentReportRequest,
   CommentRequest,
+  PromoReportRequest,
   PromotionListResponse,
 } from "@/types/promotion";
 import { buildPath } from "@/utils/buildPath";
@@ -115,4 +117,12 @@ export const useSearchPromotion = ({
     ApiEndpotins.PROMOTION_SEARCH,
     { keyword: keyword, page: page, size: size }
   );
+};
+
+export const useReportPromotion = () => {
+  return usePost<PromoReportRequest, null>(ApiEndpotins.REPORT_PROMO);
+};
+
+export const useReportComment = () => {
+  return usePost<CommentReportRequest, null>(ApiEndpotins.REPORT_COMMENT);
 };

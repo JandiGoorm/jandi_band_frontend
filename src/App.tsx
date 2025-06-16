@@ -6,6 +6,7 @@ import { routes, publicRoutes } from "@/routes/Routes";
 import PrivateRoute from "@/routes/PrivateRoute";
 
 import { useEffect } from "react";
+import ScrollToTop from "./routes/ScrollToTop";
 
 function App() {
   // 카카오 메세지 공유를 위한 추가
@@ -19,6 +20,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <GlobalToast />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {routes.map(({ path, element }) => {
             const isPublic = publicRoutes.includes(path);

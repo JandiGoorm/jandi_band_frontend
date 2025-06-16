@@ -53,7 +53,7 @@ const ScheduleModal = ({
         </header>
 
         {schedules.length === 0 ? (
-          <p>등록된 일정이 없습니다.</p>
+          <p className={styles.no_schedules}>등록된 일정이 없습니다.</p>
         ) : (
           sechedulesState.map((s, i) => (
             <ModalItem key={i} event={s} onDelete={handleDeleteState} />

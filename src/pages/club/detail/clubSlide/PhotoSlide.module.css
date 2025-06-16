@@ -12,7 +12,7 @@
 
 .title_box {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: end;
 }
 .title {

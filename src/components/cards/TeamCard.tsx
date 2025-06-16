@@ -37,19 +37,19 @@ const TeamCards = ({ item }: { item: TeamBasicResponse }) => {
           className={styles.note}
           style={{ transform: `translateY(${transforms[0]})` }}
         >
-          <IoMusicalNote size="3em" />
+          <IoMusicalNote />
         </div>
         <div
           className={styles.note}
           style={{ transform: `translateY(${transforms[1]})` }}
         >
-          <IoMusicalNotes size="3em" />
+          <IoMusicalNotes />
         </div>
         <div
           className={styles.note}
           style={{ transform: `translateY(${transforms[2]})` }}
         >
-          <IoMusicalNoteOutline size="3em" />
+          <IoMusicalNoteOutline />
         </div>
       </div>
       <p className={styles.text}>{item.name}</p>

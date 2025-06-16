@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   flex-wrap: wrap;
 }
 
@@ -19,6 +19,13 @@
   border-radius: var(--radius-xl);
   position: relative;
 }
+
+@media (max-width: 768px) {
+  .map_box {
+    aspect-ratio: 1;
+  }
+}
+
 .search_button {
   position: absolute;
   bottom: 1rem;
@@ -28,7 +35,7 @@
 }
 .promotion_container {
   gap: 1rem;
-  width: 90%;
+  /* width: 90%; */
   margin: 0 auto;
 }
 .page_navigate_box {
@@ -61,7 +68,6 @@
 }
 .back_button {
   align-self: start;
-  margin-bottom: -2.5rem;
   cursor: pointer;
 }
 .post_button_box {
