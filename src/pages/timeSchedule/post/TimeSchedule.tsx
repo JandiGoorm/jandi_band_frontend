@@ -17,6 +17,7 @@ import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
 
 import ArrowBack from "@/pages/vote/style/arrowback.svg";
+import Modal from "@/components/modal/Modal";
 
 const TimeSchedule = () => {
   const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
@@ -71,27 +72,39 @@ const TimeSchedule = () => {
             </p>
           </header>
 
-          <div className={styles.footer}>
-            <Field
-              label="시간표 제목"
-              error={errors.name}
-              className={styles.field}
-              isRequired
-            >
-              <Input {...register("name")} style={{ height: "2rem" }} />
-            </Field>
+          <div className={styles.user_play_box}>
+            <div className={styles.footer}>
+              <Field
+                label="시간표 제목"
+                error={errors.name}
+                className={styles.field}
+                isRequired
+              >
+                <Input {...register("name")} style={{ height: "2rem" }} />
+              </Field>
 
-            <Button
-              type="submit"
-              className={clsx(
-                !errors.name && styles.not_error,
-                styles.save_button
-              )}
+              <Button
+                type="submit"
+                className={clsx(
+                  !errors.name && styles.not_error,
+                  styles.save_button
+                )}
+              >
+                저장하기
+              </Button>
+            </div>
+
+            <Modal
+              title="에타 시간표 불러오기"
+              trigger={
+                <button className={styles.etbut}>
+                  <img className={styles.etimg} src="/et.png" />
+                </button>
+              }
             >
-              저장하기
-            </Button>
+              dd
+            </Modal>
           </div>
-
           <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
         </form>
       </main>
