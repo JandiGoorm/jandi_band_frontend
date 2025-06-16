@@ -135,7 +135,7 @@ const ProfilEdit = ({ setOpen, refetch, myInfo }: ProfileEditProps) => {
 
       <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
         <Field label="닉네임" error={errors.nickname}>
-          <Input inputSize="sm" {...formController.register("nickname")} />
+          <Input inputSize="lg" {...formController.register("nickname")} />
         </Field>
 
         <Field label="포지션" error={errors.position}>

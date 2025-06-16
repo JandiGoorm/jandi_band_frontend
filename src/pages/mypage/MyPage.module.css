@@ -51,6 +51,16 @@
   font-size: var(--text-base);
 }
 
+@media (max-width: 500px) {
+  .profile_content {
+    flex-direction: column;
+    white-space: nowrap;
+  }
+  .profile_title {
+    margin-bottom: 1.2rem;
+  }
+}
+
 .profile_content img {
   width: 120px;
   height: 120px;

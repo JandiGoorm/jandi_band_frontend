@@ -56,13 +56,12 @@
 
 /* 스케줄 라벨 */
 .schedule_label {
-  color: #2a2a2a;
+  color: #3e3e3e;
   text-align: start;
-  font-size: 0.9rem;
-  padding: 2px 4px;
+  font-size: 0.85rem;
+  padding: 3px 4px;
   border-radius: 4px;
   margin-bottom: 2px;
-  /* width: 100%; */
   white-space: nowrap;
   overflow: hidden;
   /* text-overflow: ellipsis; */
@@ -87,7 +86,7 @@
     height: 6rem;
   }
   .schedule_label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 1px 3px;
   }
   .schedule_label_more {
