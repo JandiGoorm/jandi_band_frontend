@@ -41,7 +41,16 @@ const Vote = () => {
               결과보기
             </Button>
             <Modal title="곡 추천하기" trigger={<Button>곡 추가</Button>}>
-              {(setOpen) => <Recommend setOpen={setOpen} refetch={refetch} />}
+              {(setOpen) => (
+                <Recommend
+                  setOpen={setOpen}
+                  refetch={refetch}
+                  existingSongs={poll.songs.map((s) => ({
+                    songName: s.songName,
+                    artistName: s.artistName,
+                  }))}
+                />
+              )}
             </Modal>
             <Button className={styles.share}>
               <img src={kakao} />

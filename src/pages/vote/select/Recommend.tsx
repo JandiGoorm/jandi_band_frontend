@@ -28,9 +28,11 @@ export type VoteFormData = z.infer<typeof voteFormSchema>;
 interface RecommendProps {
   setOpen: (open: boolean) => void;
   refetch: () => void;
+  // 중복 방지를 위해 이미 등록된 곡 넘기도록 수정
+  existingSongs: { songName: string; artistName: string }[];
 }
 
-const Recommend = ({ setOpen, refetch }: RecommendProps) => {
+const Recommend = ({ setOpen, refetch, existingSongs }: RecommendProps) => {
   const { id: pollId } = useParams();
   // 스키마랑 연결
   const form = useForm<VoteFormData>({
@@ -45,6 +47,17 @@ const Recommend = ({ setOpen, refetch }: RecommendProps) => {
   const { mutate: postSong } = usePostPoll(pollId!);
 
   const onSubmit = (data: VoteFormData) => {
+    const isDuplicate = existingSongs.some(
+      (song) =>
+        song.songName.trim() === data.songName.trim() &&
+        song.artistName.trim() === data.artistName.trim()
+    );
+
+    if (isDuplicate) {
+      alert("이미 같은 곡과 가수가 등록되어 있어요!");
+      return;
+    }
+
     postSong(data, {
       onSuccess: () => {
         refetch();
