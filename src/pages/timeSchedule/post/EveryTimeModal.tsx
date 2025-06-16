@@ -10,6 +10,10 @@ import Button from "@/components/button/Button";
 
 import { fetchTimeTableFromEverytime } from "@/apis/everytime";
 
+interface EveryTimeModalProps {
+  onApply: (timetableData: Record<string, string[]>) => void;
+}
+
 const urlSchema = z.object({
   url: z
     .string()
@@ -23,7 +27,7 @@ const urlSchema = z.object({
 
 type UrlFormData = z.infer<typeof urlSchema>;
 
-export default function EveryTimeModal() {
+export default function EveryTimeModal({ onApply }: EveryTimeModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const form = useForm<UrlFormData>({
@@ -39,7 +43,9 @@ export default function EveryTimeModal() {
   const onSubmit = async (data: UrlFormData) => {
     try {
       const res = await fetchTimeTableFromEverytime(data.url);
+
       console.log("성공적으로 받은 시간표:", res.data.timetableData);
+      onApply(res.data.timetableData);
     } catch (err) {
       console.error("시간표 요청 실패:", err);
     }

@@ -20,10 +20,25 @@ import ArrowBack from "@/pages/vote/style/arrowback.svg";
 import Modal from "@/components/modal/Modal";
 import EveryTimeModal from "./EveryTimeModal";
 
+import type { Range } from "@/types/timeTable";
+
 const TimeSchedule = () => {
   const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
   const navigate = useNavigate();
   const { mutate: postTimeTable } = usePostTimeTable();
+
+  // 에타 불러오면서 추가한거
+  const [importedSchedule, setImportedSchedule] = useState<
+    Record<Range, string[]>
+  >({
+    Mon: [],
+    Tue: [],
+    Wed: [],
+    Thu: [],
+    Fri: [],
+    Sat: [],
+    Sun: [],
+  });
 
   const formController = useForm<z.infer<typeof timeTableSchema>>({
     resolver: zodResolver(timeTableSchema),
@@ -104,10 +119,16 @@ const TimeSchedule = () => {
                 </button>
               }
             >
-              <EveryTimeModal />
+              <EveryTimeModal
+                onApply={(timetableData) => setImportedSchedule(timetableData)}
+              />
             </Modal>
           </div>
-          <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
+          <TimeScheduler
+            isEditable
+            onTimeScheduleChange={setMySchedule}
+            initialTimeSchedule={importedSchedule}
+          />
         </section>
       </main>
     </DefaultLayout>
