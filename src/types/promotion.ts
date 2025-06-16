@@ -52,3 +52,9 @@ export interface PromoReportRequest {
   reportReasonId: number;
   description: string;
 }
+
+export interface CommentReportRequest {
+  promoCommentId: number;
+  reportReasonId: number;
+  description: string;
+}

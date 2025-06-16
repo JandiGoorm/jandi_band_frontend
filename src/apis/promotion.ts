@@ -3,6 +3,7 @@ import { ApiEndpotins } from "@/constants/endpoints";
 import type { PagiNationResponse } from "@/types/common";
 import type {
   CommemtResponse,
+  CommentReportRequest,
   CommentRequest,
   PromoReportRequest,
   PromotionListResponse,
@@ -120,4 +121,8 @@ export const useSearchPromotion = ({
 
 export const useReportPromotion = () => {
   return usePost<PromoReportRequest, null>(ApiEndpotins.REPORT_PROMO);
+};
+
+export const useReportComment = () => {
+  return usePost<CommentReportRequest, null>(ApiEndpotins.REPORT_COMMENT);
 };
