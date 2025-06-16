@@ -18,6 +18,7 @@ import { PageEndpoints } from "@/constants/endpoints";
 
 import ArrowBack from "@/pages/vote/style/arrowback.svg";
 import Modal from "@/components/modal/Modal";
+import EveryTimeModal from "./EveryTimeModal";
 
 const TimeSchedule = () => {
   const [mySchedule, setMySchedule] = useState<Map<string, boolean>>(new Map());
@@ -102,7 +103,7 @@ const TimeSchedule = () => {
                 </button>
               }
             >
-              dd
+              <EveryTimeModal />
             </Modal>
           </div>
           <TimeScheduler isEditable onTimeScheduleChange={setMySchedule} />
