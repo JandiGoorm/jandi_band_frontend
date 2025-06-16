@@ -1,0 +1,118 @@
+/* 스케줄 라벨 */
+.schedule_label {
+  background: white;
+  padding: 1rem 1.2rem 0 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #1e293b;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.schedule_label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  transition: width 0.3s ease;
+}
+
+.schedule_label:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.schedule_label:hover::before {
+  width: 8px;
+}
+
+.event_name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.name_delete_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.team_info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.team_label,
+.position_label {
+  display: inline-block;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  color: #475569;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.team_label:hover,
+.position_label:hover {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  transform: translateY(-1px);
+}
+
+.schedule_time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #64748b;
+  font-weight: 500;
+  margin: 0.75rem 0;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.9rem;
+}
+
+/* 삭제버튼 */
+.delete_button {
+  /* background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); */
+  color: #dc2626;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.delete_button:hover {
+  color: #b91c1c;
+  transform: translateY(-1px);
+}
+
+/* 클럽 이벤트와 팀 이벤트 구분 */
+.schedule_label.club_event::before {
+  background-color: #c4c9bc;
+  /* background: linear-gradient(180deg, #c4c9bc 0%, #c4c9bc 100%); */
+}
+
+.schedule_label.team_event::before {
+  background-color: #8bc2d1;
+  /* background: linear-gradient(180deg, #8bc2d1 0%, #8bc2d1 100%); */
+}

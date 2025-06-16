@@ -35,8 +35,10 @@ const ScheduleModal = ({
         onClick={(e) => e.stopPropagation()}
       >
         <header className={styles.modal_header}>
-          <h3>{selectedDate} 일정</h3>
-          <button onClick={onClose}>닫기</button>
+          <h2>{selectedDate} 일정</h2>
+          <button className={styles.close_button} onClick={onClose}>
+            X
+          </button>
         </header>
 
         {schedules.length === 0 ? (
