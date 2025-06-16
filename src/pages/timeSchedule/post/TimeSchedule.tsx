@@ -74,7 +74,6 @@ const TimeSchedule = () => {
   return (
     <DefaultLayout>
       <main className={styles.wrapper_container}>
-        {/* <form onSubmit={handleFormSubmit} className={styles.container}> */}
         <section className={styles.container}>
           <header className={styles.header}>
             <img
