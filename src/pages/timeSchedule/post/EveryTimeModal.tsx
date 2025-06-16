@@ -8,6 +8,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@/components/button/Button";
 
+import { fetchTimeTableFromEverytime } from "@/apis/everytime";
+
 const urlSchema = z.object({
   url: z
     .string()
@@ -34,9 +36,13 @@ export default function EveryTimeModal() {
     formState: { errors },
   } = form;
 
-  const onSubmit = (data: UrlFormData) => {
-    console.log("제출됨:", data);
-    // API 호출 여기
+  const onSubmit = async (data: UrlFormData) => {
+    try {
+      const res = await fetchTimeTableFromEverytime(data.url);
+      console.log("성공적으로 받은 시간표:", res.data.timetableData);
+    } catch (err) {
+      console.error("시간표 요청 실패:", err);
+    }
   };
 
   return (
