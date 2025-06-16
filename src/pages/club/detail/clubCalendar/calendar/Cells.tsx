@@ -59,14 +59,11 @@ const Cells = ({ currentMonth }: Props) => {
   };
 
   const handleDayClick = (date: string) => {
-    const matched = schedules.filter((s) =>
-      // format(new Date(s.startDatetime), "yyyy-MM-dd") === date
-      {
-        const start = format(new Date(s.startDatetime), "yyyy-MM-dd");
-        const end = format(new Date(s.endDatetime), "yyyy-MM-dd");
-        return isSameOrBetween(date, start, end);
-      }
-    );
+    const matched = schedules.filter((s) => {
+      const start = format(new Date(s.startDatetime), "yyyy-MM-dd");
+      const end = format(new Date(s.endDatetime), "yyyy-MM-dd");
+      return isSameOrBetween(date, start, end);
+    });
     setSelectedSchedules(matched);
     setSelectedDate(date);
     setIsModalOpen(true);
@@ -84,14 +81,11 @@ const Cells = ({ currentMonth }: Props) => {
       num++; // 셀에 고유한 키
 
       // 일정 라벨
-      const matchedSchedules = schedules.filter((s) =>
-        // format(new Date(s.startDatetime), "yyyy-MM-dd") === formattedDate
-        {
-          const start = format(new Date(s.startDatetime), "yyyy-MM-dd");
-          const end = format(new Date(s.endDatetime), "yyyy-MM-dd");
-          return isSameOrBetween(formattedDate, start, end);
-        }
-      );
+      const matchedSchedules = schedules.filter((s) => {
+        const start = format(new Date(s.startDatetime), "yyyy-MM-dd");
+        const end = format(new Date(s.endDatetime), "yyyy-MM-dd");
+        return isSameOrBetween(formattedDate, start, end);
+      });
 
       // 해당 날짜가 이번 달인가?
       const isCurrentMonth = format(currentMonth, "M") === format(day, "M");
