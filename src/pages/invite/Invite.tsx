@@ -20,6 +20,7 @@ const Invite = () => {
   useEffect(() => {
     if (!type || !code) return;
 
+    // 타입이 클럽이면 클럽 가입 API 호출
     if (type === "club") {
       joinClub(undefined, {
         onSuccess: (response) => {
@@ -36,8 +37,12 @@ const Invite = () => {
             return;
           }
           // 이미 가입 되었을때
+          // if (
+          //   (error as AxiosError)?.response?.data === "이미 가입한 동아리입니다"
+          // )
           if (
-            (error as AxiosError)?.response?.data === "이미 가입한 동아리입니다"
+            (error as AxiosError<ApiResponse<{ message: string }>>)?.response
+              ?.data?.message === "이미 가입한 동아리입니다"
           ) {
             navigate(PageEndpoints.MYPAGE);
             return;
