@@ -49,7 +49,7 @@ const BarChart = ({ data, keys, filter }: BarChartProps) => {
               direction: "row",
               translateY: 55,
               itemsSpacing: 3,
-              itemWidth: 100,
+              itemWidth: 70,
               itemHeight: 20,
               symbolSize: 10,
               itemDirection: "left-to-right",
