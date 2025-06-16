@@ -24,10 +24,10 @@ const Slide = <T extends { id: number }>({
     const width = window.innerWidth;
     let slides = size === "sm" ? 4 : 3;
 
-    if (width < 400) {
-      slides = 1;
-    } else if (width < 850) {
+    if (width < 560) {
       slides = size === "sm" ? 2 : 1;
+    } else if (width < 850) {
+      slides = size === "sm" ? 2 : 2;
     } else if (width < 1110) {
       slides = size === "sm" ? 3 : 2;
     }
