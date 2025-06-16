@@ -52,7 +52,22 @@ const Vote = () => {
                 />
               )}
             </Modal>
-            <Button className={styles.share}>
+            <Button
+              className={styles.share}
+              onClick={() => {
+                if (!window.Kakao || !poll?.id) return;
+
+                const voteId = poll.id;
+                const templateId = 121498;
+
+                window.Kakao.Link.sendCustom({
+                  templateId,
+                  templateArgs: {
+                    voteId: String(voteId),
+                  },
+                });
+              }}
+            >
               <img src={kakao} />
               공유하기
             </Button>
