@@ -55,8 +55,12 @@ const MapModal = ({
   const handlePlaceClick = (place: kakaoLocationRequest) => {
     const lat = parseFloat(place.y);
     const lng = parseFloat(place.x);
+    const processedPlace: kakaoLocationRequest = {
+      ...place,
+      road_address_name: place.road_address_name || place.address_name,
+    };
     setMarkerPosition({ lat, lng });
-    setSelectedPlace(place);
+    setSelectedPlace(processedPlace);
   };
 
   return (

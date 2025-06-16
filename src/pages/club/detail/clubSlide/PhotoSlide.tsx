@@ -32,7 +32,7 @@ const PhotoSlide = ({
           <p className={styles.title}>동아리 사진들</p>
           <p className={styles.more}>더보기</p>
         </div>
-        {isMember ? (
+        {isMember && (
           <Modal
             title="사진 등록하기"
             trigger={
@@ -43,7 +43,7 @@ const PhotoSlide = ({
           >
             <PhotoModal refetchPhotos={refetchPhotos} />
           </Modal>
-        ) : null}
+        )}
       </header>
       <section className={styles.slider_box}>
         <Slide items={photos.map((p) => ({ ...p, id: p.photoId }))} size="md">

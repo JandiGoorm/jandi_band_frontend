@@ -14,8 +14,8 @@ import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
 
 const PromotionMain = () => {
   const navigate = useNavigate();
-  const inputRef = useRef<HTMLInputElement>(null); // 🔹 ref 선언
-  const [searchKeyword, setSearchKeyword] = useState(""); // 🔹 검색 버튼 눌렀을 때만 업데이트
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [searchKeyword, setSearchKeyword] = useState("");
   const { currentPage, totalPage, setTotalPage, handlePageChange } =
     usePagination();
 
@@ -45,7 +45,7 @@ const PromotionMain = () => {
 
   const handleSearch = () => {
     if (inputRef.current) {
-      setSearchKeyword(inputRef.current.value); // 🔹 버튼 클릭 시 검색어 업데이트
+      setSearchKeyword(inputRef.current.value);
     }
   };
 
@@ -64,8 +64,13 @@ const PromotionMain = () => {
           <div>
             <Input
               inputSize="md"
-              ref={inputRef} // 🔹 ref 할당
+              ref={inputRef}
               placeholder="제목, 장소로 검색"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
             />
             <Button variant="transparent" size="md" onClick={handleSearch}>
               검색

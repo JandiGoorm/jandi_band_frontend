@@ -31,6 +31,19 @@
 
 .note {
   transition: transform 0.3s ease;
+  font-size: 3em;
+}
+
+@media (max-width: 768px) {
+  .note {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 475px) {
+  .note {
+    font-size: 2em;
+  }
 }
 
 .text {
@@ -48,9 +61,16 @@
   width: 100%;
 }
 
-@media (max-width: 475px) {
+@media (max-width: 510px) {
   .card {
     width: 8rem;
     height: 8rem;
+  }
+}
+
+@media (max-width: 410px) {
+  .card {
+    width: 7rem;
+    height: 7rem;
   }
 }

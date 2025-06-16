@@ -3,7 +3,7 @@ import styles from "./CommentItem.module.css";
 import { formatISO } from "@/utils/dateStatus";
 import { useAuthStore } from "@/stores/authStore";
 import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
-import { useDeleteComment } from "@/apis/promotion";
+import { useDeleteComment, useReportPromotion } from "@/apis/promotion";
 import ReportModal from "@/components/modal/reportModal/ReportModal";
 
 const CommentItem = ({
@@ -15,6 +15,7 @@ const CommentItem = ({
 }) => {
   const { user } = useAuthStore();
   const { mutate: deleteComment } = useDeleteComment(String(item.id) || "");
+  const { mutate: reportComment } = useReportPromotion();
 
   const mine = user?.id === item.creatorId;
 
@@ -45,8 +46,12 @@ const CommentItem = ({
                 trigger={<p className={styles.comment_button}>신고</p>}
                 title="댓글 신고"
                 description="신고 내역을 자세히 적어 제출해주세요!"
-                onReport={(desc) => {
-                  console.log("신고 내용:", desc);
+                onReport={(description, reasonId) => {
+                  reportComment({
+                    promoId: item.id,
+                    reportReasonId: reasonId,
+                    description,
+                  });
                 }}
               />
             )}
