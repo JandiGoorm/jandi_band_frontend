@@ -20,3 +20,11 @@
   flex-direction: column;
   margin: 1.5rem 0;
 }
+
+@media (max-width: 475px) {
+  .add_but {
+    font-size: 0.75rem;
+    margin-bottom: 0rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
