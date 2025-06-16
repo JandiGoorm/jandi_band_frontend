@@ -72,11 +72,11 @@ const Comment = () => {
       <section className={styles.comment_input}>
         <Input
           inputSize="lg"
-          style={{ flex: "1", marginRight: "1rem" }}
+          style={{ flex: "1", marginRight: "0.3rem" }}
           ref={inputRef}
         />
         <Button size="md" onClick={handleAddComment}>
-          댓글달기
+          작성
         </Button>
       </section>
       <section className={styles.comment_container}>

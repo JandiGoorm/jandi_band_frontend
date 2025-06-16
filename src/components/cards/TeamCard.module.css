@@ -24,13 +24,6 @@
   }
 }
 
-@media (max-width: 475px) {
-  .card {
-    width: 8rem;
-    height: 8rem;
-  }
-}
-
 .notes {
   display: flex;
   align-items: flex-end;
@@ -45,7 +38,6 @@
   top: 80%;
   left: 50%;
   transform: translate(-50%);
-  font-size: var(--text-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-main);
   line-height: 1.2;
@@ -54,4 +46,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+}
+
+@media (max-width: 475px) {
+  .card {
+    width: 8rem;
+    height: 8rem;
+  }
 }

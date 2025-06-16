@@ -17,6 +17,44 @@ interface BarChartProps {
   filter: string;
 }
 
+interface CustomTickProps {
+  x: number;
+  y: number;
+  value: string;
+  textAnchor: string;
+}
+
+const CustomTick = ({ x, y, value, textAnchor }: CustomTickProps) => {
+  // 화면 너비 체크
+  const width = typeof window !== "undefined" ? window.innerWidth : 1024;
+
+  // 화면 너비 조건별 최대 글자수 설정
+  const maxLength = width <= 400 ? 5 : width <= 768 ? 8 : 20;
+
+  const truncate = (str: string, len: number) =>
+    str.length > len ? str.slice(0, len) + "…" : str;
+
+  const [artist = "", title = ""] = value.split("-");
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text textAnchor={textAnchor}>
+        <title>{value}</title> {/* 전체 텍스트 툴팁 */}
+        <tspan x="0" dy="1rem" style={{ fontSize: 8, fill: "#555" }}>
+          {truncate(artist.trim(), maxLength)}
+        </tspan>
+        <tspan
+          x="0"
+          dy="1.2em"
+          style={{ fontSize: 10, fontWeight: "bold", fill: "#222" }}
+        >
+          {truncate(title.trim(), maxLength)}
+        </tspan>
+      </text>
+    </g>
+  );
+};
+
 const BarChart = ({ data, keys, filter }: BarChartProps) => {
   return (
     // div안에 스타일 지정해놓아야 출력됨.
@@ -25,19 +63,18 @@ const BarChart = ({ data, keys, filter }: BarChartProps) => {
         <ResponsiveBar
           data={data}
           keys={keys}
-          indexBy="song"
+          // indexBy="song"
+          indexBy="id"
           margin={{ top: 50, right: 10, bottom: 50, left: 40 }}
           groupMode="grouped"
           axisBottom={{
-            legendOffset: 32,
+            renderTick: CustomTick,
+            legendOffset: 36,
           }}
           axisLeft={{
             legendOffset: -40,
           }}
           totalsOffset={9}
-          // labelSkipWidth={12}
-          // labelSkipHeight={12}
-          // enableLabel={true}
           labelSkipWidth={0}
           labelSkipHeight={0}
           labelPosition="end"
@@ -49,7 +86,7 @@ const BarChart = ({ data, keys, filter }: BarChartProps) => {
               direction: "row",
               translateY: 55,
               itemsSpacing: 3,
-              itemWidth: 100,
+              itemWidth: 70,
               itemHeight: 20,
               symbolSize: 10,
               itemDirection: "left-to-right",
@@ -72,6 +109,7 @@ const BarChart = ({ data, keys, filter }: BarChartProps) => {
                 return "#ccc";
             }
           }}
+          motionConfig="stiff"
         />
       </div>
     </section>

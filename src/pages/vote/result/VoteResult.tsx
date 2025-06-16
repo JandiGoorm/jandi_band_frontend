@@ -12,12 +12,15 @@ const VoteResult = () => {
   const navigate = useNavigate();
   const { poll } = usePollStore();
 
+  console.log(poll);
+
   const [filter, setFilter] = useState("기본");
 
   const voteData = useMemo(() => {
     if (!poll?.songs) return [];
 
     const base = poll.songs.map((song) => ({
+      id: `${song.artistName}-${song.songName}`, // 그래프 중복 구분을 위한 아이디 추가
       song: song.songName,
       좋아요: song.likeCount,
       별로예요: song.dislikeCount,
@@ -39,6 +42,7 @@ const VoteResult = () => {
           const 긍정 = item["좋아요"] + item["하않존중"];
           const 부정 = item["별로예요"] + item["실력부족"];
           return {
+            id: item.id,
             song: item.song,
             긍정,
             부정,

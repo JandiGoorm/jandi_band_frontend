@@ -85,6 +85,7 @@
   }
   .member_box {
     justify-content: center;
+    gap: 0.5rem;
   }
   .left_title {
     margin-top: 0.5rem;

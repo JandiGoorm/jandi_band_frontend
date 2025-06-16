@@ -27,3 +27,16 @@
   cursor: pointer;
   color: var(--color-text-primary);
 }
+
+.date_text {
+  white-space: nowrap;
+}
+
+@media (max-width: 475px) {
+  .header {
+    font-size: medium;
+  }
+  .today_button {
+    font-size: var(--text-sm);
+  }
+}

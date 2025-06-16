@@ -16,6 +16,8 @@ import { usePatchInfo } from "@/apis/mypage";
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
 
 interface ProfileEditProps {
+  setOpen: (open: boolean) => void;
+  refetch: () => void;
   myInfo:
     | {
         nickname: string | null;
@@ -25,7 +27,7 @@ interface ProfileEditProps {
     | undefined;
 }
 
-const ProfilEdit = ({ myInfo }: ProfileEditProps) => {
+const ProfilEdit = ({ setOpen, refetch, myInfo }: ProfileEditProps) => {
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const [imageURL, setimageURL] = useState<string | null>(null);
 
@@ -86,8 +88,6 @@ const ProfilEdit = ({ myInfo }: ProfileEditProps) => {
     const file = imageInputRef.current?.files?.[0];
     const { nickname, position, university } = getValues();
 
-    console.log("선택된 파일:", file);
-
     const formData = new FormData();
     formData.append("nickname", nickname || "null");
     formData.append("position", position || "null");
@@ -97,12 +97,12 @@ const ProfilEdit = ({ myInfo }: ProfileEditProps) => {
       formData.append("profilePhoto", file);
     }
 
-    console.log("===== 전송할 FormData =====");
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
-    }
-
-    mutate(formData);
+    mutate(formData, {
+      onSuccess: () => {
+        refetch();
+        setOpen(false);
+      },
+    });
   };
 
   return (
@@ -140,7 +140,6 @@ const ProfilEdit = ({ myInfo }: ProfileEditProps) => {
 
         <Field label="포지션" error={errors.position}>
           <PositionSelect
-            // value={formController.watch("position")}
             onValueChange={(position) => {
               formController.setValue("position", position);
             }}

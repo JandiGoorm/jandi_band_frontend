@@ -74,7 +74,7 @@ export const getEventStatus = (eventDatetime: Date | string): EventStatus => {
 
   if (eventDay.getTime() === today.getTime()) {
     return {
-      text: "D-Day",
+      text: "공연중",
       backgroundColor: "var(--color-bg-toast-success)",
       color: "var(--color-button-primary-text)",
     };
@@ -82,7 +82,7 @@ export const getEventStatus = (eventDatetime: Date | string): EventStatus => {
     return {
       text: "공연 예정",
       backgroundColor: "var(--color-white)",
-      color: "var(--color-text-main)",
+      color: "var(--color-label)",
     };
   } else {
     return {

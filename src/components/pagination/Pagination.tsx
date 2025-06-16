@@ -66,7 +66,7 @@ const Pagination: React.FC<PaginationProps> = ({
       </Button>
       <Button
         size="sm"
-        variant={safetyCurrentPage === 1 ? "secondary" : "none"}
+        variant={safetyCurrentPage === 1 ? "textAccent" : "none"}
         onClick={() => handlePageChange(1)}
         disabled={safetyCurrentPage === 1}
       >
@@ -77,7 +77,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <Button
           size="sm"
           key={page}
-          variant={safetyCurrentPage === page ? "secondary" : "none"}
+          variant={safetyCurrentPage === page ? "textAccent" : "none"}
           onClick={() => handlePageChange(page)}
         >
           {page}
@@ -87,7 +87,7 @@ const Pagination: React.FC<PaginationProps> = ({
       {totalPage > 1 && (
         <Button
           size="sm"
-          variant={safetyCurrentPage === totalPage ? "secondary" : "none"}
+          variant={safetyCurrentPage === totalPage ? "textAccent" : "none"}
           onClick={() => handlePageChange(totalPage)}
           disabled={safetyCurrentPage === totalPage}
         >
