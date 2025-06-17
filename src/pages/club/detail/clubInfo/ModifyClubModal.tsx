@@ -85,7 +85,10 @@ const ModifyClubModal = ({ club, onClose }: ModifyClubModalProps) => {
       </Field>
 
       <Field label="인스타그램 아이디" error={errors.instagramId}>
-        <Input {...register("instagramId")} />
+        <Input
+          placeholder="'@' 를 제외하고 입력해주세요"
+          {...register("instagramId")}
+        />
       </Field>
 
       <Button
