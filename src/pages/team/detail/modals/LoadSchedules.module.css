@@ -24,7 +24,7 @@
 .list_container {
   display: grid;
   /* grid-template-columns: repeat(3, 1fr); */
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1rem;
 }
 
@@ -43,5 +43,38 @@
 
 .selected {
   outline: 2px solid var(--color-primary);
-  border-radius: var(--radius-md);
+  border-radius: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .list_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1023px) {
+  .list_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .list_container {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 510px) {
+  .card {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+@media (max-width: 410px) {
+  .card {
+    width: 7rem;
+    height: 7rem;
+  }
 }
