@@ -43,6 +43,10 @@ const LoadSchedules = () => {
         return (
           <section className={styles.container}>
             <h3 className={styles.title}>내 시간표 목록</h3>
+            <p className={styles.guide}>
+              {" "}
+              마이페이지에서 시간표를 저장하고 불러올 수 있어요{" "}
+            </p>
 
             <div className={styles.list_container}>
               {timeTables?.data?.map((timeTable) => (
