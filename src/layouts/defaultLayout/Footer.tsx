@@ -10,7 +10,7 @@ const Footer = () => {
           <a href="/faq">자주 묻는 질문</a>
           <a href="/terms">이용약관</a>
           <a href="/privacy">개인정보처리방침</a> */}
-          <a href="">서비스 소개</a>
+          <a href="/about">서비스 소개</a>
           <a href="">자주 묻는 질문</a>
           <a href="/contact">About Us</a>
           <a href="">이용약관</a>

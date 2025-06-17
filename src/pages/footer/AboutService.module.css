@@ -1,0 +1,79 @@
+.fullPageWrapper {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.fullPageWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.fullPageWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fullPageWrapper::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+
+  border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.fullPageWrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.fullPageSection {
+  height: 80vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: #f8faff;
+}
+
+.fullPageSection img {
+  max-width: 80%;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.caption {
+  text-align: center;
+  max-width: 600px;
+}
+
+.caption h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.caption p {
+  font-size: 1rem;
+  color: #555;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeIn {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}

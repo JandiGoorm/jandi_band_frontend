@@ -21,6 +21,7 @@ import MyClubList from "@/pages/club/more/MyClubList";
 import ClubList from "@/pages/club/more/ClubList";
 import PhotoList from "@/pages/club/more/PhotoList";
 import AboutUs from "@/pages/footer/AboutUs";
+import AboutService from "@/pages/footer/AboutService";
 
 export const publicRoutes = [
   PageEndpoints.SIGN_IN,
@@ -51,4 +52,5 @@ export const routes = [
   { path: PageEndpoints.TEAM_LAYOUT, element: <TeamLayout /> },
   { path: PageEndpoints.INVITE, element: <Invite /> },
   { path: PageEndpoints.CONTACT, element: <AboutUs /> },
+  { path: PageEndpoints.ABOUT, element: <AboutService /> },
 ];
