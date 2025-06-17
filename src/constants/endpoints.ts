@@ -26,6 +26,7 @@ export enum PageEndpoints {
   //  푸터에 들어갈 링크들
   CONTACT = "/contact",
   ABOUT = "/about",
+  PRIVACY = "/privacy",
 }
 
 export enum ApiEndpotins {
