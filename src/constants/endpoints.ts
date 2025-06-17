@@ -22,6 +22,12 @@ export enum PageEndpoints {
   MY_CLUB_LIST = "/clubs/my",
   CLUB_LIST = "/clubs",
   PHOTO_LIST = "/photos/:id",
+
+  //  푸터에 들어갈 링크들
+  CONTACT = "/contact",
+  ABOUT = "/about",
+  PRIVACY = "/privacy",
+  FAQ = "/faq",
 }
 
 export enum ApiEndpotins {
