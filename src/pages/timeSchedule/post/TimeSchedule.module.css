@@ -78,4 +78,7 @@
 .etimg {
   width: 18px;
   height: 18px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }

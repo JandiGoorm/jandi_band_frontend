@@ -121,9 +121,9 @@ const PrivacyPolicy = () => {
 
         <h2>10. 개인정보 보호책임자</h2>
         <p>
-          이름: 홍길동
+          이름: 김연재
           <br />
-          이메일: jandigoorm@gmail.com
+          이메일: heroria0503@gmail.com
           <br />
           문의사항은 위 이메일 또는 고객센터를 통해 접수해주시기 바랍니다.
         </p>
