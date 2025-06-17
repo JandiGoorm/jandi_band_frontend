@@ -76,7 +76,11 @@ const CreateClubModal = ({ trigger }: { trigger: React.ReactNode }) => {
         </Field>
 
         <Field label="인스타그램 아이디" error={errors.instagramId}>
-          <Input {...register("instagramId")} inputSize="lg" />
+          <Input
+            placeholder="'@' 를 제외하고 입력해주세요"
+            {...register("instagramId")}
+            inputSize="lg"
+          />
         </Field>
 
         <Button
