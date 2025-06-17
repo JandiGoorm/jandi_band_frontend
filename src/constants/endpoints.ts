@@ -27,6 +27,7 @@ export enum PageEndpoints {
   CONTACT = "/contact",
   ABOUT = "/about",
   PRIVACY = "/privacy",
+  FAQ = "/faq",
 }
 
 export enum ApiEndpotins {
