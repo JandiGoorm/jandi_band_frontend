@@ -18,6 +18,9 @@ import { useAuthStore } from "@/stores/authStore";
 
 import ArrowBack from "@/pages/vote/style/arrowback.svg";
 
+import Modal from "@/components/modal/Modal";
+import EveryTimeModal from "@/pages/timeSchedule/post/EveryTimeModal";
+
 const CreateTimeTable = () => {
   const [initialTimeSchedule, setInitialTimeSchedule] = useState<
     Record<Range, string[]> | undefined
@@ -63,6 +66,36 @@ const CreateTimeTable = () => {
     setInitialTimeSchedule(myTeamTimeTable);
   }, [team, user]);
 
+  // 에타 불러오면서 추가한거
+  const [importedSchedule, setImportedSchedule] = useState<
+    Record<Range, string[]>
+  >({
+    Mon: [],
+    Tue: [],
+    Wed: [],
+    Thu: [],
+    Fri: [],
+    Sat: [],
+    Sun: [],
+  });
+
+  // 에타, 불러온거 둘다 사용하기 위함
+  const [actualTimeSchedule, setActualTimeSchedule] = useState<
+    Record<Range, string[]> | undefined
+  >();
+
+  useEffect(() => {
+    const isImported = Object.values(importedSchedule).some(
+      (arr) => arr.length > 0
+    );
+
+    if (isImported) {
+      setActualTimeSchedule(importedSchedule);
+    } else {
+      setActualTimeSchedule(initialTimeSchedule);
+    }
+  }, [importedSchedule, initialTimeSchedule]);
+
   return (
     <div className={styles.wrapper_container}>
       <form className={styles.container} onSubmit={handleFormSubmit}>
@@ -78,25 +111,38 @@ const CreateTimeTable = () => {
           <h1 className={styles.title}>시간표 입력</h1>
           <p className={styles.description}>
             가능한 시간대를 클릭하거나 드래그하여 선택해주세요.
-            <br />
-            에브리타임 시간표는 마이페이지에서 등록할 수 있습니다.
           </p>
         </header>
+
+        <section className={styles.but_container}>
+          <Button
+            variant="secondary"
+            className={styles.save_button}
+            type="submit"
+          >
+            저장하기
+          </Button>
+          <Modal
+            title="에타 시간표 불러오기"
+            trigger={
+              <button className={styles.etbut}>
+                <img className={styles.etimg} src="/et.png" />
+              </button>
+            }
+          >
+            <EveryTimeModal
+              onApply={(timetableData) => setImportedSchedule(timetableData)}
+            />
+          </Modal>
+        </section>
 
         <TimeScheduler
           isEditable
           onTimeScheduleChange={setMySchedule}
           isLoad
-          initialTimeSchedule={initialTimeSchedule}
+          // initialTimeSchedule={initialTimeSchedule}
+          initialTimeSchedule={actualTimeSchedule}
         />
-
-        <Button
-          variant="secondary"
-          className={styles.save_button}
-          type="submit"
-        >
-          저장하기
-        </Button>
       </form>
     </div>
   );
