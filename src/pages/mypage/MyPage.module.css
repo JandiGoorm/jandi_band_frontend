@@ -136,3 +136,9 @@
   color: #777777;
   font-size: 0.9rem;
 }
+
+.out_button_box {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
