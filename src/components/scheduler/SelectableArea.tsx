@@ -182,16 +182,36 @@ const SelectableAreaItem = ({
   const { isDragging, onStartDrag, onSelect, selectedItems, addItem } =
     useSelectableAreaContext();
 
-  // 드래그 시작
+  // 마우스 - 드래그 시작
   const handleMouseDown = useCallback(() => {
     onStartDrag(id, selectedItems.get(id) ?? initialSelected);
   }, [onStartDrag, id, selectedItems, initialSelected]);
 
-  // 드래그 중에 해당 셀에 들어오면 선택 됨
+  // 마우스 - 드래그 중에 해당 셀에 들어오면 선택 됨
   const handleMouseEnter = useCallback(() => {
     if (!isDragging) return;
     onSelect(id);
   }, [isDragging, onSelect, id]);
+
+  // 터치 이벤트 핸들러 추가 (모바일 지원 위함)
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      e.preventDefault();
+      // 터치시 스크롤 방지 (안넣을 경우 터치 이벤트가 스크롤로 인식되어 드래그가 안된다 하네요)
+      const isSelected = selectedItems.get(id) ?? initialSelected;
+      onStartDrag(id, isSelected);
+    },
+    [id, selectedItems, initialSelected, onStartDrag]
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      e.preventDefault();
+      if (!isDragging) return;
+      onSelect(id);
+    },
+    [id, isDragging, onSelect]
+  );
 
   useLayoutEffect(() => {
     addItem(id, initialSelected);
@@ -202,6 +222,8 @@ const SelectableAreaItem = ({
       {...props}
       onMouseDown={handleMouseDown}
       onMouseEnter={handleMouseEnter}
+      onTouchStart={handleTouchStart} // 터치 연결
+      onTouchMove={handleTouchMove}
     >
       {typeof children === "function"
         ? children({ isSelected: selectedItems.get(id) ?? initialSelected })
