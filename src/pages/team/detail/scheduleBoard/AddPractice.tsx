@@ -24,7 +24,10 @@ interface Props {
 
 const addFormSchema = z
   .object({
-    name: z.string().nonempty("캘린더에 표시될 일정 이름을 입력해주세요."),
+    name: z
+      .string()
+      .nonempty("캘린더에 표시될 일정 이름을 입력해주세요.")
+      .max(50, "일정 이름은 50자 이하로 입력해주세요."),
     startDatetime: z.string().nonempty("시작 시간과 날짜를 선택하세요."),
     endtime: z.string().nonempty("종료 시간을 선택하세요."),
     noPosition: z
