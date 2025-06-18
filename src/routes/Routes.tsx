@@ -25,8 +25,6 @@ import AboutService from "@/pages/footer/AboutService";
 import PrivacyPolicy from "@/pages/footer/PrivacyPolicy";
 import FaqPage from "@/pages/footer/FaqPage";
 
-import Dtest from "@/pages/dragtest/Dtest";
-
 export const publicRoutes = [
   PageEndpoints.SIGN_IN,
   PageEndpoints.CALLBACK,
@@ -59,6 +57,4 @@ export const routes = [
   { path: PageEndpoints.ABOUT, element: <AboutService /> },
   { path: PageEndpoints.PRIVACY, element: <PrivacyPolicy /> },
   { path: PageEndpoints.FAQ, element: <FaqPage /> },
-
-  { path: PageEndpoints.DTEST, element: <Dtest /> },
 ];

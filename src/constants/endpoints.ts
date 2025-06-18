@@ -28,8 +28,6 @@ export enum PageEndpoints {
   ABOUT = "/about",
   PRIVACY = "/privacy",
   FAQ = "/faq",
-
-  DTEST = "/test",
 }
 
 export enum ApiEndpotins {
