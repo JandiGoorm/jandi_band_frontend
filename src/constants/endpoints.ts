@@ -57,6 +57,7 @@ export enum ApiEndpotins {
   MY_TIMETABLE_DETAIL = "/users/me/timetables/:id",
   MY_TIMETABLE_BY_TEAM = "/teams/:id/members/me/timetable",
   MEMBER_OUT = "/clubs/:clubId/members/:userId", //동아리 부원 강퇴
+  LEADER_CHANGE = "/clubs/:id/representative", //동아리 대표자 위임
 
   TEAM_DETAIL = "/teams/:id",
   TEAM_INVITE = "/invite/teams/:id",

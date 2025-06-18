@@ -14,6 +14,7 @@ import Tooltip from "@/components/tooltip/Tooltip";
 import Dropdown from "@/components/dropdown/Dropdown";
 import { useState } from "react";
 import EditMemberModal from "./EditMemberModal";
+import EditLeaderModal from "./EditLeaderModal";
 
 const ClubInfo = ({
   club,
@@ -26,9 +27,9 @@ const ClubInfo = ({
 }) => {
   const { user } = useAuthStore();
   const mine = user?.id === club.representativeId;
-  const [activeModal, setActiveModal] = useState<"modify" | "members" | null>(
-    null
-  );
+  const [activeModal, setActiveModal] = useState<
+    "modify" | "members" | "leader" | null
+  >(null);
 
   return (
     <main className={styles.container}>
@@ -90,6 +91,10 @@ const ClubInfo = ({
                     label: "멤버 관리",
                     onSelect: () => setActiveModal("members"),
                   },
+                  {
+                    label: "대표자 위임",
+                    onSelect: () => setActiveModal("leader"),
+                  },
                 ]}
               />
 
@@ -103,14 +108,19 @@ const ClubInfo = ({
                   onClose={() => setActiveModal(null)}
                 />
               </Modal>
-
               <Modal
                 title="멤버 관리"
                 open={activeModal === "members"}
                 onOpenChange={(v) => !v && setActiveModal(null)}
               >
                 <EditMemberModal />
-                {/* <MemberManageModal clubId={club.id} /> */}
+              </Modal>
+              <Modal
+                title="대표자 위임"
+                open={activeModal === "leader"}
+                onOpenChange={(v) => !v && setActiveModal(null)}
+              >
+                <EditLeaderModal />
               </Modal>
             </>
           )}
