@@ -16,6 +16,16 @@
   gap: 14px;
 }
 
+.header_box {
+  display: flex;
+  align-items: center;
+}
+
+.back_button {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
 .share {
   display: flex;
   background-color: #f6df00;
@@ -35,8 +45,19 @@
     text-align: center;
     flex-direction: column;
   }
+  .header_box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .back_button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
   .header h1 {
-    margin-bottom: 18px;
+    /* margin-bottom: 18px; */
+    width: 100%;
   }
 }
 
