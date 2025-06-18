@@ -42,10 +42,16 @@
 .time_board_item_range_first_half {
   flex: 1;
   border-bottom: 1px dashed var(--board-border-color);
+
+  touch-action: none;
+  user-select: none;
 }
 
 .time_board_item_range_second_half {
   flex: 1;
+
+  touch-action: none;
+  user-select: none;
 }
 
 .isEditableCell {
