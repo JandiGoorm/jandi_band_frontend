@@ -16,7 +16,8 @@
   }
   .time_line_item {
     text-align: right;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
     height: 2.5rem;
+    font-size: 0.85rem;
   }
 }
