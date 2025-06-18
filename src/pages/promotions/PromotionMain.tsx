@@ -92,16 +92,16 @@ const PromotionMain = () => {
                       <Select.ItemText>전체</Select.ItemText>
                     </Select.Item>
                     <Select.Item value="ongoing" className={styles.select_item}>
-                      <Select.ItemText>진행 중</Select.ItemText>
+                      <Select.ItemText>공연 중</Select.ItemText>
                     </Select.Item>
                     <Select.Item
                       value="upcoming"
                       className={styles.select_item}
                     >
-                      <Select.ItemText>예정</Select.ItemText>
+                      <Select.ItemText>공연예정</Select.ItemText>
                     </Select.Item>
                     <Select.Item value="ended" className={styles.select_item}>
-                      <Select.ItemText>종료</Select.ItemText>
+                      <Select.ItemText>공연종료</Select.ItemText>
                     </Select.Item>
                   </Select.Viewport>
                 </Select.Content>
