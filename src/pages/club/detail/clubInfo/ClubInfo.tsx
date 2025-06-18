@@ -87,7 +87,11 @@ const ClubInfo = ({
           {mine && (
             <>
               <Dropdown
-                trigger={<Button size="lg">동아리 관리</Button>}
+                trigger={
+                  <section>
+                    <Button size="lg">동아리 관리</Button>
+                  </section>
+                }
                 items={[
                   {
                     label: "정보 수정",
