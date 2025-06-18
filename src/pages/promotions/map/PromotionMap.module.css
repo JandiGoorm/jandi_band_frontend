@@ -22,7 +22,8 @@
 
 @media (max-width: 768px) {
   .map_box {
-    aspect-ratio: 1;
+    width: 100%;
+    aspect-ratio: 5/6;
   }
 }
 

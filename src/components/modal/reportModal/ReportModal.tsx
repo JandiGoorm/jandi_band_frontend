@@ -59,7 +59,11 @@ const ReportModal = ({
                 </Select.Icon>
               </Select.Trigger>
               <Select.Portal>
-                <Select.Content className={styles.select_content}>
+                <Select.Content
+                  className={styles.select_content}
+                  position="popper"
+                  sideOffset={4}
+                >
                   <Select.Viewport>
                     {reportReasons.map((reason) => (
                       <Select.Item

@@ -160,7 +160,8 @@ const DetailContent = () => {
               <div className={styles.info}>
                 <p className={styles.info_title}>관람료</p>
                 <p className={styles.info_text}>
-                  {fetchData.data.admissionFee}
+                  {Number(fetchData.data.admissionFee).toLocaleString("ko-KR")}{" "}
+                  원
                 </p>
               </div>
               <div className={styles.info}>
