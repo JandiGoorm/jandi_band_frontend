@@ -1,6 +1,5 @@
 export enum PageEndpoints {
-  HOME = "/home",
-  SIGN_IN = "/",
+  HOME = "/",
   SIGN_UP = "/sign-up",
   CALLBACK = "/callback",
   PROMOTION = "/promotion",
