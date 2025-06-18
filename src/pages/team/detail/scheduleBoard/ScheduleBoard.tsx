@@ -8,8 +8,7 @@ import { useGetTeamSchedules } from "@/apis/calendar";
 import { useTeamStore } from "@/stores/teamStore";
 import { DeleteButton } from "./DeleteButton";
 
-// import { useTeamDetail } from "@/pages/team/detail/TeamDetailProvider";
-// import { useAuthStore } from "@/stores/authStore";
+import { useAuthStore } from "@/stores/authStore";
 
 const size = 10;
 
@@ -24,13 +23,13 @@ const positionLabelMap: Record<string, string> = {
 
 const ScheduleBoard = () => {
   const teamId = useTeamStore((state) => state.teamId);
-  // const { team } = useTeamDetail();
-  // const { user } = useAuthStore();
+  const { teamInfo } = useTeamStore();
+  const { user } = useAuthStore();
+
+  const isMember = teamInfo?.members.some((m) => m.userId === user?.id);
 
   const [page, setPage] = useState(0);
   const { data } = useGetTeamSchedules(teamId!, page, size);
-
-  // const isMember = team?.members.some((member) => member.userId === user?.id);
 
   const schedules = data?.data.content ?? [];
   const pageInfo = data?.data.pageInfo;
@@ -39,18 +38,18 @@ const ScheduleBoard = () => {
     <section className={styles.container}>
       <header className={styles.header}>
         <h2>팀 연습 일정</h2>
-        {/* {isMember && ( */}
-        <Modal
-          title="팀 연습 일정 등록하기"
-          trigger={
-            <button className={styles.header_button}>
-              <FiPlus size={20} />
-            </button>
-          }
-        >
-          {(setOpen) => <AddPractice setOpen={setOpen} />}
-        </Modal>
-        {/* )} */}
+        {isMember && (
+          <Modal
+            title="팀 연습 일정 등록하기"
+            trigger={
+              <button className={styles.header_button}>
+                <FiPlus size={20} />
+              </button>
+            }
+          >
+            {(setOpen) => <AddPractice setOpen={setOpen} />}
+          </Modal>
+        )}
       </header>
 
       {/* 연습일정 */}

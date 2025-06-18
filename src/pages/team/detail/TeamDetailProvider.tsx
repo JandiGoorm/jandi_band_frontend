@@ -14,6 +14,8 @@ import type { Nullable } from "@/types/common";
 import { type Position } from "@/types/team";
 import { type Range } from "@/types/timeTable";
 
+import { useTeamStore } from "@/stores/teamStore";
+
 interface TeamDetailContextValue {
   // API 데이터
   team: Nullable<TeamDetailResponse>;
@@ -45,6 +47,8 @@ export const TeamDetailProvider = ({
   const [filteredTypes, setFilteredTypes] = useState<string[]>([]);
 
   const { data, isLoading } = useGetTeamDetail(teamId);
+
+  const { setTeamInfo } = useTeamStore(); //주스탠드
 
   const members = team?.members;
   const membersIds = members?.filter((v) => v.isSubmitted).map((v) => v.userId);
@@ -162,6 +166,7 @@ export const TeamDetailProvider = ({
   useEffect(() => {
     if (!data) return;
     setTeam(data.data);
+    setTeamInfo(data.data); // 주스탠드에 저장
   }, [data]);
 
   const value: TeamDetailContextValue = {
