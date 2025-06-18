@@ -33,7 +33,7 @@ const Invite = () => {
         onError: (error: unknown) => {
           // 토큰이 없을 때
           if ((error as AxiosError)?.response?.data === "") {
-            navigate(PageEndpoints.SIGN_IN);
+            navigate(PageEndpoints.HOME);
             return;
           }
           // 이미 가입 되었을때
@@ -61,7 +61,7 @@ const Invite = () => {
         onError: (error: unknown) => {
           // 토큰이 없을 때
           if ((error as AxiosError)?.response?.data === "") {
-            navigate(PageEndpoints.SIGN_IN);
+            navigate(PageEndpoints.HOME);
             return;
           }
           // 이미 가입 되었을때

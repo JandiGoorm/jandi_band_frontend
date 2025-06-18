@@ -1,4 +1,8 @@
-import type { ClubListResponse, MyClubListResponse } from "@/types/club";
+import type {
+  changeLeaderRequest,
+  ClubListResponse,
+  MyClubListResponse,
+} from "@/types/club";
 import type { Nullable, PagiNationResponse } from "@/types/common";
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useDelete, useFetch, usePatch, usePost } from "./hooks";
@@ -75,4 +79,10 @@ export const useLeaveClub = (id: string) => {
 
 export const useOutMember = (clubId: string, userId: number) => {
   return useDelete(buildPath(ApiEndpotins.MEMBER_OUT, { clubId, userId }));
+};
+
+export const useLeaderChange = (id: string) => {
+  return usePatch<changeLeaderRequest, null>(
+    buildPath(ApiEndpotins.LEADER_CHANGE, { id })
+  );
 };

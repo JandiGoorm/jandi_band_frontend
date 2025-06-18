@@ -213,7 +213,6 @@ const CreatePost = () => {
           </section>
 
           <footer className={styles.button_group}>
-            <Button>등록</Button>
             <Button
               type="button"
               className={styles.cancle}
@@ -221,6 +220,7 @@ const CreatePost = () => {
             >
               취소
             </Button>
+            <Button>등록</Button>
           </footer>
         </form>
       </main>

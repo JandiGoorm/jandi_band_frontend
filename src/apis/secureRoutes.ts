@@ -33,6 +33,7 @@ export const secureRoutes = [
   { method: Method.DELETE, url: ApiEndpotins.LEAVE_TEAM },
   { method: Method.DELETE, url: ApiEndpotins.LEAVE_CLUB },
   { method: Method.DELETE, url: ApiEndpotins.MEMBER_OUT },
+  { method: Method.PATCH, url: ApiEndpotins.LEADER_CHANGE },
 
   { method: Method.POST, url: ApiEndpotins.MY_TIMETABLE },
   { method: Method.GET, url: ApiEndpotins.MY_TIMETABLE },

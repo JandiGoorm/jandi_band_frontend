@@ -1,0 +1,68 @@
+.faq_container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.faq_container h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: bolder;
+  color: #222;
+}
+
+.faq_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+/* 카드형 FAQ 아이템 */
+.faq_item {
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.faq_item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 요약 텍스트 */
+.faq_item summary {
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  outline: none;
+  list-style: none;
+  position: relative;
+}
+
+.faq_item summary::marker {
+  display: none;
+}
+
+.faq_item summary::after {
+  content: "＋";
+  position: absolute;
+  right: 0;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: #888;
+}
+
+.faq_item[open] summary::after {
+  content: "−";
+}
+
+/* 답변 텍스트 */
+.faq_item p {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+}

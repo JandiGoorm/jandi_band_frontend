@@ -7,6 +7,7 @@ import React, {
   useLayoutEffect,
   useMemo,
   useState,
+  useEffect,
 } from "react";
 
 const SelectableAreaContext = createContext<{
@@ -20,6 +21,8 @@ const SelectableAreaContext = createContext<{
   selectedItems: Map<string, boolean>;
   setSelectedItems: (items: Map<string, boolean>) => void;
   disabled?: boolean;
+  setIsDragging: (val: boolean) => void;
+  setIsSelecting: (val: boolean) => void;
 }>({
   isDragging: false,
   isSelecting: false,
@@ -31,6 +34,8 @@ const SelectableAreaContext = createContext<{
   selectedItems: new Map(),
   disabled: false,
   setSelectedItems: () => {},
+  setIsDragging: () => {},
+  setIsSelecting: () => {},
 });
 
 export const useSelectableAreaContext = () => {
@@ -49,6 +54,7 @@ interface SelectableAreaProps {
   disabled?: boolean;
 }
 
+// 여기가 메인
 const SelectableArea = ({
   children,
   onChange,
@@ -117,6 +123,8 @@ const SelectableArea = ({
       selectedItems,
       setSelectedItems,
       disabled,
+      setIsDragging,
+      setIsSelecting,
     }),
     [
       isDragging,
@@ -129,6 +137,8 @@ const SelectableArea = ({
       selectedItems,
       setSelectedItems,
       disabled,
+      setIsDragging,
+      setIsSelecting,
     ]
   );
 
@@ -144,11 +154,73 @@ interface SelectableAreaContainerProps
   children: React.ReactNode;
 }
 
+// const SelectableAreaContainer = ({
+//   children,
+//   ...props
+// }: SelectableAreaContainerProps) => {
+//   const { onEndDrag } = useSelectableAreaContext();
+
+//   return (
+//     <div {...props} onMouseUp={onEndDrag} onMouseLeave={onEndDrag}>
+//       {children}
+//     </div>
+//   );
+// };
+
 const SelectableAreaContainer = ({
   children,
   ...props
 }: SelectableAreaContainerProps) => {
-  const { onEndDrag } = useSelectableAreaContext();
+  const {
+    onEndDrag,
+    onSelect,
+    setIsDragging,
+    setIsSelecting,
+    selectedItems,
+    disabled,
+  } = useSelectableAreaContext();
+
+  useEffect(() => {
+    if (disabled) return;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      const id = el?.getAttribute("data-id");
+      if (id) {
+        e.preventDefault(); // 스크롤 방지
+        const isSelected = selectedItems.get(id) ?? false;
+        setIsDragging(true);
+        setIsSelecting(isSelected);
+        onSelect(id);
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      const id = el?.getAttribute("data-id");
+      if (id) {
+        onSelect(id);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      onEndDrag();
+    };
+
+    document.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
+    });
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+    document.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [onSelect, onEndDrag, setIsDragging, setIsSelecting, selectedItems]);
 
   return (
     <div {...props} onMouseUp={onEndDrag} onMouseLeave={onEndDrag}>
@@ -156,6 +228,7 @@ const SelectableAreaContainer = ({
     </div>
   );
 };
+//----------------------------------------------------------------
 
 interface SelectableAreaItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
@@ -191,6 +264,7 @@ const SelectableAreaItem = ({
   return (
     <Slot
       {...props}
+      data-id={id}
       onMouseDown={handleMouseDown}
       onMouseEnter={handleMouseEnter}
     >

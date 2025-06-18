@@ -95,3 +95,9 @@
   font-size: var(--text-xl);
   font-weight: var(--font-weight-semibold);
 }
+
+.empty_message {
+  text-align: center;
+  color: #777;
+  padding: 2rem 0;
+}

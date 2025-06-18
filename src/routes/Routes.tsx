@@ -1,9 +1,7 @@
 import { PageEndpoints } from "@/constants/endpoints";
 import Callback from "@/pages/auth/signIn/Callback";
-import SignIn from "@/pages/auth/signIn/SignIn";
 import SignUp from "@/pages/auth/signUp/SignUp";
 import Club from "@/pages/club/detail/ClubDetail";
-import Home from "@/pages/home/Home";
 import MyPage from "@/pages/mypage/MyPage";
 import PromotionMain from "@/pages/promotions/PromotionMain";
 import PromotionDetail from "@/pages/promotions/detail/PromotionDetail";
@@ -20,18 +18,22 @@ import PromotionMap from "@/pages/promotions/map/PromotionMap";
 import MyClubList from "@/pages/club/more/MyClubList";
 import ClubList from "@/pages/club/more/ClubList";
 import PhotoList from "@/pages/club/more/PhotoList";
+import AboutUs from "@/pages/footer/AboutUs";
+import AboutService from "@/pages/footer/AboutService";
+import PrivacyPolicy from "@/pages/footer/PrivacyPolicy";
+import FaqPage from "@/pages/footer/FaqPage";
+import HomeRouter from "./HomeRouter";
 
 export const publicRoutes = [
-  PageEndpoints.SIGN_IN,
+  PageEndpoints.HOME,
   PageEndpoints.CALLBACK,
   PageEndpoints.SIGN_UP,
 ];
 
 export const routes = [
-  { path: PageEndpoints.SIGN_IN, element: <SignIn /> },
+  { path: PageEndpoints.HOME, element: <HomeRouter /> },
   { path: PageEndpoints.SIGN_UP, element: <SignUp /> },
   { path: PageEndpoints.CALLBACK, element: <Callback /> },
-  { path: PageEndpoints.HOME, element: <Home /> },
   { path: PageEndpoints.MY_CLUB_LIST, element: <MyClubList /> },
   { path: PageEndpoints.CLUB_LIST, element: <ClubList /> },
   { path: PageEndpoints.PHOTO_LIST, element: <PhotoList /> },
@@ -49,4 +51,8 @@ export const routes = [
   { path: PageEndpoints.MY_TIMETABLE_DETAIL, element: <TimeScheduleDetail /> },
   { path: PageEndpoints.TEAM_LAYOUT, element: <TeamLayout /> },
   { path: PageEndpoints.INVITE, element: <Invite /> },
+  { path: PageEndpoints.CONTACT, element: <AboutUs /> },
+  { path: PageEndpoints.ABOUT, element: <AboutService /> },
+  { path: PageEndpoints.PRIVACY, element: <PrivacyPolicy /> },
+  { path: PageEndpoints.FAQ, element: <FaqPage /> },
 ];

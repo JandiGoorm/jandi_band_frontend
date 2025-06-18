@@ -11,12 +11,8 @@
   height: 100vh;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .chart_inner {
-    height: 500px;
+    height: 80vh;
   }
-
-  .chart_wrapper {
-    padding-bottom: 1rem;
-  }
-}
+} */
