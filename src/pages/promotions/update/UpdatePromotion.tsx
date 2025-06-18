@@ -245,7 +245,6 @@ const UpdatePromotion = () => {
           </section>
 
           <footer className={styles.button_group}>
-            <Button type="submit">수정</Button>
             <Button
               type="button"
               className={styles.cancle}
@@ -253,6 +252,7 @@ const UpdatePromotion = () => {
             >
               취소
             </Button>
+            <Button type="submit">수정</Button>
           </footer>
         </form>
       </main>
