@@ -64,6 +64,9 @@ const CreateClubModal = ({ trigger }: { trigger: React.ReactNode }) => {
         </Field>
 
         <Field label="소속대학" error={errors.universityId}>
+          <p className={styles.guide}>
+            대학 선택을 하지 않을 경우 '연합동아리'로 생성이 됩니다.
+          </p>
           <UniversitySelect
             onValueChange={(university) => {
               formController.setValue("universityId", university.id.toString());
