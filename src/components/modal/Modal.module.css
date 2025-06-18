@@ -58,5 +58,5 @@
 
   overflow-y: auto;
   max-height: calc(85vh - 4.5rem);
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
