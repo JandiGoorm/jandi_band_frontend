@@ -43,14 +43,14 @@ const Header = () => {
                   icon: <FaSignOutAlt />,
                   onSelect: () => {
                     logout();
-                    window.location.href = PageEndpoints.SIGN_IN;
+                    window.location.href = PageEndpoints.HOME;
                   },
                 },
               ]}
             />
           ) : (
             <Button
-              onClick={() => navigate(PageEndpoints.SIGN_IN)}
+              onClick={() => navigate(PageEndpoints.HOME)}
               variant="secondary"
             >
               로그인
