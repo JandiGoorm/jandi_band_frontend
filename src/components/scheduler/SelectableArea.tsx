@@ -153,19 +153,6 @@ interface SelectableAreaContainerProps
   children: React.ReactNode;
 }
 
-// const SelectableAreaContainer = ({
-//   children,
-//   ...props
-// }: SelectableAreaContainerProps) => {
-//   const { onEndDrag } = useSelectableAreaContext();
-
-//   return (
-//     <div {...props} onMouseUp={onEndDrag} onMouseLeave={onEndDrag}>
-//       {children}
-//     </div>
-//   );
-// };
-
 const SelectableAreaContainer = ({
   children,
   ...props
