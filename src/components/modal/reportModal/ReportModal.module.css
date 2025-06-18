@@ -44,6 +44,7 @@
   background: white;
   border: 1px solid #ccc;
   border-radius: 6px;
+  min-width: 300px;
   z-index: 1001;
 }
 
