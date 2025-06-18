@@ -28,8 +28,9 @@
 }
 
 .form_wrapper {
-  width: 30rem;
-  padding: 3.5rem;
+  width: 100vw;
+  max-width: 30rem;
+  padding: 3rem;
   border-radius: var(--radius-3xl);
   background-color: rgba(255, 255, 255, 0.2);
   box-shadow: var(--shadow-md);
