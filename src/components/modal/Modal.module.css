@@ -55,4 +55,7 @@
 }
 .content_body {
   padding: 1rem 1.2rem 1rem 1.3rem;
+
+  overflow-y: auto;
+  max-height: calc(85vh - 3.125rem);
 }
