@@ -91,11 +91,13 @@ const Club = () => {
         />
         <Calendar isMember={isMember} />
         {isMember && <TeamSlide teams={teamData?.data.content} />}
-        <VoteSlide
-          polls={pollData.data.content}
-          isMember={isMember}
-          refetch={refetch}
-        />
+        {isMember && (
+          <VoteSlide
+            polls={pollData.data.content}
+            isMember={isMember}
+            refetch={refetch}
+          />
+        )}
         <PhotoSlide
           isMember={isMember}
           photos={photoData.data.content}

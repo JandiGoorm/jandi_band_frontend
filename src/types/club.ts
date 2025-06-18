@@ -51,3 +51,7 @@ export interface Member {
   name: string;
   position: string;
 }
+
+export interface changeLeaderRequest {
+  newRepresentativeUserId: number;
+}

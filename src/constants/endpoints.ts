@@ -1,6 +1,5 @@
 export enum PageEndpoints {
-  HOME = "/home",
-  SIGN_IN = "/",
+  HOME = "/",
   SIGN_UP = "/sign-up",
   CALLBACK = "/callback",
   PROMOTION = "/promotion",
@@ -41,7 +40,8 @@ export enum ApiEndpotins {
   PROMOTION_LIKE = "/promos/:id/like",
   PROMOTION_ISLIKE = "/promos/:id/like/status",
   PROMOTION_MAP = "/promos/map",
-  PROMOTION_SEARCH = "/promos/search",
+  PROMOTION_SEARCH = "/promos/search-v2",
+  PROMOTION_SEARCH_STATUS = "/promos/status-v2",
   CLUB = "/clubs",
   MY_CLUB = "/my/clubs",
   CLUB_DETAIL = "/clubs/:id",
@@ -58,6 +58,7 @@ export enum ApiEndpotins {
   MY_TIMETABLE_DETAIL = "/users/me/timetables/:id",
   MY_TIMETABLE_BY_TEAM = "/teams/:id/members/me/timetable",
   MEMBER_OUT = "/clubs/:clubId/members/:userId", //동아리 부원 강퇴
+  LEADER_CHANGE = "/clubs/:id/representative", //동아리 대표자 위임
 
   TEAM_DETAIL = "/teams/:id",
   TEAM_INVITE = "/invite/teams/:id",
