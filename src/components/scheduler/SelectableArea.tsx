@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+// 마우스로 셀 드래그해서 선택할 수 있도록 함
 import { Slot } from "@radix-ui/react-slot";
 import React, {
   createContext,
@@ -9,15 +10,16 @@ import React, {
   useState,
 } from "react";
 
+// 전역상태 나누는 Context
 const SelectableAreaContext = createContext<{
-  isDragging: boolean;
-  isSelecting: boolean;
+  isDragging: boolean; // 현재 드래그중?
+  isSelecting: boolean; // 현재 드래그 선택/해제?
   onStartDrag: (id: string, isSelected: boolean) => void;
   onSelect: (id: string) => void;
   onEndDrag: () => void;
   addItem: (id: string, isSelected: boolean) => void;
-  toggle: (isSelecting: boolean) => void;
-  selectedItems: Map<string, boolean>;
+  toggle: (isSelecting: boolean) => void; // 전체 선택/해제
+  selectedItems: Map<string, boolean>; // 현재 선택된 셀들의 MAP
   setSelectedItems: (items: Map<string, boolean>) => void;
   disabled?: boolean;
 }>({
@@ -49,16 +51,19 @@ interface SelectableAreaProps {
   disabled?: boolean;
 }
 
+// 선택 가능한 영역 전체를 감싸는 컴포넌트
+// 내부에 드래그 상태와 선택된 셀 정보 관리 -> Context로 하위 컴포넌트에 전달
 const SelectableArea = ({
   children,
   onChange,
   disabled,
 }: SelectableAreaProps) => {
+  // 드래그 시작시 설정
   const [isDragging, setIsDragging] = useState(false);
   const [isSelecting, setIsSelecting] = useState(false);
   const [selectedItems, setSelectedItems] = useState<Map<string, boolean>>(
     new Map()
-  );
+  ); // 셀 선택시 갱신
 
   const onSelect = useCallback(
     (id: string) => {
@@ -144,6 +149,7 @@ interface SelectableAreaContainerProps
   children: React.ReactNode;
 }
 
+// 드래그 종료 조건 처리하는 외부 컨테이너
 const SelectableAreaContainer = ({
   children,
   ...props
@@ -166,6 +172,7 @@ interface SelectableAreaItemProps
   initialSelected?: boolean;
 }
 
+// 실제 선택 가능한 셀 (=시간표 한칸)
 const SelectableAreaItem = ({
   children,
   id,
@@ -175,10 +182,12 @@ const SelectableAreaItem = ({
   const { isDragging, onStartDrag, onSelect, selectedItems, addItem } =
     useSelectableAreaContext();
 
+  // 드래그 시작
   const handleMouseDown = useCallback(() => {
     onStartDrag(id, selectedItems.get(id) ?? initialSelected);
   }, [onStartDrag, id, selectedItems, initialSelected]);
 
+  // 드래그 중에 해당 셀에 들어오면 선택 됨
   const handleMouseEnter = useCallback(() => {
     if (!isDragging) return;
     onSelect(id);
@@ -211,6 +220,7 @@ interface SelectableAreaControllerProps
       }) => React.ReactNode);
 }
 
+// 토글
 const SelectableAreaController = ({
   children,
   ...props
