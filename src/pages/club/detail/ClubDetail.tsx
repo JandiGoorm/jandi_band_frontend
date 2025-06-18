@@ -28,6 +28,7 @@ import { useGetPhotos } from "@/apis/photo";
 const Club = () => {
   const { id } = useParams();
   const setClubId = useClubStore((id) => id.setClubId);
+  const setClubMembers = useClubStore((state) => state.setClubMembers);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,6 +52,12 @@ const Club = () => {
   } = useGetPhotos({
     id: id || "",
   });
+
+  useEffect(() => {
+    if (memberData?.data?.members) {
+      setClubMembers(memberData.data.members);
+    }
+  }, [memberData, setClubMembers]);
 
   const { mutate: leaveClub } = useLeaveClub(id!);
   const { mutate: deleteClub } = useDeleteClub(id!);
@@ -79,6 +86,7 @@ const Club = () => {
   const isMember = memberData.data.members.some(
     (member: { userId: number }) => member.userId === user?.id
   );
+
   const mine = user?.id === clubData.data.representativeId;
 
   return (
