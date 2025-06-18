@@ -5,10 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { buildPath } from "@/utils/buildPath";
 import { PageEndpoints } from "@/constants/endpoints";
 
+import CreateClubModal from "@/pages/home/CreateClubModal";
+import Button from "@/components/button/Button";
+
 const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
   const navigate = useNavigate();
 
-  if (!club || club.length === 0) return null;
+  if (!club) return null;
 
   return (
     <main className={styles.main_container}>
@@ -18,38 +21,55 @@ const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
       >
         내가 함께하는 밴드
       </p>
-      <MainSlide<MyClubListResponse> items={club}>
-        {(item) => (
-          <div className={styles.band_item}>
-            <div className={styles.band_image_wrapper}>
-              <img
-                src={item.photoUrl || "./basic_club.png"}
-                className={styles.band_image}
-                onClick={() =>
-                  navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
-                }
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (
-                    target.src !==
-                    window.location.origin + "/basic_club.png"
-                  ) {
-                    target.src = "./basic_club.png";
+
+      {club.length === 0 ? (
+        <div>
+          <p className={styles.empty_message}>
+            아직 가입한 밴드가 없어요 <br />
+            여러분의 첫 번째 밴드를 만들어보세요!
+          </p>
+          <CreateClubModal
+            trigger={
+              <Button variant="transparent" size="sm">
+                동아리 만들기
+              </Button>
+            }
+          />
+        </div>
+      ) : (
+        <MainSlide<MyClubListResponse> items={club}>
+          {(item) => (
+            <div className={styles.band_item}>
+              <div className={styles.band_image_wrapper}>
+                <img
+                  src={item.photoUrl || "./basic_club.png"}
+                  className={styles.band_image}
+                  onClick={() =>
+                    navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
                   }
-                }}
-              />
-              <div
-                className={styles.overlay}
-                onClick={() =>
-                  navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
-                }
-              >
-                {item.name}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (
+                      target.src !==
+                      window.location.origin + "/basic_club.png"
+                    ) {
+                      target.src = "./basic_club.png";
+                    }
+                  }}
+                />
+                <div
+                  className={styles.overlay}
+                  onClick={() =>
+                    navigate(buildPath(PageEndpoints.CLUB, { id: item.id }))
+                  }
+                >
+                  {item.name}
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </MainSlide>
+          )}
+        </MainSlide>
+      )}
     </main>
   );
 };

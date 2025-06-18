@@ -7,11 +7,14 @@
   position: relative;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .slider {
   width: 90%;
   min-width: 300px;
   max-width: 1200px;
+  margin: 0 auto;
 }
 .slide_item {
   display: flex;
@@ -26,7 +29,7 @@
   transform: scale(0.5);
   opacity: 0.3;
   width: 100%;
-  height: 16rem;
+  /* height: 13rem; */
   /* 여기 높이 변경하면됨. */
 }
 .slide_item:focus,
@@ -48,4 +51,23 @@
 .side2 {
   transform: scale(0.5);
   opacity: 0.3;
+}
+
+/* 유아이수정 */
+.progressBar {
+  margin-top: 1rem;
+  width: 60vw;
+  height: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #e6f4ff;
+  transition: width 0.3s ease;
 }

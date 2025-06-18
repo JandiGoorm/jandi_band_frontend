@@ -8,6 +8,7 @@ import PromotionSlide from "./PromotionSlide";
 import { useGetClubList, useGetMyClubList } from "@/apis/club";
 import Loading from "@/components/loading/Loading";
 import { motion } from "framer-motion";
+import BannerLine from "./BannerLine";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -66,6 +67,8 @@ const Home = () => {
           >
             <BandSlide club={clubListData.data.content} />
           </motion.div>
+
+          <BannerLine />
 
           <motion.div
             variants={fadeInUp}
