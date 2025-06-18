@@ -26,6 +26,7 @@
 .header_box {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .back_button {
@@ -42,6 +43,7 @@
   .header_box {
     position: relative;
     width: 100%;
+    margin-bottom: 1rem;
   }
   .back_button {
     position: absolute;
@@ -49,9 +51,9 @@
     transform: translateY(-50%);
   }
   .header h1 {
-    padding: 10px;
-    /* margin-bottom: 5px; */
     width: 100%;
+    box-sizing: border-box;
+    padding: 0rem 4rem 0rem 4rem;
   }
   .header_button_container {
     margin-bottom: 18px;

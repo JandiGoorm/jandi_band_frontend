@@ -19,6 +19,7 @@
 .header_box {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .back_button {
@@ -56,8 +57,9 @@
     transform: translateY(-50%);
   }
   .header h1 {
-    /* margin-bottom: 18px; */
     width: 100%;
+    box-sizing: border-box;
+    padding: 0rem 4rem 0rem 4rem;
   }
 }
 
