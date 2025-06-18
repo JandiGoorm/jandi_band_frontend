@@ -1,5 +1,4 @@
 /* eslint-disable react-refresh/only-export-components */
-// 마우스로 셀 드래그해서 선택할 수 있도록 함
 import { Slot } from "@radix-ui/react-slot";
 import React, {
   createContext,
@@ -193,26 +192,6 @@ const SelectableAreaItem = ({
     onSelect(id);
   }, [isDragging, onSelect, id]);
 
-  // 터치 이벤트 핸들러 추가 (모바일 지원 위함)
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent) => {
-      e.preventDefault();
-      // 터치시 스크롤 방지 (안넣을 경우 터치 이벤트가 스크롤로 인식되어 드래그가 안된다 하네요)
-      const isSelected = selectedItems.get(id) ?? initialSelected;
-      onStartDrag(id, isSelected);
-    },
-    [id, selectedItems, initialSelected, onStartDrag]
-  );
-
-  const handleTouchMove = useCallback(
-    (e: React.TouchEvent) => {
-      e.preventDefault();
-      if (!isDragging) return;
-      onSelect(id);
-    },
-    [id, isDragging, onSelect]
-  );
-
   useLayoutEffect(() => {
     addItem(id, initialSelected);
   }, [addItem, id, initialSelected]);
@@ -222,8 +201,6 @@ const SelectableAreaItem = ({
       {...props}
       onMouseDown={handleMouseDown}
       onMouseEnter={handleMouseEnter}
-      onTouchStart={handleTouchStart} // 터치 연결
-      onTouchMove={handleTouchMove}
     >
       {typeof children === "function"
         ? children({ isSelected: selectedItems.get(id) ?? initialSelected })

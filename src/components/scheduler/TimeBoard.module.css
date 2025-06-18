@@ -51,13 +51,15 @@
 .isEditableCell {
   cursor: pointer;
 }
+/* 
+@media (hover: hover) and (pointer: fine) {
+  .isEditableCell:hover {
+    background-color: var(--board-active-bg-color);
+    opacity: 0.3;
+  }
 
-.isEditableCell:hover {
-  background-color: var(--board-active-bg-color);
-  opacity: 0.3;
-}
-
-.isEditableCell.active:hover {
-  background-color: var(--board-active-bg-color);
-  opacity: 0.5;
-}
+  .isEditableCell.active:hover {
+    background-color: var(--board-active-bg-color);
+    opacity: 0.5;
+  }
+} */
