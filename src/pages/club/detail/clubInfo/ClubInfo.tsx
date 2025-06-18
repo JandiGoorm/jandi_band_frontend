@@ -57,7 +57,11 @@ const ClubInfo = ({
 
       <section className={styles.title_box}>
         <div className={styles.info_title}>
-          <p className={styles.title}>{club.name}</p>
+          <Tooltip
+            trigger={<p className={styles.title}>{club.name}</p>}
+            description={club.name}
+          />
+
           <p className={styles.school}>
             {club.university?.name ?? "연합 동아리"}
           </p>
@@ -130,32 +134,68 @@ const ClubInfo = ({
       <section className={styles.member_box}>
         <div className={styles.member}>
           <Tooltip
-            trigger={<FaPeopleGroup size={16} />}
+            trigger={
+              <span>
+                <FaPeopleGroup size={16} />
+              </span>
+            }
             description="전체인원"
           />
           <p>{memberData.totalMemberCount}명</p>
         </div>
         <div className={styles.member}>
           <Tooltip
-            trigger={<PiMicrophoneStage size={16} />}
+            trigger={
+              <span>
+                <PiMicrophoneStage size={16} />
+              </span>
+            }
             description="보컬"
           />
           <p>{memberData.vocalCount}명</p>
         </div>
         <div className={styles.member}>
-          <Tooltip trigger={<GiGuitar size={16} />} description="기타" />
+          <Tooltip
+            trigger={
+              <span>
+                <GiGuitar size={16} />
+              </span>
+            }
+            description="기타"
+          />
           <p>{memberData.guitarCount}명</p>
         </div>
         <div className={styles.member}>
-          <Tooltip trigger={<GiGuitar size={16} />} description="베이스" />
+          <Tooltip
+            trigger={
+              <span>
+                <GiGuitar size={16} />
+              </span>
+            }
+            description="베이스"
+          />
           <p>{memberData.bassCount}명</p>
         </div>
         <div className={styles.member}>
-          <Tooltip trigger={<GiPianoKeys size={16} />} description="키보드" />
+          <Tooltip
+            trigger={
+              <span>
+                <GiPianoKeys size={16} />
+              </span>
+            }
+            description="키보드"
+          />
           <p>{memberData.keyboardCount}명</p>
         </div>
         <div className={styles.member}>
-          <Tooltip trigger={<GiDrumKit size={16} />} description="드럼" />
+          <Tooltip
+            trigger={
+              <span>
+                <GiDrumKit size={16} />
+              </span>
+            }
+            description="드럼"
+          />
           <p>{memberData.drumCount}명</p>
         </div>
       </section>
