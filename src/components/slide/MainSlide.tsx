@@ -17,7 +17,8 @@ const MainSlide = <T extends { id: number }>({
   const [current, setCurrent] = useState(0);
 
   const settings = {
-    dots: true,
+    // dots: true,
+    dots: false,
     infinite: true,
     arrows: false,
     slidesToShow: 5,
@@ -28,19 +29,20 @@ const MainSlide = <T extends { id: number }>({
     autoplay: true,
     autoplaySpeed: 4000,
     beforeChange: (_: number, next: number) => setCurrent(next),
-    responsive: [
-      {
-        breakpoint: 550,
-        settings: {
-          slidesToShow: 1,
-          autoplay: true,
-          autoplaySpeed: 2000,
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 550,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       autoplay: true,
+    //       autoplaySpeed: 2000,
+    //     },
+    //   },
+    // ],
   };
   const minSettings = {
-    dots: true,
+    dots: false,
+    // dots: true,
     infinite: true,
     arrows: true,
     slidesToShow: 1,
@@ -53,7 +55,8 @@ const MainSlide = <T extends { id: number }>({
     beforeChange: (_: number, next: number) => setCurrent(next),
   };
   const oneSlideSettings = {
-    dots: true,
+    dots: false,
+    // dots: true,
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -96,6 +99,25 @@ const MainSlide = <T extends { id: number }>({
             );
           })}
         </Slider>
+
+        <div
+          className={styles.progressBar}
+          onClick={(e) => {
+            const bar = e.currentTarget;
+            const clickX = e.clientX - bar.getBoundingClientRect().left;
+            const ratio = clickX / bar.clientWidth;
+            const nextIndex = Math.floor(ratio * items.length);
+            sliderRef.current?.slickGoTo(nextIndex);
+            setCurrent(nextIndex);
+          }}
+        >
+          <div
+            className={styles.progressFill}
+            style={{
+              width: `${((current + 1) / items.length) * 100}%`,
+            }}
+          />
+        </div>
       </section>
     </div>
   );

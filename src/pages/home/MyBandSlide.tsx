@@ -25,8 +25,8 @@ const MyBandSlide = ({ club }: { club: MyClubListResponse[] }) => {
       {club.length === 0 ? (
         <div>
           <p className={styles.empty_message}>
-            현재 가입한 밴드가 없습니다. <br />
-            직접 동아리를 만들어 부원을 모집해봐요!
+            아직 가입한 밴드가 없어요 <br />
+            여러분의 첫 번째 밴드를 만들어보세요!
           </p>
           <CreateClubModal
             trigger={
