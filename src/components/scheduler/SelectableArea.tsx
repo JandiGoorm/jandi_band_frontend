@@ -54,6 +54,7 @@ interface SelectableAreaProps {
   disabled?: boolean;
 }
 
+// 여기가 메인
 const SelectableArea = ({
   children,
   onChange,
@@ -153,20 +154,41 @@ interface SelectableAreaContainerProps
   children: React.ReactNode;
 }
 
+// const SelectableAreaContainer = ({
+//   children,
+//   ...props
+// }: SelectableAreaContainerProps) => {
+//   const { onEndDrag } = useSelectableAreaContext();
+
+//   return (
+//     <div {...props} onMouseUp={onEndDrag} onMouseLeave={onEndDrag}>
+//       {children}
+//     </div>
+//   );
+// };
+
 const SelectableAreaContainer = ({
   children,
   ...props
 }: SelectableAreaContainerProps) => {
-  const { onEndDrag, onSelect, setIsDragging, setIsSelecting, selectedItems } =
-    useSelectableAreaContext();
+  const {
+    onEndDrag,
+    onSelect,
+    setIsDragging,
+    setIsSelecting,
+    selectedItems,
+    disabled,
+  } = useSelectableAreaContext();
 
   useEffect(() => {
+    if (disabled) return;
+
     const handleTouchStart = (e: TouchEvent) => {
-      e.preventDefault(); // 스크롤 방지
       const touch = e.touches[0];
       const el = document.elementFromPoint(touch.clientX, touch.clientY);
       const id = el?.getAttribute("data-id");
       if (id) {
+        e.preventDefault(); // 스크롤 방지
         const isSelected = selectedItems.get(id) ?? false;
         setIsDragging(true);
         setIsSelecting(isSelected);
