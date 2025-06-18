@@ -38,20 +38,22 @@ const ClubInfo = ({
           <header className={styles.banner}>
             <img src={club.photoUrl} className={styles.banner} />
           </header>
-          <Modal
-            title="대표 사진 수정하기"
-            trigger={
-              <Button
-                variant="primary"
-                size="md"
-                className={styles.image_button}
-              >
-                사진 수정
-              </Button>
-            }
-          >
-            <ModifyProfileModal image={club.photoUrl} />
-          </Modal>
+          {mine && (
+            <Modal
+              title="대표 사진 수정하기"
+              trigger={
+                <Button
+                  variant="primary"
+                  size="md"
+                  className={styles.image_button}
+                >
+                  사진 수정
+                </Button>
+              }
+            >
+              <ModifyProfileModal image={club.photoUrl} />
+            </Modal>
+          )}
         </>
       ) : null}
 
