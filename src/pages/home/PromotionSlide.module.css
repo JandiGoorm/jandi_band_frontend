@@ -25,6 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .promo_image_wrapper {
@@ -65,4 +66,30 @@
 .line_title {
   font-size: var(--text-xl);
   font-weight: var(--font-weight-semibold);
+}
+
+.promo_info {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.promo_title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4e4e4ed0;
+  margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.promo_artist {
+  font-size: 0.875rem;
+  color: #6666669b;
+  margin: 0.25rem 0 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

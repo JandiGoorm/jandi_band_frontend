@@ -29,7 +29,7 @@
   transform: scale(0.5);
   opacity: 0.3;
   width: 100%;
-  height: 13rem;
+  /* height: 13rem; */
   /* 여기 높이 변경하면됨. */
 }
 .slide_item:focus,
@@ -58,7 +58,6 @@
   margin-top: 1rem;
   width: 60vw;
   height: 5px;
-  background-color: #eef2eb;
   border-radius: 3px;
   cursor: pointer;
   position: relative;

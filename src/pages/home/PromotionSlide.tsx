@@ -8,6 +8,7 @@ import { PageEndpoints } from "@/constants/endpoints";
 const PromotionSlide = ({ promo }: { promo: PromotionListResponse[] }) => {
   const navigate = useNavigate();
 
+  console.log(promo);
   return (
     <main className={styles.main_container}>
       <p
@@ -31,6 +32,10 @@ const PromotionSlide = ({ promo }: { promo: PromotionListResponse[] }) => {
                 }
               />
             </div>
+            <section className={styles.promo_info}>
+              <p className={styles.promo_title}>{item.title}</p>
+              <p className={styles.promo_artist}>{item.teamName}</p>
+            </section>
           </div>
         )}
       </MainSlide>
