@@ -119,6 +119,33 @@ export const useSearchPromotion = ({
   );
 };
 
+export const useSearchPromoStatus = ({
+  keyword,
+  status,
+  page = 0,
+  size = 20,
+}: {
+  status: string;
+  keyword?: string;
+  page?: number;
+  size?: number;
+}) => {
+  const query: Record<string, string | number> = {
+    status,
+    page,
+    size,
+  };
+
+  if (keyword && keyword.trim() !== "") {
+    query.keyword = keyword;
+  }
+
+  return useFetch<PagiNationResponse<PromotionListResponse>>(
+    ApiEndpotins.PROMOTION_SEARCH_STATUS,
+    query
+  );
+};
+
 export const useReportPromotion = () => {
   return usePost<PromoReportRequest, null>(ApiEndpotins.REPORT_PROMO);
 };
