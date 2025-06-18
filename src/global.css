@@ -58,10 +58,3 @@ body {
   /* font-weight: 400; */
   /* font-style: normal; */
 }
-
-/* 시간표 드래그시 스크롤 방지용 */
-html.dragging,
-body.dragging {
-  touch-action: none;
-  overscroll-behavior: none;
-}
