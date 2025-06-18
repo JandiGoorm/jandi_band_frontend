@@ -1,0 +1,17 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+  }
+  .cell {
+    width: 100px;
+    height: 100px;
+    background: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cell.active {
+    background: lightgreen;
+  }
+  
