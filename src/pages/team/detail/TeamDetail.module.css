@@ -23,16 +23,37 @@
   margin-bottom: 1rem;
 }
 
+.header_box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back_button {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
 @media (max-width: 768px) {
   .header {
     text-align: center;
     flex-direction: column;
     margin-bottom: 0;
   }
-  .header h1 {
-    padding: 10px;
-    margin-bottom: 5px;
+  .header_box {
+    position: relative;
     width: 100%;
+    margin-bottom: 1rem;
+  }
+  .back_button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .header h1 {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0rem 4rem 0rem 4rem;
   }
   .header_button_container {
     margin-bottom: 18px;

@@ -15,6 +15,7 @@
 .back_button {
   align-self: start;
   margin-bottom: -2.5rem;
+  cursor: pointer;
 }
 
 .header {

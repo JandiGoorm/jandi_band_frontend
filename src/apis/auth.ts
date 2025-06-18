@@ -28,3 +28,7 @@ export const useSignUp = () => {
 export const useGetMe = () => {
   return useFetch<UserInfo>(ApiEndpotins.ME);
 };
+
+export const useBreak = () => {
+  return usePost<null, null>(ApiEndpotins.USER_BREAK);
+};

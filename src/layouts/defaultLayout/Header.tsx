@@ -20,7 +20,9 @@ const Header = () => {
           {user ? (
             <Dropdown
               trigger={
-                <img src={user.profilePhoto} className={styles.profile_img} />
+                <span>
+                  <img src={user.profilePhoto} className={styles.profile_img} />
+                </span>
               }
               items={[
                 {

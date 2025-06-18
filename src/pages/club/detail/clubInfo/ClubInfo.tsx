@@ -38,26 +38,32 @@ const ClubInfo = ({
           <header className={styles.banner}>
             <img src={club.photoUrl} className={styles.banner} />
           </header>
-          <Modal
-            title="대표 사진 수정하기"
-            trigger={
-              <Button
-                variant="primary"
-                size="md"
-                className={styles.image_button}
-              >
-                사진 수정
-              </Button>
-            }
-          >
-            <ModifyProfileModal image={club.photoUrl} />
-          </Modal>
+          {mine && (
+            <Modal
+              title="대표 사진 수정하기"
+              trigger={
+                <Button
+                  variant="primary"
+                  size="md"
+                  className={styles.image_button}
+                >
+                  사진 수정
+                </Button>
+              }
+            >
+              <ModifyProfileModal image={club.photoUrl} />
+            </Modal>
+          )}
         </>
       ) : null}
 
       <section className={styles.title_box}>
         <div className={styles.info_title}>
-          <p className={styles.title}>{club.name}</p>
+          <Tooltip
+            trigger={<p className={styles.title}>{club.name}</p>}
+            description={club.name}
+          />
+
           <p className={styles.school}>
             {club.university?.name ?? "연합 동아리"}
           </p>
@@ -81,7 +87,11 @@ const ClubInfo = ({
           {mine && (
             <>
               <Dropdown
-                trigger={<Button size="lg">동아리 관리</Button>}
+                trigger={
+                  <section>
+                    <Button size="lg">동아리 관리</Button>
+                  </section>
+                }
                 items={[
                   {
                     label: "정보 수정",
@@ -130,32 +140,68 @@ const ClubInfo = ({
       <section className={styles.member_box}>
         <div className={styles.member}>
           <Tooltip
-            trigger={<FaPeopleGroup size={16} />}
+            trigger={
+              <span>
+                <FaPeopleGroup size={16} />
+              </span>
+            }
             description="전체인원"
           />
           <p>{memberData.totalMemberCount}명</p>
         </div>
         <div className={styles.member}>
           <Tooltip
-            trigger={<PiMicrophoneStage size={16} />}
+            trigger={
+              <span>
+                <PiMicrophoneStage size={16} />
+              </span>
+            }
             description="보컬"
           />
           <p>{memberData.vocalCount}명</p>
         </div>
         <div className={styles.member}>
-          <Tooltip trigger={<GiGuitar size={16} />} description="기타" />
+          <Tooltip
+            trigger={
+              <span>
+                <GiGuitar size={16} />
+              </span>
+            }
+            description="기타"
+          />
           <p>{memberData.guitarCount}명</p>
         </div>
         <div className={styles.member}>
-          <Tooltip trigger={<GiGuitar size={16} />} description="베이스" />
+          <Tooltip
+            trigger={
+              <span>
+                <GiGuitar size={16} />
+              </span>
+            }
+            description="베이스"
+          />
           <p>{memberData.bassCount}명</p>
         </div>
         <div className={styles.member}>
-          <Tooltip trigger={<GiPianoKeys size={16} />} description="키보드" />
+          <Tooltip
+            trigger={
+              <span>
+                <GiPianoKeys size={16} />
+              </span>
+            }
+            description="키보드"
+          />
           <p>{memberData.keyboardCount}명</p>
         </div>
         <div className={styles.member}>
-          <Tooltip trigger={<GiDrumKit size={16} />} description="드럼" />
+          <Tooltip
+            trigger={
+              <span>
+                <GiDrumKit size={16} />
+              </span>
+            }
+            description="드럼"
+          />
           <p>{memberData.drumCount}명</p>
         </div>
       </section>

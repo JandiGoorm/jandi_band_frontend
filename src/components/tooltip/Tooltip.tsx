@@ -10,9 +10,7 @@ const Tooltip: React.FC<TooltipProps> = ({ trigger, description }) => {
   return (
     <RadixTooltip.Provider delayDuration={200}>
       <RadixTooltip.Root>
-        <RadixTooltip.Trigger asChild>
-          <button>{trigger}</button>
-        </RadixTooltip.Trigger>
+        <RadixTooltip.Trigger asChild>{trigger}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
           <RadixTooltip.Content
             className={styles.tooltip_content}

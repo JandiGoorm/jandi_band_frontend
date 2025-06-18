@@ -20,9 +20,7 @@ const Dropdown: React.FC<DropdownProps> = ({ size = "md", trigger, items }) => {
   const sizeClass = styles[`dropdown_${size}`];
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
-        <button>{trigger}</button>
-      </DropdownMenu.Trigger>
+      <DropdownMenu.Trigger asChild>{trigger}</DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           className={styles.dropdown_content}
