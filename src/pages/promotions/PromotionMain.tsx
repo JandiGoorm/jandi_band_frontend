@@ -14,7 +14,7 @@ import {
 } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
-import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
+import { formatPromotionDateKST, getEventStatus } from "@/utils/dateStatus";
 import useSearchParams from "@/hooks/useSearchParams";
 import * as Select from "@radix-ui/react-select";
 import { FiChevronDown } from "react-icons/fi";
@@ -179,7 +179,7 @@ const PromotionMain = () => {
                 </div>
                 <p className={styles.promotion_title}>{item.title}</p>
                 <p className={styles.promotion_sub}>
-                  {formatPromotionDate(item.eventDatetime)}
+                  {formatPromotionDateKST(item.eventDatetime)}
                 </p>
                 <p className={styles.promotion_sub}>{item.location}</p>
               </article>

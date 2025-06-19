@@ -36,6 +36,28 @@ export const formatPromotionDate = (isoDate: string): string => {
   return `${year}.${month}.${day} ${period} ${hours}:${minutes}`;
 };
 
+export const formatPromotionDateKST = (isoDate: string): string => {
+  if (!isoDate) return "";
+
+  const date = new Date(isoDate);
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  const period = hours >= 12 ? "PM" : "AM";
+  if (hours === 0) {
+    hours = 12;
+  } else if (hours > 12) {
+    hours = hours - 12;
+  }
+
+  return `${year}.${month}.${day} ${period} ${hours}:${minutes}`;
+};
+
 export const formatDate = (isoString: string): string => {
   const date = new Date(isoString);
   const year = date.getFullYear();
