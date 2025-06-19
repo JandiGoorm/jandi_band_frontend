@@ -28,6 +28,7 @@ import { useGetPhotos } from "@/apis/photo";
 const Club = () => {
   const { id } = useParams();
   const setClubId = useClubStore((id) => id.setClubId);
+  const setClubMembers = useClubStore((state) => state.setClubMembers);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,14 +53,16 @@ const Club = () => {
     id: id || "",
   });
 
+  useEffect(() => {
+    if (memberData?.data?.members) {
+      setClubMembers(memberData.data.members);
+    }
+  }, [memberData, setClubMembers]);
+
   const { mutate: leaveClub } = useLeaveClub(id!);
   const { mutate: deleteClub } = useDeleteClub(id!);
 
-  const {
-    data: pollData,
-    isLoading: pollLoading,
-    refetch,
-  } = useGetClubPoll({
+  const { data: pollData, isLoading: pollLoading } = useGetClubPoll({
     id: id as string,
   });
 
@@ -79,6 +82,7 @@ const Club = () => {
   const isMember = memberData.data.members.some(
     (member: { userId: number }) => member.userId === user?.id
   );
+
   const mine = user?.id === clubData.data.representativeId;
 
   return (
@@ -92,11 +96,7 @@ const Club = () => {
         <Calendar isMember={isMember} />
         {isMember && <TeamSlide teams={teamData?.data.content} />}
         {isMember && (
-          <VoteSlide
-            polls={pollData.data.content}
-            isMember={isMember}
-            refetch={refetch}
-          />
+          <VoteSlide polls={pollData.data.content} isMember={isMember} />
         )}
         <PhotoSlide
           isMember={isMember}

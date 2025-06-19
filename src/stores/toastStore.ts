@@ -7,9 +7,11 @@ interface ToastState {
   status: ToastStatus;
   message: string;
   currentToastId: string | null;
+  errorOccurred: boolean;
   showToast: (status: ToastStatus, message: string, id: string) => string;
   updateToast: (id: string, status: ToastStatus, message: string) => void;
   hideToast: () => void;
+  setErrorOccurred: (value: boolean) => void;
 }
 
 export const useToastStore = create<ToastState>((set, get) => ({
@@ -17,6 +19,7 @@ export const useToastStore = create<ToastState>((set, get) => ({
   status: "pending",
   message: "",
   currentToastId: null,
+  errorOccurred: false,
 
   showToast: (status, message, id) => {
     set({ open: true, status, message, currentToastId: id });
@@ -31,4 +34,5 @@ export const useToastStore = create<ToastState>((set, get) => ({
   },
 
   hideToast: () => set({ open: false }),
+  setErrorOccurred: (value) => set({ errorOccurred: value }),
 }));

@@ -14,10 +14,16 @@ import {
 } from "@/apis/promotion";
 import Pagination from "@/components/pagination/Pagination";
 import Loading from "@/components/loading/Loading";
-import { formatPromotionDate, getEventStatus } from "@/utils/dateStatus";
+import { formatPromotionDateKST, getEventStatus } from "@/utils/dateStatus";
 import useSearchParams from "@/hooks/useSearchParams";
 import * as Select from "@radix-ui/react-select";
 import { FiChevronDown } from "react-icons/fi";
+import { z } from "zod";
+import { useToastStore } from "@/stores/toastStore";
+
+export const searchSchema = z.object({
+  keyword: z.string().max(30, "검색어는 30자 이내여야 합니다."),
+});
 
 const PromotionMain = () => {
   const navigate = useNavigate();
@@ -52,7 +58,17 @@ const PromotionMain = () => {
   }, [promoData, setTotalPage]);
 
   const handleSearch = () => {
+    const toast = useToastStore.getState();
     const value = inputRef.current?.value.trim() || "";
+
+    const result = searchSchema.safeParse({ keyword: value });
+
+    if (!result.success) {
+      const errorMsg = result.error.format().keyword?._errors[0];
+      toast.showToast("error", errorMsg || "검색어 오류", "search-error");
+      return;
+    }
+
     setKeyword(value);
   };
 
@@ -112,6 +128,7 @@ const PromotionMain = () => {
               ref={inputRef}
               defaultValue={keyword}
               placeholder="제목, 장소로 검색"
+              maxLength={50}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   handleSearch();
@@ -162,7 +179,7 @@ const PromotionMain = () => {
                 </div>
                 <p className={styles.promotion_title}>{item.title}</p>
                 <p className={styles.promotion_sub}>
-                  {formatPromotionDate(item.eventDatetime)}
+                  {formatPromotionDateKST(item.eventDatetime)}
                 </p>
                 <p className={styles.promotion_sub}>{item.location}</p>
               </article>

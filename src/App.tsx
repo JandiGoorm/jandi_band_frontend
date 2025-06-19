@@ -7,6 +7,8 @@ import PrivateRoute from "@/routes/PrivateRoute";
 
 import { useEffect } from "react";
 import ScrollToTop from "./routes/ScrollToTop";
+import ErrorRedirectHandler from "./utils/ErrorRedirectHandler";
+import NotFoundPage from "./pages/notFound/NotFound";
 
 function App() {
   // 카카오 메세지 공유를 위한 추가
@@ -34,7 +36,10 @@ function App() {
               />
             );
           })}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
+
+        <ErrorRedirectHandler />
       </BrowserRouter>
     </QueryClientProvider>
   );

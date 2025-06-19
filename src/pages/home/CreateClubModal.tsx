@@ -22,7 +22,14 @@ const createClubScheme = z.object({
   chatroomUrl: z
     .string()
     .max(255, "카카오톡 채팅방 링크는 255자 이내여야 합니다")
-    .optional(),
+    .optional()
+    .refine(
+      (val) => !val || /^https?:\/\/open\.kakao\.com\/[a-zA-Z0-9]+/.test(val),
+      {
+        message:
+          "유효한 카카오톡 오픈채팅 링크를 입력해주세요 (예: https://open.kakao.com/...)",
+      }
+    ),
   instagramId: z
     .string()
     .max(50, "인스타그램 아이디는 50자 이내여야 합니다")
@@ -64,6 +71,9 @@ const CreateClubModal = ({ trigger }: { trigger: React.ReactNode }) => {
         </Field>
 
         <Field label="소속대학" error={errors.universityId}>
+          <p className={styles.guide}>
+            대학 선택을 하지 않을 경우 '연합동아리'로 생성이 됩니다.
+          </p>
           <UniversitySelect
             onValueChange={(university) => {
               formController.setValue("universityId", university.id.toString());
@@ -72,7 +82,11 @@ const CreateClubModal = ({ trigger }: { trigger: React.ReactNode }) => {
         </Field>
 
         <Field label="카카오톡 채팅방 링크" error={errors.chatroomUrl}>
-          <Input {...register("chatroomUrl")} inputSize="lg" />
+          <Input
+            placeholder="예: https://open.kakao.com/..."
+            {...register("chatroomUrl")}
+            inputSize="lg"
+          />
         </Field>
 
         <Field label="인스타그램 아이디" error={errors.instagramId}>

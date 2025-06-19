@@ -4,6 +4,7 @@ import { ApiEndpotins } from "@/constants/endpoints";
 import type { RefreshTokenResponse } from "@/types/auth";
 import type { ApiResponse } from "./types";
 import type { AxiosResponse } from "axios";
+import { useToastStore } from "@/stores/toastStore";
 
 const domain = import.meta.env.VITE_API_DOMAIN;
 
@@ -21,6 +22,7 @@ type Api = {
 
 const axiosInstance = axios.create({
   baseURL: domain,
+  timeout: 8000,
   // headers: {
   //   "Content-Type": "application/json",
   // },
@@ -83,6 +85,23 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    const toast = useToastStore.getState();
+
+    // console.log(error);
+
+    if (error.code === "ECONNABORTED") {
+      console.error("⏰ 요청이 시간 초과되었습니다.");
+      toast.showToast("error", "요청이 시간 초과되었습니다.", "timeout");
+      toast.setErrorOccurred(true);
+      return Promise.reject(error);
+    }
+    if (error.code === "ERR_NETWORK") {
+      console.error("서버 에러가 발생하였습니다.");
+      toast.showToast("error", "서버와 연결할 수 없습니다.", "network");
+      toast.setErrorOccurred(true);
+      return Promise.reject(error);
+    }
+
     const errorMessage = error.response.data.message;
     if (
       errorMessage === "유효하지 않은 토큰입니다." &&

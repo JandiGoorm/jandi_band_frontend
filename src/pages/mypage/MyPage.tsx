@@ -18,11 +18,14 @@ import { useGetInfo } from "@/apis/mypage";
 import TimeTableCards from "@/components/cards/TimeTableCards";
 import { buildPath } from "@/utils/buildPath";
 import type { TimeTableResponse } from "@/types/timeTable";
+import LeaveModal from "@/components/modal/leaveModal/LeaveModal";
+import { useBreak } from "@/apis/auth";
 
 const MyPage = () => {
   const { data: myInfoResponse, refetch } = useGetInfo();
   const { data: myTimeTables, isLoading } = useGetMyTimeTables();
   const { data: myTeamLists, isLoading: MyTeamLoading } = useGetMyTeamList();
+  const { mutate: userBreak } = useBreak();
   const navigate = useNavigate();
 
   if (isLoading || !myTimeTables || MyTeamLoading || !myInfoResponse?.data)
@@ -127,6 +130,22 @@ const MyPage = () => {
               />
             )}
           </Slide>
+        </section>
+        <section className={styles.out_button_box}>
+          <LeaveModal
+            trigger={<Button>회원탈퇴</Button>}
+            title="탈퇴하기"
+            description="정말 탈퇴하시겠어요? 30일간 다시 가입하지 못합니다."
+            onLeave={() => {
+              userBreak(undefined, {
+                onSuccess: () => {
+                  localStorage.removeItem("accessToken");
+                  localStorage.removeItem("refreshToken");
+                  window.location.href = PageEndpoints.HOME;
+                },
+              });
+            }}
+          />
         </section>
       </main>
     </DefaultLayout>

@@ -13,6 +13,8 @@ import kakao from "@/pages/vote/style/kakao.svg";
 import styles from "@/pages/vote/select/Vote.module.css";
 import Loading from "@/components/loading/Loading";
 
+import ArrowBack from "@/pages/vote/style/arrowback.svg";
+
 const Vote = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -31,7 +33,17 @@ const Vote = () => {
     <DefaultLayout>
       <main className={styles.vote_container}>
         <header className={styles.header}>
-          <h1>{poll.title}</h1>
+          <div className={styles.header_box}>
+            <img
+              src={ArrowBack}
+              alt="뒤로가기"
+              onClick={() =>
+                navigate(buildPath(PageEndpoints.CLUB, { id: poll.clubId }))
+              }
+              className={styles.back_button}
+            />
+            <h1>{poll.title}</h1>
+          </div>
           <section className={styles.button_group}>
             <Button
               onClick={() =>

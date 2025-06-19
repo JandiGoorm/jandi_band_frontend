@@ -28,6 +28,9 @@
   /* grid-template-columns: repeat(3, 1fr); */
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1rem;
+  max-height: 60vh;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .title {

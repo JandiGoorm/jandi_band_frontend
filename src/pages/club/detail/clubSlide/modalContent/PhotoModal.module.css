@@ -11,7 +11,12 @@
 .select_photo {
   display: flex;
   gap: 1rem;
-  align-items: flex-start;
+  align-items: center;
+}
+
+.guide {
+  font-size: var(--text-xs);
+  color: #414141;
 }
 
 .file_list {

@@ -15,10 +15,12 @@ export const getVoteStatus = (endDatetime: Date): VoteStatus => {
 };
 
 export const formatPromotionDate = (isoDate: string): string => {
-  const date = new Date(isoDate);
+  if (!isoDate) return "";
+
+  const date = new Date(isoDate + "Z");
 
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // 0-indexed
+  const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
 
   let hours = date.getHours();
@@ -26,7 +28,29 @@ export const formatPromotionDate = (isoDate: string): string => {
 
   const period = hours >= 12 ? "PM" : "AM";
   if (hours === 0) {
-    hours = 12; // 자정 처리
+    hours = 12;
+  } else if (hours > 12) {
+    hours = hours - 12;
+  }
+
+  return `${year}.${month}.${day} ${period} ${hours}:${minutes}`;
+};
+
+export const formatPromotionDateKST = (isoDate: string): string => {
+  if (!isoDate) return "";
+
+  const date = new Date(isoDate);
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  const period = hours >= 12 ? "PM" : "AM";
+  if (hours === 0) {
+    hours = 12;
   } else if (hours > 12) {
     hours = hours - 12;
   }
@@ -37,7 +61,7 @@ export const formatPromotionDate = (isoDate: string): string => {
 export const formatDate = (isoString: string): string => {
   const date = new Date(isoString);
   const year = date.getFullYear();
-  const month = date.getMonth() + 1; // 0-based
+  const month = date.getMonth() + 1;
   const day = date.getDate();
   return `${year}년 ${month}월 ${day}일`;
 };
@@ -103,9 +127,11 @@ const YEAR = 365 * DAY;
 export const formatISO = (iso: string) => {
   if (!iso) return "";
 
+  const utcDate = new Date(iso + "Z");
+  const localDate = new Date(utcDate.getTime() + 9 * 60 * 60 * 1000);
+
   const now = new Date();
-  const date = new Date(iso);
-  const diff = now.getTime() - date.getTime();
+  const diff = now.getTime() - localDate.getTime();
 
   if (diff < MINUTE) {
     return "방금 전";

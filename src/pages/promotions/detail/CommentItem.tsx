@@ -3,7 +3,7 @@ import styles from "./CommentItem.module.css";
 import { formatISO } from "@/utils/dateStatus";
 import { useAuthStore } from "@/stores/authStore";
 import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
-import { useDeleteComment, useReportPromotion } from "@/apis/promotion";
+import { useDeleteComment, useReportComment } from "@/apis/promotion";
 import ReportModal from "@/components/modal/reportModal/ReportModal";
 
 const CommentItem = ({
@@ -15,7 +15,7 @@ const CommentItem = ({
 }) => {
   const { user } = useAuthStore();
   const { mutate: deleteComment } = useDeleteComment(String(item.id) || "");
-  const { mutate: reportComment } = useReportPromotion();
+  const { mutate: reportComment } = useReportComment();
 
   const mine = user?.id === item.creatorId;
 
@@ -48,7 +48,7 @@ const CommentItem = ({
                 description="신고 내역을 자세히 적어 제출해주세요!"
                 onReport={(description, reasonId) => {
                   reportComment({
-                    promoId: item.id,
+                    promoCommentId: item.id,
                     reportReasonId: reasonId,
                     description,
                   });

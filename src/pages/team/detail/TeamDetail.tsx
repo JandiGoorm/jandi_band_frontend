@@ -16,6 +16,8 @@ import LeaveModal from "@/components/modal/leaveModal/LeaveModal";
 import { useDeleteTeam, useLeaveTeam } from "@/apis/team";
 import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
 
+import ArrowBack from "@/pages/vote/style/arrowback.svg";
+
 const TeamDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -35,7 +37,17 @@ const TeamDetail = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1>{team.name}</h1>
+        <div className={styles.header_box}>
+          <img
+            src={ArrowBack}
+            alt="뒤로가기"
+            onClick={() =>
+              navigate(buildPath(PageEndpoints.CLUB, { id: clubId }))
+            }
+            className={styles.back_button}
+          />
+          <h1>{team.name}</h1>
+        </div>
 
         {isMember && (
           <div className={styles.header_button_container}>

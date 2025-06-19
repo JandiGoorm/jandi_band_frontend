@@ -6,6 +6,8 @@ import styles from "./ModalItem.module.css";
 import { useClubStore } from "@/stores/clubStore";
 import { useCurrentStore } from "@/stores/currentStore";
 
+import { useAuthStore } from "@/stores/authStore";
+
 // invalidateQueries 사용해보기
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useQueryClient } from "@tanstack/react-query";
@@ -28,6 +30,11 @@ const positionLabelMap: Record<string, string> = {
 const ModalItem = ({ event, onDelete }: ScheduleItemProps) => {
   const clubId = useClubStore((state) => state.clubId);
   const currentMonth = useCurrentStore((state) => state.currentMonth);
+
+  const { user } = useAuthStore();
+
+  const members = useClubStore((state) => state.members);
+  const isMember = members.some((member) => member.userId === user?.id);
 
   const { mutate: deleteEvent } = useDeleteCalendarEvent(clubId!, event.id);
   const queryClient = useQueryClient();
@@ -55,7 +62,7 @@ const ModalItem = ({ event, onDelete }: ScheduleItemProps) => {
       <div className={styles.name_delete_box}>
         <div className={styles.event_name}>{event.name}</div>
 
-        {event.eventType === "CLUB_EVENT" && (
+        {event.eventType === "CLUB_EVENT" && isMember && (
           <button
             className={styles.delete_button}
             onClick={() => {
