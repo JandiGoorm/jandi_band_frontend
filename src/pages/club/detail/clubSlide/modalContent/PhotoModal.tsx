@@ -60,7 +60,13 @@ const PhotoModal = ({ refetchPhotos }: { refetchPhotos: () => void }) => {
           }}
           style={{ display: "none" }}
         />
+        <p className={styles.guide}>10MB 이하의 이미지만 업로드할 수 있어요.</p>
         <div className={styles.select_photo}>
+          <div className={styles.file_list}>
+            {selectedFiles && (
+              <div className={styles.file_name}>{selectedFiles[0]?.name}</div>
+            )}
+          </div>
           <Button
             type="button"
             variant="secondary"
@@ -69,11 +75,6 @@ const PhotoModal = ({ refetchPhotos }: { refetchPhotos: () => void }) => {
           >
             사진 선택
           </Button>
-          <div className={styles.file_list}>
-            {selectedFiles && (
-              <div className={styles.file_name}>{selectedFiles[0]?.name}</div>
-            )}
-          </div>
         </div>
       </Field>
 

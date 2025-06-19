@@ -105,6 +105,7 @@ const TimeSchedule = () => {
                   !errors.name && styles.not_error,
                   styles.save_button
                 )}
+                style={errors.name ? { marginBottom: "1.2rem" } : undefined}
               >
                 저장하기
               </Button>
@@ -113,7 +114,10 @@ const TimeSchedule = () => {
             <Modal
               title="에타 시간표 불러오기"
               trigger={
-                <button className={styles.etbut}>
+                <button
+                  className={styles.etbut}
+                  style={errors.name ? { marginBottom: "1.2rem" } : undefined}
+                >
                   <img className={styles.etimg} src="/et.png" />
                 </button>
               }

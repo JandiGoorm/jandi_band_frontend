@@ -13,7 +13,7 @@
 /* 중간 라벨 개선 */
 .banner_section {
   background: linear-gradient(135deg, #96e0f2 0%, #eee7d5 100%);
-  padding: 1rem 0;
+  padding: 1rem 0.2rem;
   border-radius: 50px;
   box-shadow: 0 4px 10px rgba(76, 158, 255, 0.3);
   position: relative;
@@ -24,6 +24,8 @@
   justify-content: center;
   align-items: center;
   margin: -2.5rem 0;
+
+  text-align: center;
 }
 
 .banner_section::before {
