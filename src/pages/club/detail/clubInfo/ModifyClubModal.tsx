@@ -21,7 +21,14 @@ const createClubScheme = z.object({
   chatroomUrl: z
     .string()
     .max(255, "카카오톡 채팅방 링크는 255자 이내여야 합니다")
-    .optional(),
+    .optional()
+    .refine(
+      (val) => !val || /^https?:\/\/open\.kakao\.com\/[a-zA-Z0-9]+/.test(val),
+      {
+        message:
+          "유효한 카카오톡 오픈채팅 링크를 입력해주세요 (예: https://open.kakao.com/...)",
+      }
+    ),
   instagramId: z
     .string()
     .max(50, "인스타그램 아이디는 50자 이내여야 합니다")
