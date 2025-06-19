@@ -7,6 +7,7 @@ import DeleteModal from "../deleteModal/DeleteModal";
 import { useDeletePhoto } from "@/apis/photo";
 import { useParams } from "react-router-dom";
 import { IoMdDownload } from "react-icons/io";
+import { useToastStore } from "@/stores/toastStore";
 
 interface PhotoModalProps {
   trigger: React.ReactNode;
@@ -19,6 +20,7 @@ interface PhotoModalProps {
 const PhotoModal = ({ trigger, title, photo, refetch }: PhotoModalProps) => {
   const { user } = useAuthStore();
   const { id } = useParams();
+  const { showToast } = useToastStore();
   const { mutate: deletePhoto } = useDeletePhoto(id || "", photo.photoId);
 
   const mine = user?.id === photo.uploaderId;
@@ -37,6 +39,11 @@ const PhotoModal = ({ trigger, title, photo, refetch }: PhotoModalProps) => {
       window.URL.revokeObjectURL(blobUrl);
     } catch (error) {
       console.error("다운로드 실패:", error);
+      showToast(
+        "error",
+        "사진 다운로드에 실패했습니다.",
+        "photo-download-error"
+      );
     }
   };
 
