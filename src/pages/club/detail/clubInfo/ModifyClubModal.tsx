@@ -88,7 +88,10 @@ const ModifyClubModal = ({ club, onClose }: ModifyClubModalProps) => {
       </Field>
 
       <Field label="카카오톡 채팅방 링크" error={errors.chatroomUrl}>
-        <Input {...register("chatroomUrl")} />
+        <Input
+          {...register("chatroomUrl")}
+          placeholder="예: https://open.kakao.com/..."
+        />
       </Field>
 
       <Field label="인스타그램 아이디" error={errors.instagramId}>
