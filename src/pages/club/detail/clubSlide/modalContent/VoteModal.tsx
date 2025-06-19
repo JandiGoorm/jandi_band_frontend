@@ -1,22 +1,24 @@
 import Field from "@/components/field/Field";
 import styles from "./VoteModal.module.css";
 import Input from "@/components/input/Input";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { voteCreateFormSchema } from "./constants";
 import { z } from "zod";
 import Button from "@/components/button/Button";
 import { useCreatePoll } from "@/apis/poll";
+import { buildPath } from "@/utils/buildPath";
+import { PageEndpoints } from "@/constants/endpoints";
 
 interface Props {
   setOpen: (open: boolean) => void;
-  refetch: () => void;
 }
 
-const VoteModal = ({ setOpen, refetch }: Props) => {
+const VoteModal = ({ setOpen }: Props) => {
   const { id } = useParams();
   const { mutate: createPoll } = useCreatePoll();
+  const navigate = useNavigate();
 
   const formController = useForm({
     resolver: zodResolver(voteCreateFormSchema),
@@ -32,8 +34,8 @@ const VoteModal = ({ setOpen, refetch }: Props) => {
         endDatetime: new Date(data.endtime).toISOString(),
       },
       {
-        onSuccess: () => {
-          refetch();
+        onSuccess: (res) => {
+          navigate(buildPath(PageEndpoints.VOTE, { id: res.data.data.id }));
           setOpen(false);
         },
         onError: (err) => {

@@ -62,11 +62,7 @@ const Club = () => {
   const { mutate: leaveClub } = useLeaveClub(id!);
   const { mutate: deleteClub } = useDeleteClub(id!);
 
-  const {
-    data: pollData,
-    isLoading: pollLoading,
-    refetch,
-  } = useGetClubPoll({
+  const { data: pollData, isLoading: pollLoading } = useGetClubPoll({
     id: id as string,
   });
 
@@ -100,11 +96,7 @@ const Club = () => {
         <Calendar isMember={isMember} />
         {isMember && <TeamSlide teams={teamData?.data.content} />}
         {isMember && (
-          <VoteSlide
-            polls={pollData.data.content}
-            isMember={isMember}
-            refetch={refetch}
-          />
+          <VoteSlide polls={pollData.data.content} isMember={isMember} />
         )}
         <PhotoSlide
           isMember={isMember}
