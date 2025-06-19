@@ -41,6 +41,14 @@
   width: 100%;
   display: flex;
   gap: 0.5rem;
+  /* align-items: flex-end; */
+}
+.field {
+  flex-grow: 1;
+  min-height: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .save_button {

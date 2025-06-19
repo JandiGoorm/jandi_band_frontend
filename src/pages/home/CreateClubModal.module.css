@@ -7,3 +7,8 @@
 .submit_button {
   align-self: center;
 }
+
+.guide {
+  font-size: var(--text-xs);
+  color: #414141;
+}
