@@ -12,8 +12,8 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
   const location = useLocation();
   const { data: user, isLoading: isLoading } = useGetMe();
 
-  console.log(isLoading);
-  console.log(user);
+  // console.log(isLoading);
+  // console.log(user);
   if (isLoading) return;
 
   if (!user) {
@@ -23,7 +23,7 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
     );
   }
 
-  console.log("로그인되어있음");
+  // console.log("로그인되어있음");
   return <>{children}</>;
 };
 
