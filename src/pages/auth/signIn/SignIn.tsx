@@ -1,6 +1,6 @@
-import { useCallback } from "react";
+import { useCallback, Suspense, lazy } from "react";
 import styles from "./SignIn.module.css";
-import InfoSection from "./InfoSection";
+const InfoSection = lazy(() => import("./InfoSection"));
 
 const SignIn = () => {
   const handleKakaoLogin = useCallback(() => {
@@ -43,7 +43,9 @@ const SignIn = () => {
       </section>
 
       {/* 스크롤 정보 */}
-      <InfoSection />
+      <Suspense fallback={null}>
+        <InfoSection />
+      </Suspense>
 
       <div className={styles.ctaFooter}>
         <p>우리가 모일 시간, Rhythmeet에서 찾아보세요.</p>
