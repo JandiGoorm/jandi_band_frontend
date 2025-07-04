@@ -41,7 +41,7 @@
   flex-direction: row-reverse;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 910px) {
   .serviceContent {
     flex-direction: column !important; /* 역방향 무시하고 수직 정렬 */
     text-align: center;
@@ -152,6 +152,18 @@
   margin-top: 1rem;
   color: #6b7280;
   font-weight: 500;
+}
+
+@media (max-width: 910px) {
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .serviceContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
