@@ -1,6 +1,6 @@
-import { useCallback } from "react";
+import { useCallback, Suspense, lazy } from "react";
 import styles from "./SignIn.module.css";
-import InfoSection from "./InfoSection";
+const InfoSection = lazy(() => import("./InfoSection"));
 
 const SignIn = () => {
   const handleKakaoLogin = useCallback(() => {
@@ -16,7 +16,7 @@ const SignIn = () => {
   return (
     <main className={styles.container}>
       <section className={styles.hero_content}>
-        <img src="/logo_anti.png" alt="logo" className={styles.logo} />
+        <img src="/logo_anti.webp" alt="logo" className={styles.logo} />
 
         <div className={styles.text_container}>
           <div className={styles.title}>
@@ -43,7 +43,9 @@ const SignIn = () => {
       </section>
 
       {/* 스크롤 정보 */}
-      <InfoSection />
+      <Suspense fallback={null}>
+        <InfoSection />
+      </Suspense>
 
       <div className={styles.ctaFooter}>
         <p>우리가 모일 시간, Rhythmeet에서 찾아보세요.</p>

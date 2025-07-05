@@ -12,7 +12,7 @@ interface Section {
 
 const sections: Section[] = [
   {
-    title: "당신만의 밴드를 시작해보세요, \n 지금 이 순간부터.",
+    title: "지금 이 순간부터\n 당신만의 밴드를 시작해보세요.",
     desc: "나만의 밴드 동아리를 쉽고 빠르게 만들어보세요. \n 일정 관리 부터 곡 선정까지, 한곳에서 손쉽게 관리할 수 있어요.",
     icon: "🎸",
     caption: "동아리 생성",
