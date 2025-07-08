@@ -186,6 +186,12 @@
   }
 }
 
+@media (max-width: 400px) {
+  .serviceTitle {
+    font-size: 1.8rem;
+  }
+}
+
 /* 폰 */
 .phone_wrappe {
   display: flex;
