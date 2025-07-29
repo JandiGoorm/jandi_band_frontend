@@ -135,7 +135,13 @@ const MyPage = () => {
           <LeaveModal
             trigger={<p className={styles.out_text}>회원탈퇴</p>}
             title="탈퇴하기"
-            description="정말 탈퇴하시겠어요? 30일간 다시 가입하지 못합니다."
+            description={
+              <>
+                정말 탈퇴하시겠어요?
+                <br />
+                탈퇴시 30일간 재가입이 불가합니다.
+              </>
+            }
             onLeave={() => {
               userBreak(undefined, {
                 onSuccess: () => {
