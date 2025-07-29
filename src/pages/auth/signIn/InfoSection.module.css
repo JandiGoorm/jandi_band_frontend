@@ -199,10 +199,10 @@
   align-items: center;
 }
 .phone_mockup {
-  width: 280px;
+  width: 260px;
   height: 540px;
   background: #1a1a1a;
-  border-radius: 35px;
+  border-radius: 40px;
   padding: 15px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   position: relative;
