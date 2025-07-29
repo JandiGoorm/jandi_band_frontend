@@ -1,56 +1,65 @@
 import styles from "./InfoSection.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Section {
   title: string;
   desc: string;
-  icon: string;
-  caption: string;
+  images: string[];
   features: string[];
-  theme: string;
 }
 
 const sections: Section[] = [
   {
-    title: "지금 이 순간부터\n 당신만의 밴드를 시작해보세요.",
+    title: "당신만의 밴드를 \n 시작해보세요.",
     desc: "나만의 밴드 동아리를 쉽고 빠르게 만들어보세요. \n 일정 관리 부터 곡 선정까지, 한곳에서 손쉽게 관리할 수 있어요.",
-    icon: "🎸",
-    caption: "동아리 생성",
+    images: [
+      "/landingImg/band1.png",
+      "/landingImg/band2.png",
+      "/landingImg/band3.png",
+    ],
     features: [
       "간편한 동아리 생성 및 설정",
-      "멤버 초대 및 권한 관리",
-      "공용 캘린더로 활동 계획 및 일정 관리",
+      "카카오톡 연동으로 편리한 멤버 초대!",
+      "공용 캘린더를 통한 활동 계획 및 일정 관리",
       "추억을 담은 우리만의 사진 갤러리",
     ],
-    theme: "purple",
   },
   {
     title: "일정 잡기 힘드셨죠? \n 이제는 되는 시간만 모아보세요.",
-    desc: "팀원들의 가능한 시간을 자동으로 모아 가장 효율적인 합주 일정을 찾아보아요. \n 연습 일정 등록까지 한번에!",
-    icon: "🗓️",
-    caption: "스케줄 관리",
+    desc: "팀원들의 가능한 시간을 토대로 효율적인 합주 일정을 찾아보아요. \n 연습 일정 등록까지 한번에!",
+    images: ["/landingImg/band4.png", "/landingImg/band5.png"],
     features: [
-      "멤버별 가능 시간 자동 조회",
-      "나만의 시간표 등록 및 관리",
-      "손 쉬운 합주 일정 등록",
+      "에브리타임 연동을 통한 간편한 시간표 등록",
+      "멤버별, 포지션별 가능 시간 자동 조회 및 필터링",
+      "카카오톡 연동으로 편리하게 초대해요~",
     ],
-    theme: "green",
   },
   {
     title: "공연을 빛내는 시작,\n 홍보부터 제대로.",
     desc: "동아리의 공연과 이벤트를 효과적으로 홍보하세요.\n 주변 공연 조회까지 쉽게 가능해요!",
-    icon: "🎤",
-    caption: "공연 홍보",
+    images: ["/landingImg/band6.png", "/landingImg/band7.png"],
     features: [
       "공연 정보 게시 및 관리",
       "지도를 통한 주변 공연 정보 찾기",
       "공연뿐만 아니라 관람도 손쉽게!",
     ],
-    theme: "red",
   },
 ];
 
 const InfoSection = () => {
+  const [currentImages, setCurrentImages] = useState<number[]>(
+    sections.map(() => 0)
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImages((prev) =>
+        prev.map((val, i) => (val + 1) % sections[i].images.length)
+      );
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   // 스크롤 애니메이션
   useEffect(() => {
     const handleScroll = () => {
@@ -94,53 +103,62 @@ const InfoSection = () => {
 
   return (
     <div className={styles.servicesContainer}>
-      {sections.map((s, idx) => (
-        <section
-          className={styles.serviceSection}
-          key={idx}
-          style={
-            {
-              "--theme-color": `var(--${s.theme})`,
-            } as Record<string, string>
-          }
-        >
-          <div
-            className={`${styles.serviceContent} ${idx % 2 === 1 ? styles.reverse : ""}`}
-          >
-            <div className={styles.serviceText}>
-              <h2 className={styles.serviceTitle}>
-                {s.title.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </h2>
-              <p className={styles.serviceDescription}>
-                {s.desc.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </p>
-              <ul className={styles.serviceFeatures}>
-                {s.features.map((f, i) => (
-                  <li key={i}>{f}</li>
-                ))}
-              </ul>
-            </div>
-            <div className={styles.phone_wrappe}>
-              <div className={styles.phone_mockup}>
-                <div className={styles.phone_screen}>
-                  <div className={styles.serviceIcon}>{s.icon}</div>
-                  <p>{s.caption}</p>
+      {sections.map((s, idx) => {
+        const currentImage = currentImages[idx];
+
+        return (
+          <section className={styles.serviceSection} key={idx}>
+            <div
+              className={`${styles.serviceContent} ${
+                idx % 2 === 1 ? styles.reverse : ""
+              }`}
+            >
+              <div className={styles.serviceText}>
+                <h2 className={styles.serviceTitle}>
+                  {s.title.split("\n").map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </h2>
+                <p className={styles.serviceDescription}>
+                  {s.desc.split("\n").map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </p>
+                <ul className={styles.serviceFeatures}>
+                  {s.features.map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className={styles.phone_wrappe}>
+                <div
+                  className={`${styles.phone_mockup} ${
+                    idx % 2 === 0 ? styles.tiltLeft : styles.tiltRight
+                  }`}
+                >
+                  <div className={styles.phone_screen}>
+                    {s.images.map((img, i) => (
+                      <img
+                        key={i}
+                        src={img}
+                        alt={`슬라이드 ${i}`}
+                        className={`${styles.fadeImage} ${i === currentImage ? styles.visible : ""}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        );
+      })}
     </div>
   );
 };
