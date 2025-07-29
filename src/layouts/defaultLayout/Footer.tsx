@@ -15,7 +15,7 @@ const Footer = () => {
         <div className={styles.footer_social}>
           {/* <a href="https://instagram.com/youraccount" target="_blank">Instagram</a> */}
 
-          <a href="" target="_blank">
+          <a href="https://www.instagram.com/with_rhythmeet" target="_blank">
             Instagram
           </a>
           <a href="https://github.com/JandiGoorm" target="_blank">
