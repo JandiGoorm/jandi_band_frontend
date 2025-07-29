@@ -89,7 +89,7 @@ const ClubInfo = ({
               <Dropdown
                 trigger={
                   <section>
-                    <Button size="lg">동아리 관리</Button>
+                    <Button size="md">동아리 관리</Button>
                   </section>
                 }
                 items={[

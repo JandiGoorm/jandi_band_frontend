@@ -36,6 +36,12 @@
   }
 }
 
+@media (max-width: 420px) {
+  .club_container {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}
+
 .add_button {
   margin: 1rem 0;
   width: 100%;

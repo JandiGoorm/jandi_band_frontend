@@ -133,7 +133,7 @@ const MyPage = () => {
         </section>
         <section className={styles.out_button_box}>
           <LeaveModal
-            trigger={<Button>회원탈퇴</Button>}
+            trigger={<p className={styles.out_text}>회원탈퇴</p>}
             title="탈퇴하기"
             description="정말 탈퇴하시겠어요? 30일간 다시 가입하지 못합니다."
             onLeave={() => {

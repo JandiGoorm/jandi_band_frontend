@@ -9,12 +9,12 @@
 }
 
 .invite_button {
-  padding: 0.5rem 1rem;
   font-size: var(--text-s);
   display: flex;
   justify-content: center;
   align-items: center;
   color: #361f1f;
+  padding: 0.25rem 1rem;
 }
 .invite_button img {
   margin-right: 0.3rem;
