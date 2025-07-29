@@ -18,7 +18,20 @@
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  color: #2d2d2d;
+  color: #434343;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.title:hover {
+  transform: scale(1.03);
+  color: #67a7b4;
+}
+
+.title:active {
+  transform: scale(0.97);
+  color: #67a7b4;
 }
 
 @media (max-width: 520px) {
