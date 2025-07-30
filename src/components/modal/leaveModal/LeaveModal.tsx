@@ -7,7 +7,7 @@ interface LeaveModalProps {
   trigger: React.ReactNode;
   title: string;
   onLeave: () => void;
-  description?: string;
+  description?: React.ReactNode;
 }
 
 const LeaveModal = ({
@@ -22,15 +22,15 @@ const LeaveModal = ({
         <p className={styles.description}>{description}</p>
 
         <div className={styles.button_container}>
-          <Dialog.Close asChild>
+          {/* <Dialog.Close asChild>
             <Button type="button" variant="secondary">
               취소
             </Button>
-          </Dialog.Close>
+          </Dialog.Close> */}
 
           <Dialog.Close asChild>
             <Button type="button" variant="secondary" onClick={onLeave}>
-              나가기
+              네. 탈퇴합니다
             </Button>
           </Dialog.Close>
         </div>

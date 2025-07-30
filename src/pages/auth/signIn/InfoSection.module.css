@@ -199,16 +199,22 @@
   align-items: center;
 }
 .phone_mockup {
-  width: 280px;
-  height: 540px;
+  width: 355px;
+  height: 550px;
   background: #1a1a1a;
-  border-radius: 35px;
+  border-radius: 40px;
   padding: 15px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   position: relative;
   border: 1px solid #ddd;
+}
 
-  /* transform: rotate(-5deg); */
+.tiltLeft {
+  transform: rotate(-5deg);
+}
+
+.tiltRight {
+  transform: rotate(5deg);
 }
 
 .phone_screen {
@@ -223,4 +229,22 @@
   color: white;
   font-size: 24px;
   font-weight: bold;
+  position: relative;
+}
+
+.fadeImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  border-radius: 20px;
+  pointer-events: none; /* 클릭 방지 */
+}
+
+.visible {
+  opacity: 1;
 }

@@ -43,7 +43,11 @@ const MyClubList = () => {
       <div className={styles.add_button}>
         <CreateClubModal
           trigger={
-            <Button variant="primary" size="md">
+            <Button
+              variant="primary"
+              size="md"
+              className={styles.add_add_button}
+            >
               동아리 만들기
             </Button>
           }

@@ -1,7 +1,7 @@
 .title {
   display: flex;
   justify-content: center;
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-sub);
   margin-bottom: 2rem;
@@ -33,6 +33,12 @@
 @media (max-width: 870px) {
   .club_container {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .club_container {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   }
 }
 
@@ -99,4 +105,12 @@
   .overlay {
     opacity: 1;
   }
+}
+
+.add_add_button {
+  font-size: 0.8rem;
+  border: 1px solid #afafaf;
+  background-color: white;
+  padding: 0.3rem 0.7rem;
+  color: #777777;
 }
