@@ -15,7 +15,7 @@ const Footer = () => {
         <div className={styles.footer_social}>
           {/* <a href="https://instagram.com/youraccount" target="_blank">Instagram</a> */}
 
-          <a href="" target="_blank">
+          <a href="https://www.instagram.com/with_rhythmeet" target="_blank">
             Instagram
           </a>
           <a href="https://github.com/JandiGoorm" target="_blank">
@@ -27,7 +27,7 @@ const Footer = () => {
       <div className={styles.footer_bottom}>
         <p>© 2025 Rhythmeet. All rights reserved.</p>
         <p>문의: jandigoorm@gmail.com</p>
-        <p>팀 Rhythmeet | 구름X카카오 잔디</p>
+        <p>팀 Rhythmeet | 구름X카카오 잔디 | Version 1.0.0</p>
       </div>
     </footer>
   );

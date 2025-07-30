@@ -15,7 +15,7 @@
 
 .back_button {
   align-self: start;
-  margin-bottom: -2.5rem;
+  margin-bottom: -2.3rem;
   cursor: pointer;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .title {
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: var(--font-weight-bold);
 }
 

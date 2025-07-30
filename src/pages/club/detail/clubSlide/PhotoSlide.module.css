@@ -27,3 +27,6 @@
   color: var(--color-text-sub);
   cursor: pointer;
 }
+.slider_box {
+  margin-top: 0.5rem;
+}

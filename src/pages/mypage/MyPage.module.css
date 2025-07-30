@@ -142,3 +142,8 @@
   display: flex;
   justify-content: right;
 }
+
+.out_text {
+  font-size: 0.85rem;
+  color: #777777;
+}

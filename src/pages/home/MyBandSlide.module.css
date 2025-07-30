@@ -35,8 +35,22 @@
 .title {
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-semibold);
-  color: #2d2d2d;
   cursor: pointer;
+  color: #434343;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+  margin-bottom: 0.3rem;
+}
+
+.title:hover {
+  transform: scale(1.03);
+  color: #67a7b4;
+}
+
+.title:active {
+  transform: scale(0.97);
+  color: #67a7b4;
 }
 @media (max-width: 520px) {
   .title {

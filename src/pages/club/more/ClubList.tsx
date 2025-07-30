@@ -32,7 +32,7 @@ const ClubList = () => {
   return (
     <DefaultLayout>
       <header>
-        <p className={styles.title}>동아리 목록</p>
+        <p className={styles.title}>전체 동아리 목록</p>
       </header>
 
       <section className={styles.club_container}>
@@ -64,7 +64,11 @@ const ClubList = () => {
       <div className={styles.add_button}>
         <CreateClubModal
           trigger={
-            <Button variant="primary" size="md">
+            <Button
+              variant="primary"
+              size="md"
+              className={styles.add_add_button}
+            >
               동아리 만들기
             </Button>
           }
