@@ -249,6 +249,13 @@
   opacity: 1;
 }
 
+@media (max-width: 500px) {
+  .phone_mockup {
+    width: 340px;
+    height: 527px;
+  }
+}
+
 @media (max-width: 400px) {
   .phone_mockup {
     width: 300px;
