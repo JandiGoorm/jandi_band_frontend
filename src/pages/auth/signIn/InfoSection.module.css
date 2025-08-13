@@ -248,3 +248,10 @@
 .visible {
   opacity: 1;
 }
+
+@media (max-width: 400px) {
+  .phone_mockup {
+    width: 300px;
+    height: 465px;
+  }
+}
