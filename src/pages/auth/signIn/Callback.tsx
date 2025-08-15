@@ -10,11 +10,13 @@ const Callback = () => {
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get("code");
+  // 현재 URL의 쿼리스트링에서 code(카카오가 준 인가코드)를 꺼냄
 
-  const { data } = useSignIn(code ?? "");
+  const { data } = useSignIn(code ?? ""); // 인가 코드를 백엔드로 보내어 데이터 저장
   const { refetch: getMe, data: profile } = useGetMe();
   const { setUser } = useAuthStore();
-  const from = location.state?.from?.pathname || PageEndpoints.HOME;
+  const from = location.state?.from?.pathname || PageEndpoints.HOME; //로그인 전에 원래 경로가 있으면 그쪽으로, 없으면 home으로
+
   // 로그인 처리후 토큰 저장 및 isRegistered 여부에 따른 로직 처리
   useEffect(() => {
     if (!data) return;
