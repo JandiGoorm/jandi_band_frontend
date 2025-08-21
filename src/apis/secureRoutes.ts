@@ -73,4 +73,6 @@ export const secureRoutes = [
   { method: Method.POST, url: ApiEndpotins.REPORT_PROMO },
   { method: Method.POST, url: ApiEndpotins.REPORT_COMMENT },
   { method: Method.POST, url: ApiEndpotins.USER_BREAK },
+
+  { method: Method.GET, url: ApiEndpotins.NOTICE },
 ];
