@@ -22,7 +22,7 @@ type Api = {
 
 const axiosInstance = axios.create({
   baseURL: domain,
-  timeout: 8000,
+  timeout: 10000,
   // headers: {
   //   "Content-Type": "application/json",
   // },
@@ -95,12 +95,6 @@ axiosInstance.interceptors.response.use(
       toast.setErrorOccurred(true);
       return Promise.reject(error);
     }
-    if (error.code === "ERR_NETWORK") {
-      console.error("서버 에러가 발생하였습니다.");
-      toast.showToast("error", "서버와 연결할 수 없습니다.", "network");
-      toast.setErrorOccurred(true);
-      return Promise.reject(error);
-    }
 
     const errorMessage = error.response.data.message;
     if (
@@ -127,6 +121,12 @@ axiosInstance.interceptors.response.use(
         localStorage.removeItem("refreshToken");
         return Promise.reject(error);
       }
+    }
+    if (error.code === "ERR_NETWORK") {
+      console.error("서버 에러가 발생하였습니다.");
+      toast.showToast("error", "서버와 연결할 수 없습니다.", "network");
+      toast.setErrorOccurred(true);
+      return Promise.reject(error);
     }
 
     return Promise.reject(error);
