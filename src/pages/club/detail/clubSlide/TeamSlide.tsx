@@ -6,23 +6,31 @@ import TeamModal from "./modalContent/TeamModal";
 import TeamCard from "@/components/cards/TeamCard";
 import type { TeamBasicResponse } from "@/types/team";
 
-const TeamSlide = ({ teams }: { teams: TeamBasicResponse[] | undefined }) => {
+const TeamSlide = ({
+  teams,
+  isMember,
+}: {
+  teams: TeamBasicResponse[] | undefined;
+  isMember: boolean;
+}) => {
   if (teams === undefined) return;
 
   return (
     <main className={styles.container}>
       <header className={styles.header}>
         <div className={styles.title}>팀 목록</div>
-        <Modal
-          title="팀 생성하기"
-          trigger={
-            <Button variant="primary" size="md">
-              팀 생성
-            </Button>
-          }
-        >
-          <TeamModal />
-        </Modal>
+        {isMember && (
+          <Modal
+            title="팀 생성하기"
+            trigger={
+              <Button variant="primary" size="md">
+                팀 생성
+              </Button>
+            }
+          >
+            <TeamModal />
+          </Modal>
+        )}
       </header>
       <section className={styles.slider_box}>
         <Slide<TeamBasicResponse> items={teams}>
