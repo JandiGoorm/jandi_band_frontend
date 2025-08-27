@@ -221,7 +221,9 @@ const ClubInfo = ({
             trigger={<p>{memberData.totalMemberCount}명</p>}
             description={
               memberData.members.length > 0
-                ? memberData.members.map((m) => m.name).join(", ")
+                ? memberData.members
+                    .map((m) => `${m.name}(#${m.userId})`)
+                    .join(", ")
                 : "없음"
             }
           />
@@ -280,7 +282,7 @@ const ClubInfo = ({
                 trigger={<p>{members.length}명</p>}
                 description={
                   members.length > 0
-                    ? members.map((m) => m.name).join(", ")
+                    ? members.map((m) => `${m.name}(#${m.userId})`).join(", ")
                     : "없음"
                 }
               />
