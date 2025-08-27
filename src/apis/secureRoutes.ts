@@ -76,3 +76,10 @@ export const secureRoutes = [
 
   { method: Method.GET, url: ApiEndpotins.NOTICE },
 ];
+
+export const notFoundRoutes = [
+  ApiEndpotins.PROMOTION_DETAIL,
+  ApiEndpotins.CLUB_DETAIL,
+  ApiEndpotins.TEAM_DETAIL,
+  ApiEndpotins.POLL,
+];

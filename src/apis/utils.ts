@@ -1,5 +1,5 @@
 import axios from "axios";
-import { secureRoutes } from "./secureRoutes";
+import { notFoundRoutes, secureRoutes } from "./secureRoutes";
 import { ApiEndpotins } from "@/constants/endpoints";
 import type { RefreshTokenResponse } from "@/types/auth";
 import type { ApiResponse } from "./types";
@@ -79,6 +79,34 @@ axiosInstance.interceptors.request.use((config) => {
   }
   return config;
 });
+
+//404에러시 페이지 이동 처리
+function isNotFoundRoute(url: string): boolean {
+  // URL에서 base 도메인 제거
+  const pathname = new URL(url, domain).pathname.replace("/api", "");
+
+  return notFoundRoutes.some((endpoint) => {
+    // :id → 정규식 변환
+    const regex = new RegExp("^" + endpoint.replace(/:[^/]+/g, "[^/]+") + "$");
+    return regex.test(pathname);
+  });
+}
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 404) {
+      const requestUrl = error.config?.url || "";
+
+      if (isNotFoundRoute(requestUrl)) {
+        // club/team 관련 404만 NotFoundPage로 이동
+        window.location.href = "/404";
+        return;
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 axiosInstance.interceptors.response.use(
   (response) => {
