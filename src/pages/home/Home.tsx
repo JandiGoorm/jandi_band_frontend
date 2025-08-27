@@ -9,6 +9,8 @@ import { useGetClubList, useGetMyClubList } from "@/apis/club";
 import Loading from "@/components/loading/Loading";
 import { motion } from "framer-motion";
 import BannerLine from "./BannerLine";
+import { useNoticeInfo } from "@/apis/notice";
+import PopUp from "./noticePopUp/PopUp";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -23,6 +25,7 @@ const Home = () => {
   const { data: clubListData, isLoading: isClubListLoading } = useGetClubList({
     size: 10,
   });
+  const { data: noticeData, isLoading: isNoticeLoading } = useNoticeInfo();
 
   if (
     !myClubListData ||
@@ -30,12 +33,15 @@ const Home = () => {
     !promoListData ||
     isPromoListLoading ||
     !clubListData ||
-    isClubListLoading
+    isClubListLoading ||
+    !noticeData ||
+    isNoticeLoading
   )
     return <Loading />;
 
   return (
     <div className={styles.fullBackground}>
+      {noticeData?.data && <PopUp notices={noticeData.data} />}
       <DefaultLayout>
         <main className={styles.container}>
           <motion.div

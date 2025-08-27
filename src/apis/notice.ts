@@ -5,5 +5,5 @@ import type { NoticeRequest } from "@/types/notice";
 
 // 공지사항 정보 조회
 export const useNoticeInfo = () => {
-  return useFetch<NoticeRequest>(ApiEndpotins.NOTICE);
+  return useFetch<NoticeRequest[]>(ApiEndpotins.NOTICE);
 };
