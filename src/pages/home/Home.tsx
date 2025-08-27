@@ -10,7 +10,7 @@ import Loading from "@/components/loading/Loading";
 import { motion } from "framer-motion";
 import BannerLine from "./BannerLine";
 import { useNoticeInfo } from "@/apis/notice";
-import PopUp from "./noticePopUp/PopUp";
+// import PopUp from "./noticePopUp/PopUp";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -41,7 +41,7 @@ const Home = () => {
 
   return (
     <div className={styles.fullBackground}>
-      {noticeData?.data && <PopUp notices={noticeData.data} />}
+      {/* {noticeData?.data && <PopUp notices={noticeData.data} />} */}
       <DefaultLayout>
         <main className={styles.container}>
           <motion.div
