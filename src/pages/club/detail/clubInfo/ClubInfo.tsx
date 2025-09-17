@@ -137,7 +137,7 @@ const ClubInfo = ({
         </div>
       </section>
 
-      <section className={styles.member_box}>
+      {/* <section className={styles.member_box}>
         <div className={styles.member}>
           <Tooltip
             trigger={
@@ -204,6 +204,91 @@ const ClubInfo = ({
           />
           <p>{memberData.drumCount}명</p>
         </div>
+      </section> */}
+      <section className={styles.member_box}>
+        <div className={styles.member}>
+          {/* 아이콘에 올리면 '전체인원' */}
+          <Tooltip
+            trigger={
+              <span>
+                <FaPeopleGroup size={16} />
+              </span>
+            }
+            description="전체인원"
+          />
+          {/* 숫자에 올리면 멤버 이름 */}
+          <Tooltip
+            trigger={<p>{memberData.totalMemberCount}명</p>}
+            description={
+              memberData.members.length > 0
+                ? memberData.members
+                    .map((m) => `${m.name}(#${m.userId})`)
+                    .join(", ")
+                : "없음"
+            }
+          />
+        </div>
+
+        {/* 포지션별 반복 */}
+        {Object.entries({
+          VOCAL: {
+            label: "보컬",
+            icon: (
+              <span>
+                <PiMicrophoneStage size={16} />
+              </span>
+            ),
+          },
+          GUITAR: {
+            label: "기타",
+            icon: (
+              <span>
+                <GiGuitar size={16} />{" "}
+              </span>
+            ),
+          },
+          BASS: {
+            label: "베이스",
+            icon: (
+              <span>
+                <GiGuitar size={16} />{" "}
+              </span>
+            ),
+          },
+          KEYBOARD: {
+            label: "키보드",
+            icon: (
+              <span>
+                <GiPianoKeys size={16} />{" "}
+              </span>
+            ),
+          },
+          DRUM: {
+            label: "드럼",
+            icon: (
+              <span>
+                <GiDrumKit size={16} />{" "}
+              </span>
+            ),
+          },
+        }).map(([pos, { label, icon }]) => {
+          const members = memberData.members.filter((m) => m.position === pos);
+          return (
+            <div className={styles.member} key={pos}>
+              {/* 아이콘에는 분야 */}
+              <Tooltip trigger={icon} description={label} />
+              {/* 숫자에는 멤버 이름 */}
+              <Tooltip
+                trigger={<p>{members.length}명</p>}
+                description={
+                  members.length > 0
+                    ? members.map((m) => `${m.name}(#${m.userId})`).join(", ")
+                    : "없음"
+                }
+              />
+            </div>
+          );
+        })}
       </section>
     </main>
   );
