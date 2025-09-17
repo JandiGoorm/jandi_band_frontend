@@ -90,4 +90,6 @@ export enum ApiEndpotins {
   REPORT_COMMENT = "/promos/comments/reports",
 
   USER_BREAK = "/auth/cancel", //회원탈퇴
+
+  NOTICE = "/notices/active",
 }

@@ -1,0 +1,62 @@
+.popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90vw, 25rem);
+  background: var(--color-white);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-2xl);
+  z-index: 1000;
+  animation: popupShow 0.2s ease-out;
+}
+
+.popup_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background-color: var(--color-input-header-background);
+  color: var(--color-black);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.close_btn {
+  background: transparent;
+  border: none;
+  color: black;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.popup_body {
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.checkbox_label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+@keyframes popupShow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0%) scale(1);
+  }
+}
