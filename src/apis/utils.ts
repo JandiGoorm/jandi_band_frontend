@@ -1,6 +1,6 @@
 import axios from "axios";
 import { notFoundRoutes, secureRoutes } from "./secureRoutes";
-import { ApiEndpotins } from "@/constants/endpoints";
+import { ApiEndpotins, PageEndpoints } from "@/constants/endpoints";
 import type { RefreshTokenResponse } from "@/types/auth";
 import type { ApiResponse } from "./types";
 import type { AxiosResponse } from "axios";
@@ -147,6 +147,7 @@ axiosInstance.interceptors.response.use(
         console.log("err", err);
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
+        window.location.href = PageEndpoints.HOME;
         return Promise.reject(error);
       }
     }
