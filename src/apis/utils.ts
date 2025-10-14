@@ -1,6 +1,6 @@
 import axios from "axios";
 import { notFoundRoutes, secureRoutes } from "./secureRoutes";
-import { ApiEndpotins } from "@/constants/endpoints";
+import { ApiEndpotins,PageEndpoints } from "@/constants/endpoints";
 import type { RefreshTokenResponse } from "@/types/auth";
 import type { ApiResponse } from "./types";
 import type { AxiosResponse } from "axios";
@@ -125,13 +125,23 @@ axiosInstance.interceptors.response.use(
     }
 
     const errorMessage = error.response.data.message;
-    if (
-      errorMessage === "유효하지 않은 토큰입니다." &&
-      error.config.url !== ApiEndpotins.REFRESH_TOKEN
-    ) {
+    if (errorMessage === "유효하지 않은 토큰입니다.") {
+      if (error.config.url === ApiEndpotins.REFRESH_TOKEN) {
+        console.log("refresh 오류");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        window.location.href = PageEndpoints.HOME;
+        return Promise.reject(error);
+      }
       const refreshToken = localStorage.getItem("refreshToken");
-      if (!refreshToken) return Promise.reject(error);
+      if (!refreshToken) {
+        console.log("refresh 존재하지않음");
+        clearAuthAndRedirect();
+        return Promise.reject(error);
+      }
+
       try {
+        console.log("토큰 재발급 실행");
         const response = await api.post<
           AxiosResponse<ApiResponse<RefreshTokenResponse>>
         >(ApiEndpotins.REFRESH_TOKEN, {
@@ -144,9 +154,8 @@ axiosInstance.interceptors.response.use(
         error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return axiosInstance.request(error.config);
       } catch (err) {
-        console.log("err", err);
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
+        console.log("err", err + "에러 캐치");
+        clearAuthAndRedirect();
         return Promise.reject(error);
       }
     }
@@ -160,3 +169,9 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+function clearAuthAndRedirect() {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  window.location.href = PageEndpoints.HOME;
+}
