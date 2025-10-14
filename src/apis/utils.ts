@@ -1,6 +1,6 @@
 import axios from "axios";
 import { notFoundRoutes, secureRoutes } from "./secureRoutes";
-import { ApiEndpotins, PageEndpoints } from "@/constants/endpoints";
+import { ApiEndpotins } from "@/constants/endpoints";
 import type { RefreshTokenResponse } from "@/types/auth";
 import type { ApiResponse } from "./types";
 import type { AxiosResponse } from "axios";
