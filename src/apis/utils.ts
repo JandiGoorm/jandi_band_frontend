@@ -1,5 +1,6 @@
 import axios from "axios";
-import { notFoundRoutes, secureRoutes } from "./secureRoutes";
+// import { notFoundRoutes, secureRoutes } from "./secureRoutes";
+import { secureRoutes } from "./secureRoutes";
 import { ApiEndpotins } from "@/constants/endpoints";
 // import type { RefreshTokenResponse } from "@/types/auth";
 // import type { ApiResponse } from "./types";
@@ -96,8 +97,6 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// 🚨 10.15 (로그인 수정) 응답 인터셉터
-
 // //404에러시 페이지 이동 처리
 // function isNotFoundRoute(url: string): boolean {
 //   // URL에서 base 도메인 제거
@@ -126,6 +125,7 @@ axiosInstance.interceptors.request.use((config) => {
 //   }
 // );
 
+// 🚨 10.15 (로그인 수정) 응답 인터셉터
 axiosInstance.interceptors.response.use(
   (response) => {
     // 🐹 로그인 직후 서버가 accessToken / refreshToken을 주는지 확인
