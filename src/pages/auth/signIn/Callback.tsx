@@ -21,13 +21,22 @@ const Callback = () => {
   useEffect(() => {
     if (!data) return;
 
-    const { isRegistered, accessToken, refreshToken } = data.data;
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
+    // const { isRegistered, accessToken, refreshToken } = data.data;
+    // localStorage.setItem("accessToken", accessToken);
+    // localStorage.setItem("refreshToken", refreshToken);
+
+    // 🐹 10.15 (로그인 수정) utill 에서 토큰 저장중이므로 이것만 남겨놓습니다.
+    const { isRegistered } = data.data;
 
     if (isRegistered) {
       // 회원가입이 되어있으면 유저 정보를 가져옴
-      getMe();
+      // 🚨 10.15 (로그인 수정) - 바로 가져와서 401에러
+      // getMe();
+
+      // 🐹 10.15 (로그인 수정) 대기 시간을 둬봤습니다
+      setTimeout(() => {
+        getMe();
+      }, 300);
     } else {
       // 회원가입이 안되어있으면 회원가입 페이지로 이동
       navigate(PageEndpoints.SIGN_UP, {
