@@ -100,7 +100,7 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response) => {
     // 🐹 로그인 직후 서버가 accessToken / refreshToken을 주는지 확인
-    console.log("[LOGIN RESPONSE HEADERS]", response.headers);
+    // console.log("[헤더 응답]", response.headers);
 
     // 10.15 서버가 AccessToken을 헤더로 내려줄 때만 저장
     const newAccessToken = response.headers["accesstoken"];
@@ -160,7 +160,11 @@ axiosInstance.interceptors.response.use(
         //   response.data.data;
 
         if (newAccessToken) {
+          // 새 액세스토큰으로 대체
           localStorage.setItem("accessToken", newAccessToken);
+          console.log("[액세스토큰 리프레시]", newAccessToken);
+
+          // 이후 실패한 요청 다시 전송
           error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return axiosInstance.request(error.config);
         }
