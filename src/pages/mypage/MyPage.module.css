@@ -71,6 +71,13 @@
 .profile_info {
   font-size: 1.15rem;
 }
+.name {
+  display: flex;
+  gap: 0.25rem;
+}
+.info_id {
+  color: var(--color-text-sub);
+}
 .profile_info div {
   display: flex;
   flex-direction: row;

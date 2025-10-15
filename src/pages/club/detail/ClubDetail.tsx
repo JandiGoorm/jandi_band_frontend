@@ -94,10 +94,12 @@ const Club = () => {
           isMember={isMember}
         />
         <Calendar isMember={isMember} />
-        {isMember && <TeamSlide teams={teamData?.data.content} />}
-        {isMember && (
+        {/* {isMember && <TeamSlide teams={teamData?.data.content} />} */}
+        <TeamSlide teams={teamData?.data.content} isMember={isMember} />
+        {/* {isMember && (
           <VoteSlide polls={pollData.data.content} isMember={isMember} />
-        )}
+        )} */}
+        <VoteSlide polls={pollData.data.content} isMember={isMember} />
         <PhotoSlide
           isMember={isMember}
           photos={photoData.data.content}

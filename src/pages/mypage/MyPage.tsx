@@ -71,7 +71,10 @@ const MyPage = () => {
             <dl className={styles.profile_info}>
               <div>
                 <dt>이름</dt>
-                <dd>{myInfo.nickname}</dd>
+                <dd className={styles.name}>
+                  {myInfo.nickname}{" "}
+                  <p className={styles.info_id}>#{myInfo.id}</p>
+                </dd>
               </div>
               <div>
                 <dt>포지션 </dt>
