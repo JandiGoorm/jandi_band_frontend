@@ -81,9 +81,9 @@ axiosInstance.interceptors.request.use((config) => {
   if (isProtected) {
     const accessToken = localStorage.getItem("accessToken");
 
-    console.log("[REQUEST URL]", config.url);
-    console.log("[REQUEST METHOD]", config.method);
-    console.log("[REQUEST AUTHORIZATION]", accessToken);
+    // console.log("[REQUEST URL]", config.url);
+    // console.log("[REQUEST METHOD]", config.method);
+    // console.log("[REQUEST AUTHORIZATION]", accessToken);
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -162,7 +162,7 @@ axiosInstance.interceptors.response.use(
         if (newAccessToken) {
           // 새 액세스토큰으로 대체
           localStorage.setItem("accessToken", newAccessToken);
-          console.log("[액세스토큰 리프레시]", newAccessToken);
+          // console.log("[액세스토큰 리프레시]", newAccessToken);
 
           // 이후 실패한 요청 다시 전송
           error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
