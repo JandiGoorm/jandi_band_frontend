@@ -1,9 +1,6 @@
 import axios from "axios";
 import { notFoundRoutes, secureRoutes } from "./secureRoutes";
 import { ApiEndpotins } from "@/constants/endpoints";
-import type { RefreshTokenResponse } from "@/types/auth";
-import type { ApiResponse } from "./types";
-import type { AxiosResponse } from "axios";
 import { useToastStore } from "@/stores/toastStore";
 
 const domain = import.meta.env.VITE_API_DOMAIN;
@@ -20,12 +17,14 @@ type Api = {
   delete: <T>(url: string) => Promise<T>;
 };
 
+// 10.15 (로그인 수정) - 기본 인스턴스 수정
 const axiosInstance = axios.create({
   baseURL: domain,
-  timeout: 10000,
-  // headers: {
-  //   "Content-Type": "application/json",
-  // },
+  timeout: 8000, // 응답 8초 넘으면 오류
+  withCredentials: true, // RefreshToken 쿠키 자동 전송
+  headers: {
+    //   "Content-Type": "application/json",
+  },
 });
 
 export const api: Api = {
@@ -59,6 +58,7 @@ export const api: Api = {
   },
 };
 
+// 10.15 (로그인 수정) 요청 인터셉터
 axiosInstance.interceptors.request.use((config) => {
   const url = new URL(config.url as string);
   const pathname = url.pathname.replace("/api", "");
@@ -74,13 +74,22 @@ axiosInstance.interceptors.request.use((config) => {
     return regex.test(pathname);
   });
 
+  // 보호된 경로면 자동 첨부
   if (isProtected) {
-    config.headers.Authorization = `Bearer ${localStorage.getItem("accessToken") || ""}`;
+    const accessToken = localStorage.getItem("accessToken");
+
+    console.log("[REQUEST URL]", config.url);
+    console.log("[REQUEST METHOD]", config.method);
+    console.log("[REQUEST AUTHORIZATION]", accessToken);
+
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
   }
   return config;
 });
 
-//404에러시 페이지 이동 처리
+// 404에러시 페이지 이동 처리
 function isNotFoundRoute(url: string): boolean {
   // URL에서 base 도메인 제거
   const pathname = new URL(url, domain).pathname.replace("/api", "");
@@ -108,14 +117,22 @@ axiosInstance.interceptors.response.use(
   }
 );
 
+// 🚨 10.15 (로그인 수정) 응답 인터셉터
 axiosInstance.interceptors.response.use(
   (response) => {
+    // 🐹 로그인 직후 서버가 accessToken / refreshToken을 주는지 확인
+    console.log("[헤더 응답]", response.headers);
+
+    // 10.15 서버가 AccessToken을 헤더로 내려줄 때만 저장
+    const newAccessToken = response.headers["accesstoken"];
+    if (newAccessToken) {
+      localStorage.setItem("accessToken", newAccessToken);
+    }
+
     return response;
   },
   async (error) => {
     const toast = useToastStore.getState();
-
-    // console.log(error);
 
     if (error.code === "ECONNABORTED") {
       console.error("⏰ 요청이 시간 초과되었습니다.");
@@ -124,29 +141,53 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(error);
     }
 
+    // 토큰 만료 감지 및 자동 재발급
     const errorMessage = error.response.data.message;
+
+    // AccessToken 만료시 refresh 요청
     if (
       errorMessage === "유효하지 않은 토큰입니다." &&
-      error.config.url !== ApiEndpotins.REFRESH_TOKEN
+      error.config.url !== ApiEndpotins.REFRESH_TOKEN &&
+      !error.config.url.includes("/auth/login") // ✅ 로그인 요청은 refresh 시도 금지
     ) {
-      const refreshToken = localStorage.getItem("refreshToken");
-      if (!refreshToken) return Promise.reject(error);
       try {
-        const response = await api.post<
-          AxiosResponse<ApiResponse<RefreshTokenResponse>>
-        >(ApiEndpotins.REFRESH_TOKEN, {
-          refreshToken,
-        });
-        const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-          response.data.data;
-        localStorage.setItem("accessToken", newAccessToken);
-        localStorage.setItem("refreshToken", newRefreshToken);
-        error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
+        const refreshRes = await axiosInstance.post(
+          ApiEndpotins.REFRESH_TOKEN,
+          { refreshToken: null }, // 형식상 포함
+          { withCredentials: true }
+
+          // const response = await api.post<
+          //   AxiosResponse<ApiResponse<RefreshTokenResponse>>
+          // >(ApiEndpotins.REFRESH_TOKEN, {
+          //   refreshToken,
+          // }
+        );
+
+        // 🚨 갱신 방법 수정해야함. RefreshToken은 헤더가 아니라 쿠키로 내려오므로
+        const newAccessToken = refreshRes.headers["accesstoken"];
+
+        if (newAccessToken) {
+          // 새 액세스토큰으로 대체
+          localStorage.setItem("accessToken", newAccessToken);
+          // console.log("[액세스토큰 리프레시]", newAccessToken);
+
+          // 이후 실패한 요청 다시 전송
+          error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
+          return axiosInstance.request(error.config);
+        }
+
+        // 원래 요청에 붙여서 재시도
         return axiosInstance.request(error.config);
       } catch (err) {
         console.log("err", err);
         localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
+        toast.showToast(
+          "error",
+          "세션이 만료되었습니다. 다시 로그인해주세요.",
+          "auth"
+        );
+        // localStorage.removeItem("accessToken");
+        // localStorage.removeItem("refreshToken");
         return Promise.reject(error);
       }
     }
