@@ -1,6 +1,5 @@
 import axios from "axios";
 import { notFoundRoutes, secureRoutes } from "./secureRoutes";
-// import { secureRoutes } from "./secureRoutes";
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useToastStore } from "@/stores/toastStore";
 
@@ -80,9 +79,9 @@ axiosInstance.interceptors.request.use((config) => {
     const accessToken = localStorage.getItem("accessToken");
 
     // 🐹 서버 응답 확인용
-    console.log("[REQUEST URL]", config.url);
-    console.log("[REQUEST METHOD]", config.method);
-    console.log("[REQUEST AUTHORIZATION]", accessToken);
+    // console.log("[REQUEST URL]", config.url);
+    // console.log("[REQUEST METHOD]", config.method);
+    // console.log("[REQUEST AUTHORIZATION]", accessToken);
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -107,7 +106,7 @@ function isNotFoundRoute(url: string): boolean {
 axiosInstance.interceptors.response.use(
   (response) => {
     // 🐹 로그인 직후 서버가 accessToken / refreshToken을 주는지 확인
-    console.log("[헤더 응답]", response.headers);
+    // console.log("[헤더 응답]", response.headers);
 
     // 10.15 서버가 AccessToken을 헤더로 내려줄 때만 저장
     const newAccessToken = response.headers["accesstoken"];
@@ -153,7 +152,7 @@ axiosInstance.interceptors.response.use(
           { withCredentials: true }
         );
 
-        // 🚨 갱신 방법 수정해야함. RefreshToken은 헤더가 아니라 쿠키로 내려오므로
+        // 🚨 갱신 방법 수정완료. RefreshToken은 헤더가 아니라 쿠키로 내려오므로
         const newAccessToken = refreshRes.headers["accesstoken"];
 
         if (newAccessToken) {
