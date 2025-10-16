@@ -1,5 +1,6 @@
 import axios from "axios";
 import { notFoundRoutes, secureRoutes } from "./secureRoutes";
+// import { secureRoutes } from "./secureRoutes";
 import { ApiEndpotins } from "@/constants/endpoints";
 import { useToastStore } from "@/stores/toastStore";
 
@@ -23,7 +24,7 @@ const axiosInstance = axios.create({
   timeout: 8000, // 응답 8초 넘으면 오류
   withCredentials: true, // RefreshToken 쿠키 자동 전송
   headers: {
-    //   "Content-Type": "application/json",
+    // "Content-Type": "application/json",
   },
 });
 
@@ -78,6 +79,7 @@ axiosInstance.interceptors.request.use((config) => {
   if (isProtected) {
     const accessToken = localStorage.getItem("accessToken");
 
+    // 🐹 서버 응답 확인용
     console.log("[REQUEST URL]", config.url);
     console.log("[REQUEST METHOD]", config.method);
     console.log("[REQUEST AUTHORIZATION]", accessToken);
@@ -89,7 +91,7 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// 404에러시 페이지 이동 처리
+//404에러시 페이지 이동 처리
 function isNotFoundRoute(url: string): boolean {
   // URL에서 base 도메인 제거
   const pathname = new URL(url, domain).pathname.replace("/api", "");
@@ -100,22 +102,6 @@ function isNotFoundRoute(url: string): boolean {
     return regex.test(pathname);
   });
 }
-
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 404) {
-      const requestUrl = error.config?.url || "";
-
-      if (isNotFoundRoute(requestUrl)) {
-        // club/team 관련 404만 NotFoundPage로 이동
-        window.location.href = "/404";
-        return;
-      }
-    }
-    return Promise.reject(error);
-  }
-);
 
 // 🚨 10.15 (로그인 수정) 응답 인터셉터
 axiosInstance.interceptors.response.use(
@@ -133,6 +119,16 @@ axiosInstance.interceptors.response.use(
   },
   async (error) => {
     const toast = useToastStore.getState();
+    const status = error.response?.status;
+
+    // 10.16 민근님 코드 안에 넣어뒀습니다
+    if (status === 404) {
+      const requestUrl = error.config?.url || "";
+      if (isNotFoundRoute(requestUrl)) {
+        window.location.href = "/404";
+        return Promise.reject(error);
+      }
+    }
 
     if (error.code === "ECONNABORTED") {
       console.error("⏰ 요청이 시간 초과되었습니다.");
@@ -155,12 +151,6 @@ axiosInstance.interceptors.response.use(
           ApiEndpotins.REFRESH_TOKEN,
           { refreshToken: null }, // 형식상 포함
           { withCredentials: true }
-
-          // const response = await api.post<
-          //   AxiosResponse<ApiResponse<RefreshTokenResponse>>
-          // >(ApiEndpotins.REFRESH_TOKEN, {
-          //   refreshToken,
-          // }
         );
 
         // 🚨 갱신 방법 수정해야함. RefreshToken은 헤더가 아니라 쿠키로 내려오므로
@@ -169,7 +159,6 @@ axiosInstance.interceptors.response.use(
         if (newAccessToken) {
           // 새 액세스토큰으로 대체
           localStorage.setItem("accessToken", newAccessToken);
-          // console.log("[액세스토큰 리프레시]", newAccessToken);
 
           // 이후 실패한 요청 다시 전송
           error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
@@ -186,8 +175,6 @@ axiosInstance.interceptors.response.use(
           "세션이 만료되었습니다. 다시 로그인해주세요.",
           "auth"
         );
-        // localStorage.removeItem("accessToken");
-        // localStorage.removeItem("refreshToken");
         return Promise.reject(error);
       }
     }
