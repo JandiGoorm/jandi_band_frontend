@@ -1,6 +1,5 @@
 import axios from "axios";
 import { notFoundRoutes, secureRoutes } from "./secureRoutes";
-// import { secureRoutes } from "./secureRoutes";
 import { ApiEndpotins } from "@/constants/endpoints";
 // import type { RefreshTokenResponse } from "@/types/auth";
 // import type { ApiResponse } from "./types";
@@ -97,7 +96,7 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// //404에러시 페이지 이동 처리
+// 404에러시 페이지 이동 처리
 function isNotFoundRoute(url: string): boolean {
   // URL에서 base 도메인 제거
   const pathname = new URL(url, domain).pathname.replace("/api", "");
