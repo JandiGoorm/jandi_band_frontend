@@ -21,10 +21,6 @@ const Callback = () => {
   useEffect(() => {
     if (!data) return;
 
-    // const { isRegistered, accessToken, refreshToken } = data.data;
-    // localStorage.setItem("accessToken", accessToken);
-    // localStorage.setItem("refreshToken", refreshToken);
-
     // 🐹 10.15 (로그인 수정) utill 에서 토큰 저장중이므로 이것만 남겨놓습니다.
     const { isRegistered } = data.data;
 
