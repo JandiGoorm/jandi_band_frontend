@@ -28,7 +28,7 @@ const TeamDetail = () => {
   const { mutate: deleteTeam } = useDeleteTeam(id || "");
 
   if (isLoading) return <Loading />;
-  if (!team) return <div>팀 정보를 찾을 수 없습니다.</div>;
+  if (!team) return <div>동아리 회원이 아니면 조회가 불가능합니다.</div>;
 
   const isMember = team.members.some((member) => member.userId === user?.id);
   const mine = user?.id === team.creatorId;
