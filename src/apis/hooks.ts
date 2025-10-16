@@ -100,16 +100,3 @@ export const useDelete = <S = unknown>(
     ...options,
   });
 };
-
-// export const useDelete = <T extends string | number = number, S = unknown>(
-//   url: string,
-//   options?: MutationOptions<AxiosResponse<ApiResponse<S>>, unknown, T>
-// ) => {
-//   return useMutation<AxiosResponse<ApiResponse<S>>, unknown, T>({
-//     mutationFn: (data) =>
-
-//       // 여기를 고쳐야할듯
-//       api.delete<AxiosResponse<ApiResponse<S>>>(buildPath(url, { id: data })),
-//     ...options,
-//   });
-// };
