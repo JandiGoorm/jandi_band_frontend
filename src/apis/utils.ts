@@ -1,9 +1,6 @@
 import axios from "axios";
 import { notFoundRoutes, secureRoutes } from "./secureRoutes";
 import { ApiEndpotins } from "@/constants/endpoints";
-// import type { RefreshTokenResponse } from "@/types/auth";
-// import type { ApiResponse } from "./types";
-// import type { AxiosResponse } from "axios";
 import { useToastStore } from "@/stores/toastStore";
 
 const domain = import.meta.env.VITE_API_DOMAIN;
@@ -81,18 +78,14 @@ axiosInstance.interceptors.request.use((config) => {
   if (isProtected) {
     const accessToken = localStorage.getItem("accessToken");
 
-    // console.log("[REQUEST URL]", config.url);
-    // console.log("[REQUEST METHOD]", config.method);
-    // console.log("[REQUEST AUTHORIZATION]", accessToken);
+    console.log("[REQUEST URL]", config.url);
+    console.log("[REQUEST METHOD]", config.method);
+    console.log("[REQUEST AUTHORIZATION]", accessToken);
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
   }
-
-  // if (isProtected) {
-  //   config.headers.Authorization = `Bearer ${localStorage.getItem("accessToken") || ""}`;
-  // }
   return config;
 });
 
@@ -128,7 +121,7 @@ axiosInstance.interceptors.response.use(
 axiosInstance.interceptors.response.use(
   (response) => {
     // 🐹 로그인 직후 서버가 accessToken / refreshToken을 주는지 확인
-    // console.log("[헤더 응답]", response.headers);
+    console.log("[헤더 응답]", response.headers);
 
     // 10.15 서버가 AccessToken을 헤더로 내려줄 때만 저장
     const newAccessToken = response.headers["accesstoken"];
@@ -157,10 +150,6 @@ axiosInstance.interceptors.response.use(
       error.config.url !== ApiEndpotins.REFRESH_TOKEN &&
       !error.config.url.includes("/auth/login") // ✅ 로그인 요청은 refresh 시도 금지
     ) {
-      // 로컬스토리지에 저장중 - 고쳐야할듯
-      // const refreshToken = localStorage.getItem("refreshToken");
-      // 현재 요청이 refresh가 아니라면 새 토큰 발급 시도
-      // if (!refreshToken) return Promise.reject(error);
       try {
         const refreshRes = await axiosInstance.post(
           ApiEndpotins.REFRESH_TOKEN,
@@ -177,10 +166,6 @@ axiosInstance.interceptors.response.use(
         // 🚨 갱신 방법 수정해야함. RefreshToken은 헤더가 아니라 쿠키로 내려오므로
         const newAccessToken = refreshRes.headers["accesstoken"];
 
-        // newRefreshToken을 저장할 필요가 없음 액세스토큰만 꺼내서 저장하도록
-        // const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-        //   response.data.data;
-
         if (newAccessToken) {
           // 새 액세스토큰으로 대체
           localStorage.setItem("accessToken", newAccessToken);
@@ -190,11 +175,6 @@ axiosInstance.interceptors.response.use(
           error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return axiosInstance.request(error.config);
         }
-
-        // 새거를 또 로컬스토리지에 저장
-        // localStorage.setItem("accessToken", newAccessToken);
-        // localStorage.setItem("refreshToken", newRefreshToken);
-        // error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
 
         // 원래 요청에 붙여서 재시도
         return axiosInstance.request(error.config);
