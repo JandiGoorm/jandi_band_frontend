@@ -19,7 +19,7 @@ const VoteList = () => {
     size: 12,
   });
 
-  console.log(pollData);
+  // console.log(pollData);
 
   useEffect(() => {
     if (pollData?.data.pageInfo.totalPages !== undefined) {

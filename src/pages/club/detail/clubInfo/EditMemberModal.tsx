@@ -11,7 +11,7 @@ const EditMemberModal = () => {
   const [selected, setSelected] = useState<Member | null>();
   const { data: membersData } = useGetClubMembers(id || "");
 
-  console.log(membersData);
+  // console.log(membersData);
 
   if (!id) return <div>잘못된 접근입니다.</div>;
 
