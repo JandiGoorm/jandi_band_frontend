@@ -17,6 +17,7 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
   if (isLoading) return;
 
   if (!user) {
+    console.log("goos");
     return (
       <Navigate to={PageEndpoints.HOME} state={{ from: location }} replace />
     );
