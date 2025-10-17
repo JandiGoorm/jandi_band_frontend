@@ -12,7 +12,7 @@ const VoteResult = () => {
   const navigate = useNavigate();
   const { poll } = usePollStore();
 
-  console.log(poll);
+  // console.log(poll);
 
   const [filter, setFilter] = useState("기본");
 

@@ -54,7 +54,7 @@ const TimeSchedule = () => {
   const onSubmit = (data: z.infer<typeof timeTableSchema>) => {
     postTimeTable(data, {
       onSuccess: (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         navigate(
           buildPath(PageEndpoints.MY_TIMETABLE_DETAIL, {
             id: response.data.data.id,
