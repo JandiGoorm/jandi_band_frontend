@@ -25,7 +25,7 @@ const TeamModal = () => {
   });
 
   const onSubmit = (data: TeamFormData) => {
-    console.log(data);
+    // console.log(data);
     createTeam(data);
   };
   const {

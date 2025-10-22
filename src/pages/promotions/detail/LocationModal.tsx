@@ -4,7 +4,7 @@ import styles from "./LocationModal.module.css";
 const LocationModal = ({ data }: { data: PromotionListResponse }) => {
   const lat = data.latitude;
   const lng = data.longitude;
-  console.log("위도/경도:", data.latitude, data.longitude);
+  // console.log("위도/경도:", data.latitude, data.longitude);
   return (
     <main className={styles.container}>
       <section className={styles.map_box}>

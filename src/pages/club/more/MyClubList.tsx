@@ -15,7 +15,7 @@ const MyClubList = () => {
 
   if (!myClubListData || isMyClubListLoading) return <Loading />;
 
-  console.log(myClubListData.data);
+  // console.log(myClubListData.data);
   return (
     <DefaultLayout>
       <header>

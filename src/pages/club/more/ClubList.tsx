@@ -20,7 +20,7 @@ const ClubList = () => {
     size: 12,
   });
 
-  console.log(clubData);
+  // console.log(clubData);
 
   useEffect(() => {
     if (clubData?.data.pageInfo.totalPages !== undefined) {
