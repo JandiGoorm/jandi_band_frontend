@@ -38,6 +38,7 @@
   aspect-ratio: 1;
   border-radius: var(--radius-full);
   cursor: pointer;
+  object-fit: cover;
 }
 @media screen and (max-width: 1264px) {
   .content {
