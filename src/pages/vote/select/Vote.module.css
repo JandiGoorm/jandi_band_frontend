@@ -85,10 +85,21 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  min-height: 40vh;
 }
 
 @media (max-width: 765px) {
   .vote_grid {
     grid-template-columns: 1fr;
   }
+}
+
+.footer_button_container {
+  display: flex;
+  justify-content: end;
+}
+.footer_button_container button {
+  background-color: transparent;
+  color: #afafaf;
+  font-size: var(--text-sm);
 }

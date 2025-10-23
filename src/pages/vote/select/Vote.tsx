@@ -14,18 +14,24 @@ import styles from "@/pages/vote/select/Vote.module.css";
 import Loading from "@/components/loading/Loading";
 
 import ArrowBack from "@/pages/vote/style/arrowback.svg";
+import { useAuthStore } from "@/stores/authStore";
+import DeleteModal from "@/components/modal/deleteModal/DeleteModal";
+import { useDeletePollForm } from "@/apis/poll";
 
 const Vote = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data, isLoading, refetch } = useGetPoll(id!);
+  const { mutate: deleteVote } = useDeletePollForm(id || "");
   const { poll, setPoll } = usePollStore();
+  const { user } = useAuthStore();
 
   useEffect(() => {
     if (data?.data) {
       setPoll(data.data);
     }
   }, [data, setPoll]);
+  const mine = user?.id === data?.data.creatorId;
 
   if (isLoading || !poll) return <Loading />;
 
@@ -100,6 +106,28 @@ const Vote = () => {
               refetch={refetch}
             />
           ))}
+        </section>
+        <section className={styles.footer_button_container}>
+          {mine && (
+            <DeleteModal
+              trigger={
+                <Button size="md" variant="primary">
+                  투표 삭제
+                </Button>
+              }
+              title="투표 삭제"
+              description="정말 해당 투표를 삭제 하시겠어요?"
+              onDelete={() => {
+                deleteVote(undefined, {
+                  onSuccess: () => {
+                    navigate(
+                      buildPath(PageEndpoints.CLUB, { id: poll.clubId })
+                    );
+                  },
+                });
+              }}
+            />
+          )}
         </section>
       </main>
     </DefaultLayout>
