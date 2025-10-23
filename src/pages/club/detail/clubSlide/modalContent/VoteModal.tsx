@@ -26,12 +26,15 @@ const VoteModal = ({ setOpen }: Props) => {
 
   const onSubmit = (data: z.infer<typeof voteCreateFormSchema>) => {
     if (!id) return;
-
+    const localDate = new Date(data.endtime);
+    const correctedISO = new Date(
+      localDate.getTime() - localDate.getTimezoneOffset() * 60000
+    ).toISOString();
     createPoll(
       {
         title: data.title,
         clubId: Number(id),
-        endDatetime: new Date(data.endtime).toISOString(),
+        endDatetime: correctedISO,
       },
       {
         onSuccess: (res) => {
