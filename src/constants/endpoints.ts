@@ -69,6 +69,7 @@ export enum ApiEndpotins {
   MAKE_POLL = "/polls", //투표 생성
   POLL = "/polls/:pollId", // 투표 상세 조회
   POLL_ADD_RECOMMEND = "/polls/:pollId/songs",
+  POLL_SONG = "/polls/:pollId/songs/:songId",
   POLL_VOTE = "/polls/:pollId/songs/:songId/votes/:emoji",
   POLL_LIST = "/polls/clubs/:clubId",
 

@@ -49,6 +49,7 @@ export const secureRoutes = [
   { method: Method.POST, url: ApiEndpotins.POLL_ADD_RECOMMEND },
   { method: Method.PUT, url: ApiEndpotins.POLL_VOTE },
   { method: Method.DELETE, url: ApiEndpotins.POLL_VOTE },
+  { method: Method.DELETE, url: ApiEndpotins.POLL_SONG },
   { method: Method.GET, url: ApiEndpotins.POLL_LIST },
   { method: Method.POST, url: ApiEndpotins.PROMOTION },
   { method: Method.PATCH, url: ApiEndpotins.PROMOTION_DETAIL },

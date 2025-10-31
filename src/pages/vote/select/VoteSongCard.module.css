@@ -6,8 +6,32 @@
   text-align: center;
 }
 
+.song_head {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.song_head header {
+  flex: 1;
+  text-align: center;
+}
+
+.song_head span {
+  font-weight: bold;
+}
+
 .song_title span {
   font-weight: bold;
+}
+
+.song_head img {
+  height: 0.75rem;
+  cursor: pointer;
 }
 
 .song_youtube {

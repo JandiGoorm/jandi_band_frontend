@@ -17,6 +17,11 @@ export const usePostPoll = (pollId: string) => {
   );
 };
 
+// 투표 곡 삭제 DELETE
+export const useDeleteSong = (pollId: number, songId: number) => {
+  return useDelete(buildPath(ApiEndpotins.POLL_SONG, { pollId, songId }));
+};
+
 // 곡에 투표하기 PUT
 export const usePutPoll = (pollId: number, songId: number, emoji: string) => {
   return useUpdate<undefined, SongType>(
