@@ -4,8 +4,4 @@
 
 <h2 align="center"> RhythMeet : 밴드부를 위한 연습 일정, 곡 선정 통합 플랫폼 </h2>
 
-## 로컬 개발
-
-로컬 개발 환경은 [백엔드 리포지토리](https://github.com/JandiGoorm/jandi_band_backend)를 참고하세요.
-
 <img width="1332" height="1089" alt="유저_플로우" src="https://github.com/user-attachments/assets/efffe4c9-dee5-410b-925a-87c9d5e6b317" />
