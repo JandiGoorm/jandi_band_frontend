@@ -6,10 +6,10 @@
 
 ## 로컬 환경변수
 
-이 저장소 루트의 `.env.example`을 `.env.local`로 복사한다. `VITE_*` 값은 프론트 개발 서버에서 사용하며, 실제 `.env.local`은 Git에 올리지 않는다. 카카오 로그인·지도·공유를 사용할 때는 관리자에게 같은 카카오 앱의 키와 localhost 설정을 확인한다.
+이 저장소 루트의 `.env.example`을 `.env`로 복사한다. `VITE_*` 값은 프론트 개발 서버에서 사용하며, 실제 `.env`는 Git에 올리지 않는다. 카카오 로그인·지도·공유를 사용할 때는 관리자에게 같은 카카오 앱의 키와 localhost 설정을 확인한다.
 
 ```powershell
-Copy-Item .env.example .env.local
+Copy-Item .env.example .env
 ```
 
 프론트·Spring·FastAPI·MySQL을 함께 실행하는 Docker 구성은 [백엔드의 로컬 개발 안내](https://github.com/JandiGoorm/jandi_band_backend#로컬-개발-프론트엔드springfastapimysql을-docker로-실행)를 참고한다. 각 저장소를 같은 부모 폴더에 두며, 백엔드와 FastAPI 환경 파일도 각각의 저장소에서 관리한다.
