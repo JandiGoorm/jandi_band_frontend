@@ -29,7 +29,21 @@ const SignIn = () => {
           </p>
         </div>
 
-        <button className={styles.kakao_button} onClick={handleKakaoLogin}>
+        <button
+          className={styles.kakao_button}
+          onClick={() => {
+            // GTM에 카카오 로그인 버튼 클릭 이벤트 전달
+            window.dataLayer = window.dataLayer || [];
+
+            window.dataLayer.push({
+              event: "login_button_click",
+              login_method: "kakao",
+            });
+
+            // 카카오 로그인 실행
+            handleKakaoLogin();
+          }}
+        >
           <img
             src="/kakao_icon.png"
             alt="kakao_icon"
